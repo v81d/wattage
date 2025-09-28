@@ -1,0 +1,22 @@
+ampere_sources = [
+  'main.vala',
+  'application.vala',
+  'window.vala',
+]
+
+ampere_deps = [
+  config_dep,
+  dependency('gtk4'),
+  dependency('libadwaita-1', version: '>= 1.4'),
+]
+
+ampere_sources += gnome.compile_resources('ampere-resources',
+  'ampere.gresource.xml',
+  c_name: 'ampere'
+)
+
+executable('ampere', ampere_sources,
+  dependencies: ampere_deps,
+  include_directories: config_inc,
+       install: true,
+)

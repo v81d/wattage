@@ -1,0 +1,8 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+data/com.v81d.Ampere.desktop.in
+data/com.v81d.Ampere.metainfo.xml.in
+data/com.v81d.Ampere.gschema.xml
+src/main.vala
+src/window.vala
+src/window.ui

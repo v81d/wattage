@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=com.v81d.Ampere
+Exec=@bindir@/ampere --gapplication-service

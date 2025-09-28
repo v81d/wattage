@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=ampere
+Exec=ampere
+Icon=com.v81d.Ampere
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=GTK;
+StartupNotify=true
+DBusActivatable=true
