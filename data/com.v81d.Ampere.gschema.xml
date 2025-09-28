@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="ampere">
+	<schema id="com.v81d.Ampere" path="/com/v81d/Ampere/">
+	</schema>
+</schemalist>

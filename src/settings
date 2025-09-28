@@ -1,0 +1,11 @@
+[re/sonny/Workbench]
+show-console=true
+user-interface-language='xml'
+edited=true
+preview-align=1
+show-preview=false
+show-style=false
+show-code=false
+show-ui=true
+safe-mode=false
+auto-preview=true
