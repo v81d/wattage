@@ -38,7 +38,7 @@ public class DeviceRow : Gtk.ListBoxRow {
 [GtkTemplate (ui = "/com/v81d/Ampere/window.ui")]
 public class Ampere.Window : Adw.ApplicationWindow {
     // For easier access, bind template children to variables
-    [GtkChild] private Gtk.ListBox device_list;
+    [GtkChild] unowned Gtk.ListBox device_list;
 
     public Window (Gtk.Application app) {
         Object (application: app);
