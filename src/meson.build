@@ -2,6 +2,7 @@ ampere_sources = [
   'main.vala',
   'application.vala',
   'window.vala',
+  'battery_manager.vala',
 ]
 
 ampere_deps = [
