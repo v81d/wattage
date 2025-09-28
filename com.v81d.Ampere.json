@@ -37,8 +37,8 @@
             "buildsystem" : "meson",
             "sources" : [
                 {
-                    "type" : "git",
-                    "url" : "file:///home/v81d/Projects"
+                    "type" : "dir",
+                    "path" : "/home/v81d/Projects/Ampere"
                 }
             ]
         }
