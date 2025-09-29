@@ -40,6 +40,7 @@ public class DeviceRow : Gtk.ListBoxRow {
 [GtkTemplate (ui = "/com/v81d/Ampere/window.ui")]
 public class Ampere.Window : Adw.ApplicationWindow {
     // For easier access, bind template children to variables
+    [GtkChild] unowned Adw.Spinner loading_spinner;
     [GtkChild] unowned Gtk.ListBox device_list;
 
     private Ampere.BatteryManager battery_manager;
@@ -51,12 +52,36 @@ public class Ampere.Window : Adw.ApplicationWindow {
         load_devices ();
     }
 
-    private void load_devices() {
-        List<Ampere.Device> devices = battery_manager.get_devices();
+    private void load_devices () {
+        loading_spinner.set_visible (true);
 
-        foreach (Ampere.Device device in devices) {
-            append_device(device);
+        Gtk.ListBoxRow? row;
+        while ((row = device_list.get_row_at_index (0)) != null) {
+            device_list.remove (row);
         }
+
+        // To prevent blocking, load on a separate thread
+        Thread<void> thread = new Thread<void> (
+                                                "load-devices",
+                                                () => {
+            List<Ampere.Device> devices;
+
+            try {
+                devices = battery_manager.get_devices ();
+                stdout.printf ("Devices loaded.\n");
+            } catch (Error e) {
+                stderr.printf ("Failed to load devices: %s\n", (string) e);
+                devices = new List<Ampere.Device> ();
+            }
+
+            Idle.add (() => {
+                foreach (Ampere.Device device in devices) {
+                    append_device (device);
+                }
+                loading_spinner.set_visible (false);
+                return false;
+            });
+        });
     }
 
     private void append_device (Ampere.Device device) {
@@ -64,5 +89,12 @@ public class Ampere.Window : Adw.ApplicationWindow {
         DeviceRow row = new DeviceRow (device.name, description, device.icon_name);
         device_list.append (row);
         row.show ();
+    }
+
+    // Callback for clicking the refresh button
+    [GtkCallback]
+    public void on_refresh_clicked (Gtk.Button button) {
+        load_devices ();
+        // TODO: refresh device info in the content view
     }
 }

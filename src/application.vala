@@ -21,9 +21,9 @@
 public class Ampere.Application : Adw.Application {
     public Application () {
         Object (
-            application_id: "com.v81d.Ampere",
-            flags: ApplicationFlags.DEFAULT_FLAGS,
-            resource_base_path: "/com/v81d/Ampere"
+                application_id: "com.v81d.Ampere",
+                flags: ApplicationFlags.DEFAULT_FLAGS,
+                resource_base_path: "/com/v81d/Ampere"
         );
     }
 
@@ -34,7 +34,7 @@ public class Ampere.Application : Adw.Application {
             { "quit", this.quit }
         };
         this.add_action_entries (action_entries, this);
-        this.set_accels_for_action ("app.quit", {"<primary>q"});
+        this.set_accels_for_action ("app.quit", { "<primary>q" });
     }
 
     public override void activate () {
