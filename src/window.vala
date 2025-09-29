@@ -31,6 +31,7 @@ public class DeviceRow : Gtk.ListBoxRow {
 
         // Due to the deprecation of `row.icon_name` and `row.set_icon_name ()`, the icon should be prepended as a widget
         Gtk.Image icon = new Gtk.Image.from_icon_name (icon_name);
+        icon.set_pixel_size (24);
         row.add_prefix (icon);
 
         this.set_child (row);
