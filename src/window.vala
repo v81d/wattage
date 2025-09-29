@@ -50,6 +50,19 @@ public class Ampere.Window : Adw.ApplicationWindow {
 
         battery_manager = new Ampere.BatteryManager ();
         load_devices ();
+
+        // This is the handler for selecting a device in the sidebar
+        device_list.row_selected.connect((list, row) => {
+            if (row != null) {
+                DeviceRow? device_row = row as DeviceRow;
+                if (device_row != null) {
+                    Adw.ActionRow? action_row = device_row.get_child() as Adw.ActionRow;
+                    if (action_row != null) {
+                        stdout.printf("Selected device: %s\n", action_row.title);
+                    }
+                }
+            }
+        });
     }
 
     private void load_devices () {
@@ -78,6 +91,11 @@ public class Ampere.Window : Adw.ApplicationWindow {
                 foreach (Ampere.Device device in devices) {
                     append_device (device);
                 }
+
+                if (device_list.get_row_at_index (0) != null) {
+                    device_list.select_row (device_list.get_row_at_index (0));
+                }
+
                 loading_spinner.set_visible (false);
                 return false;
             });
@@ -87,8 +105,8 @@ public class Ampere.Window : Adw.ApplicationWindow {
     private void append_device (Ampere.Device device) {
         string description = "Type: %s\nManufacturer: %s".printf (device.type, device.manufacturer);
         DeviceRow row = new DeviceRow (device.name, description, device.icon_name);
-        device_list.append (row);
-        row.show ();
+
+        device_list.append(row);
     }
 
     // Callback for clicking the refresh button
