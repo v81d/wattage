@@ -46,13 +46,14 @@ public class Ampere.Application : Adw.Application {
     private void on_about_action () {
         string[] developers = { "v81d" };
         var about = new Adw.AboutDialog () {
-            application_name = "ampere",
+            application_name = "Ampere",
             application_icon = "com.v81d.Ampere",
             developer_name = "v81d",
             translator_credits = _("translator-credits"),
             version = "0.1.0",
             developers = developers,
-            copyright = "© 2025 v81d",
+            copyright = "© 2025 v81d\n\nThis software is distributed with absolutely no warranty. See the <a href='https://www.gnu.org/licenses/gpl-3.0.html'>GNU General Public License v3.0</a> for full license terms.",
+            website = "https://github.com/v81d/ampere",
         };
 
         about.present (this.active_window);
