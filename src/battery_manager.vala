@@ -40,9 +40,9 @@ namespace Ampere {
 
     // This is the publicly accessible class used to probe, enumerate, and inspect battery devices
     public class BatteryManager : Object {
-        private const string POWER_SUPPLY_PATH = "/sys/class/power_supply";  // directory for device folders
+        private const string POWER_SUPPLY_PATH = "/sys/class/power_supply"; // directory for device folders
 
-        public BatteryManager () { }
+        public BatteryManager () {}
 
         private string read_file (string filepath, string fallback = "Unknown") {
             try {
@@ -50,7 +50,7 @@ namespace Ampere {
                 if (FileUtils.get_contents (filepath, out content)) {
                     return content.strip ();
                 }
-            } catch (Error e) {  }
+            } catch (Error e) {}
             return fallback;
         }
 
@@ -99,7 +99,7 @@ namespace Ampere {
             return "battery-" + level + suffix + "-symbolic";
         }
 
-        public List<Device> get_devices () {
+        public List<Device> get_devices () throws GLib.Error {
             List<Device> result = new List<Device> ();
 
             File path = File.new_for_path (POWER_SUPPLY_PATH);
@@ -129,11 +129,11 @@ namespace Ampere {
              */
             result.sort ((a, b) => {
                 if (a.type == "Battery" && b.type != "Battery") {
-                    return -1;  // a before b
+                    return -1; // a before b
                 } else if (a.type != "Battery" && b.type == "Battery") {
-                    return 1;  // b before a
+                    return 1; // b before a
                 } else {
-                    return strcmp (a.name, b.name);  // alphabetical order
+                    return strcmp (a.name, b.name); // alphabetical order
                 }
             });
 

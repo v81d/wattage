@@ -17,10 +17,37 @@
                   <object class="AdwHeaderBar"/>
                 </child>
                 <property name="content">
-                  <object class="GtkListBox" id="device_list">
-                    <style>
-                      <class name="navigation-sidebar"/>
-                    </style>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkListBox" id="device_list">
+                        <style>
+                          <class name="navigation-sidebar"/>
+                        </style>
+                        <property name="hexpand">true</property>
+                        <property name="vexpand">false</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="hexpand">true</property>
+                        <property name="vexpand">true</property>
+
+                        <child>
+                          <object class="AdwSpinner" id="loading_spinner">
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="width-request">48</property>
+                            <property name="height-request">48</property>
+                            <property name="visible">false</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                   </object>
                 </property>
               </object>
@@ -41,6 +68,13 @@
                         <property name="icon-name">open-menu-symbolic</property>
                         <property name="tooltip-text" translatable="yes">Main Menu</property>
                         <property name="menu-model">primary_menu</property>
+                      </object>
+                    </child>
+                    <child type="end">
+                      <object class="GtkButton" id="refresh_button">
+                        <property name="icon-name">view-refresh-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Refresh</property>
+                        <signal name="clicked" handler="on_refresh_clicked" swapped="no"/>
                       </object>
                     </child>
                   </object>
@@ -69,3 +103,4 @@
     </section>
   </menu>
 </interface>
+
