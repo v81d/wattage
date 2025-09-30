@@ -55,7 +55,7 @@ namespace Ampere {
         }
 
         // This method is used to methodically determine the symbolic icon name based on information about a given device
-        private string get_battery_icon_name (string device_path) {
+        private string get_device_icon_name (string device_path) {
             string device_name = Path.get_basename (device_path);
             string sysfs_path = Path.build_filename (POWER_SUPPLY_PATH, device_name);
 
@@ -64,7 +64,7 @@ namespace Ampere {
             string capacity_string = read_file (Path.build_filename (sysfs_path, "capacity"));
             string status = read_file (Path.build_filename (sysfs_path, "status"));
 
-            // If `present` is not 1 (true), then the battery is missing
+            // If `present` is not 1 (true), then the device is missing
             if (present != "1") {
                 return "battery-missing-symbolic";
             }
@@ -118,7 +118,7 @@ namespace Ampere {
                 string device_path = Path.build_filename (POWER_SUPPLY_PATH, device_name);
                 string device_type = read_file (Path.build_filename (device_path, "type"));
                 string device_manufacturer = read_file (Path.build_filename (device_path, "manufacturer"));
-                string device_icon_name = get_battery_icon_name (device_path);
+                string device_icon_name = get_device_icon_name (device_path);
 
                 result.append (new Device (device_name, device_path, device_type, device_manufacturer, device_icon_name));
             }
