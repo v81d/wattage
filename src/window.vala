@@ -41,7 +41,9 @@ public class DeviceRow : Gtk.ListBoxRow {
 [GtkTemplate (ui = "/com/v81d/Ampere/window.ui")]
 public class Ampere.Window : Adw.ApplicationWindow {
     // For easier access, bind template children to variables
-    [GtkChild] unowned Adw.Spinner loading_spinner;
+    [GtkChild] unowned Adw.Spinner sidebar_spinner;
+    [GtkChild] unowned Adw.Spinner content_spinner;
+    [GtkChild] unowned Adw.OverlaySplitView split_view;
     [GtkChild] unowned Gtk.ListBox device_list;
 
     private Ampere.BatteryManager battery_manager;
@@ -67,7 +69,8 @@ public class Ampere.Window : Adw.ApplicationWindow {
     }
 
     private void load_devices () {
-        loading_spinner.set_visible (true);
+        sidebar_spinner.set_visible (true);
+        content_spinner.set_visible (true);
 
         Gtk.ListBoxRow? row;
         while ((row = device_list.get_row_at_index (0)) != null) {
@@ -97,7 +100,8 @@ public class Ampere.Window : Adw.ApplicationWindow {
                     device_list.select_row (device_list.get_row_at_index (0));
                 }
 
-                loading_spinner.set_visible (false);
+                sidebar_spinner.set_visible (false);
+                content_spinner.set_visible (false);
                 return false;
             });
         });
@@ -115,5 +119,11 @@ public class Ampere.Window : Adw.ApplicationWindow {
     public void on_refresh_clicked (Gtk.Button button) {
         load_devices ();
         // TODO: refresh device info in the content view
+    }
+
+    [GtkCallback]
+    public void on_toggle_sidebar_toggled (Gtk.ToggleButton button) {
+        bool is_active = button.get_active ();
+        split_view.set_show_sidebar (is_active);
     }
 }
