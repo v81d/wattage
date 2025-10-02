@@ -33,9 +33,10 @@ namespace Ampere {
         public string technology = "Unknown";
         public string charge_control_end_threshold = "Unknown"; // charge limit
         public string cycle_count = "Unknown";
-        public string energy_full = "Unknown"; // maximum capacity
         public string energy_full_design = "Unknown"; // original maximum capacity
+        public string energy_full = "Unknown"; // maximum capacity
         public string energy_now = "Unknown";
+        public string power_now = "Unknown"; // energy rate
         public string voltage_min_design = "Unknown"; // original minimum voltage
         public string voltage_now = "Unknown";
         public string icon_name = "Unknown";
@@ -56,6 +57,20 @@ namespace Ampere {
             double percentage = (full / full_design) * 100;
 
             return "%0.3f".printf (percentage);
+        }
+
+        public string create_alert (double health_percentage) {
+            if (health_percentage >= 90) {
+                return "The device performs close to its original capacity. It is suitable for daily use with minimal wear.";
+            } else if (health_percentage >= 80) {
+                return "The device bears slight capacity loss but is still in good condition for most tasks.";
+            } else if (health_percentage >= 70) {
+                return "The device shows a considerable degradation in capacity. Usage time is noticeably shorter than at its optimal state.";
+            } else if (health_percentage >= 50) {
+                return "The device has a significant drop in capacity. Expect arbitrary shutdowns and shortened runtime during extended use.";
+            } else {
+                return "The device has experienced substantial deterioration. Consider replacing the device to avoid further damage.";
+            }
         }
     }
 
@@ -194,13 +209,21 @@ namespace Ampere {
             device.cycle_count = this.read_file (Path.build_filename (device.path, "cycle_count"));
 
             // Convert to Wh
-            double energy_full = double.parse (this.read_file (Path.build_filename (device.path, "energy_full"))) / 1000000;
             double energy_full_design = double.parse (this.read_file (Path.build_filename (device.path, "energy_full_design"))) / 1000000;
+            double energy_full = double.parse (this.read_file (Path.build_filename (device.path, "energy_full"))) / 1000000;
             double energy_now = double.parse (this.read_file (Path.build_filename (device.path, "energy_now"))) / 1000000;
+
+            string power_now = this.read_file (Path.build_filename (device.path, "power_now"));
+
+            // Convert to W if result is not unknown
+            if (power_now.down () != "unknown") {
+                power_now = (double.parse (power_now) / 1000000).to_string ();
+            }
 
             device.energy_full = energy_full == 0 ? "Unknown" : "%0.3f".printf (energy_full);
             device.energy_full_design = energy_full_design == 0 ? "Unknown" : "%0.3f".printf (energy_full_design);
             device.energy_now = energy_now == 0 ? "Unknown" : "%0.3f".printf (energy_now);
+            device.power_now = power_now.down () == "unknown" ? "Unknown" : "%0.3f".printf (double.parse (power_now));
 
             device.status = this.read_file (Path.build_filename (device.path, "status"));
 
