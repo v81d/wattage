@@ -44,8 +44,8 @@ namespace Ampere {
         public Device () {}
 
         public string calculate_health_percentage () {
-            double full = double.parse (this.energy_full);
             double full_design = double.parse (this.energy_full_design);
+            double full = double.parse (this.energy_full);
 
             /* In some special cases, the rated maximum capacity may be 0 micro-watt-hours.
              * To avoid division by zero, we should instead return "Unknown" early.
@@ -68,8 +68,10 @@ namespace Ampere {
                 return "The device shows a considerable degradation in capacity. Usage time is noticeably shorter than at its optimal state.";
             } else if (health_percentage >= 50) {
                 return "The device has a significant drop in capacity. Expect arbitrary shutdowns and shortened runtime during extended use.";
-            } else {
+            } else if (health_percentage > 0) {
                 return "The device has experienced substantial deterioration. Consider replacing the device to avoid further damage.";
+            } else {
+                return "Unknown";
             }
         }
     }
