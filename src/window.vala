@@ -161,6 +161,12 @@ public class Ampere.Window : Adw.ApplicationWindow {
             basic_info.set ("Status", device.status);
             sections.add (basic_info);
 
+            DeviceInfoSectionData health_stats = new DeviceInfoSectionData ("Health Evaluations");
+            string health_percentage = device.calculate_health_percentage ();
+            health_stats.set ("State of Health", health_percentage + "%");
+            health_stats.set ("Device Condition", device.create_alert (double.parse (health_percentage)));
+            sections.add (health_stats);
+
             DeviceInfoSectionData manufacturing_details = new DeviceInfoSectionData ("Manufacturing Details");
             manufacturing_details.set ("Manufacturer", device.manufacturer);
             manufacturing_details.set ("Serial Number", device.serial_number);
@@ -177,10 +183,10 @@ public class Ampere.Window : Adw.ApplicationWindow {
             sections.add (charging_status);
 
             DeviceInfoSectionData energy_metrics = new DeviceInfoSectionData ("Energy Metrics");
-            energy_metrics.set ("Maximum Capacity", device.energy_full + " Wh");
             energy_metrics.set ("Maximum Rated Capacity", device.energy_full_design + " Wh");
-            energy_metrics.set ("Battery Health Percentage", device.calculate_health_percentage () + "%");
-            energy_metrics.set ("Current Energy", device.energy_now + " Wh");
+            energy_metrics.set ("Maximum Capacity", device.energy_full + " Wh");
+            energy_metrics.set ("Remaining Power", device.energy_now + " Wh");
+            energy_metrics.set ("Energy Rate", device.power_now + " W");
             sections.add (energy_metrics);
 
             DeviceInfoSectionData voltage_stats = new DeviceInfoSectionData ("Voltage Statistics");
