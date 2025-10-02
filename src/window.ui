@@ -28,16 +28,15 @@
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkListBox" id="device_list">
+                        <property name="hexpand">true</property>
+                        <property name="vexpand">false</property>
                         <style>
                           <class name="navigation-sidebar"/>
                         </style>
-                        <property name="hexpand">true</property>
-                        <property name="vexpand">false</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkBox">
-                        <property name="orientation">vertical</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                         <property name="hexpand">true</property>
@@ -93,92 +92,24 @@
                   </object>
                 </child>
                 <property name="content">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
+                  <object class="GtkOverlay">
                     <child>
-                      <object class="GtkBox">
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">12</property>
-                        <property name="margin-top">48</property>
-                        <property name="margin-start">48</property>
-                        <property name="margin-bottom">48</property>
-                        <property name="margin-end">48</property>
+                      <object class="GtkScrolledWindow">
+                        <property name="vexpand">true</property>
                         <child>
-                          <object class="GtkLabel">
-                            <property name="label">Device Properties</property>
-                            <property name="halign">start</property>
-                            <style>
-                              <class name="title-2"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkListBox">
-                            <property name="selection-mode">none</property>
-                            <style>
-                              <class name="boxed-list"/>
-                            </style>
-                            <child>
-                              <object class="AdwActionRow">
-                                <property name="title">Native Path</property>
-                                <property name="subtitle">BAT0</property>
-                                <style>
-                                  <class name="property"/>
-                                  <class name="monospace"/>
-                                </style>
-                                <child type="suffix">
-                                  <object class="GtkButton">
-                                    <property name="icon-name">edit-copy-symbolic</property>
-                                    <property name="tooltip-text" translatable="yes">Copy</property>
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="AdwActionRow">
-                                <property name="title">Vendor</property>
-                                <property name="subtitle">OEM</property>
-                                <style>
-                                  <class name="property"/>
-                                  <class name="monospace"/>
-                                </style>
-                                <child type="suffix">
-                                  <object class="GtkButton">
-                                    <property name="icon-name">edit-copy-symbolic</property>
-                                    <property name="tooltip-text" translatable="yes">Copy</property>
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="AdwActionRow">
-                                <property name="title">Model</property>
-                                <property name="subtitle">S560647</property>
-                                <style>
-                                  <class name="property"/>
-                                  <class name="monospace"/>
-                                </style>
-                                <child type="suffix">
-                                  <object class="GtkButton">
-                                    <property name="icon-name">edit-copy-symbolic</property>
-                                    <property name="tooltip-text" translatable="yes">Copy</property>
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
+                          <object class="GtkBox" id="device_info_box">
+                            <property name="orientation">vertical</property>
+                            <property name="margin-top">48</property>
+                            <property name="margin-start">48</property>
+                            <property name="margin-bottom">48</property>
+                            <property name="margin-end">48</property>
+                            <property name="spacing">48</property>
                           </object>
                         </child>
                       </object>
                     </child>
-                    <child>
+                    <child type="overlay">
                       <object class="GtkBox">
-                        <property name="orientation">vertical</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                         <property name="hexpand">true</property>
