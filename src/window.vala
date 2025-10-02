@@ -192,7 +192,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
             energy_metrics.set ("Maximum Rated Capacity", device.energy_full_design + " Wh");
             energy_metrics.set ("Maximum Capacity", device.energy_full + " Wh");
             energy_metrics.set ("Remaining Power", device.energy_now + " Wh");
-            energy_metrics.set ("Energy Rate", device.power_now + " W");
+            energy_metrics.set ("Energy Transfer Rate", device.power_now + " W");
             sections.add (energy_metrics);
 
             DeviceInfoSectionData voltage_stats = new DeviceInfoSectionData ("Voltage Statistics");
