@@ -78,9 +78,9 @@ namespace Ampere {
         // This method is used to methodically determine the symbolic icon name based on information about a given device
         private string get_device_icon_name (string device_path) {
             // Store the properties of the device
-            string present = read_file (Path.build_filename (device_path, "present"));
-            string capacity_string = read_file (Path.build_filename (device_path, "capacity"));
-            string status = read_file (Path.build_filename (device_path, "status"));
+            string present = this.read_file (Path.build_filename (device_path, "present"));
+            string capacity_string = this.read_file (Path.build_filename (device_path, "capacity"));
+            string status = this.read_file (Path.build_filename (device_path, "status"));
 
             // If `present` is not 1 (true), then the device is missing
             if (present != "1") {
@@ -121,7 +121,7 @@ namespace Ampere {
             List<Device> result = new List<Device> ();
 
             File path = File.new_for_path (POWER_SUPPLY_PATH);
-            var enumerator = path.enumerate_children ("*", FileQueryInfoFlags.NONE, null);
+            FileEnumerator enumerator = path.enumerate_children ("*", FileQueryInfoFlags.NONE, null);
 
             FileInfo info;
             while ((info = enumerator.next_file (null)) != null) {
@@ -135,9 +135,8 @@ namespace Ampere {
                 Device device = new Device ();
                 device.name = info.get_name ();
                 device.path = Path.build_filename (POWER_SUPPLY_PATH, device.name);
-                device.type = read_file (Path.build_filename (device.path, "type"));
-                device.icon_name = get_device_icon_name (device.path);
-
+                device.type = this.read_file (Path.build_filename (device.path, "type"));
+                device.icon_name = this.get_device_icon_name (device.path);
                 result.append (device);
             }
 
@@ -166,12 +165,12 @@ namespace Ampere {
 
             device.name = device_name;
             device.path = Path.build_filename (POWER_SUPPLY_PATH, device_name);
-            device.type = read_file (Path.build_filename (device.path, "type"));
+            device.type = this.read_file (Path.build_filename (device.path, "type"));
 
-            device.manufacturer = read_file (Path.build_filename (device.path, "manufacturer"));
+            device.manufacturer = this.read_file (Path.build_filename (device.path, "manufacturer"));
 
             // Mask serial number
-            string serial_number = read_file (Path.build_filename (device.path, "serial_number"));
+            string serial_number = this.read_file (Path.build_filename (device.path, "serial_number"));
             string masked_serial_number;
             if (serial_number.length > 4 && serial_number.down () != "unknown") {
                 int mask_length = serial_number.length - 4;
@@ -186,33 +185,33 @@ namespace Ampere {
 
             device.serial_number = masked_serial_number;
 
-            device.model_name = read_file (Path.build_filename (device.path, "model_name"));
-            device.technology = read_file (Path.build_filename (device.path, "technology"));
+            device.model_name = this.read_file (Path.build_filename (device.path, "model_name"));
+            device.technology = this.read_file (Path.build_filename (device.path, "technology"));
 
-            double charge_control_end_threshold = double.parse (read_file (Path.build_filename (device.path, "charge_control_end_threshold")));
+            double charge_control_end_threshold = double.parse (this.read_file (Path.build_filename (device.path, "charge_control_end_threshold")));
 
             device.charge_control_end_threshold = charge_control_end_threshold == 0 ? "Unknown" : "%0.3f".printf (charge_control_end_threshold);
-            device.cycle_count = read_file (Path.build_filename (device.path, "cycle_count"));
+            device.cycle_count = this.read_file (Path.build_filename (device.path, "cycle_count"));
 
             // Convert to Wh
-            double energy_full = double.parse (read_file (Path.build_filename (device.path, "energy_full"))) / 1000000;
-            double energy_full_design = double.parse (read_file (Path.build_filename (device.path, "energy_full_design"))) / 1000000;
-            double energy_now = double.parse (read_file (Path.build_filename (device.path, "energy_now"))) / 1000000;
+            double energy_full = double.parse (this.read_file (Path.build_filename (device.path, "energy_full"))) / 1000000;
+            double energy_full_design = double.parse (this.read_file (Path.build_filename (device.path, "energy_full_design"))) / 1000000;
+            double energy_now = double.parse (this.read_file (Path.build_filename (device.path, "energy_now"))) / 1000000;
 
             device.energy_full = energy_full == 0 ? "Unknown" : "%0.3f".printf (energy_full);
             device.energy_full_design = energy_full_design == 0 ? "Unknown" : "%0.3f".printf (energy_full_design);
             device.energy_now = energy_now == 0 ? "Unknown" : "%0.3f".printf (energy_now);
 
-            device.status = read_file (Path.build_filename (device.path, "status"));
+            device.status = this.read_file (Path.build_filename (device.path, "status"));
 
             // Convert to V
-            double voltage_min_design = double.parse (read_file (Path.build_filename (device.path, "voltage_min_design"))) / 1000000;
-            double voltage_now = double.parse (read_file (Path.build_filename (device.path, "voltage_now"))) / 1000000;
+            double voltage_min_design = double.parse (this.read_file (Path.build_filename (device.path, "voltage_min_design"))) / 1000000;
+            double voltage_now = double.parse (this.read_file (Path.build_filename (device.path, "voltage_now"))) / 1000000;
 
             device.voltage_min_design = voltage_min_design == 0 ? "Unknown" : "%0.3f".printf (voltage_min_design);
             device.voltage_now = voltage_now == 0 ? "Unknown" : "%0.3f".printf (voltage_now);
 
-            device.icon_name = get_device_icon_name (device.path);
+            device.icon_name = this.get_device_icon_name (device.path);
 
             return device;
         }

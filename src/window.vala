@@ -100,7 +100,7 @@ public class DeviceInfoSectionData {
 
     public void set (string name, string value) {
         if (!value.down ().contains ("unknown") && value.length > 0) {
-            properties.add (new DeviceProperty (name, value));
+            this.properties.add (new DeviceProperty (name, value));
         }
     }
 }
@@ -115,21 +115,26 @@ public class Ampere.Window : Adw.ApplicationWindow {
     [GtkChild] unowned Gtk.Box device_info_box;
 
     private Ampere.BatteryManager battery_manager;
+    private int selected_device_index = 0;
 
     public Window (Gtk.Application app) {
         Object (application: app);
 
-        battery_manager = new Ampere.BatteryManager ();
-        load_device_list ();
+        this.battery_manager = new Ampere.BatteryManager ();
+        this.load_device_list ();
 
         // This is the handler for selecting a device in the sidebar
-        device_list.row_selected.connect ((list, row) => {
+        this.device_list.row_selected.connect ((list, row) => {
             if (row != null) {
                 DeviceRow? device_row = row as DeviceRow;
                 if (device_row != null) {
                     Adw.ActionRow? action_row = device_row.get_child () as Adw.ActionRow;
                     if (action_row != null) {
-                        load_device_info (battery_manager.fetch_device (action_row.get_title ()));
+                        Idle.add (() => {
+                            this.selected_device_index = device_row.get_index ();
+                            this.load_device_info (this.battery_manager.fetch_device (action_row.get_title ()));
+                            return false;
+                        });
                     }
                 }
             }
@@ -137,12 +142,12 @@ public class Ampere.Window : Adw.ApplicationWindow {
     }
 
     private void load_device_info (Ampere.Device device) {
-        content_spinner.set_visible (true);
+        this.content_spinner.set_visible (true);
 
         // Clear all sections before adding them back
         Gtk.Widget? widget;
-        while ((widget = device_info_box.get_first_child ()) != null) {
-            device_info_box.remove (widget);
+        while ((widget = this.device_info_box.get_first_child ()) != null) {
+            this.device_info_box.remove (widget);
         }
 
         // To prevent blocking, load on a separate thread
@@ -187,11 +192,11 @@ public class Ampere.Window : Adw.ApplicationWindow {
                 foreach (DeviceInfoSectionData section in sections) {
                     DeviceInfoSection device_info_section = new DeviceInfoSection (section.title, section.properties);
                     if (device_info_section.get_first_child () != null) {
-                        device_info_box.append (device_info_section);
+                        this.device_info_box.append (device_info_section);
                     }
                 }
 
-                content_spinner.set_visible (false);
+                this.content_spinner.set_visible (false);
 
                 return false;
             });
@@ -199,18 +204,18 @@ public class Ampere.Window : Adw.ApplicationWindow {
     }
 
     private void load_device_list () {
-        sidebar_spinner.set_visible (true);
+        this.sidebar_spinner.set_visible (true);
 
         Gtk.ListBoxRow? row;
-        while ((row = device_list.get_row_at_index (0)) != null) {
-            device_list.remove (row);
+        while ((row = this.device_list.get_row_at_index (0)) != null) {
+            this.device_list.remove (row);
         }
 
         new Thread<void> ("load-device-list", () => {
             List<Ampere.Device> devices;
 
             try {
-                devices = battery_manager.get_devices ();
+                devices = this.battery_manager.get_devices ();
                 stdout.printf ("Power devices loaded.\n");
             } catch (Error e) {
                 stderr.printf ("Failed to load power devices: %s\n", (string) e);
@@ -219,14 +224,20 @@ public class Ampere.Window : Adw.ApplicationWindow {
 
             Idle.add (() => {
                 foreach (Ampere.Device device in devices) {
-                    append_device (device);
+                    this.append_device (device);
                 }
 
-                if (device_list.get_row_at_index (0) != null) {
-                    device_list.select_row (device_list.get_row_at_index (0));
+                if (this.device_list.get_row_at_index (this.selected_device_index) != null) {
+                    this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index));
+                } else if (this.device_list.get_row_at_index (0) != null) {
+                    this.device_list.select_row (this.device_list.get_row_at_index (0));
+                    this.selected_device_index = 0;
+                    stdout.printf ("The device at index %s cannot be found. Device at index 0 will be selected.\n", this.selected_device_index.to_string ());
+                } else {
+                    stderr.printf ("No power devices found under the sysfs path.\n");
                 }
 
-                sidebar_spinner.set_visible (false);
+                this.sidebar_spinner.set_visible (false);
 
                 return false;
             });
@@ -236,20 +247,19 @@ public class Ampere.Window : Adw.ApplicationWindow {
     private void append_device (Ampere.Device device) {
         string description = "Path: %s\nType: %s".printf (device.path, device.type);
         DeviceRow row = new DeviceRow (device.name, description, device.icon_name);
-
-        device_list.append (row);
+        this.device_list.append (row);
     }
 
     // Callback for clicking the refresh button
     [GtkCallback]
     public void on_refresh_clicked (Gtk.Button button) {
         load_device_list ();
-        // The device information will thus be refreshed
+        // The device information will be refreshed automatically
     }
 
     [GtkCallback]
     public void on_toggle_sidebar_toggled (Gtk.ToggleButton button) {
         bool is_active = button.get_active ();
-        split_view.set_show_sidebar (is_active);
+        this.split_view.set_show_sidebar (is_active);
     }
 }
