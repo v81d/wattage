@@ -21,20 +21,41 @@
 using GLib;
 
 namespace Ampere {
-    // This class is used to represent a single device object
+    // This class is used to represent basic information about a single device
     public class Device {
-        public string name;
-        public string path;
-        public string type;
-        public string manufacturer;
-        public string icon_name;
+        public string name = "Unknown";
+        public string path = "Unknown";
+        public string type = "Unknown";
+        public string status = "Unknown";
+        public string manufacturer = "Unknown";
+        public string serial_number = "Unknown";
+        public string model_name = "Unknown";
+        public string technology = "Unknown";
+        public string charge_control_end_threshold = "Unknown"; // charge limit
+        public string cycle_count = "Unknown";
+        public string energy_full = "Unknown"; // maximum capacity
+        public string energy_full_design = "Unknown"; // original maximum capacity
+        public string energy_now = "Unknown";
+        public string voltage_min_design = "Unknown"; // original minimum voltage
+        public string voltage_now = "Unknown";
+        public string icon_name = "Unknown";
 
-        public Device (string name = "", string path = "", string type = "", string manufacturer = "", string icon_name = "") {
-            this.name = name;
-            this.path = path;
-            this.type = type;
-            this.manufacturer = manufacturer;
-            this.icon_name = icon_name;
+        public Device () {}
+
+        public string calculate_health_percentage () {
+            double full = double.parse (this.energy_full);
+            double full_design = double.parse (this.energy_full_design);
+
+            /* In some special cases, the rated maximum capacity may be 0 micro-watt-hours.
+             * To avoid division by zero, we should instead return "Unknown" early.
+             */
+            if (full_design == 0) {
+                return "Unknown";
+            }
+
+            double percentage = (full / full_design) * 100;
+
+            return "%0.3f".printf (percentage);
         }
     }
 
@@ -50,19 +71,16 @@ namespace Ampere {
                 if (FileUtils.get_contents (filepath, out content)) {
                     return content.strip ();
                 }
-            } catch (Error e) {}
+            } catch (Error _) {}
             return fallback;
         }
 
         // This method is used to methodically determine the symbolic icon name based on information about a given device
         private string get_device_icon_name (string device_path) {
-            string device_name = Path.get_basename (device_path);
-            string sysfs_path = Path.build_filename (POWER_SUPPLY_PATH, device_name);
-
             // Store the properties of the device
-            string present = read_file (Path.build_filename (sysfs_path, "present"));
-            string capacity_string = read_file (Path.build_filename (sysfs_path, "capacity"));
-            string status = read_file (Path.build_filename (sysfs_path, "status"));
+            string present = read_file (Path.build_filename (device_path, "present"));
+            string capacity_string = read_file (Path.build_filename (device_path, "capacity"));
+            string status = read_file (Path.build_filename (device_path, "status"));
 
             // If `present` is not 1 (true), then the device is missing
             if (present != "1") {
@@ -114,13 +132,13 @@ namespace Ampere {
                     continue;
                 }
 
-                string device_name = info.get_name ();
-                string device_path = Path.build_filename (POWER_SUPPLY_PATH, device_name);
-                string device_type = read_file (Path.build_filename (device_path, "type"));
-                string device_manufacturer = read_file (Path.build_filename (device_path, "manufacturer"));
-                string device_icon_name = get_device_icon_name (device_path);
+                Device device = new Device ();
+                device.name = info.get_name ();
+                device.path = Path.build_filename (POWER_SUPPLY_PATH, device.name);
+                device.type = read_file (Path.build_filename (device.path, "type"));
+                device.icon_name = get_device_icon_name (device.path);
 
-                result.append (new Device (device_name, device_path, device_type, device_manufacturer, device_icon_name));
+                result.append (device);
             }
 
             /* Usually, users will most likely be looking for information regarding their battery.
@@ -138,6 +156,65 @@ namespace Ampere {
             });
 
             return result;
+        }
+
+        public Device fetch_device (string device_name) {
+            /* Fetch all properties, statistics, and information about the specified device.
+             * Should create a `Device` object containing all necessary information.
+             */
+            Device device = new Device ();
+
+            device.name = device_name;
+            device.path = Path.build_filename (POWER_SUPPLY_PATH, device_name);
+            device.type = read_file (Path.build_filename (device.path, "type"));
+
+            device.manufacturer = read_file (Path.build_filename (device.path, "manufacturer"));
+
+            // Mask serial number
+            string serial_number = read_file (Path.build_filename (device.path, "serial_number"));
+            string masked_serial_number;
+            if (serial_number.length > 4 && serial_number.down () != "unknown") {
+                int mask_length = serial_number.length - 4;
+                string mask = "";
+                for (int i = 0; i < mask_length; i++) {
+                    mask += "*";
+                }
+                masked_serial_number = mask + serial_number.slice (mask_length, serial_number.length);
+            } else {
+                masked_serial_number = serial_number;
+            }
+
+            device.serial_number = masked_serial_number;
+
+            device.model_name = read_file (Path.build_filename (device.path, "model_name"));
+            device.technology = read_file (Path.build_filename (device.path, "technology"));
+
+            double charge_control_end_threshold = double.parse (read_file (Path.build_filename (device.path, "charge_control_end_threshold")));
+
+            device.charge_control_end_threshold = charge_control_end_threshold == 0 ? "Unknown" : "%0.3f".printf (charge_control_end_threshold);
+            device.cycle_count = read_file (Path.build_filename (device.path, "cycle_count"));
+
+            // Convert to Wh
+            double energy_full = double.parse (read_file (Path.build_filename (device.path, "energy_full"))) / 1000000;
+            double energy_full_design = double.parse (read_file (Path.build_filename (device.path, "energy_full_design"))) / 1000000;
+            double energy_now = double.parse (read_file (Path.build_filename (device.path, "energy_now"))) / 1000000;
+
+            device.energy_full = energy_full == 0 ? "Unknown" : "%0.3f".printf (energy_full);
+            device.energy_full_design = energy_full_design == 0 ? "Unknown" : "%0.3f".printf (energy_full_design);
+            device.energy_now = energy_now == 0 ? "Unknown" : "%0.3f".printf (energy_now);
+
+            device.status = read_file (Path.build_filename (device.path, "status"));
+
+            // Convert to V
+            double voltage_min_design = double.parse (read_file (Path.build_filename (device.path, "voltage_min_design"))) / 1000000;
+            double voltage_now = double.parse (read_file (Path.build_filename (device.path, "voltage_now"))) / 1000000;
+
+            device.voltage_min_design = voltage_min_design == 0 ? "Unknown" : "%0.3f".printf (voltage_min_design);
+            device.voltage_now = voltage_now == 0 ? "Unknown" : "%0.3f".printf (voltage_now);
+
+            device.icon_name = get_device_icon_name (device.path);
+
+            return device;
         }
     }
 }
