@@ -111,7 +111,7 @@ namespace Ampere {
                 return "battery-full-charged-symbolic";
             }
 
-            if (capacity == 0 && (state == "discharging" || state == "unknown")) {
+            if (capacity == 0 && (state == "discharging" || state.down ().contains ("unknown"))) {
                 return "battery-empty-symbolic";
             }
 
@@ -189,7 +189,7 @@ namespace Ampere {
             // Mask serial number
             string serial_number = this.read_file (Path.build_filename (device.path, "serial_number"));
             string masked_serial_number;
-            if (serial_number.length > 4 && serial_number.down () != "unknown") {
+            if (serial_number.length > 4 && !serial_number.down ().contains ("unknown")) {
                 int mask_length = serial_number.length - 4;
                 string mask = "";
                 for (int i = 0; i < mask_length; i++) {
@@ -218,7 +218,7 @@ namespace Ampere {
             string power_now = this.read_file (Path.build_filename (device.path, "power_now"));
 
             // Convert to W if result is not unknown
-            if (power_now.down () != "unknown") {
+            if (!power_now.down ().contains ("unknown")) {
                 power_now = (double.parse (power_now) / 1000000).to_string ();
             }
 
