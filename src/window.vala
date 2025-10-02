@@ -244,7 +244,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
     [GtkCallback]
     public void on_refresh_clicked (Gtk.Button button) {
         load_device_list ();
-        // TODO: refresh device info in the content view
+        // The device information will thus be refreshed
     }
 
     [GtkCallback]
