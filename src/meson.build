@@ -8,7 +8,7 @@ ampere_sources = [
 ampere_deps = [
   config_dep,
   dependency('gtk4'),
-  dependency('libadwaita-1', version: '>= 1.4'),
+  dependency('libadwaita-1', version: '>= 1.8.0'),
   dependency('gee-0.8')
 ]
 

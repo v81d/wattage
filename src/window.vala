@@ -141,6 +141,12 @@ public class Ampere.Window : Adw.ApplicationWindow {
         });
     }
 
+    construct {
+        SimpleAction refresh_action = new SimpleAction ("refresh", null);
+        refresh_action.activate.connect (this.on_refresh_action);
+        this.add_action (refresh_action);
+    }
+
     private void load_device_info (Ampere.Device device) {
         this.content_spinner.set_visible (true);
 
@@ -256,16 +262,19 @@ public class Ampere.Window : Adw.ApplicationWindow {
         this.device_list.append (row);
     }
 
-    // Callback for clicking the refresh button
     [GtkCallback]
-    public void on_refresh_clicked (Gtk.Button button) {
+    public void on_toggle_sidebar_toggled (Gtk.ToggleButton button) {
+        bool is_active = button.get_active ();
+        this.split_view.set_show_sidebar (is_active);
+    }
+
+    private void on_refresh_action () {
         load_device_list ();
         // The device information will be refreshed automatically
     }
 
     [GtkCallback]
-    public void on_toggle_sidebar_toggled (Gtk.ToggleButton button) {
-        bool is_active = button.get_active ();
-        this.split_view.set_show_sidebar (is_active);
+    public void on_refresh_clicked (Gtk.Button button) {
+        load_device_list ();
     }
 }
