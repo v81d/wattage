@@ -120,9 +120,17 @@ public class Ampere.Window : Adw.ApplicationWindow {
     [GtkChild] unowned Gtk.ListBox device_list;
     [GtkChild] unowned Gtk.Box device_info_box;
 
+    private Gtk.Builder preferences_dialog_builder;
+    private GLib.Settings settings;
+
     private Ampere.BatteryManager battery_manager;
     private int selected_device_index = 0;
     private Gee.ArrayList<DeviceInfoSection> device_info_sections = new Gee.ArrayList<DeviceInfoSection> ();
+
+    // Preferences and user settings
+    private bool auto_refresh;
+    private int auto_refresh_cooldown;
+    private uint auto_refresh_source_id = 0;
 
     public Window (Gtk.Application app) {
         Object (application: app);
@@ -146,12 +154,89 @@ public class Ampere.Window : Adw.ApplicationWindow {
                 }
             }
         });
+
+        this.settings = new GLib.Settings ("com.v81d.Ampere"); // gsettings
+
+        this.initialize_gsettings ();
+        this.initialize_preferences_dialog ();
     }
 
     construct {
-        SimpleAction refresh_action = new SimpleAction ("refresh", null);
-        refresh_action.activate.connect (this.on_refresh_action);
-        this.add_action (refresh_action);
+        SimpleAction preferences_action = new SimpleAction ("preferences", null);
+        preferences_action.activate.connect (this.on_preferences_action);
+        this.add_action (preferences_action);
+    }
+
+    private void start_auto_refresh () {
+        if (this.auto_refresh && this.auto_refresh_source_id == 0) {
+            this.auto_refresh_source_id = Timeout.add_seconds (this.auto_refresh_cooldown, () => {
+                if (this.auto_refresh) {
+                    this.load_device_list ();
+                    return true;
+                } else {
+                    this.auto_refresh_source_id = 0;
+                    return false;
+                }
+            });
+        }
+    }
+
+    private void stop_auto_refresh () {
+        if (this.auto_refresh_source_id != 0) {
+            Source.remove (this.auto_refresh_source_id);
+            this.auto_refresh_source_id = 0;
+        }
+    }
+
+    private void initialize_gsettings () {
+        this.settings = new GLib.Settings ("com.v81d.Ampere");
+        this.auto_refresh = this.settings.get_boolean ("auto-refresh");
+        this.auto_refresh_cooldown = (int) this.settings.get_int ("auto-refresh-cooldown");
+    }
+
+    private void initialize_preferences_dialog () {
+        this.preferences_dialog_builder = new Gtk.Builder ();
+        try {
+            this.preferences_dialog_builder.add_from_resource ("/com/v81d/Ampere/preferences-dialog.ui");
+        } catch (Error e) {
+            stderr.printf ("[preferences_dialog_builder.add_from_resource ()] %s\n", e.message);
+        }
+
+        // Auto-refresh switch
+        Adw.SwitchRow auto_refresh_switch = this.preferences_dialog_builder.get_object ("auto_refresh_switch") as Adw.SwitchRow;
+        auto_refresh_switch.set_active (this.auto_refresh);
+
+        if (this.auto_refresh) {
+            this.start_auto_refresh ();
+        } else {
+            this.stop_auto_refresh ();
+        }
+
+        auto_refresh_switch.notify["active"].connect (() => {
+            bool is_active = auto_refresh_switch.get_active ();
+            this.settings.set_boolean ("auto-refresh", is_active);
+            this.auto_refresh = is_active;
+
+            if (is_active) {
+                this.start_auto_refresh ();
+            } else {
+                this.stop_auto_refresh ();
+            }
+        });
+
+        // Auto-refresh delay
+        Adw.SpinRow auto_refresh_cooldown_row = this.preferences_dialog_builder.get_object ("auto_refresh_cooldown_row") as Adw.SpinRow;
+        auto_refresh_cooldown_row.set_value (this.auto_refresh_cooldown);
+        auto_refresh_cooldown_row.notify["value"].connect (() => {
+            int cooldown = (int) auto_refresh_cooldown_row.get_value ();
+            this.settings.set_int ("auto-refresh-cooldown", cooldown);
+            this.auto_refresh_cooldown = cooldown;
+        });
+    }
+
+    private void on_preferences_action () {
+        Adw.PreferencesDialog preferences_dialog = this.preferences_dialog_builder.get_object ("preferences_dialog") as Adw.PreferencesDialog;
+        preferences_dialog.present (this);
     }
 
     private void load_device_info (Ampere.Device device) {
@@ -192,7 +277,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
             energy_metrics.set ("Maximum Rated Capacity", device.energy_full_design + " Wh");
             energy_metrics.set ("Maximum Capacity", device.energy_full + " Wh");
             energy_metrics.set ("Remaining Power", device.energy_now + " Wh");
-            energy_metrics.set ("Energy Transfer Rate", device.power_now + " W");
+            energy_metrics.set ("Energy Transfer Rate", device.power_now + " W ");
             sections.add (energy_metrics);
 
             DeviceInfoSectionData voltage_stats = new DeviceInfoSectionData ("Voltage Statistics");
@@ -301,13 +386,8 @@ public class Ampere.Window : Adw.ApplicationWindow {
         this.split_view.set_show_sidebar (is_active);
     }
 
-    private void on_refresh_action () {
-        load_device_list ();
-        // The device information will be refreshed automatically
-    }
-
     [GtkCallback]
-    public void on_refresh_clicked (Gtk.Button button) {
+    public void on_refresh_clicked (Gtk.Button _) {
         load_device_list ();
     }
 }

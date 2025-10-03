@@ -12,6 +12,12 @@
         </child>
         <child>
           <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Open Preferences</property>
+            <property name="action-name">win.preferences</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
             <property name="title" translatable="yes" context="shortcut window">Show About Page</property>
             <property name="action-name">app.about</property>
           </object>

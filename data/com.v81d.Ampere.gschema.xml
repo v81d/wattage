@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="ampere">
 	<schema id="com.v81d.Ampere" path="/com/v81d/Ampere/">
+	  <key name="auto-refresh" type="b">
+      <default>true</default>
+      <summary>Enable auto-refresh</summary>
+      <description>Whether the app automatically refreshes data.</description>
+    </key>
+	  <key name="auto-refresh-cooldown" type="i">
+	    <default>10</default>
+	    <range min="1" max="3600"/>
+      <summary>Auto-refresh cooldown</summary>
+      <description>Interval in seconds between auto-refresh operations.</description>
+	  </key>
 	</schema>
 </schemalist>
+

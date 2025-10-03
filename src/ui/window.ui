@@ -71,7 +71,7 @@
                         <property name="icon-name">sidebar-show-symbolic</property>
                         <property name="tooltip-text" translatable="yes">Toggle Sidebar</property>
                         <property name="active">True</property>
-                        <signal name="toggled" handler="on_toggle_sidebar_toggled" swapped="no"/>
+                        <signal name="toggled" handler="on_toggle_sidebar_toggled"/>
                       </object>
                     </child>
                     <child type="end">
@@ -86,7 +86,7 @@
                       <object class="GtkButton" id="refresh_button">
                         <property name="icon-name">view-refresh-symbolic</property>
                         <property name="tooltip-text" translatable="yes">Refresh</property>
-                        <signal name="clicked" handler="on_refresh_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_refresh_clicked"/>
                       </object>
                     </child>
                   </object>
@@ -136,6 +136,10 @@
   </template>
   <menu id="primary_menu">
     <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">win.preferences</attribute>
+      </item>
       <item>
         <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
         <attribute name="action">app.shortcuts</attribute>
