@@ -289,6 +289,9 @@ public class Ampere.Window : Adw.ApplicationWindow {
                 Gee.ArrayList<string> new_titles = new Gee.ArrayList<string> (); // titles that come in this update
 
                 foreach (DeviceInfoSectionData section in sections) {
+                    if (section.properties.size == 0)
+                        continue;
+
                     new_titles.add (section.title);
 
                     // Match the FIRST existing section by title
