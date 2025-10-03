@@ -42,40 +42,46 @@ public class DeviceRow : Gtk.ListBoxRow {
  * Use as a constructor for a single section in the device information view.
  */
 public class DeviceInfoSection : Gtk.Box {
-    public DeviceInfoSection (string title, Gee.ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
-        if (properties.is_empty) {
-            return;
-        }
+    private string _title;
+    private Gtk.ListBox _list;
 
-        // Properties for the parent `Gtk.Box` object
+    public DeviceInfoSection (string title, Gee.ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
+        this._title = title;
         this.set_orientation (Gtk.Orientation.VERTICAL);
         this.set_spacing (12);
 
-        // Title of the section
         Gtk.Label label = new Gtk.Label (title);
         label.set_halign (Gtk.Align.START);
         label.add_css_class ("title-2");
-
         this.append (label);
 
-        // `Gtk.ListBox` displaying all properties of the device
-        Gtk.ListBox section = new Gtk.ListBox ();
-        section.set_selection_mode (Gtk.SelectionMode.NONE);
-        section.set_hexpand (true);
-        section.add_css_class ("boxed-list");
+        this._list = new Gtk.ListBox ();
+        this._list.set_selection_mode (Gtk.SelectionMode.NONE);
+        this._list.set_hexpand (true);
+        this._list.add_css_class ("boxed-list");
+        this.append (this._list);
 
-        // Create a row for each property
-        foreach (DeviceInfoSectionData.DeviceProperty property in properties) {
-            Adw.ActionRow row = new Adw.ActionRow ();
-            row.set_title (property.name);
-            row.set_subtitle (property.value);
-            row.set_subtitle_selectable (true);
-            row.set_css_classes ({ "property", "monospace" });
+        this.update (properties);
+    }
 
-            section.append (row);
+    public string get_title () {
+        return this._title;
+    }
+
+    public void update (Gee.ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
+        Gtk.ListBoxRow? row;
+        while ((row = this._list.get_row_at_index (0)) != null) {
+            this._list.remove (row);
         }
 
-        this.append (section);
+        foreach (DeviceInfoSectionData.DeviceProperty property in properties) {
+            Adw.ActionRow action_row = new Adw.ActionRow ();
+            action_row.set_title (property.name);
+            action_row.set_subtitle (property.value);
+            action_row.set_subtitle_selectable (true);
+            action_row.set_css_classes ({ "property", "monospace" });
+            this._list.append (action_row);
+        }
     }
 }
 
@@ -116,6 +122,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
 
     private Ampere.BatteryManager battery_manager;
     private int selected_device_index = 0;
+    private Gee.ArrayList<DeviceInfoSection> device_info_sections = new Gee.ArrayList<DeviceInfoSection> ();
 
     public Window (Gtk.Application app) {
         Object (application: app);
@@ -150,13 +157,6 @@ public class Ampere.Window : Adw.ApplicationWindow {
     private void load_device_info (Ampere.Device device) {
         this.content_spinner.set_visible (true);
 
-        // Clear all sections before adding them back
-        Gtk.Widget? widget;
-        while ((widget = this.device_info_box.get_first_child ()) != null) {
-            this.device_info_box.remove (widget);
-        }
-
-        // To prevent blocking, load on a separate thread
         new Thread<void> ("load-device-info", () => {
             Gee.ArrayList<DeviceInfoSectionData> sections = new Gee.ArrayList<DeviceInfoSectionData> ();
 
@@ -201,15 +201,48 @@ public class Ampere.Window : Adw.ApplicationWindow {
             sections.add (voltage_stats);
 
             Idle.add (() => {
+                Gee.ArrayList<string> new_titles = new Gee.ArrayList<string> (); // titles that come in this update
+
                 foreach (DeviceInfoSectionData section in sections) {
-                    DeviceInfoSection device_info_section = new DeviceInfoSection (section.title, section.properties);
-                    if (device_info_section.get_first_child () != null) {
-                        this.device_info_box.append (device_info_section);
+                    new_titles.add (section.title);
+
+                    // Match the FIRST existing section by title
+                    DeviceInfoSection? existing = null;
+                    foreach (DeviceInfoSection s in this.device_info_sections) {
+                        if (s.get_title () == section.title) {
+                            existing = s;
+                            break;
+                        }
+                    }
+
+                    /* Here, we either update an existing section or append it if it does not yet exist.
+                     * We must use the `existing` variable we defined in the loop above to do so.
+                     *   - If the section exists, we will update that section in place.
+                     *   - If the section does not exist, we will simply append that section.
+                     */
+                    if (existing != null) {
+                        existing.update (section.properties);
+                    } else {
+                        DeviceInfoSection s = new DeviceInfoSection (section.title, section.properties);
+                        this.device_info_box.append (s);
+                        this.device_info_sections.add (s);
                     }
                 }
 
-                this.content_spinner.set_visible (false);
+                // Remove old sections that are not in `new_titles`
+                Gee.ArrayList<DeviceInfoSection> to_remove = new Gee.ArrayList<DeviceInfoSection> ();
+                foreach (DeviceInfoSection s in this.device_info_sections) {
+                    if (!new_titles.contains (s.get_title ())) {
+                        to_remove.add (s);
+                    }
+                }
 
+                foreach (DeviceInfoSection s in to_remove) {
+                    this.device_info_box.remove (s);
+                    this.device_info_sections.remove (s);
+                }
+
+                this.content_spinner.set_visible (false);
                 return false;
             });
         });
