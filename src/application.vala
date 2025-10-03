@@ -33,6 +33,7 @@ public class Ampere.Application : Adw.Application {
             { "quit", this.quit }
         };
         this.add_action_entries (action_entries, this);
+        this.set_accels_for_action ("win.preferences", { "<primary>p" });
         this.set_accels_for_action ("app.about", { "<primary>i" });
         this.set_accels_for_action ("app.quit", { "<primary>q" });
         this.set_accels_for_action ("win.refresh", { "<primary>r" });
@@ -40,7 +41,7 @@ public class Ampere.Application : Adw.Application {
 
     public override void activate () {
         base.activate ();
-        var win = this.active_window ?? new Ampere.Window (this);
+        Gtk.Window win = this.active_window ?? new Ampere.Window (this);
         win.present ();
     }
 
