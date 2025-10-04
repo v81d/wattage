@@ -1,0 +1,323 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-04 18:17-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/com.v81d.Ampere.desktop.in:2 data/com.v81d.Ampere.metainfo.xml.in:7
+#: src/ui/window.ui:5 src/ui/window.ui:63
+msgid "Ampere"
+msgstr ""
+
+#: data/com.v81d.Ampere.desktop.in:8
+msgid ""
+"GTK;Battery monitor;Battery health;Power statistics;Power usage;Power "
+"devices;"
+msgstr ""
+
+#: data/com.v81d.Ampere.metainfo.xml.in:8
+msgid "Monitor power devices"
+msgstr ""
+
+#: data/com.v81d.Ampere.metainfo.xml.in:10
+msgid ""
+"Ampere is an application designed for monitoring the health and status of "
+"your power devices."
+msgstr ""
+
+#: data/com.v81d.Ampere.metainfo.xml.in:52
+msgid "Home page screenshot"
+msgstr ""
+
+#: data/com.v81d.Ampere.metainfo.xml.in:56
+msgid "Preferences page screenshot"
+msgstr ""
+
+#: data/com.v81d.Ampere.gschema.xml:6
+msgid "Enable auto-refresh"
+msgstr ""
+
+#: data/com.v81d.Ampere.gschema.xml:7
+msgid "Whether the app automatically refreshes data."
+msgstr ""
+
+#: data/com.v81d.Ampere.gschema.xml:12
+msgid "Auto-refresh cooldown"
+msgstr ""
+
+#: data/com.v81d.Ampere.gschema.xml:13
+msgid "Interval in seconds between auto-refresh operations."
+msgstr ""
+
+#: src/ui/preferences-dialog.ui:6 src/ui/shortcuts-dialog.ui:6
+msgid "General"
+msgstr ""
+
+#: src/ui/preferences-dialog.ui:9
+msgid "Automation"
+msgstr ""
+
+#: src/ui/preferences-dialog.ui:12
+msgid "Auto-Refresh"
+msgstr ""
+
+#: src/ui/preferences-dialog.ui:17
+msgid "Auto-Refresh Cooldown (seconds)"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:9
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:15
+msgctxt "shortcut window"
+msgid "Open Preferences"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:21
+msgctxt "shortcut window"
+msgid "Show About Page"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:27
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:35
+msgid "Content & Navigation"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:38
+msgctxt "shortcut window"
+msgid "Refresh Content"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:44
+msgctxt "shortcut window"
+msgid "Select Next Device"
+msgstr ""
+
+#: src/ui/shortcuts-dialog.ui:50
+msgctxt "shortcut window"
+msgid "Select Previous Device"
+msgstr ""
+
+#: src/ui/window.ui:19
+msgid "Devices"
+msgstr ""
+
+#: src/ui/window.ui:72
+msgid "Toggle Sidebar"
+msgstr ""
+
+#: src/ui/window.ui:81
+msgid "Main Menu"
+msgstr ""
+
+#: src/ui/window.ui:88
+msgid "Refresh"
+msgstr ""
+
+#: src/ui/window.ui:140
+msgid "Preferences"
+msgstr ""
+
+#: src/ui/window.ui:144
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: src/ui/window.ui:148
+msgid "About Ampere"
+msgstr ""
+
+#: src/utils/battery_manager.vala:64
+msgid ""
+"The device performs close to its original capacity. It is suitable for daily "
+"use with minimal wear."
+msgstr ""
+
+#: src/utils/battery_manager.vala:66
+msgid ""
+"The device bears slight capacity loss but is still in good condition for "
+"most tasks."
+msgstr ""
+
+#: src/utils/battery_manager.vala:68
+msgid ""
+"The device shows a considerable degradation in capacity. Usage time is "
+"noticeably shorter than at its optimal state."
+msgstr ""
+
+#: src/utils/battery_manager.vala:70
+msgid ""
+"The device has a significant drop in capacity. Expect arbitrary shutdowns "
+"and shortened runtime during extended use."
+msgstr ""
+
+#: src/utils/battery_manager.vala:72
+msgid ""
+"The device has experienced substantial deterioration. Consider replacing the "
+"device to avoid further damage."
+msgstr ""
+
+#: src/utils/battery_manager.vala:83
+msgid "Battery"
+msgstr ""
+
+#: src/utils/battery_manager.vala:85
+msgid "UPS"
+msgstr ""
+
+#: src/utils/battery_manager.vala:87
+msgid "Mains"
+msgstr ""
+
+#: src/utils/battery_manager.vala:89
+msgid "USB"
+msgstr ""
+
+#: src/utils/battery_manager.vala:91
+msgid "Wireless"
+msgstr ""
+
+#: src/utils/battery_manager.vala:95
+msgid "Charging"
+msgstr ""
+
+#: src/utils/battery_manager.vala:97
+msgid "Discharging"
+msgstr ""
+
+#: src/utils/battery_manager.vala:99
+msgid "Not charging"
+msgstr ""
+
+#: src/utils/battery_manager.vala:101
+msgid "Full"
+msgstr ""
+
+#: src/application.vala:56
+msgid "translator-credits"
+msgstr ""
+
+#: src/window.vala:260
+msgid "General Information"
+msgstr ""
+
+#: src/window.vala:261
+msgid "Device Name"
+msgstr ""
+
+#: src/window.vala:262
+msgid "Sysfs Path"
+msgstr ""
+
+#: src/window.vala:263
+msgid "Device Type"
+msgstr ""
+
+#: src/window.vala:264
+msgid "Status"
+msgstr ""
+
+#: src/window.vala:267
+msgid "Health Evaluations"
+msgstr ""
+
+#: src/window.vala:269
+msgid "State of Health"
+msgstr ""
+
+#: src/window.vala:270
+msgid "Device Condition"
+msgstr ""
+
+#: src/window.vala:273
+msgid "Manufacturing Details"
+msgstr ""
+
+#: src/window.vala:274
+msgid "Manufacturer"
+msgstr ""
+
+#: src/window.vala:275
+msgid "Serial Number"
+msgstr ""
+
+#: src/window.vala:278
+msgid "Model Information"
+msgstr ""
+
+#: src/window.vala:279
+msgid "Model Name"
+msgstr ""
+
+#: src/window.vala:280
+msgid "Technology"
+msgstr ""
+
+#: src/window.vala:283
+msgid "Charging Status"
+msgstr ""
+
+#: src/window.vala:284
+msgid "Charge Limit Percentage"
+msgstr ""
+
+#: src/window.vala:285
+msgid "Cycle Count"
+msgstr ""
+
+#: src/window.vala:288
+msgid "Energy Metrics"
+msgstr ""
+
+#: src/window.vala:289
+msgid "Maximum Rated Capacity"
+msgstr ""
+
+#: src/window.vala:290
+msgid "Maximum Capacity"
+msgstr ""
+
+#: src/window.vala:291
+msgid "Remaining Power"
+msgstr ""
+
+#: src/window.vala:292
+msgid "Energy Transfer Rate"
+msgstr ""
+
+#: src/window.vala:295
+msgid "Voltage Statistics"
+msgstr ""
+
+#: src/window.vala:296
+msgid "Minimum Rated Voltage"
+msgstr ""
+
+#: src/window.vala:297
+msgid "Current Voltage"
+msgstr ""
+
+#: src/window.vala:392
+#, c-format
+msgid ""
+"Path: %s\n"
+"Type: %s"
+msgstr ""

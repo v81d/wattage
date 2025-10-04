@@ -11,7 +11,7 @@
   </description>
 
   <developer id="tld.vendor">
-    <name>v81d</name>
+    <name translate="no">v81d</name>
   </developer>
 
   <!-- Required: Should be a link to the upstream homepage for the component -->

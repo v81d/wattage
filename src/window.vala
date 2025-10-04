@@ -257,44 +257,44 @@ public class Ampere.Window : Adw.ApplicationWindow {
         new Thread<void> ("load-device-info", () => {
             Gee.ArrayList<DeviceInfoSectionData> sections = new Gee.ArrayList<DeviceInfoSectionData> ();
 
-            DeviceInfoSectionData general_info = new DeviceInfoSectionData ("General Information");
-            general_info.set ("Device Name", device.name);
-            general_info.set ("Sysfs Path", device.path);
-            general_info.set ("Device Type", device.type);
-            general_info.set ("Status", device.status);
+            DeviceInfoSectionData general_info = new DeviceInfoSectionData (_("General Information"));
+            general_info.set (_("Device Name"), device.name);
+            general_info.set (_("Sysfs Path"), device.path);
+            general_info.set (_("Device Type"), device.map_property_translation (device.type));
+            general_info.set (_("Status"), device.map_property_translation (device.status));
             sections.add (general_info);
 
-            DeviceInfoSectionData health_stats = new DeviceInfoSectionData ("Health Evaluations");
+            DeviceInfoSectionData health_stats = new DeviceInfoSectionData (_("Health Evaluations"));
             string health_percentage = device.calculate_health_percentage ();
-            health_stats.set ("State of Health", health_percentage + "%");
-            health_stats.set ("Device Condition", device.create_alert (double.parse (health_percentage)));
+            health_stats.set (_("State of Health"), health_percentage + "%");
+            health_stats.set (_("Device Condition"), device.create_alert (double.parse (health_percentage)));
             sections.add (health_stats);
 
-            DeviceInfoSectionData manufacturing_details = new DeviceInfoSectionData ("Manufacturing Details");
-            manufacturing_details.set ("Manufacturer", device.manufacturer);
-            manufacturing_details.set ("Serial Number", device.serial_number);
+            DeviceInfoSectionData manufacturing_details = new DeviceInfoSectionData (_("Manufacturing Details"));
+            manufacturing_details.set (_("Manufacturer"), device.manufacturer);
+            manufacturing_details.set (_("Serial Number"), device.serial_number);
             sections.add (manufacturing_details);
 
-            DeviceInfoSectionData model_info = new DeviceInfoSectionData ("Model Information");
-            model_info.set ("Model Name", device.model_name);
-            model_info.set ("Technology", device.technology);
+            DeviceInfoSectionData model_info = new DeviceInfoSectionData (_("Model Information"));
+            model_info.set (_("Model Name"), device.model_name);
+            model_info.set (_("Technology"), device.technology);
             sections.add (model_info);
 
-            DeviceInfoSectionData charging_status = new DeviceInfoSectionData ("Charging Status");
-            charging_status.set ("Charge Limit Percentage", device.charge_control_end_threshold + "%");
-            charging_status.set ("Cycle Count", device.cycle_count);
+            DeviceInfoSectionData charging_status = new DeviceInfoSectionData (_("Charging Status"));
+            charging_status.set (_("Charge Limit Percentage"), device.charge_control_end_threshold + "%");
+            charging_status.set (_("Cycle Count"), device.cycle_count);
             sections.add (charging_status);
 
-            DeviceInfoSectionData energy_metrics = new DeviceInfoSectionData ("Energy Metrics");
-            energy_metrics.set ("Maximum Rated Capacity", device.energy_full_design + " Wh");
-            energy_metrics.set ("Maximum Capacity", device.energy_full + " Wh");
-            energy_metrics.set ("Remaining Power", device.energy_now + " Wh");
-            energy_metrics.set ("Energy Transfer Rate", device.power_now + " W ");
+            DeviceInfoSectionData energy_metrics = new DeviceInfoSectionData (_("Energy Metrics"));
+            energy_metrics.set (_("Maximum Rated Capacity"), device.energy_full_design + " Wh");
+            energy_metrics.set (_("Maximum Capacity"), device.energy_full + " Wh");
+            energy_metrics.set (_("Remaining Power"), device.energy_now + " Wh");
+            energy_metrics.set (_("Energy Transfer Rate"), device.power_now + " W ");
             sections.add (energy_metrics);
 
-            DeviceInfoSectionData voltage_stats = new DeviceInfoSectionData ("Voltage Statistics");
-            voltage_stats.set ("Minimum Rated Voltage", device.voltage_min_design + " V");
-            voltage_stats.set ("Current Voltage", device.voltage_now + " V");
+            DeviceInfoSectionData voltage_stats = new DeviceInfoSectionData (_("Voltage Statistics"));
+            voltage_stats.set (_("Minimum Rated Voltage"), device.voltage_min_design + " V");
+            voltage_stats.set (_("Current Voltage"), device.voltage_now + " V");
             sections.add (voltage_stats);
 
             Idle.add (() => {
@@ -306,7 +306,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
 
                     new_titles.add (section.title);
 
-                    // Match the FIRST existing section by title
+                    // Match the first existing section by title
                     DeviceInfoSection? existing = null;
                     foreach (DeviceInfoSection s in this.device_info_sections) {
                         if (s.get_title () == section.title) {
@@ -389,7 +389,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
     }
 
     private void append_device (Ampere.Device device) {
-        string description = "Path: %s\nType: %s".printf (device.path, device.type);
+        string description = _("Path: %s\nType: %s").printf (device.path, device.type);
         DeviceRow row = new DeviceRow (device.name, description, device.icon_name);
         this.device_list.append (row);
     }

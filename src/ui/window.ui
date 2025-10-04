@@ -137,15 +137,15 @@
   <menu id="primary_menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="label" translatable="yes">Preferences</attribute>
         <attribute name="action">win.preferences</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="label" translatable="yes">Keyboard Shortcuts</attribute>
         <attribute name="action">app.shortcuts</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_About Ampere</attribute>
+        <attribute name="label" translatable="yes">About Ampere</attribute>
         <attribute name="action">app.about</attribute>
       </item>
     </section>

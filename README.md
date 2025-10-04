@@ -18,24 +18,47 @@ Ampere is a Linux application designed for monitoring the health and status of y
 
 ## Installation
 
-Coming soon!
+The following guide provides instructions on how to install Ampere.
 
 ### Requirements
 
 - Linux system with battery or power device support.
 - And more ... (coming soon!)
 
+### Manual Installation
+
+The recommended way to build and install Ampere is using [GNOME Builder](https://apps.gnome.org/Builder). To get started, follow these instructions (assuming you have already installed Builder):
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/v81d/ampere.git
+```
+
+2. Launch Builder and open the cloned repository.
+3. Click the Build Project icon at the top or press `Ctrl`+`Shift`+`Alt`+`B`.
+4. Once the process is complete, navigate to the repository folder in your preferred file manager.
+5. Install the `com.v81d.Ampere.flatpak` file by double-clicking it (Nautilus).
+
 ## Contributing
 
-Contributions are welcome! To get started:
+### Reporting Issues
+
+To report an issue or bug, visit Ampere's [issue tracker](https://github.com/v81d/ampere/issues) on GitHub.
+
+### Translating the Project
+
+You can contribute by adding translations for strings in the application. To get started, visit the [translation page](https://app.tolgee.io/projects/23145).
+
+### Pull Requests
+
+To push your features or fixes into this official repository:
 
 1. Fork the repository.
 2. Create a feature branch (`git checkout -b feature/my-feature`).
 3. Commit your changes (`git commit -m "Add new feature"`).
 4. Push the branch (`git push origin feature/my-feature`).
 5. Open a Pull Request.
-
-Bug reports, feature requests, and discussions are also encouraged in the issue tracker.
 
 ## License
 

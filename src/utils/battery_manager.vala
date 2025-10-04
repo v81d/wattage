@@ -61,17 +61,48 @@ namespace Ampere {
 
         public string create_alert (double health_percentage) {
             if (health_percentage >= 90) {
-                return "The device performs close to its original capacity. It is suitable for daily use with minimal wear.";
+                return _("The device performs close to its original capacity. It is suitable for daily use with minimal wear.");
             } else if (health_percentage >= 80) {
-                return "The device bears slight capacity loss but is still in good condition for most tasks.";
+                return _("The device bears slight capacity loss but is still in good condition for most tasks.");
             } else if (health_percentage >= 70) {
-                return "The device shows a considerable degradation in capacity. Usage time is noticeably shorter than at its optimal state.";
+                return _("The device shows a considerable degradation in capacity. Usage time is noticeably shorter than at its optimal state.");
             } else if (health_percentage >= 50) {
-                return "The device has a significant drop in capacity. Expect arbitrary shutdowns and shortened runtime during extended use.";
+                return _("The device has a significant drop in capacity. Expect arbitrary shutdowns and shortened runtime during extended use.");
             } else if (health_percentage > 0) {
-                return "The device has experienced substantial deterioration. Consider replacing the device to avoid further damage.";
+                return _("The device has experienced substantial deterioration. Consider replacing the device to avoid further damage.");
             } else {
                 return "Unknown";
+            }
+        }
+
+        public string map_property_translation (string property_value) {
+            // The below switch statement should not match any "Unknown" values, as those should not be translated nor displayed to the user
+            switch (property_value.down ()) {
+            // `device.type`
+            case "battery":
+                return _("Battery");
+            case "ups":
+                return _("UPS");
+            case "mains":
+                return _("Mains");
+            case "usb":
+                return _("USB");
+            case "wireless":
+                return _("Wireless");
+
+            // `device.status`
+            case "charging":
+                return _("Charging");
+            case "discharging":
+                return _("Discharging");
+            case "not charging":
+                return _("Not charging");
+            case "full":
+                return _("Full");
+
+            // If none of the above match, just return the untranslated property value
+            default:
+                return property_value;
             }
         }
     }
@@ -162,9 +193,9 @@ namespace Ampere {
              * The sorting comparison below moves batteries to the beginning and sorts miscellaneous devices after.
              */
             result.sort ((a, b) => {
-                if (a.type == "Battery" && b.type != "Battery") {
+                if (a.type.down () == "battery" && b.type.down () != "battery") {
                     return -1; // a before b
-                } else if (a.type != "Battery" && b.type == "Battery") {
+                } else if (a.type.down () != "battery" && b.type.down () == "battery") {
                     return 1; // b before a
                 } else {
                     return strcmp (a.name, b.name); // alphabetical order

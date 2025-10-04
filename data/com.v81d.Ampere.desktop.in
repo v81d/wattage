@@ -5,6 +5,6 @@ Icon=com.v81d.Ampere
 Terminal=false
 Type=Application
 Categories=Utility;
-Keywords=GTK;
+Keywords=GTK;Battery monitor;Battery health;Power statistics;Power usage;Power devices;
 StartupNotify=true
 DBusActivatable=true

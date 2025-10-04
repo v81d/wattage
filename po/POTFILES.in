@@ -3,6 +3,10 @@
 data/com.v81d.Ampere.desktop.in
 data/com.v81d.Ampere.metainfo.xml.in
 data/com.v81d.Ampere.gschema.xml
+src/ui/preferences-dialog.ui
+src/ui/shortcuts-dialog.ui
+src/ui/window.ui
+src/utils/battery_manager.vala
+src/application.vala
 src/main.vala
 src/window.vala
-src/window.ui
