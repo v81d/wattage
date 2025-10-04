@@ -37,6 +37,8 @@ public class Ampere.Application : Adw.Application {
         this.set_accels_for_action ("app.about", { "<primary>i" });
         this.set_accels_for_action ("app.quit", { "<primary>q" });
         this.set_accels_for_action ("win.refresh", { "<primary>r" });
+        this.set_accels_for_action ("win.select_next_device", { "<primary>d" });
+        this.set_accels_for_action ("win.select_previous_device", { "<primary>u" });
     }
 
     public override void activate () {

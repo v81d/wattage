@@ -165,6 +165,18 @@ public class Ampere.Window : Adw.ApplicationWindow {
         SimpleAction preferences_action = new SimpleAction ("preferences", null);
         preferences_action.activate.connect (this.on_preferences_action);
         this.add_action (preferences_action);
+
+        SimpleAction refresh_action = new SimpleAction ("refresh", null);
+        refresh_action.activate.connect (this.on_refresh_action);
+        this.add_action (refresh_action);
+
+        SimpleAction select_next_device_action = new SimpleAction ("select_next_device", null);
+        select_next_device_action.activate.connect (this.on_select_next_device_action);
+        this.add_action (select_next_device_action);
+
+        SimpleAction select_previous_device_action = new SimpleAction ("select_previous_device", null);
+        select_previous_device_action.activate.connect (this.on_select_previous_device_action);
+        this.add_action (select_previous_device_action);
     }
 
     private void start_auto_refresh () {
@@ -364,7 +376,6 @@ public class Ampere.Window : Adw.ApplicationWindow {
                     this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index));
                 } else if (this.device_list.get_row_at_index (0) != null) {
                     this.device_list.select_row (this.device_list.get_row_at_index (0));
-                    this.selected_device_index = 0;
                     stdout.printf ("The device at index %s cannot be found. Device at index 0 will be selected.\n", this.selected_device_index.to_string ());
                 } else {
                     stderr.printf ("No power devices found under the sysfs path.\n");
@@ -389,6 +400,26 @@ public class Ampere.Window : Adw.ApplicationWindow {
         this.split_view.set_show_sidebar (is_active);
     }
 
+    // Keyboard shortcut select next device action
+    private void on_select_next_device_action () {
+        if (this.device_list.get_selected_row () != this.device_list.get_last_child ()) {
+            this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index + 1));
+        }
+    }
+
+    // Keyboard shortcut select previous device action
+    private void on_select_previous_device_action () {
+        if (this.device_list.get_selected_row () != this.device_list.get_first_child ()) {
+            this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index - 1));
+        }
+    }
+
+    // Keyboard shortcut refresh action
+    private void on_refresh_action () {
+        load_device_list ();
+    }
+
+    // Refresh button clicked action
     [GtkCallback]
     public void on_refresh_clicked (Gtk.Button _) {
         load_device_list ();
