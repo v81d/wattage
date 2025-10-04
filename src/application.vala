@@ -56,7 +56,8 @@ public class Ampere.Application : Adw.Application {
             translator_credits = _("translator-credits"),
             version = "0.1.0",
             developers = developers,
-            copyright = "© 2025 v81d\n\nThis software is distributed with absolutely no warranty. See the <a href='https://www.gnu.org/licenses/gpl-3.0.html'>GNU General Public License v3.0</a> for full license terms.",
+            copyright = "© 2025 v81d",
+            license_type = Gtk.License.GPL_3_0,
             website = "https://github.com/v81d/ampere",
         };
 
