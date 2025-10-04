@@ -28,4 +28,4 @@ Contributions are welcome! You can contribute by:
 
 ## 5. Can I donate to support development?
 
-Donations are highly appreciated! You can support the project via [Liberapay](https://liberapay.com/v81d/).
+Donations are highly appreciated! You can support the project via [Liberapay](https://liberapay.com/v81d).
