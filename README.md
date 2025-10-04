@@ -2,7 +2,8 @@
 
 Ampere is a Linux application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 + libadwaita interface.
 
-![Preview screenshot](demo/screenshot_0.png)
+![Home page screenshot](demo/screenshot_0.png)
+![Preferences page screenshot](demo/screenshot_1.png)
 
 ## Features
 
