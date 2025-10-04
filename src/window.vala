@@ -257,12 +257,12 @@ public class Ampere.Window : Adw.ApplicationWindow {
         new Thread<void> ("load-device-info", () => {
             Gee.ArrayList<DeviceInfoSectionData> sections = new Gee.ArrayList<DeviceInfoSectionData> ();
 
-            DeviceInfoSectionData basic_info = new DeviceInfoSectionData ("Basic Information");
-            basic_info.set ("Device Name", device.name);
-            basic_info.set ("Sysfs Path", device.path);
-            basic_info.set ("Device Type", device.type);
-            basic_info.set ("Status", device.status);
-            sections.add (basic_info);
+            DeviceInfoSectionData general_info = new DeviceInfoSectionData ("General Information");
+            general_info.set ("Device Name", device.name);
+            general_info.set ("Sysfs Path", device.path);
+            general_info.set ("Device Type", device.type);
+            general_info.set ("Status", device.status);
+            sections.add (general_info);
 
             DeviceInfoSectionData health_stats = new DeviceInfoSectionData ("Health Evaluations");
             string health_percentage = device.calculate_health_percentage ();
