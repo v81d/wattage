@@ -32,11 +32,23 @@
     </child>
     <child>
       <object class="AdwShortcutsSection">
-        <property name="title" translatable="yes">Content</property>
+        <property name="title" translatable="yes">Content &amp; Navigation</property>
         <child>
           <object class="AdwShortcutsItem">
             <property name="title" translatable="yes" context="shortcut window">Refresh Content</property>
             <property name="action-name">win.refresh</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Select Next Device</property>
+            <property name="action-name">win.select_next_device</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Select Previous Device</property>
+            <property name="action-name">win.select_previous_device</property>
           </object>
         </child>
       </object>
