@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <object class="AdwPreferencesDialog" id="preferences_dialog">
-    <property name="width-request">400</property>
-    <property name="height-request">400</property>
     <child>
       <object class="AdwPreferencesPage">
         <property name="title" translatable="yes">General</property>
