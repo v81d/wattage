@@ -12,6 +12,21 @@
       <summary>Auto-refresh cooldown</summary>
       <description>Interval in seconds between auto-refresh operations.</description>
 	  </key>
+	  <key name="energy-unit" type="s">
+      <default>'Wh'</default>
+      <summary>Energy unit</summary>
+      <description>The unit used to display energy measurements.</description>
+    </key>
+    <key name="power-unit" type="s">
+      <default>'W'</default>
+      <summary>Power unit</summary>
+      <description>The unit used to display power measurements.</description>
+    </key>
+    <key name="voltage-unit" type="s">
+      <default>'V'</default>
+      <summary>Voltage unit</summary>
+      <description>The unit used to display voltage measurements.</description>
+    </key>
 	</schema>
 </schemalist>
 

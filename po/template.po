@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-04 18:17-0400\n"
+"POT-Creation-Date: 2025-10-05 14:21-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,6 +62,30 @@ msgstr ""
 msgid "Interval in seconds between auto-refresh operations."
 msgstr ""
 
+#: data/com.v81d.Ampere.gschema.xml:17
+msgid "Energy unit"
+msgstr ""
+
+#: data/com.v81d.Ampere.gschema.xml:18
+msgid "The unit used to display energy measurements."
+msgstr ""
+
+#: data/com.v81d.Ampere.gschema.xml:22
+msgid "Power unit"
+msgstr ""
+
+#: data/com.v81d.Ampere.gschema.xml:23
+msgid "The unit used to display power measurements."
+msgstr ""
+
+#: data/com.v81d.Ampere.gschema.xml:27
+msgid "Voltage unit"
+msgstr ""
+
+#: data/com.v81d.Ampere.gschema.xml:28
+msgid "The unit used to display voltage measurements."
+msgstr ""
+
 #: src/ui/preferences-dialog.ui:6 src/ui/shortcuts-dialog.ui:6
 msgid "General"
 msgstr ""
@@ -76,6 +100,22 @@ msgstr ""
 
 #: src/ui/preferences-dialog.ui:17
 msgid "Auto-Refresh Cooldown (seconds)"
+msgstr ""
+
+#: src/ui/preferences-dialog.ui:32
+msgid "Measurements"
+msgstr ""
+
+#: src/ui/preferences-dialog.ui:35
+msgid "Energy Unit"
+msgstr ""
+
+#: src/ui/preferences-dialog.ui:50
+msgid "Power Unit"
+msgstr ""
+
+#: src/ui/preferences-dialog.ui:65
+msgid "Voltage Unit"
 msgstr ""
 
 #: src/ui/shortcuts-dialog.ui:9
@@ -145,69 +185,69 @@ msgstr ""
 msgid "About Ampere"
 msgstr ""
 
-#: src/utils/battery_manager.vala:64
+#: src/utils/battery_manager.vala:104
 msgid ""
 "The device performs close to its original capacity. It is suitable for daily "
 "use with minimal wear."
 msgstr ""
 
-#: src/utils/battery_manager.vala:66
+#: src/utils/battery_manager.vala:106
 msgid ""
 "The device bears slight capacity loss but is still in good condition for "
 "most tasks."
 msgstr ""
 
-#: src/utils/battery_manager.vala:68
+#: src/utils/battery_manager.vala:108
 msgid ""
 "The device shows a considerable degradation in capacity. Usage time is "
 "noticeably shorter than at its optimal state."
 msgstr ""
 
-#: src/utils/battery_manager.vala:70
+#: src/utils/battery_manager.vala:110
 msgid ""
 "The device has a significant drop in capacity. Expect arbitrary shutdowns "
 "and shortened runtime during extended use."
 msgstr ""
 
-#: src/utils/battery_manager.vala:72
+#: src/utils/battery_manager.vala:112
 msgid ""
 "The device has experienced substantial deterioration. Consider replacing the "
 "device to avoid further damage."
 msgstr ""
 
-#: src/utils/battery_manager.vala:83
+#: src/utils/battery_manager.vala:123
 msgid "Battery"
 msgstr ""
 
-#: src/utils/battery_manager.vala:85
+#: src/utils/battery_manager.vala:125
 msgid "UPS"
 msgstr ""
 
-#: src/utils/battery_manager.vala:87
+#: src/utils/battery_manager.vala:127
 msgid "Mains"
 msgstr ""
 
-#: src/utils/battery_manager.vala:89
+#: src/utils/battery_manager.vala:129
 msgid "USB"
 msgstr ""
 
-#: src/utils/battery_manager.vala:91
+#: src/utils/battery_manager.vala:131
 msgid "Wireless"
 msgstr ""
 
-#: src/utils/battery_manager.vala:95
+#: src/utils/battery_manager.vala:135
 msgid "Charging"
 msgstr ""
 
-#: src/utils/battery_manager.vala:97
+#: src/utils/battery_manager.vala:137
 msgid "Discharging"
 msgstr ""
 
-#: src/utils/battery_manager.vala:99
+#: src/utils/battery_manager.vala:139
 msgid "Not charging"
 msgstr ""
 
-#: src/utils/battery_manager.vala:101
+#: src/utils/battery_manager.vala:141
 msgid "Full"
 msgstr ""
 
@@ -215,107 +255,119 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 
-#: src/window.vala:260
+#: src/window.vala:318
 msgid "General Information"
 msgstr ""
 
-#: src/window.vala:261
+#: src/window.vala:319
 msgid "Device Name"
 msgstr ""
 
-#: src/window.vala:262
+#: src/window.vala:320
 msgid "Sysfs Path"
 msgstr ""
 
-#: src/window.vala:263
+#: src/window.vala:321
 msgid "Device Type"
 msgstr ""
 
-#: src/window.vala:264
-msgid "Status"
-msgstr ""
-
-#: src/window.vala:267
+#: src/window.vala:324
 msgid "Health Evaluations"
 msgstr ""
 
-#: src/window.vala:269
+#: src/window.vala:326
 msgid "State of Health"
 msgstr ""
 
-#: src/window.vala:270
+#: src/window.vala:327
 msgid "Device Condition"
 msgstr ""
 
-#: src/window.vala:273
+#: src/window.vala:330
 msgid "Manufacturing Details"
 msgstr ""
 
-#: src/window.vala:274
+#: src/window.vala:331
 msgid "Manufacturer"
 msgstr ""
 
-#: src/window.vala:275
+#: src/window.vala:332
 msgid "Serial Number"
 msgstr ""
 
-#: src/window.vala:278
+#: src/window.vala:335
 msgid "Model Information"
 msgstr ""
 
-#: src/window.vala:279
+#: src/window.vala:336
 msgid "Model Name"
 msgstr ""
 
-#: src/window.vala:280
+#: src/window.vala:337
 msgid "Technology"
 msgstr ""
 
-#: src/window.vala:283
+#: src/window.vala:340
 msgid "Charging Status"
 msgstr ""
 
-#: src/window.vala:284
+#: src/window.vala:341
 msgid "Charge Limit Percentage"
 msgstr ""
 
-#: src/window.vala:285
+#: src/window.vala:342
 msgid "Cycle Count"
 msgstr ""
 
-#: src/window.vala:288
+#: src/window.vala:343
+msgid "Status"
+msgstr ""
+
+#: src/window.vala:346
+msgid "Time Calculations"
+msgstr ""
+
+#: src/window.vala:347
+msgid "Time to Empty"
+msgstr ""
+
+#: src/window.vala:348
+msgid "Projected Runtime with Current Usage"
+msgstr ""
+
+#: src/window.vala:351
 msgid "Energy Metrics"
 msgstr ""
 
-#: src/window.vala:289
+#: src/window.vala:352
 msgid "Maximum Rated Capacity"
 msgstr ""
 
-#: src/window.vala:290
+#: src/window.vala:353
 msgid "Maximum Capacity"
 msgstr ""
 
-#: src/window.vala:291
-msgid "Remaining Power"
+#: src/window.vala:354
+msgid "Remaining Energy"
 msgstr ""
 
-#: src/window.vala:292
+#: src/window.vala:355
 msgid "Energy Transfer Rate"
 msgstr ""
 
-#: src/window.vala:295
+#: src/window.vala:358
 msgid "Voltage Statistics"
 msgstr ""
 
-#: src/window.vala:296
+#: src/window.vala:359
 msgid "Minimum Rated Voltage"
 msgstr ""
 
-#: src/window.vala:297
+#: src/window.vala:360
 msgid "Current Voltage"
 msgstr ""
 
-#: src/window.vala:392
+#: src/window.vala:479
 #, c-format
 msgid ""
 "Path: %s\n"
