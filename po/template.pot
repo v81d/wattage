@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-05 14:21-0400\n"
+"POT-Creation-Date: 2025-10-05 19:58-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,9 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/io.github.v81d.Ampere.desktop.in:2 data/io.github.v81d.Ampere.metainfo.xml.in:7
-#: src/ui/window.ui:5 src/ui/window.ui:63
+#: data/io.github.v81d.Ampere.desktop.in:2
+#: data/io.github.v81d.Ampere.metainfo.xml.in:7 src/ui/window.ui:5
+#: src/ui/window.ui:63
 msgid "Ampere"
 msgstr ""
 
