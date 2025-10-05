@@ -10,7 +10,7 @@
     <p>Ampere is an application designed for monitoring the health and status of your power devices.</p>
   </description>
 
-  <developer id="tld.vendor">
+  <developer id="io.github.v81d">
     <name translate="no">v81d</name>
   </developer>
 
@@ -58,16 +58,15 @@
   </screenshots>
 
   <releases>
-    <!-- <release version="1.0.1" date="2024-01-18">
-      <url type="details">https://example.org/changelog.html#version_1.0.1</url>
+    <release version="0.1.0" date="2024-10-05">
+      <url type="details">https://github.com/v81d/ampere/releases/tag/0.1.0</url>
       <description translate="no">
-        <p>Release description</p>
+        <p>This is the first official release of Ampere!</p>
         <ul>
-          <li>List of changes</li>
-          <li>List of changes</li>
+          <li>Initial release</li>
         </ul>
       </description>
-    </release> -->
+    </release>
   </releases>
 
 </component>
