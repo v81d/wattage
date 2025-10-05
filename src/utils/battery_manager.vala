@@ -43,11 +43,29 @@ namespace Ampere {
 
         public Device () {}
 
+        public string convert_to_unit (string value, string unit) {
+            // Assumes starting unit of value is micro(-units)
+            double val = double.parse (value);
+
+            if (unit.has_prefix ("m")) {
+                // mWh, mW, mV
+                val /= 1000;
+            } else if (unit.has_prefix ("k")) {
+                // kWh, kW, kV
+                val /= 1000000000;
+            } else if (!unit.has_prefix ("μ")) {
+                // standard case (Wh, W, V)
+                val /= 1000000;
+            }
+
+            return val == 0 ? "Unknown" : "%.3f %s".printf (val, unit);
+        }
+
         public string calculate_health_percentage () {
             double full_design = double.parse (this.energy_full_design);
             double full = double.parse (this.energy_full);
 
-            /* In some special cases, the rated maximum capacity may be 0 micro-watt-hours.
+            /* In some special cases, the maximum rated capacity may be 0 watt-hours.
              * To avoid division by zero, we should instead return "Unknown" early.
              */
             if (full_design == 0) {
@@ -57,6 +75,28 @@ namespace Ampere {
             double percentage = (full / full_design) * 100;
 
             return "%0.3f".printf (percentage);
+        }
+
+        public string hours_to_hms (double hours) {
+            int total_seconds = (int) (hours * 3600);
+
+            int result_hours = total_seconds / 3600;
+            int result_seconds = total_seconds - result_hours * 3600;
+            int result_minutes = result_seconds / 60;
+            result_seconds -= result_minutes * 60;
+
+            return "%02d:%02d:%02d".printf (result_hours, result_minutes, result_seconds);
+        }
+
+        public string calculate_time (string total_energy) {
+            double total = double.parse (total_energy);
+            double rate = double.parse (this.power_now);
+
+            if (rate == 0) {
+                return "Unknown";
+            }
+
+            return this.hours_to_hms (total / rate);
         }
 
         public string create_alert (double health_percentage) {
@@ -237,35 +277,17 @@ namespace Ampere {
             device.technology = this.read_file (Path.build_filename (device.path, "technology"));
 
             double charge_control_end_threshold = double.parse (this.read_file (Path.build_filename (device.path, "charge_control_end_threshold")));
-
             device.charge_control_end_threshold = charge_control_end_threshold == 0 ? "Unknown" : "%0.3f".printf (charge_control_end_threshold);
             device.cycle_count = this.read_file (Path.build_filename (device.path, "cycle_count"));
-
-            // Convert to Wh
-            double energy_full_design = double.parse (this.read_file (Path.build_filename (device.path, "energy_full_design"))) / 1000000;
-            double energy_full = double.parse (this.read_file (Path.build_filename (device.path, "energy_full"))) / 1000000;
-            double energy_now = double.parse (this.read_file (Path.build_filename (device.path, "energy_now"))) / 1000000;
-
-            string power_now = this.read_file (Path.build_filename (device.path, "power_now"));
-
-            // Convert to W if result is not unknown
-            if (!power_now.down ().contains ("unknown")) {
-                power_now = (double.parse (power_now) / 1000000).to_string ();
-            }
-
-            device.energy_full = energy_full == 0 ? "Unknown" : "%0.3f".printf (energy_full);
-            device.energy_full_design = energy_full_design == 0 ? "Unknown" : "%0.3f".printf (energy_full_design);
-            device.energy_now = energy_now == 0 ? "Unknown" : "%0.3f".printf (energy_now);
-            device.power_now = power_now.down () == "unknown" ? "Unknown" : "%0.3f".printf (double.parse (power_now));
-
             device.status = this.read_file (Path.build_filename (device.path, "status"));
 
-            // Convert to V
-            double voltage_min_design = double.parse (this.read_file (Path.build_filename (device.path, "voltage_min_design"))) / 1000000;
-            double voltage_now = double.parse (this.read_file (Path.build_filename (device.path, "voltage_now"))) / 1000000;
+            device.energy_full_design = this.read_file (Path.build_filename (device.path, "energy_full_design"));
+            device.energy_full = this.read_file (Path.build_filename (device.path, "energy_full"));
+            device.energy_now = this.read_file (Path.build_filename (device.path, "energy_now"));
+            device.power_now = this.read_file (Path.build_filename (device.path, "power_now"));
 
-            device.voltage_min_design = voltage_min_design == 0 ? "Unknown" : "%0.3f".printf (voltage_min_design);
-            device.voltage_now = voltage_now == 0 ? "Unknown" : "%0.3f".printf (voltage_now);
+            device.voltage_min_design = this.read_file (Path.build_filename (device.path, "voltage_min_design"));
+            device.voltage_now = this.read_file (Path.build_filename (device.path, "voltage_now"));
 
             device.icon_name = this.get_device_icon_name (device.path);
 

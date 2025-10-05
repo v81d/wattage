@@ -27,6 +27,56 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Measurements</property>
+            <child>
+              <object class="AdwComboRow" id="energy_unit">
+                <property name="title" translatable="yes">Energy Unit</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="no">μWh</item>
+                      <item translatable="no">mWh</item>
+                      <item translatable="no">Wh</item>
+                      <item translatable="no">kWh</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow" id="power_unit">
+                <property name="title" translatable="yes">Power Unit</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="no">μW</item>
+                      <item translatable="no">mW</item>
+                      <item translatable="no">W</item>
+                      <item translatable="no">kW</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow" id="voltage_unit">
+                <property name="title" translatable="yes">Voltage Unit</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="no">μV</item>
+                      <item translatable="no">mV</item>
+                      <item translatable="no">V</item>
+                      <item translatable="no">kV</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </object>

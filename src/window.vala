@@ -131,6 +131,9 @@ public class Ampere.Window : Adw.ApplicationWindow {
     private bool auto_refresh;
     private int auto_refresh_cooldown;
     private uint auto_refresh_source_id = 0;
+    private string energy_unit;
+    private string power_unit;
+    private string voltage_unit;
 
     public Window (Gtk.Application app) {
         Object (application: app);
@@ -200,10 +203,29 @@ public class Ampere.Window : Adw.ApplicationWindow {
         }
     }
 
+    /* This is mostly used for dropdowns in the preferences menu.
+     * The function will return the index of a value inside a given array.
+     */
+    private int get_string_array_index (string[] array, string value) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     private void initialize_gsettings () {
         this.settings = new GLib.Settings ("com.v81d.Ampere");
+
+        // Automation
         this.auto_refresh = this.settings.get_boolean ("auto-refresh");
         this.auto_refresh_cooldown = (int) this.settings.get_int ("auto-refresh-cooldown");
+
+        // Measurements
+        this.energy_unit = this.settings.get_string ("energy-unit");
+        this.power_unit = this.settings.get_string ("power-unit");
+        this.voltage_unit = this.settings.get_string ("voltage-unit");
     }
 
     private void initialize_preferences_dialog () {
@@ -234,6 +256,8 @@ public class Ampere.Window : Adw.ApplicationWindow {
             } else {
                 this.stop_auto_refresh ();
             }
+
+            load_device_list ();
         });
 
         // Auto-refresh delay
@@ -243,6 +267,40 @@ public class Ampere.Window : Adw.ApplicationWindow {
             int cooldown = (int) auto_refresh_cooldown_row.get_value ();
             this.settings.set_int ("auto-refresh-cooldown", cooldown);
             this.auto_refresh_cooldown = cooldown;
+            load_device_list ();
+        });
+
+        // Energy unit
+        string[] energy_units = { "μWh", "mWh", "Wh", "kWh" };
+        Adw.ComboRow energy_unit_row = this.preferences_dialog_builder.get_object ("energy_unit") as Adw.ComboRow;
+        energy_unit_row.set_selected (get_string_array_index (energy_units, this.energy_unit));
+        energy_unit_row.notify["selected"].connect (() => {
+            string selected_unit = energy_units[energy_unit_row.get_selected ()];
+            this.settings.set_string ("energy-unit", selected_unit);
+            this.energy_unit = selected_unit;
+            load_device_list ();
+        });
+
+        // Power unit
+        string[] power_units = { "μW", "mW", "W", "kW" };
+        Adw.ComboRow power_unit_row = this.preferences_dialog_builder.get_object ("power_unit") as Adw.ComboRow;
+        power_unit_row.set_selected (get_string_array_index (power_units, this.power_unit));
+        power_unit_row.notify["selected"].connect (() => {
+            string selected_unit = power_units[power_unit_row.get_selected ()];
+            this.settings.set_string ("power-unit", selected_unit);
+            this.power_unit = selected_unit;
+            load_device_list ();
+        });
+
+        // Voltage unit
+        string[] voltage_units = { "μV", "mV", "V", "kV" };
+        Adw.ComboRow voltage_unit_row = this.preferences_dialog_builder.get_object ("voltage_unit") as Adw.ComboRow;
+        voltage_unit_row.set_selected (get_string_array_index (voltage_units, this.voltage_unit));
+        voltage_unit_row.notify["selected"].connect (() => {
+            string selected_unit = voltage_units[voltage_unit_row.get_selected ()];
+            this.settings.set_string ("voltage-unit", selected_unit);
+            this.voltage_unit = selected_unit;
+            load_device_list ();
         });
     }
 
@@ -261,7 +319,6 @@ public class Ampere.Window : Adw.ApplicationWindow {
             general_info.set (_("Device Name"), device.name);
             general_info.set (_("Sysfs Path"), device.path);
             general_info.set (_("Device Type"), device.map_property_translation (device.type));
-            general_info.set (_("Status"), device.map_property_translation (device.status));
             sections.add (general_info);
 
             DeviceInfoSectionData health_stats = new DeviceInfoSectionData (_("Health Evaluations"));
@@ -283,63 +340,93 @@ public class Ampere.Window : Adw.ApplicationWindow {
             DeviceInfoSectionData charging_status = new DeviceInfoSectionData (_("Charging Status"));
             charging_status.set (_("Charge Limit Percentage"), device.charge_control_end_threshold + "%");
             charging_status.set (_("Cycle Count"), device.cycle_count);
+            charging_status.set (_("Status"), device.map_property_translation (device.status));
             sections.add (charging_status);
 
+            DeviceInfoSectionData time_calculations = new DeviceInfoSectionData (_("Time Calculations"));
+            time_calculations.set (_("Time to Empty"), device.calculate_time (device.energy_now));
+            time_calculations.set (_("Projected Runtime with Current Usage"), device.calculate_time (device.energy_full));
+            sections.add (time_calculations);
+
             DeviceInfoSectionData energy_metrics = new DeviceInfoSectionData (_("Energy Metrics"));
-            energy_metrics.set (_("Maximum Rated Capacity"), device.energy_full_design + " Wh");
-            energy_metrics.set (_("Maximum Capacity"), device.energy_full + " Wh");
-            energy_metrics.set (_("Remaining Power"), device.energy_now + " Wh");
-            energy_metrics.set (_("Energy Transfer Rate"), device.power_now + " W ");
+            energy_metrics.set (_("Maximum Rated Capacity"), device.convert_to_unit (device.energy_full_design, this.energy_unit));
+            energy_metrics.set (_("Maximum Capacity"), device.convert_to_unit (device.energy_full, this.energy_unit));
+            energy_metrics.set (_("Remaining Energy"), device.convert_to_unit (device.energy_now, this.energy_unit));
+            energy_metrics.set (_("Energy Transfer Rate"), device.convert_to_unit (device.power_now, this.power_unit));
             sections.add (energy_metrics);
 
             DeviceInfoSectionData voltage_stats = new DeviceInfoSectionData (_("Voltage Statistics"));
-            voltage_stats.set (_("Minimum Rated Voltage"), device.voltage_min_design + " V");
-            voltage_stats.set (_("Current Voltage"), device.voltage_now + " V");
+            voltage_stats.set (_("Minimum Rated Voltage"), device.convert_to_unit (device.voltage_min_design, this.voltage_unit));
+            voltage_stats.set (_("Current Voltage"), device.convert_to_unit (device.voltage_now, this.voltage_unit));
             sections.add (voltage_stats);
 
             Idle.add (() => {
-                Gee.ArrayList<string> new_titles = new Gee.ArrayList<string> (); // titles that come in this update
+                // Titles of existing sections
+                Gee.ArrayList<string> existing_titles = new Gee.ArrayList<string> ();
+                foreach (DeviceInfoSection s in this.device_info_sections) {
+                    existing_titles.add (s.get_title ());
+                }
 
+                // Titles of new sections
+                Gee.ArrayList<string> new_titles = new Gee.ArrayList<string> ();
                 foreach (DeviceInfoSectionData section in sections) {
-                    if (section.properties.size == 0)
-                        continue;
+                    if (section.properties.size > 0) {
+                        new_titles.add (section.title);
+                    }
+                }
 
-                    new_titles.add (section.title);
-
-                    // Match the first existing section by title
-                    DeviceInfoSection? existing = null;
-                    foreach (DeviceInfoSection s in this.device_info_sections) {
-                        if (s.get_title () == section.title) {
-                            existing = s;
+                // We need to check if both title arrays are exactly the same
+                bool titles_match = true;
+                if (existing_titles.size != new_titles.size) {
+                    titles_match = false;
+                } else {
+                    foreach (string title in new_titles) {
+                        if (!existing_titles.contains (title)) {
+                            titles_match = false;
                             break;
                         }
                     }
+                }
 
-                    /* Here, we either update an existing section or append it if it does not yet exist.
-                     * We must use the `existing` variable we defined in the loop above to do so.
-                     *   - If the section exists, we will update that section in place.
-                     *   - If the section does not exist, we will simply append that section.
-                     */
-                    if (existing != null) {
-                        existing.update (section.properties);
-                    } else {
+                /* Essentially, we should reconstruct the entire content view if the two arrays do not match.
+                 *  - If we were to simply append the missing sections, they would be added directly to the end of the content, which is not always desired.
+                 *  - Rebuilding the view would be the simplest way to resolve this.
+                 * If the two arrays do match, however, we should just update existing sections in place.
+                 */
+                if (!titles_match) {
+                    foreach (DeviceInfoSection s in this.device_info_sections) {
+                        this.device_info_box.remove (s);
+                    }
+                    this.device_info_sections.clear ();
+
+                    foreach (DeviceInfoSectionData section in sections) {
+                        if (section.properties.size == 0) {
+                            continue;
+                        }
+
                         DeviceInfoSection s = new DeviceInfoSection (section.title, section.properties);
                         this.device_info_box.append (s);
                         this.device_info_sections.add (s);
                     }
-                }
+                } else {
+                    foreach (DeviceInfoSectionData section in sections) {
+                        if (section.properties.size == 0) {
+                            continue;
+                        }
 
-                // Remove old sections that are not in `new_titles`
-                Gee.ArrayList<DeviceInfoSection> to_remove = new Gee.ArrayList<DeviceInfoSection> ();
-                foreach (DeviceInfoSection s in this.device_info_sections) {
-                    if (!new_titles.contains (s.get_title ())) {
-                        to_remove.add (s);
+                        // Match existing sections by title
+                        DeviceInfoSection? existing_section = null;
+                        foreach (DeviceInfoSection s in this.device_info_sections) {
+                            if (s.get_title () == section.title) {
+                                existing_section = s;
+                                break;
+                            }
+                        }
+
+                        if (existing_section != null) {
+                            existing_section.update (section.properties);
+                        }
                     }
-                }
-
-                foreach (DeviceInfoSection s in to_remove) {
-                    this.device_info_box.remove (s);
-                    this.device_info_sections.remove (s);
                 }
 
                 this.content_spinner.set_visible (false);
