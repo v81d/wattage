@@ -2,6 +2,12 @@
 
 # Ampere
 
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/v81d/ampere)
+![GitHub top language](https://img.shields.io/github/languages/top/v81d/ampere)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/v81d/ampere)
+![GitHub License](https://img.shields.io/github/license/v81d/ampere)
+![GitHub Release](https://img.shields.io/github/v/release/v81d/ampere)
+
 Ampere is a Linux application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 + libadwaita interface.
 
 ![Home page screenshot](demo/screenshot_0.png)
@@ -36,14 +42,13 @@ git clone https://github.com/v81d/ampere.git
 ```
 
 2. Launch Builder and open the cloned repository.
-3. Click the Build Project icon at the top or press `Ctrl`+`Shift`+`Alt`+`B`.
+3. Complete the build and installation process in the Build Pipeline tab.
 4. Once the process is complete, navigate to the repository folder in your preferred file manager.
 5. Install the `com.v81d.Ampere.flatpak` file by double-clicking it (Nautilus).
 
 ## Contributing
 
 ### Reporting Issues
-
 To report an issue or bug, visit Ampere's [issue tracker](https://github.com/v81d/ampere/issues) on GitHub.
 
 ### Translating the Project
