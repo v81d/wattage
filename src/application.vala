@@ -21,9 +21,9 @@
 public class Ampere.Application : Adw.Application {
     public Application () {
         Object (
-                application_id: "com.v81d.Ampere",
+                application_id: "io.github.v81d.Ampere",
                 flags: ApplicationFlags.DEFAULT_FLAGS,
-                resource_base_path: "/com/v81d/Ampere"
+                resource_base_path: "/io/github/v81d/Ampere"
         );
     }
 
@@ -51,7 +51,7 @@ public class Ampere.Application : Adw.Application {
         string[] developers = { "v81d" };
         var about = new Adw.AboutDialog () {
             application_name = "Ampere",
-            application_icon = "com.v81d.Ampere",
+            application_icon = "io.github.v81d.Ampere",
             developer_name = "v81d",
             translator_credits = _("translator-credits"),
             version = "0.1.0",

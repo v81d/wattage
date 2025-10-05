@@ -1,4 +1,4 @@
-application_id = 'com.v81d.Ampere'
+application_id = 'io.github.v81d.Ampere'
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(

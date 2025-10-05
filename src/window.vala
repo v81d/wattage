@@ -111,7 +111,7 @@ public class DeviceInfoSectionData {
     }
 }
 
-[GtkTemplate (ui = "/com/v81d/Ampere/window.ui")]
+[GtkTemplate (ui = "/io/github/v81d/Ampere/window.ui")]
 public class Ampere.Window : Adw.ApplicationWindow {
     // Bind template children to variables
     [GtkChild] unowned Adw.Spinner sidebar_spinner;
@@ -158,7 +158,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
             }
         });
 
-        this.settings = new GLib.Settings ("com.v81d.Ampere"); // gsettings
+        this.settings = new GLib.Settings ("io.github.v81d.Ampere"); // gsettings
 
         this.initialize_gsettings ();
         this.initialize_preferences_dialog ();
@@ -216,7 +216,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
     }
 
     private void initialize_gsettings () {
-        this.settings = new GLib.Settings ("com.v81d.Ampere");
+        this.settings = new GLib.Settings ("io.github.v81d.Ampere");
 
         // Automation
         this.auto_refresh = this.settings.get_boolean ("auto-refresh");
@@ -231,7 +231,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
     private void initialize_preferences_dialog () {
         this.preferences_dialog_builder = new Gtk.Builder ();
         try {
-            this.preferences_dialog_builder.add_from_resource ("/com/v81d/Ampere/preferences-dialog.ui");
+            this.preferences_dialog_builder.add_from_resource ("/io/github/v81d/Ampere/preferences-dialog.ui");
         } catch (Error e) {
             stderr.printf ("[preferences_dialog_builder.add_from_resource ()] %s\n", e.message);
         }

@@ -17,72 +17,72 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.v81d.Ampere.desktop.in:2 data/com.v81d.Ampere.metainfo.xml.in:7
+#: data/io.github.v81d.Ampere.desktop.in:2 data/io.github.v81d.Ampere.metainfo.xml.in:7
 #: src/ui/window.ui:5 src/ui/window.ui:63
 msgid "Ampere"
 msgstr ""
 
-#: data/com.v81d.Ampere.desktop.in:8
+#: data/io.github.v81d.Ampere.desktop.in:8
 msgid ""
 "GTK;Battery monitor;Battery health;Power statistics;Power usage;Power "
 "devices;"
 msgstr ""
 
-#: data/com.v81d.Ampere.metainfo.xml.in:8
+#: data/io.github.v81d.Ampere.metainfo.xml.in:8
 msgid "Monitor power devices"
 msgstr ""
 
-#: data/com.v81d.Ampere.metainfo.xml.in:10
+#: data/io.github.v81d.Ampere.metainfo.xml.in:10
 msgid ""
 "Ampere is an application designed for monitoring the health and status of "
 "your power devices."
 msgstr ""
 
-#: data/com.v81d.Ampere.metainfo.xml.in:52
+#: data/io.github.v81d.Ampere.metainfo.xml.in:52
 msgid "Home page screenshot"
 msgstr ""
 
-#: data/com.v81d.Ampere.metainfo.xml.in:56
+#: data/io.github.v81d.Ampere.metainfo.xml.in:56
 msgid "Preferences page screenshot"
 msgstr ""
 
-#: data/com.v81d.Ampere.gschema.xml:6
+#: data/io.github.v81d.Ampere.gschema.xml:6
 msgid "Enable auto-refresh"
 msgstr ""
 
-#: data/com.v81d.Ampere.gschema.xml:7
+#: data/io.github.v81d.Ampere.gschema.xml:7
 msgid "Whether the app automatically refreshes data."
 msgstr ""
 
-#: data/com.v81d.Ampere.gschema.xml:12
+#: data/io.github.v81d.Ampere.gschema.xml:12
 msgid "Auto-refresh cooldown"
 msgstr ""
 
-#: data/com.v81d.Ampere.gschema.xml:13
+#: data/io.github.v81d.Ampere.gschema.xml:13
 msgid "Interval in seconds between auto-refresh operations."
 msgstr ""
 
-#: data/com.v81d.Ampere.gschema.xml:17
+#: data/io.github.v81d.Ampere.gschema.xml:17
 msgid "Energy unit"
 msgstr ""
 
-#: data/com.v81d.Ampere.gschema.xml:18
+#: data/io.github.v81d.Ampere.gschema.xml:18
 msgid "The unit used to display energy measurements."
 msgstr ""
 
-#: data/com.v81d.Ampere.gschema.xml:22
+#: data/io.github.v81d.Ampere.gschema.xml:22
 msgid "Power unit"
 msgstr ""
 
-#: data/com.v81d.Ampere.gschema.xml:23
+#: data/io.github.v81d.Ampere.gschema.xml:23
 msgid "The unit used to display power measurements."
 msgstr ""
 
-#: data/com.v81d.Ampere.gschema.xml:27
+#: data/io.github.v81d.Ampere.gschema.xml:27
 msgid "Voltage unit"
 msgstr ""
 
-#: data/com.v81d.Ampere.gschema.xml:28
+#: data/io.github.v81d.Ampere.gschema.xml:28
 msgid "The unit used to display voltage measurements."
 msgstr ""
 
