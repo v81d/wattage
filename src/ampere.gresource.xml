@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/com/v81d/Ampere">
+  <gresource prefix="/io/github/v81d/Ampere">
     <file preprocess="xml-stripblanks" alias="preferences-dialog.ui">ui/preferences-dialog.ui</file>
     <file preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts-dialog.ui</file>
     <file preprocess="xml-stripblanks" alias="window.ui">ui/window.ui</file>

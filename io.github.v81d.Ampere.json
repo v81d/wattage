@@ -33,11 +33,12 @@
     "modules" : [
         {
             "name" : "ampere",
+            "builddir" : true,
             "buildsystem" : "meson",
             "sources" : [
                 {
-                    "type" : "git",
-                    "path" : "https://github.com/v81d/ampere.git"
+                    "type" : "dir",
+                    "path" : "/home/v81d/Projects/Ampere"
                 }
             ]
         }

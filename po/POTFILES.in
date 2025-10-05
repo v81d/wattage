@@ -1,8 +1,8 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
-data/com.v81d.Ampere.desktop.in
-data/com.v81d.Ampere.metainfo.xml.in
-data/com.v81d.Ampere.gschema.xml
+data/io.github.v81d.Ampere.desktop.in
+data/io.github.v81d.Ampere.metainfo.xml.in
+data/io.github.v81d.Ampere.gschema.xml
 src/ui/preferences-dialog.ui
 src/ui/shortcuts-dialog.ui
 src/ui/window.ui
