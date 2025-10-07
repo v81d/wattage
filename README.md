@@ -44,7 +44,7 @@ git clone https://github.com/v81d/wattage.git
 2. Launch Builder and open the cloned repository.
 3. Complete the build and installation process in the Build Pipeline tab.
 4. Once the process is complete, navigate to the repository folder in your preferred file manager.
-5. Install the `io.github.v81d.Wattage.flatpak` file by double-clicking it (Nautilus).
+5. Install the `io.github.v81d.Wattage.flatpak` file by opening it with your Flatpak software manager.
 
 ## Contributing
 
