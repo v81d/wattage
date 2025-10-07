@@ -18,12 +18,12 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-public class Ampere.Application : Adw.Application {
+public class Wattage.Application : Adw.Application {
     public Application () {
         Object (
-                application_id: "io.github.v81d.Ampere",
+                application_id: "io.github.v81d.Wattage",
                 flags: ApplicationFlags.DEFAULT_FLAGS,
-                resource_base_path: "/io/github/v81d/Ampere"
+                resource_base_path: "/io/github/v81d/Wattage"
         );
     }
 
@@ -43,22 +43,22 @@ public class Ampere.Application : Adw.Application {
 
     public override void activate () {
         base.activate ();
-        Gtk.Window win = this.active_window ?? new Ampere.Window (this);
+        Gtk.Window win = this.active_window ?? new Wattage.Window (this);
         win.present ();
     }
 
     private void on_about_action () {
         string[] developers = { "v81d" };
         var about = new Adw.AboutDialog () {
-            application_name = "Ampere",
-            application_icon = "io.github.v81d.Ampere",
+            application_name = "Wattage",
+            application_icon = "io.github.v81d.Wattage",
             developer_name = "v81d",
             translator_credits = _("translator-credits"),
             version = "0.1.0",
             developers = developers,
             copyright = "© 2025 v81d",
             license_type = Gtk.License.GPL_3_0,
-            website = "https://github.com/v81d/ampere",
+            website = "https://github.com/v81d/wattage",
         };
 
         about.present (this.active_window);

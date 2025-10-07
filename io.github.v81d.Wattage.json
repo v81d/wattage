@@ -1,12 +1,12 @@
 {
-    "id" : "io.github.v81d.Ampere",
+    "id" : "io.github.v81d.Wattage",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "49",
     "sdk" : "org.gnome.Sdk",
     "sdk-extensions" : [
         "org.freedesktop.Sdk.Extension.vala"
     ],
-    "command" : "ampere",
+    "command" : "wattage",
     "finish-args" : [
         "--share=network",
         "--share=ipc",
@@ -32,12 +32,13 @@
     ],
     "modules" : [
         {
-            "name" : "ampere",
+            "name" : "wattage",
+            "builddir" : true,
             "buildsystem" : "meson",
             "sources" : [
                 {
-                    "type" : "git",
-                    "path" : "https://github.com/v81d/ampere.git"
+                    "type" : "dir",
+                    "path" : "/home/v81d/Projects/Wattage"
                 }
             ]
         }

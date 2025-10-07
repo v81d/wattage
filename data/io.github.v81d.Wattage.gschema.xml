@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="ampere">
-	<schema id="io.github.v81d.Ampere" path="/io/github/v81d/Ampere/">
+<schemalist gettext-domain="wattage">
+	<schema id="io.github.v81d.Wattage" path="/io/github/v81d/Wattage/">
 	  <key name="auto-refresh" type="b">
       <default>true</default>
       <summary>Enable auto-refresh</summary>

@@ -1,14 +1,14 @@
-<img align="left" src="data/icons/hicolor/scalable/apps/io.github.v81d.Ampere.svg" alt="drawing" width="64"/> 
+<img align="left" src="data/icons/hicolor/scalable/apps/io.github.v81d.Wattage.svg" alt="drawing" width="64"/> 
 
-# Ampere
+# Wattage
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/v81d/ampere)
-![GitHub top language](https://img.shields.io/github/languages/top/v81d/ampere)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/v81d/ampere)
-![GitHub License](https://img.shields.io/github/license/v81d/ampere)
-![GitHub Release](https://img.shields.io/github/v/release/v81d/ampere)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/v81d/wattage)
+![GitHub top language](https://img.shields.io/github/languages/top/v81d/wattage)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/v81d/wattage)
+![GitHub License](https://img.shields.io/github/license/v81d/wattage)
+![GitHub Release](https://img.shields.io/github/v/release/v81d/wattage)
 
-Ampere is a Linux application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 + libadwaita interface.
+Wattage is an application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 + libadwaita interface.
 
 ![Home page screenshot](demo/screenshot_0.png)
 ![Preferences page screenshot](demo/screenshot_1.png)
@@ -24,7 +24,7 @@ Ampere is a Linux application designed for monitoring the health and status of y
 
 ## Installation
 
-The following guide provides instructions on how to install Ampere.
+The following guide provides instructions on how to install Wattage.
 
 ### Requirements
 
@@ -33,23 +33,23 @@ The following guide provides instructions on how to install Ampere.
 
 ### Manual Installation
 
-The recommended way to build and install Ampere is using [GNOME Builder](https://apps.gnome.org/Builder). To get started, follow these instructions (assuming you have already installed Builder):
+The recommended way to build and install Wattage is using [GNOME Builder](https://apps.gnome.org/Builder). To get started, follow these instructions (assuming you have already installed Builder):
 
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/v81d/ampere.git
+git clone https://github.com/v81d/wattage.git
 ```
 
 2. Launch Builder and open the cloned repository.
 3. Complete the build and installation process in the Build Pipeline tab.
 4. Once the process is complete, navigate to the repository folder in your preferred file manager.
-5. Install the `io.github.v81d.Ampere.flatpak` file by double-clicking it (Nautilus).
+5. Install the `io.github.v81d.Wattage.flatpak` file by double-clicking it (Nautilus).
 
 ## Contributing
 
 ### Reporting Issues
-To report an issue or bug, visit Ampere's [issue tracker](https://github.com/v81d/ampere/issues) on GitHub.
+To report an issue or bug, visit Wattage's [issue tracker](https://github.com/v81d/wattage/issues) on GitHub.
 
 ### Translating the Project
 
@@ -67,7 +67,7 @@ To push your features or fixes into this official repository:
 
 ## License
 
-Ampere is free software distributed under the **GNU General Public License, version 3.0 or later (GPL-3.0+).**
+Wattage is free software distributed under the **GNU General Public License, version 3.0 or later (GPL-3.0+).**
 
 You are free to use, modify, and share the software under the terms of the GPL.
 For full details, see the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).

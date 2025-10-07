@@ -17,73 +17,73 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/io.github.v81d.Ampere.desktop.in:2
-#: data/io.github.v81d.Ampere.metainfo.xml.in:7 src/ui/window.ui:5
+#: data/io.github.v81d.Wattage.desktop.in:2
+#: data/io.github.v81d.Wattage.metainfo.xml.in:7 src/ui/window.ui:5
 #: src/ui/window.ui:63
-msgid "Ampere"
+msgid "Wattage"
 msgstr ""
 
-#: data/io.github.v81d.Ampere.desktop.in:8
+#: data/io.github.v81d.Wattage.desktop.in:8
 msgid ""
 "GTK;Battery monitor;Battery health;Power statistics;Power usage;Power "
 "devices;"
 msgstr ""
 
-#: data/io.github.v81d.Ampere.metainfo.xml.in:8
+#: data/io.github.v81d.Wattage.metainfo.xml.in:8
 msgid "Monitor power devices"
 msgstr ""
 
-#: data/io.github.v81d.Ampere.metainfo.xml.in:10
+#: data/io.github.v81d.Wattage.metainfo.xml.in:10
 msgid ""
-"Ampere is an application designed for monitoring the health and status of "
+"Wattage is an application designed for monitoring the health and status of "
 "your power devices."
 msgstr ""
 
-#: data/io.github.v81d.Ampere.metainfo.xml.in:52
+#: data/io.github.v81d.Wattage.metainfo.xml.in:52
 msgid "Home page screenshot"
 msgstr ""
 
-#: data/io.github.v81d.Ampere.metainfo.xml.in:56
+#: data/io.github.v81d.Wattage.metainfo.xml.in:56
 msgid "Preferences page screenshot"
 msgstr ""
 
-#: data/io.github.v81d.Ampere.gschema.xml:6
+#: data/io.github.v81d.Wattage.gschema.xml:6
 msgid "Enable auto-refresh"
 msgstr ""
 
-#: data/io.github.v81d.Ampere.gschema.xml:7
+#: data/io.github.v81d.Wattage.gschema.xml:7
 msgid "Whether the app automatically refreshes data."
 msgstr ""
 
-#: data/io.github.v81d.Ampere.gschema.xml:12
+#: data/io.github.v81d.Wattage.gschema.xml:12
 msgid "Auto-refresh cooldown"
 msgstr ""
 
-#: data/io.github.v81d.Ampere.gschema.xml:13
+#: data/io.github.v81d.Wattage.gschema.xml:13
 msgid "Interval in seconds between auto-refresh operations."
 msgstr ""
 
-#: data/io.github.v81d.Ampere.gschema.xml:17
+#: data/io.github.v81d.Wattage.gschema.xml:17
 msgid "Energy unit"
 msgstr ""
 
-#: data/io.github.v81d.Ampere.gschema.xml:18
+#: data/io.github.v81d.Wattage.gschema.xml:18
 msgid "The unit used to display energy measurements."
 msgstr ""
 
-#: data/io.github.v81d.Ampere.gschema.xml:22
+#: data/io.github.v81d.Wattage.gschema.xml:22
 msgid "Power unit"
 msgstr ""
 
-#: data/io.github.v81d.Ampere.gschema.xml:23
+#: data/io.github.v81d.Wattage.gschema.xml:23
 msgid "The unit used to display power measurements."
 msgstr ""
 
-#: data/io.github.v81d.Ampere.gschema.xml:27
+#: data/io.github.v81d.Wattage.gschema.xml:27
 msgid "Voltage unit"
 msgstr ""
 
-#: data/io.github.v81d.Ampere.gschema.xml:28
+#: data/io.github.v81d.Wattage.gschema.xml:28
 msgid "The unit used to display voltage measurements."
 msgstr ""
 
@@ -183,7 +183,7 @@ msgid "Keyboard Shortcuts"
 msgstr ""
 
 #: src/ui/window.ui:148
-msgid "About Ampere"
+msgid "About Wattage"
 msgstr ""
 
 #: src/utils/battery_manager.vala:104

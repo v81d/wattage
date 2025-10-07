@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Ampere
-Exec=ampere
-Icon=io.github.v81d.Ampere
+Name=Wattage
+Exec=wattage
+Icon=io.github.v81d.Wattage
 Terminal=false
 Type=Application
 Categories=Utility;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <template class="AmpereWindow" parent="AdwApplicationWindow">
-    <property name="title" translatable="yes">Ampere</property>
+  <template class="WattageWindow" parent="AdwApplicationWindow">
+    <property name="title" translatable="yes">Wattage</property>
     <property name="default-width">800</property>
     <property name="default-height">600</property>
     <child>
@@ -60,7 +60,7 @@
         </property>
         <property name="content">
           <object class="AdwNavigationPage">
-            <property name="title" translatable="yes">Ampere</property>
+            <property name="title" translatable="yes">Wattage</property>
             <property name="tag">content</property>
             <property name="child">
               <object class="AdwToolbarView">
@@ -145,7 +145,7 @@
         <attribute name="action">app.shortcuts</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">About Ampere</attribute>
+        <attribute name="label" translatable="yes">About Wattage</attribute>
         <attribute name="action">app.about</attribute>
       </item>
     </section>
