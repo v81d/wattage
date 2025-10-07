@@ -20,7 +20,7 @@
 
 using GLib;
 
-namespace Ampere {
+namespace Wattage {
     // This class is used to represent basic information about a single device
     public class Device {
         public string name = "Unknown";

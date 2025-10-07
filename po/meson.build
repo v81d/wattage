@@ -1,1 +1,1 @@
-i18n.gettext('ampere', preset: 'glib')
+i18n.gettext('wattage', preset: 'glib')

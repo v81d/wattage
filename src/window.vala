@@ -111,8 +111,8 @@ public class DeviceInfoSectionData {
     }
 }
 
-[GtkTemplate (ui = "/io/github/v81d/Ampere/window.ui")]
-public class Ampere.Window : Adw.ApplicationWindow {
+[GtkTemplate (ui = "/io/github/v81d/Wattage/window.ui")]
+public class Wattage.Window : Adw.ApplicationWindow {
     // Bind template children to variables
     [GtkChild] unowned Adw.Spinner sidebar_spinner;
     [GtkChild] unowned Adw.Spinner content_spinner;
@@ -123,7 +123,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
     private Gtk.Builder preferences_dialog_builder;
     private GLib.Settings settings;
 
-    private Ampere.BatteryManager battery_manager;
+    private Wattage.BatteryManager battery_manager;
     private int selected_device_index = 0;
     private Gee.ArrayList<DeviceInfoSection> device_info_sections = new Gee.ArrayList<DeviceInfoSection> ();
 
@@ -138,7 +138,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
     public Window (Gtk.Application app) {
         Object (application: app);
 
-        this.battery_manager = new Ampere.BatteryManager ();
+        this.battery_manager = new Wattage.BatteryManager ();
         this.load_device_list ();
 
         // This is the handler for selecting a device in the sidebar
@@ -158,7 +158,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
             }
         });
 
-        this.settings = new GLib.Settings ("io.github.v81d.Ampere"); // gsettings
+        this.settings = new GLib.Settings ("io.github.v81d.Wattage"); // gsettings
 
         this.initialize_gsettings ();
         this.initialize_preferences_dialog ();
@@ -216,7 +216,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
     }
 
     private void initialize_gsettings () {
-        this.settings = new GLib.Settings ("io.github.v81d.Ampere");
+        this.settings = new GLib.Settings ("io.github.v81d.Wattage");
 
         // Automation
         this.auto_refresh = this.settings.get_boolean ("auto-refresh");
@@ -231,7 +231,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
     private void initialize_preferences_dialog () {
         this.preferences_dialog_builder = new Gtk.Builder ();
         try {
-            this.preferences_dialog_builder.add_from_resource ("/io/github/v81d/Ampere/preferences-dialog.ui");
+            this.preferences_dialog_builder.add_from_resource ("/io/github/v81d/Wattage/preferences-dialog.ui");
         } catch (Error e) {
             stderr.printf ("[preferences_dialog_builder.add_from_resource ()] %s\n", e.message);
         }
@@ -309,7 +309,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
         preferences_dialog.present (this);
     }
 
-    private void load_device_info (Ampere.Device device) {
+    private void load_device_info (Wattage.Device device) {
         this.content_spinner.set_visible (true);
 
         new Thread<void> ("load-device-info", () => {
@@ -444,18 +444,18 @@ public class Ampere.Window : Adw.ApplicationWindow {
         }
 
         new Thread<void> ("load-device-list", () => {
-            List<Ampere.Device> devices;
+            List<Wattage.Device> devices;
 
             try {
                 devices = this.battery_manager.get_devices ();
                 stdout.printf ("Power devices loaded.\n");
             } catch (Error e) {
                 stderr.printf ("Failed to load power devices: %s\n", (string) e);
-                devices = new List<Ampere.Device> ();
+                devices = new List<Wattage.Device> ();
             }
 
             Idle.add (() => {
-                foreach (Ampere.Device device in devices) {
+                foreach (Wattage.Device device in devices) {
                     this.append_device (device);
                 }
 
@@ -475,7 +475,7 @@ public class Ampere.Window : Adw.ApplicationWindow {
         });
     }
 
-    private void append_device (Ampere.Device device) {
+    private void append_device (Wattage.Device device) {
         string description = _("Path: %s\nType: %s").printf (device.path, device.type);
         DeviceRow row = new DeviceRow (device.name, description, device.icon_name);
         this.device_list.append (row);

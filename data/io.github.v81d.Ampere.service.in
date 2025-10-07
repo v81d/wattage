@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=io.github.v81d.Ampere
-Exec=@bindir@/ampere --gapplication-service
