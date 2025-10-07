@@ -58,12 +58,12 @@
   </screenshots>
 
   <releases>
-    <release version="0.1.0" date="2024-10-05">
+    <release version="0.1.0" date="2024-10-07">
       <url type="details">https://github.com/v81d/wattage/releases/tag/0.1.0</url>
       <description translate="no">
         <p>This is the first official release of Wattage!</p>
         <ul>
-          <li>Initial release</li>
+          <li>Initial release.</li>
         </ul>
       </description>
     </release>
