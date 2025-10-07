@@ -340,6 +340,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
             DeviceInfoSectionData charging_status = new DeviceInfoSectionData (_("Charging Status"));
             charging_status.set (_("Charge Limit Percentage"), device.charge_control_end_threshold + "%");
             charging_status.set (_("Cycle Count"), device.cycle_count);
+            charging_status.set (_("Current Charge Percentage"), "%.3f".printf (double.parse (device.energy_now) / double.parse (device.energy_full) * 100) + "%");
             charging_status.set (_("Status"), device.map_property_translation (device.status));
             sections.add (charging_status);
 
