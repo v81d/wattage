@@ -321,12 +321,6 @@ public class Wattage.Window : Adw.ApplicationWindow {
             general_info.set (_("Device Type"), device.map_property_translation (device.type));
             sections.add (general_info);
 
-            DeviceInfoSectionData health_stats = new DeviceInfoSectionData (_("Health Evaluations"));
-            string health_percentage = device.calculate_health_percentage ();
-            health_stats.set (_("State of Health"), health_percentage + "%");
-            health_stats.set (_("Device Condition"), device.create_alert (double.parse (health_percentage)));
-            sections.add (health_stats);
-
             DeviceInfoSectionData manufacturing_details = new DeviceInfoSectionData (_("Manufacturing Details"));
             manufacturing_details.set (_("Manufacturer"), device.manufacturer);
             manufacturing_details.set (_("Serial Number"), device.serial_number);
@@ -336,6 +330,12 @@ public class Wattage.Window : Adw.ApplicationWindow {
             model_info.set (_("Model Name"), device.model_name);
             model_info.set (_("Technology"), device.technology);
             sections.add (model_info);
+
+            DeviceInfoSectionData health_stats = new DeviceInfoSectionData (_("Health Evaluations"));
+            string health_percentage = device.calculate_health_percentage ();
+            health_stats.set (_("State of Health"), health_percentage + "%");
+            health_stats.set (_("Device Condition"), device.create_alert (double.parse (health_percentage)));
+            sections.add (health_stats);
 
             DeviceInfoSectionData charging_status = new DeviceInfoSectionData (_("Charging Status"));
             charging_status.set (_("Charge Limit Percentage"), device.charge_control_end_threshold + "%");
