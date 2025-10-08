@@ -53,6 +53,8 @@ namespace Wattage {
             } else if (unit.has_prefix ("k")) {
                 // kWh, kW, kV
                 val /= 1000000000;
+            } else if (unit == "J") {
+                val *= 0.0036;
             } else if (!unit.has_prefix ("μ")) {
                 // standard case (Wh, W, V)
                 val /= 1000000;

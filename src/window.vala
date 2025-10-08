@@ -271,7 +271,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
         });
 
         // Energy unit
-        string[] energy_units = { "μWh", "mWh", "Wh", "kWh" };
+        string[] energy_units = { "μWh", "mWh", "Wh", "kWh", "J" };
         Adw.ComboRow energy_unit_row = this.preferences_dialog_builder.get_object ("energy_unit") as Adw.ComboRow;
         energy_unit_row.set_selected (get_string_array_index (energy_units, this.energy_unit));
         energy_unit_row.notify["selected"].connect (() => {
@@ -282,7 +282,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
         });
 
         // Power unit
-        string[] power_units = { "μW", "mW", "W", "kW" };
+        string[] power_units = { "μW", "mW", "W", "kW", "J" };
         Adw.ComboRow power_unit_row = this.preferences_dialog_builder.get_object ("power_unit") as Adw.ComboRow;
         power_unit_row.set_selected (get_string_array_index (power_units, this.power_unit));
         power_unit_row.notify["selected"].connect (() => {
@@ -513,3 +513,4 @@ public class Wattage.Window : Adw.ApplicationWindow {
         load_device_list ();
     }
 }
+

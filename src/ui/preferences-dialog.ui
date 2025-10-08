@@ -40,6 +40,7 @@
                       <item translatable="no">mWh</item>
                       <item translatable="no">Wh</item>
                       <item translatable="no">kWh</item>
+                      <item translatable="no">J</item>
                     </items>
                   </object>
                 </property>
@@ -55,6 +56,7 @@
                       <item translatable="no">mW</item>
                       <item translatable="no">W</item>
                       <item translatable="no">kW</item>
+                      <item translatable="no">J</item>
                     </items>
                   </object>
                 </property>
