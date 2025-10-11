@@ -24,8 +24,7 @@
                   <object class="AdwHeaderBar"/>
                 </child>
                 <property name="content">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
+                  <object class="GtkOverlay">
                     <child>
                       <object class="GtkListBox" id="device_list">
                         <property name="hexpand">true</property>
@@ -35,21 +34,19 @@
                         </style>
                       </object>
                     </child>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="hexpand">true</property>
-                        <property name="vexpand">true</property>
-                        <child>
-                          <object class="AdwSpinner" id="sidebar_spinner">
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="width-request">48</property>
-                            <property name="height-request">48</property>
-                            <property name="visible">false</property>
-                          </object>
-                        </child>
+                    <child type="overlay">
+                      <object class="AdwStatusPage" id="device_list_empty_status">
+                        <property name="title">No Devices Found</property>
+                        <property name="description">No power devices were detected under the sysfs directory.</property>
+                        <property name="icon-name">battery-missing-symbolic</property>
+                        <property name="visible">false</property>
+                      </object>
+                    </child>
+                    <child type="overlay">
+                      <object class="AdwSpinner" id="sidebar_spinner">
+                        <property name="width-request">48</property>
+                        <property name="height-request">48</property>
+                        <property name="visible">false</property>
                       </object>
                     </child>
                   </object>
@@ -109,20 +106,22 @@
                       </object>
                     </child>
                     <child type="overlay">
-                      <object class="GtkBox">
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
+                      <object class="AdwStatusPage" id="device_info_empty_status">
                         <property name="hexpand">true</property>
                         <property name="vexpand">true</property>
-                        <child>
-                          <object class="AdwSpinner" id="content_spinner">
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="width-request">48</property>
-                            <property name="height-request">48</property>
-                            <property name="visible">false</property>
-                          </object>
-                        </child>
+                        <property name="title">No Device Loaded</property>
+                        <property name="description">Load a device to view its information.</property>
+                        <property name="icon-name">info-outline-symbolic</property>
+                        <property name="visible">false</property>
+                      </object>
+                    </child>
+                    <child type="overlay">
+                      <object class="AdwSpinner" id="content_spinner">
+                        <property name="hexpand">true</property>
+                        <property name="vexpand">true</property>
+                        <property name="width-request">48</property>
+                        <property name="height-request">48</property>
+                        <property name="visible">false</property>
                       </object>
                     </child>
                   </object>
