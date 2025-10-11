@@ -63,19 +63,15 @@ namespace Wattage {
             return val == 0 ? "Unknown" : "%.3f %s".printf (val, unit);
         }
 
-        public string calculate_health_percentage () {
-            double full_design = double.parse (this.energy_full_design);
-            double full = double.parse (this.energy_full);
-
-            /* In some special cases, the maximum rated capacity may be 0 watt-hours.
+        public string calculate_percentage (double part, double total) {
+            /* In some special cases, the total may be 0.
              * To avoid division by zero, we should instead return "Unknown" early.
              */
-            if (full_design == 0) {
+            if (total == 0) {
                 return "Unknown";
             }
 
-            double percentage = (full / full_design) * 100;
-
+            double percentage = (part / total) * 100;
             return "%0.3f".printf (percentage);
         }
 

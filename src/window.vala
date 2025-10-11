@@ -119,6 +119,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
     [GtkChild] unowned Adw.OverlaySplitView split_view;
     [GtkChild] unowned Gtk.ListBox device_list;
     [GtkChild] unowned Gtk.Box device_info_box;
+    [GtkChild] unowned Adw.StatusPage device_list_empty_status;
+    [GtkChild] unowned Adw.StatusPage device_info_empty_status;
 
     private Gtk.Builder preferences_dialog_builder;
     private GLib.Settings settings;
@@ -150,6 +152,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                     if (action_row != null) {
                         Idle.add (() => {
                             this.selected_device_index = device_row.get_index ();
+                            this.device_info_empty_status.set_visible (false);
                             this.load_device_info (this.battery_manager.fetch_device (action_row.get_title ()));
                             return false;
                         });
@@ -332,7 +335,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
             sections.add (model_info);
 
             DeviceInfoSectionData health_stats = new DeviceInfoSectionData (_("Health Evaluations"));
-            string health_percentage = device.calculate_health_percentage ();
+            string health_percentage = device.calculate_percentage (double.parse (device.energy_full), double.parse (device.energy_full_design));
             health_stats.set (_("State of Health"), health_percentage + "%");
             health_stats.set (_("Device Condition"), device.create_alert (double.parse (health_percentage)));
             sections.add (health_stats);
@@ -340,7 +343,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
             DeviceInfoSectionData charging_status = new DeviceInfoSectionData (_("Charging Status"));
             charging_status.set (_("Charge Limit Percentage"), device.charge_control_end_threshold + "%");
             charging_status.set (_("Cycle Count"), device.cycle_count);
-            charging_status.set (_("Current Charge Percentage"), "%.3f".printf (double.parse (device.energy_now) / double.parse (device.energy_full) * 100) + "%");
+            charging_status.set (_("Current Charge Percentage"), device.calculate_percentage (double.parse (device.energy_now), double.parse (device.energy_full)) + "%");
             charging_status.set (_("Status"), device.map_property_translation (device.status));
             sections.add (charging_status);
 
@@ -431,6 +434,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 }
 
                 this.content_spinner.set_visible (false);
+                this.device_info_empty_status.set_visible (this.device_info_sections.size == 0);
+
                 return false;
             });
         });
@@ -450,9 +455,13 @@ public class Wattage.Window : Adw.ApplicationWindow {
             try {
                 devices = this.battery_manager.get_devices ();
                 stdout.printf ("Power devices loaded.\n");
+                device_list_empty_status.set_visible (false);
+                this.device_info_empty_status.set_visible (false);
             } catch (Error e) {
                 stderr.printf ("Failed to load power devices: %s\n", (string) e);
                 devices = new List<Wattage.Device> ();
+                this.device_list_empty_status.set_visible (true);
+                this.device_info_empty_status.set_visible (true);
             }
 
             Idle.add (() => {
