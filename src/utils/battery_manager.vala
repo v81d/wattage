@@ -90,7 +90,7 @@ namespace Wattage {
             double total = double.parse (total_energy);
             double rate = double.parse (this.power_now);
 
-            if (rate == 0) {
+            if (rate == 0 || this.status.down () == "charging") {
                 return "Unknown";
             }
 
