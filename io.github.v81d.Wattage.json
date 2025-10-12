@@ -38,7 +38,7 @@
             "sources" : [
                 {
                     "type" : "dir",
-                    "path" : "/home/v81d/Projects/Wattage"
+                    "path" : "./"
                 }
             ]
         }

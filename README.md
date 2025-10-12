@@ -1,17 +1,21 @@
-<img align="left" src="data/icons/hicolor/scalable/apps/io.github.v81d.Wattage.svg" alt="drawing" width="64"/> 
+<img align="left" src="data/icons/hicolor/scalable/apps/io.github.v81d.Wattage.svg" alt="Logo" width="64"/> 
 
 # Wattage
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/v81d/wattage)
-![GitHub top language](https://img.shields.io/github/languages/top/v81d/wattage)
+![GitHub Commit Activity](https://img.shields.io/github/commit-activity/w/v81d/wattage)
+![GitHub Top Language](https://img.shields.io/github/languages/top/v81d/wattage)
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/v81d/wattage)
 ![GitHub License](https://img.shields.io/github/license/v81d/wattage)
 ![GitHub Release](https://img.shields.io/github/v/release/v81d/wattage)
 
 Wattage is an application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 + libadwaita interface.
 
-![Home page screenshot](demo/screenshot_0.png)
-![Preferences page screenshot](demo/screenshot_1.png)
+![Application Screenshot](demo/screenshot_application.png)
+![Preferences Page Screenshot](demo/screenshot_preferences_page.png)
+
+## Notices
+
+- Wattage does not support Windows, macOS, or any system that does not support retrieving battery information from the sysfs path `/sys/class/power_supply`
 
 ## Features
 
@@ -20,31 +24,124 @@ Wattage is an application designed for monitoring the health and status of your 
 - Support for multiple batteries or power sources.
 - Interface built with GTK 4 and libadwaita.
 - Written in Vala, which is fast since it compiles to C.
-- Designed for Linux systems with UPower or sysfs battery information.
+- Designed for GNU/Linux systems with sysfs battery information.
 
 ## Installation
 
 The following guide provides instructions on how to install Wattage.
 
-### Requirements
-
-- Linux system with battery or power device support.
-- And more ... (coming soon!)
-
 ### Manual Installation
 
-The recommended way to build and install Wattage is using [GNOME Builder](https://apps.gnome.org/Builder). To get started, follow these instructions (assuming you have already installed Builder):
+#### Build Requirements
 
-1. Clone this repository:
+- Vala
+- Meson
+- Ninja
+- libadwaita (version >= 1.8) and GTK 4
+- pkgconf
+
+Other requirements should be installed automatically as dependencies of the packages above.
+
+#### Build Instructions
+
+The steps for manually building Wattage is quite straightforward. Before starting, please make sure you installed all necessary requirements listed above.
+
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/v81d/wattage.git
+cd wattage
 ```
 
-2. Launch Builder and open the cloned repository.
-3. Complete the build and installation process in the Build Pipeline tab.
-4. Once the process is complete, navigate to the repository folder in your preferred file manager.
-5. Install the `io.github.v81d.Wattage.flatpak` file by opening it with your Flatpak software manager.
+2. Configure the build directory as `_build/`:
+
+```bash
+meson setup _build -Dbuildtype=debug
+```
+
+3. Compile the project and the settings schema in `_build/data/`:
+
+```bash
+ninja -C _build
+glib-compile-schemas --targetdir=_build/data data
+```
+
+4. Verify that the app runs:
+
+```bash
+GSETTINGS_SCHEMA_DIR=_build/data ./_build/src/wattage
+```
+
+#### Installation with Ninja
+
+To install the app using Ninja, run the following command in the project root:
+
+```bash
+sudo ninja -C _build install
+```
+
+Henceforth, you can simply run the app from your launcher or by running the command:
+
+```bash
+wattage
+```
+
+If you ever want to uninstall the app, `cd` to the project root and run:
+
+```bash
+sudo ninja -C _build uninstall
+```
+
+#### Export as AppImage
+
+If you want to export the app as an AppImage, begin by installing [appimage-builder](https://github.com/AppImageCrafters/appimage-builder). Then, build the file:
+
+```bash
+meson install -C _build --no-rebuild --destdir "AppDir"
+appimage-builder --appdir _build/AppDir --recipe AppImageBuilder.yml
+```
+
+A `Wattage-latest-x86_64.AppImage` file should then appear in the project root. To launch the AppImage, run:
+
+```bash
+./Wattage-latest-x86_64.AppImage
+```
+
+#### Export as Flatpak
+
+Make sure both [Flatpak](https://flatpak.org) and [Flatpak Builder](https://github.com/flatpak/flatpak-builder) are installed. Then, add the Flathub repository if it's not already present:
+
+```bash
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
+
+Next, install the necessary runtimes and SDKs:
+
+```bash
+flatpak install -y \
+    org.gnome.Platform//49 \
+    org.gnome.Sdk//49 \
+    org.freedesktop.Sdk.Extension.vala//25.08
+```
+
+Finally, build the Flatpak and create the bundle:
+
+```bash
+flatpak-builder --repo=repo --ccache --force-clean build io.github.v81d.Wattage.json
+flatpak build-bundle repo io.github.v81d.Wattage.flatpak io.github.v81d.Wattage
+```
+
+Now, you can install the bundle with the following commands:
+
+```bash
+flatpak install --user -y io.github.v81d.Wattage.flatpak
+```
+
+To run the app, select it from your launcher or run:
+
+```bash
+flatpak run io.github.v81d.Wattage
+```
 
 ## Contributing
 
