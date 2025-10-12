@@ -1,0 +1,5 @@
+appimage-build/
+repo/
+*.flatpak
+*.AppImage
+*.AppImage.zsync

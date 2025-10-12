@@ -23,7 +23,7 @@
   <!-- Should link a FAQ page for this software, to answer some of the most-asked questions in detail -->
   <!-- URLs of this type should point to a webpage where users can submit or modify translations of the upstream project -->
   <url type="translate">https://github.com/v81d/wattage/tree/main/po</url>
-  <url type="faq">https://github.com/v81d/wattage/tree/main/docs/faq.md</url>
+  <url type="faq">https://github.com/v81d/wattage/tree/main/docs/FAQ.md</url>
   <!-- Should provide a web link to an online user's reference, a software manual or help page -->
   <!-- <url type="help">https://example.org/help</url> -->
   <!-- URLs of this type should point to a webpage showing information on how to donate to the described software project -->
@@ -64,6 +64,22 @@
         <p>This is the first official release of Wattage!</p>
         <ul>
           <li>Initial release.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.2.0" date="2024-10-08">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/0.2.0</url>
+      <description translate="no">
+        <ul>
+          <li>Add joules as a unit of energy and power.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.0.0" date="2024-10-12">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.0</url>
+      <description translate="no">
+        <ul>
+          <li></li>
         </ul>
       </description>
     </release>
