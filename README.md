@@ -127,7 +127,11 @@ flatpak install -y \
 Finally, build the Flatpak and create the bundle:
 
 ```bash
-flatpak-builder --repo=repo --ccache --force-clean build io.github.v81d.Wattage.json
+flatpak-builder \
+    --repo=repo \
+    --ccache \
+    --force-clean \
+    build io.github.v81d.Wattage.json
 flatpak build-bundle repo io.github.v81d.Wattage.flatpak io.github.v81d.Wattage
 ```
 
