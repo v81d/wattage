@@ -10,8 +10,9 @@
 
 Wattage is an application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 + libadwaita interface.
 
-![Application Screenshot](demo/screenshot_application.png)
-![Preferences Page Screenshot](demo/screenshot_preferences_page.png)
+![General battery information](demo/screenshot_0.png)
+![Health and energy statistics](demo/screenshot_1.png)
+![Preferences dialog](demo/screenshot_2.png)
 
 ## Notices
 
