@@ -58,7 +58,7 @@
   </screenshots>
 
   <releases>
-    <release version="1.0.1" date="2024-10-12">
+    <release version="1.0.1" date="2025-10-12">
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.1</url>
       <description translate="no">
         <ul>
@@ -66,7 +66,7 @@
         </ul>
       </description>
     </release>
-    <release version="1.0.0" date="2024-10-12">
+    <release version="1.0.0" date="2025-10-12">
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.0</url>
       <description translate="no">
         <p>This is the first official release of Wattage!</p>
@@ -75,7 +75,7 @@
         </ul>
       </description>
     </release>
-    <release version="0.2.0" date="2024-10-08">
+    <release version="0.2.0" date="2025-10-08">
       <url type="details">https://github.com/v81d/wattage/releases/tag/0.2.0</url>
       <description translate="no">
         <p>This pre-release consists of basic feature additions and bug fixes.</p>
@@ -84,7 +84,7 @@
         </ul>
       </description>
     </release>
-    <release version="0.1.0" date="2024-10-07">
+    <release version="0.1.0" date="2025-10-07">
       <url type="details">https://github.com/v81d/wattage/releases/tag/0.1.0</url>
       <description translate="no">
         <p>This is the first official pre-release of Wattage!</p>
