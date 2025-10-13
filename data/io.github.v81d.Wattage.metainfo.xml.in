@@ -42,18 +42,18 @@
 
   <!-- Applications should set a brand color in both light and dark variants like so -->
   <branding>
-    <color type="primary" scheme_preference="light">#ff00ff</color>
-    <color type="primary" scheme_preference="dark">#993d3d</color>
+    <color type="primary" scheme_preference="light">#99c1f1</color>
+    <color type="primary" scheme_preference="dark">#1a5fb4</color>
   </branding>
 
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/v81d/wattage/refs/heads/main/demo/screenshot_application.png</image>
-      <caption>Application Screenshot</caption>
+      <caption>Application screenshot</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/v81d/wattage/develop/demo/screenshot_preferences_page.png</image>
-      <caption>Preferences Page Screenshot</caption>
+      <caption>Preferences page screenshot</caption>
     </screenshot>
   </screenshots>
 
