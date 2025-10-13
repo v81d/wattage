@@ -3,8 +3,8 @@
   <requires lib="gtk" version="4.0"/>
   <template class="WattageWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">Wattage</property>
-    <property name="default-width">800</property>
-    <property name="default-height">600</property>
+    <property name="default-width">1000</property>
+    <property name="default-height">700</property>
     <child>
       <object class="AdwBreakpoint">
         <condition>max-width: 600sp</condition>
