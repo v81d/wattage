@@ -58,6 +58,14 @@
   </screenshots>
 
   <releases>
+    <release version="1.0.1" date="2024-10-12">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.1</url>
+      <description translate="no">
+        <ul>
+          <li>Fix status page not showing despite empty device list.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.0" date="2024-10-12">
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.0</url>
       <description translate="no">
