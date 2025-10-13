@@ -460,8 +460,6 @@ public class Wattage.Window : Adw.ApplicationWindow {
             } catch (Error e) {
                 stderr.printf ("Failed to load power devices: %s\n", (string) e);
                 devices = new List<Wattage.Device> ();
-                this.device_list_empty_status.set_visible (true);
-                this.device_info_empty_status.set_visible (true);
             }
 
             Idle.add (() => {
@@ -476,6 +474,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
                     stdout.printf ("The device at index %s cannot be found. Device at index 0 will be selected.\n", this.selected_device_index.to_string ());
                 } else {
                     stderr.printf ("No power devices found under the sysfs path.\n");
+                    this.device_list_empty_status.set_visible (true);
+                    this.device_info_empty_status.set_visible (true);
                 }
 
                 this.sidebar_spinner.set_visible (false);
