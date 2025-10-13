@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the Wattage package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-05 19:58-0400\n"
+"POT-Creation-Date: 2025-10-13 18:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: data/io.github.v81d.Wattage.desktop.in:2
 #: data/io.github.v81d.Wattage.metainfo.xml.in:7 src/ui/window.ui:5
-#: src/ui/window.ui:63
+#: src/ui/window.ui:60
 msgid "Wattage"
 msgstr ""
 
@@ -40,11 +40,15 @@ msgid ""
 msgstr ""
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:52
-msgid "Home page screenshot"
+msgid "General battery information"
 msgstr ""
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:56
-msgid "Preferences page screenshot"
+msgid "Health and energy statistics"
+msgstr ""
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:60
+msgid "Preferences dialog"
 msgstr ""
 
 #: data/io.github.v81d.Wattage.gschema.xml:6
@@ -111,11 +115,11 @@ msgstr ""
 msgid "Energy Unit"
 msgstr ""
 
-#: src/ui/preferences-dialog.ui:50
+#: src/ui/preferences-dialog.ui:51
 msgid "Power Unit"
 msgstr ""
 
-#: src/ui/preferences-dialog.ui:65
+#: src/ui/preferences-dialog.ui:67
 msgid "Voltage Unit"
 msgstr ""
 
@@ -162,93 +166,96 @@ msgstr ""
 msgid "Devices"
 msgstr ""
 
-#: src/ui/window.ui:72
+#: src/ui/window.ui:69
 msgid "Toggle Sidebar"
 msgstr ""
 
-#: src/ui/window.ui:81
+#: src/ui/window.ui:78
 msgid "Main Menu"
 msgstr ""
 
-#: src/ui/window.ui:88
+#: src/ui/window.ui:85
 msgid "Refresh"
 msgstr ""
 
-#: src/ui/window.ui:140
+#: src/ui/window.ui:139
 msgid "Preferences"
 msgstr ""
 
-#: src/ui/window.ui:144
+#: src/ui/window.ui:143
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#: src/ui/window.ui:148
+#: src/ui/window.ui:147
 msgid "About Wattage"
 msgstr ""
 
-#: src/utils/battery_manager.vala:104
+#: src/utils/battery_manager.vala:102
 msgid ""
 "The device performs close to its original capacity. It is suitable for daily "
 "use with minimal wear."
 msgstr ""
 
-#: src/utils/battery_manager.vala:106
+#: src/utils/battery_manager.vala:104
 msgid ""
 "The device bears slight capacity loss but is still in good condition for "
 "most tasks."
 msgstr ""
 
-#: src/utils/battery_manager.vala:108
+#: src/utils/battery_manager.vala:106
 msgid ""
 "The device shows a considerable degradation in capacity. Usage time is "
 "noticeably shorter than at its optimal state."
 msgstr ""
 
-#: src/utils/battery_manager.vala:110
+#: src/utils/battery_manager.vala:108
 msgid ""
 "The device has a significant drop in capacity. Expect arbitrary shutdowns "
 "and shortened runtime during extended use."
 msgstr ""
 
-#: src/utils/battery_manager.vala:112
+#: src/utils/battery_manager.vala:110
 msgid ""
 "The device has experienced substantial deterioration. Consider replacing the "
 "device to avoid further damage."
 msgstr ""
 
-#: src/utils/battery_manager.vala:123
+#. The below switch statement should not match any "Unknown" values, as those should not be translated nor displayed to the user
+#. `device.type`
+#: src/utils/battery_manager.vala:121
 msgid "Battery"
 msgstr ""
 
-#: src/utils/battery_manager.vala:125
+#: src/utils/battery_manager.vala:123
 msgid "UPS"
 msgstr ""
 
-#: src/utils/battery_manager.vala:127
+#: src/utils/battery_manager.vala:125
 msgid "Mains"
 msgstr ""
 
-#: src/utils/battery_manager.vala:129
+#: src/utils/battery_manager.vala:127
 msgid "USB"
 msgstr ""
 
-#: src/utils/battery_manager.vala:131
+#: src/utils/battery_manager.vala:129
 msgid "Wireless"
 msgstr ""
 
-#: src/utils/battery_manager.vala:135
+#. `device.status`
+#: src/utils/battery_manager.vala:133
 msgid "Charging"
 msgstr ""
 
-#: src/utils/battery_manager.vala:137
+#: src/utils/battery_manager.vala:135
 msgid "Discharging"
 msgstr ""
 
-#: src/utils/battery_manager.vala:139
+#: src/utils/battery_manager.vala:137
 msgid "Not charging"
 msgstr ""
 
-#: src/utils/battery_manager.vala:141
+#: src/utils/battery_manager.vala:139
 msgid "Full"
 msgstr ""
 
@@ -256,119 +263,123 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 
-#: src/window.vala:318
+#: src/window.vala:321
 msgid "General Information"
 msgstr ""
 
-#: src/window.vala:319
+#: src/window.vala:322
 msgid "Device Name"
 msgstr ""
 
-#: src/window.vala:320
+#: src/window.vala:323
 msgid "Sysfs Path"
 msgstr ""
 
-#: src/window.vala:321
+#: src/window.vala:324
 msgid "Device Type"
 msgstr ""
 
-#: src/window.vala:324
-msgid "Health Evaluations"
-msgstr ""
-
-#: src/window.vala:326
-msgid "State of Health"
-msgstr ""
-
 #: src/window.vala:327
-msgid "Device Condition"
-msgstr ""
-
-#: src/window.vala:330
 msgid "Manufacturing Details"
 msgstr ""
 
-#: src/window.vala:331
+#: src/window.vala:328
 msgid "Manufacturer"
 msgstr ""
 
-#: src/window.vala:332
+#: src/window.vala:329
 msgid "Serial Number"
 msgstr ""
 
-#: src/window.vala:335
+#: src/window.vala:332
 msgid "Model Information"
 msgstr ""
 
-#: src/window.vala:336
+#: src/window.vala:333
 msgid "Model Name"
 msgstr ""
 
-#: src/window.vala:337
+#: src/window.vala:334
 msgid "Technology"
 msgstr ""
 
+#: src/window.vala:337
+msgid "Health Evaluations"
+msgstr ""
+
+#: src/window.vala:339
+msgid "State of Health"
+msgstr ""
+
 #: src/window.vala:340
-msgid "Charging Status"
-msgstr ""
-
-#: src/window.vala:341
-msgid "Charge Limit Percentage"
-msgstr ""
-
-#: src/window.vala:342
-msgid "Cycle Count"
+msgid "Device Condition"
 msgstr ""
 
 #: src/window.vala:343
-msgid "Status"
+msgid "Charging Status"
+msgstr ""
+
+#: src/window.vala:344
+msgid "Charge Limit Percentage"
+msgstr ""
+
+#: src/window.vala:345
+msgid "Cycle Count"
 msgstr ""
 
 #: src/window.vala:346
-msgid "Time Calculations"
+msgid "Current Charge Percentage"
 msgstr ""
 
 #: src/window.vala:347
-msgid "Time to Empty"
+msgid "Status"
 msgstr ""
 
-#: src/window.vala:348
-msgid "Projected Runtime with Current Usage"
+#: src/window.vala:350
+msgid "Time Calculations"
 msgstr ""
 
 #: src/window.vala:351
-msgid "Energy Metrics"
+msgid "Time to Empty"
 msgstr ""
 
 #: src/window.vala:352
-msgid "Maximum Rated Capacity"
-msgstr ""
-
-#: src/window.vala:353
-msgid "Maximum Capacity"
-msgstr ""
-
-#: src/window.vala:354
-msgid "Remaining Energy"
+msgid "Projected Runtime with Current Usage"
 msgstr ""
 
 #: src/window.vala:355
-msgid "Energy Transfer Rate"
+msgid "Energy Metrics"
+msgstr ""
+
+#: src/window.vala:356
+msgid "Maximum Rated Capacity"
+msgstr ""
+
+#: src/window.vala:357
+msgid "Maximum Capacity"
 msgstr ""
 
 #: src/window.vala:358
-msgid "Voltage Statistics"
+msgid "Remaining Energy"
 msgstr ""
 
 #: src/window.vala:359
+msgid "Energy Transfer Rate"
+msgstr ""
+
+#: src/window.vala:362
+msgid "Voltage Statistics"
+msgstr ""
+
+#: src/window.vala:363
 msgid "Minimum Rated Voltage"
 msgstr ""
 
-#: src/window.vala:360
+#: src/window.vala:364
 msgid "Current Voltage"
 msgstr ""
 
-#: src/window.vala:479
+#: src/window.vala:489
 #, c-format
 msgid ""
 "Path: %s\n"
