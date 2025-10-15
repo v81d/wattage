@@ -1,0 +1,402 @@
+# ITALIAN TRANSLATION.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Wattage package.
+# ALBANO BATTISTELLA <ALBANOBATTISTELLA@GMAIL.COM>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Wattage\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-13 18:42-0400\n"
+"PO-Revision-Date: 2025-10-15 20:33+0200\n"
+"Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+   
+#: data/io.github.v81d.Wattage.desktop.in:2  
+#: data/io.github.v81d.Wattage.metainfo.xml.in:7 src/ui/window.ui:5  
+#: src/ui/window.ui:60  
+msgid "Wattage"  
+msgstr "Wattage"  
+   
+#: data/io.github.v81d.Wattage.desktop.in:8  
+msgid ""  
+"GTK;Battery monitor;Battery health;Power statistics;Power usage;Power "  
+"devices;"  
+msgstr ""  
+"GTK;Monitor della batteria;Stato della batteria;Statistiche di alimentazione;Consumo energetico; "
+"Dispositivi di alimentazione;"  
+   
+#: data/io.github.v81d.Wattage.metainfo.xml.in:8  
+msgid "Monitor power devices"  
+msgstr "Monitora i dispositivi di alimentazione"  
+   
+#: data/io.github.v81d.Wattage.metainfo.xml.in:10  
+msgid ""  
+"Wattage is an application designed for monitoring the health and status of "  
+"your power devices."  
+msgstr ""  
+"Wattage è un'applicazione progettata per monitorare lo stato e la salute dei tuoi "
+"dispositivi di alimentazione."  
+   
+#: data/io.github.v81d.Wattage.metainfo.xml.in:52  
+msgid "General battery information"  
+msgstr "Informazioni generali sulla batteria"  
+   
+#: data/io.github.v81d.Wattage.metainfo.xml.in:56  
+msgid "Health and energy statistics"  
+msgstr "Statistiche su salute ed energia"  
+   
+#: data/io.github.v81d.Wattage.metainfo.xml.in:60  
+msgid "Preferences dialog"  
+msgstr "Finestra di dialogo delle preferenze"  
+   
+#: data/io.github.v81d.Wattage.gschema.xml:6  
+msgid "Enable auto-refresh"  
+msgstr "Abilita l'aggiornamento automatico"  
+   
+#: data/io.github.v81d.Wattage.gschema.xml:7  
+msgid "Whether the app automatically refreshes data."  
+msgstr "Indica se l'applicazione aggiorna automaticamente i dati."  
+   
+#: data/io.github.v81d.Wattage.gschema.xml:12  
+msgid "Auto-refresh cooldown"  
+msgstr "Intervallo di aggiornamento automatico"  
+   
+#: data/io.github.v81d.Wattage.gschema.xml:13  
+msgid "Interval in seconds between auto-refresh operations."  
+msgstr "Intervallo in secondi tra le operazioni di aggiornamento automatico."  
+   
+#: data/io.github.v81d.Wattage.gschema.xml:17  
+msgid "Energy unit"  
+msgstr "Unità di misura dell'energia"  
+   
+#: data/io.github.v81d.Wattage.gschema.xml:18  
+msgid "The unit used to display energy measurements."  
+msgstr "L'unità di misura usata per visualizzare le misurazioni dell'energia."  
+   
+#: data/io.github.v81d.Wattage.gschema.xml:22  
+msgid "Power unit"  
+msgstr "Unità di misura della potenza"  
+   
+#: data/io.github.v81d.Wattage.gschema.xml:23  
+msgid "The unit used to display power measurements."  
+msgstr "L'unità di misura usata per visualizzare le misurazioni della potenza."  
+   
+#: data/io.github.v81d.Wattage.gschema.xml:27  
+msgid "Voltage unit"  
+msgstr "Unità di misura della tensione"  
+   
+#: data/io.github.v81d.Wattage.gschema.xml:28  
+msgid "The unit used to display voltage measurements."  
+msgstr "L'unità di misura usata per visualizzare le misurazioni della tensione."  
+   
+#: src/ui/preferences-dialog.ui:6 src/ui/shortcuts-dialog.ui:6  
+msgid "General"  
+msgstr "Generale"  
+   
+#: src/ui/preferences-dialog.ui:9  
+msgid "Automation"  
+msgstr "Automatizzazione"  
+   
+#: src/ui/preferences-dialog.ui:12  
+msgid "Auto-Refresh"  
+msgstr "Aggiornamento automatico"  
+   
+#: src/ui/preferences-dialog.ui:17  
+msgid "Auto-Refresh Cooldown (seconds)"  
+msgstr "Intervallo di aggiornamento automatico (secondi)"  
+   
+#: src/ui/preferences-dialog.ui:32  
+msgid "Measurements"  
+msgstr "Misurazioni"  
+   
+#: src/ui/preferences-dialog.ui:35  
+msgid "Energy Unit"  
+msgstr "Unità di misura dell'energia"  
+   
+#: src/ui/preferences-dialog.ui:51  
+msgid "Power Unit"  
+msgstr "Unità di misura della potenza"  
+   
+#: src/ui/preferences-dialog.ui:67  
+msgid "Voltage Unit"  
+msgstr "Unità di misura della tensione"  
+   
+#: src/ui/shortcuts-dialog.ui:9  
+msgctxt "shortcut window"  
+msgid "Show Shortcuts"  
+msgstr "Mostra le scorciatoie"  
+   
+#: src/ui/shortcuts-dialog.ui:15  
+msgctxt "shortcut window"  
+msgid "Open Preferences"  
+msgstr "Apri le preferenze"  
+   
+#: src/ui/shortcuts-dialog.ui:21  
+msgctxt "shortcut window"  
+msgid "Show About Page"  
+msgstr "Mostra la pagina Informazioni"  
+   
+#: src/ui/shortcuts-dialog.ui:27  
+msgctxt "shortcut window"  
+msgid "Quit"  
+msgstr "Esci"  
+   
+#: src/ui/shortcuts-dialog.ui:35  
+msgid "Content & Navigation"  
+msgstr "Contenuti e navigazione"  
+   
+#: src/ui/shortcuts-dialog.ui:38  
+msgctxt "shortcut window"  
+msgid "Refresh Content"  
+msgstr "Aggiorna contenuto"  
+   
+#: src/ui/shortcuts-dialog.ui:44  
+msgctxt "shortcut window"  
+msgid "Select Next Device"  
+msgstr "Seleziona il dispositivo successivo"  
+   
+#: src/ui/shortcuts-dialog.ui:50  
+msgctxt "shortcut window"  
+msgid "Select Previous Device"  
+msgstr "Seleziona il dispositivo precedente"  
+   
+#: src/ui/window.ui:19  
+msgid "Devices"  
+msgstr "Dispositivi"  
+   
+#: src/ui/window.ui:69  
+msgid "Toggle Sidebar"  
+msgstr "Attiva/Disattiva barra laterale"  
+   
+#: src/ui/window.ui:78  
+msgid "Main Menu"  
+msgstr "Menu principale"  
+   
+#: src/ui/window.ui:85  
+msgid "Refresh"  
+msgstr "Aggiorna"  
+   
+#: src/ui/window.ui:139  
+msgid "Preferences"  
+msgstr "Preferenze"  
+   
+#: src/ui/window.ui:143  
+msgid "Keyboard Shortcuts"  
+msgstr "Scorciatoie da tastiera"  
+   
+#: src/ui/window.ui:147  
+msgid "About Wattage"  
+msgstr "Informazioni su Wattage"  
+   
+#: src/utils/battery_manager.vala:102  
+msgid ""  
+"The device performs close to its original capacity. It is suitable for daily "  
+"use with minimal wear."  
+msgstr ""  
+"Il dispositivo funziona quasi alla sua capacità originale. È adatto all'uso quotidiano "
+"con un'usura minima."  
+   
+#: src/utils/battery_manager.vala:104  
+msgid ""  
+"The device bears slight capacity loss but is still in good condition for "  
+"most tasks."  
+msgstr ""  
+"Il dispositivo presenta una leggera perdita di capacità, ma è ancora in buone condizioni "
+"per la maggior parte delle attività."  
+   
+#: src/utils/battery_manager.vala:106  
+msgid ""  
+"The device shows a considerable degradation in capacity. Usage time is "  
+"noticeably shorter than at its optimal state."  
+msgstr ""  
+"Il dispositivo mostra un notevole degrado della capacità. Il tempo di utilizzo è "
+"sensibilmente più breve rispetto al suo stato ottimale."  
+   
+#: src/utils/battery_manager.vala:108  
+msgid ""  
+"The device has a significant drop in capacity. Expect arbitrary shutdowns "  
+"and shortened runtime during extended use."  
+msgstr ""  
+"Il dispositivo ha un calo significativo della capacità. Aspettatevi spegnimenti arbitrari "
+"e un'autonomia ridotta durante l'uso prolungato."  
+   
+#: src/utils/battery_manager.vala:110  
+msgid ""  
+"The device has experienced substantial deterioration. Consider replacing the "  
+"device to avoid further damage."  
+msgstr ""  
+"Il dispositivo ha subito un deterioramento sostanziale. Prendi in considerazione la "
+"sostituzione del dispositivo per evitare ulteriori danni."  
+   
+#. The below switch statement should not match any "Unknown" values, as those should not be translated nor displayed to the user  
+#. `device.type`  
+#: src/utils/battery_manager.vala:121  
+msgid "Battery"  
+msgstr "Batteria"  
+   
+#: src/utils/battery_manager.vala:123  
+msgid "UPS"  
+msgstr "UPS"  
+   
+#: src/utils/battery_manager.vala:125  
+msgid "Mains"  
+msgstr "Rete elettrica"  
+   
+#: src/utils/battery_manager.vala:127  
+msgid "USB"  
+msgstr "USB"  
+   
+#: src/utils/battery_manager.vala:129  
+msgid "Wireless"  
+msgstr "Wireless"  
+   
+#. `device.status`  
+#: src/utils/battery_manager.vala:133  
+msgid "Charging"  
+msgstr "In carica"  
+   
+#: src/utils/battery_manager.vala:135  
+msgid "Discharging"  
+msgstr "In scaricamento"  
+   
+#: src/utils/battery_manager.vala:137  
+msgid "Not charging"  
+msgstr "Non in carica"  
+   
+#: src/utils/battery_manager.vala:139  
+msgid "Full"  
+msgstr "Carica completa"  
+   
+#: src/application.vala:56  
+msgid "translator-credits"  
+msgstr "Albano Battistella"  
+   
+#: src/window.vala:321  
+msgid "General Information"  
+msgstr "Informazioni generali"  
+   
+#: src/window.vala:322  
+msgid "Device Name"  
+msgstr "Nome dispositivo"  
+   
+#: src/window.vala:323  
+msgid "Sysfs Path"  
+msgstr "Percorso Sysfs"  
+   
+#: src/window.vala:324  
+msgid "Device Type"  
+msgstr "Tipo di dispositivo"  
+   
+#: src/window.vala:327  
+msgid "Manufacturing Details"  
+msgstr "Dettagli di produzione"  
+   
+#: src/window.vala:328  
+msgid "Manufacturer"  
+msgstr "Produttore"  
+   
+#: src/window.vala:329  
+msgid "Serial Number"  
+msgstr "Numero di serie"  
+   
+#: src/window.vala:332  
+msgid "Model Information"  
+msgstr "Informazioni sul modello"  
+   
+#: src/window.vala:333  
+msgid "Model Name"  
+msgstr "Nome modello"  
+   
+#: src/window.vala:334  
+msgid "Technology"  
+msgstr "Tecnologia"  
+   
+#: src/window.vala:337  
+msgid "Health Evaluations"  
+msgstr "Valutazioni dello stato di salute"  
+   
+#: src/window.vala:339  
+msgid "State of Health"  
+msgstr "Stato di salute"  
+   
+#: src/window.vala:340  
+msgid "Device Condition"  
+msgstr "Condizione del dispositivo"  
+   
+#: src/window.vala:343  
+msgid "Charging Status"  
+msgstr "Stato di carica"  
+   
+#: src/window.vala:344  
+msgid "Charge Limit Percentage"  
+msgstr "Percentuale limite di carica"  
+   
+#: src/window.vala:345  
+msgid "Cycle Count"  
+msgstr "Conteggio cicli"  
+   
+#: src/window.vala:346  
+msgid "Current Charge Percentage"  
+msgstr "Percentuale di carica attuale"  
+   
+#: src/window.vala:347  
+msgid "Status"  
+msgstr "Stato"  
+   
+#: src/window.vala:350  
+msgid "Time Calculations"  
+msgstr "Calcoli temporali"  
+   
+#: src/window.vala:351  
+msgid "Time to Empty"  
+msgstr "Tempo rimanente prima dello scaricamento completo"  
+   
+#: src/window.vala:352  
+msgid "Projected Runtime with Current Usage"  
+msgstr "Autonomia stimata con l'utilizzo attuale"  
+   
+#: src/window.vala:355  
+msgid "Energy Metrics"  
+msgstr "Metriche energetiche"  
+   
+#: src/window.vala:356  
+msgid "Maximum Rated Capacity"  
+msgstr "Capacità nominale massima"  
+   
+#: src/window.vala:357  
+msgid "Maximum Capacity"  
+msgstr "Capacità massima"  
+   
+#: src/window.vala:358  
+msgid "Remaining Energy"  
+msgstr "Energia rimanente"  
+   
+#: src/window.vala:359  
+msgid "Energy Transfer Rate"  
+msgstr "Velocità di trasferimento di energia"  
+   
+#: src/window.vala:362  
+msgid "Voltage Statistics"  
+msgstr "Statistiche sulla tensione"  
+   
+#: src/window.vala:363  
+msgid "Minimum Rated Voltage"  
+msgstr "Tensione nominale minima"  
+   
+#: src/window.vala:364  
+msgid "Current Voltage"  
+msgstr "Tensione attuale"  
+   
+#: src/window.vala:489  
+#, c-format  
+msgid ""  
+"Path: %s\n"  
+"Type: %s"  
+msgstr ""  
+"Percorso: %s\n"  
+"Tipo: %s"  
