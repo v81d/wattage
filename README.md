@@ -155,7 +155,7 @@ To report an issue or bug, visit Wattage's [issue tracker](https://github.com/v8
 
 ### Translating the Project
 
-You can contribute by adding translations for strings in the application. To get started, visit the [translation page](https://app.tolgee.io/projects/23145).
+You can contribute by adding translations for strings in the application. To do so, create a fork of this repository and add your translation files. Then, open a Pull Request with `translate` as the base branch.
 
 ### Pull Requests
 
@@ -165,7 +165,7 @@ To push your features or fixes into this official repository:
 2. Create a feature branch (`git checkout -b feature/my-feature`).
 3. Commit your changes (`git commit -m "Add new feature"`).
 4. Push the branch (`git push origin feature/my-feature`).
-5. Open a Pull Request.
+5. Open a Pull Request with `contrib` as the base branch.
 
 ## License
 
