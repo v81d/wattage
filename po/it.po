@@ -16,12 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
    
-#: data/io.github.v81d.Wattage.desktop.in:2  
-#: data/io.github.v81d.Wattage.metainfo.xml.in:7 src/ui/window.ui:5  
-#: src/ui/window.ui:60  
-msgid "Wattage"  
-msgstr "Wattage"  
-   
 #: data/io.github.v81d.Wattage.desktop.in:8  
 msgid ""  
 "GTK;Battery monitor;Battery health;Power statistics;Power usage;Power "  
@@ -233,8 +227,6 @@ msgstr ""
 "Il dispositivo ha subito un deterioramento sostanziale. Prendi in considerazione la "
 "sostituzione del dispositivo per evitare ulteriori danni."  
    
-#. The below switch statement should not match any "Unknown" values, as those should not be translated nor displayed to the user  
-#. `device.type`  
 #: src/utils/battery_manager.vala:121  
 msgid "Battery"  
 msgstr "Batteria"  
@@ -254,8 +246,7 @@ msgstr "USB"
 #: src/utils/battery_manager.vala:129  
 msgid "Wireless"  
 msgstr "Wireless"  
-   
-#. `device.status`  
+    
 #: src/utils/battery_manager.vala:133  
 msgid "Charging"  
 msgstr "In carica"  
