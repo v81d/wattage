@@ -2,7 +2,7 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <template class="WattageWindow" parent="AdwApplicationWindow">
-    <property name="title" translatable="yes">Wattage</property>
+    <property name="title">Wattage</property>
     <property name="default-width">1000</property>
     <property name="default-height">700</property>
     <child>
@@ -57,7 +57,7 @@
         </property>
         <property name="content">
           <object class="AdwNavigationPage">
-            <property name="title" translatable="yes">Wattage</property>
+            <property name="title">Wattage</property>
             <property name="tag">content</property>
             <property name="child">
               <object class="AdwToolbarView">

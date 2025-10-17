@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-13 18:42-0400\n"
+"POT-Creation-Date: 2025-10-16 21:06-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,12 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: data/io.github.v81d.Wattage.desktop.in:2
-#: data/io.github.v81d.Wattage.metainfo.xml.in:7 src/ui/window.ui:5
-#: src/ui/window.ui:60
-msgid "Wattage"
-msgstr ""
 
 #: data/io.github.v81d.Wattage.desktop.in:8
 msgid ""
@@ -220,8 +214,6 @@ msgid ""
 "device to avoid further damage."
 msgstr ""
 
-#. The below switch statement should not match any "Unknown" values, as those should not be translated nor displayed to the user
-#. `device.type`
 #: src/utils/battery_manager.vala:121
 msgid "Battery"
 msgstr ""
@@ -242,7 +234,6 @@ msgstr ""
 msgid "Wireless"
 msgstr ""
 
-#. `device.status`
 #: src/utils/battery_manager.vala:133
 msgid "Charging"
 msgstr ""

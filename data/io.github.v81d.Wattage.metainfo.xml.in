@@ -4,7 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
 
-  <name>Wattage</name>
+  <name translate="no">Wattage</name>
   <summary>Monitor power devices</summary>
   <description>
     <p>Wattage is an application designed for monitoring the health and status of your power devices.</p>
@@ -21,9 +21,9 @@
   <!-- Should point to the software's bug tracking system, for users to report new bugs -->
   <url type="bugtracker">https://github.com/v81d/wattage/issues</url>
   <!-- URLs of this type should point to a webpage where users can submit or modify translations of the upstream project -->
-  <url type="translate">https://github.com/v81d/wattage/tree/main/po</url>
+  <url type="translate">https://github.com/v81d/wattage/blob/main/TRANSLATING.md</url>
   <!-- Should link a FAQ page for this software, to answer some of the most-asked questions in detail -->
-  <url type="faq">https://github.com/v81d/wattage/tree/main/docs/FAQ.md</url>
+  <url type="faq">https://github.com/v81d/wattage/blob/main/FAQ.md</url>
   <!-- Should provide a web link to an online user's reference, a software manual or help page -->
   <url type="help">https://github.com/v81d/wattage/blob/main/README.md</url>
   <!-- URLs of this type should point to a webpage showing information on how to donate to the described software project -->
@@ -31,7 +31,7 @@
   <!-- This could for example be an HTTPS URL to an online form or a page describing how to contact the developer -->
   <url type="contact">https://github.com/v81d/wattage/discussions/categories/q-a</url>
   <!-- URLs of this type should point to a webpage showing information on how to contribute to the described software project -->
-  <url type="contribute">https://github.com/v81d/wattage</url>
+  <url type="contribute">https://github.com/v81d/wattage/pulls</url>
 
   <translation type="gettext">Wattage</translation>
   <!-- All graphical applications having a desktop file must have this tag in the MetaInfo.
@@ -62,6 +62,14 @@
   </screenshots>
 
   <releases>
+    <release version="1.0.3" date="2025-10-17">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.3</url>
+      <description translate="no">
+        <ul>
+          <li>Improve translation support and code of conduct.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.2" date="2025-10-13">
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.2</url>
       <description translate="no">
