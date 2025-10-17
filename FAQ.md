@@ -25,5 +25,5 @@ Please include your system details and any relevant logs when creating a new iss
 Contributions are welcome! You can contribute by:
 
 - Submitting pull requests for new features or bug fixes.
-- Adding translations (see the [translation folder](https://github.com/v81d/wattage/tree/main/po)).
+- Adding translations (see the [translation documentation](https://github.com/v81d/wattage/blob/main/TRANSLATING.md)).
 - Reporting issues or suggesting improvements on GitHub.

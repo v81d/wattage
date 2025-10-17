@@ -151,21 +151,22 @@ flatpak run io.github.v81d.Wattage
 ## Contributing
 
 ### Reporting Issues
+
 To report an issue or bug, visit Wattage's [issue tracker](https://github.com/v81d/wattage/issues) on GitHub.
 
 ### Translating the Project
 
-You can contribute by adding translations for strings in the application. To do so, create a fork of this repository and add your translation files. Then, open a Pull Request with `translate` as the base branch.
+You can contribute by adding translations for strings in the application. See [TRANSLATING.md](TRANSLATING.md) for more information.
 
 ### Pull Requests
 
 To push your features or fixes into this official repository:
 
 1. Fork the repository.
-2. Create a feature branch (`git checkout -b feature/my-feature`).
-3. Commit your changes (`git commit -m "Add new feature"`).
+2. Create a feature branch (`git checkout -b feature/my-feature`) or a fix branch (`git checkout -b fix/my-fix`).
+3. Commit your changes (`git commit -m "feat: add new feature"`).
 4. Push the branch (`git push origin feature/my-feature`).
-5. Open a Pull Request with `contrib` as the base branch.
+5. Open a pull request with `contrib` as the base branch.
 
 ## License
 
