@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name[en_US]=Wattage
+Name=Wattage
 Exec=wattage
 Icon=io.github.v81d.Wattage
 Terminal=false
