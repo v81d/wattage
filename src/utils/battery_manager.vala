@@ -31,6 +31,7 @@ namespace Wattage {
         public string serial_number = "Unknown";
         public string model_name = "Unknown";
         public string technology = "Unknown";
+        public string state_of_health = "Unknown";
         public string charge_control_end_threshold = "Unknown"; // charge limit
         public string cycle_count = "Unknown";
         public string energy_full_design = "Unknown"; // original maximum capacity
@@ -274,13 +275,19 @@ namespace Wattage {
             device.model_name = this.read_file (Path.build_filename (device.path, "model_name"));
             device.technology = this.read_file (Path.build_filename (device.path, "technology"));
 
+            // These should be calculated before state of health
+            device.energy_full_design = this.read_file (Path.build_filename (device.path, "energy_full_design"));
+            device.energy_full = this.read_file (Path.build_filename (device.path, "energy_full"));
+
+            string state_of_health = device.state_of_health = this.read_file (Path.build_filename (device.path, "state_of_health"));
+            device.state_of_health = state_of_health.down () != "unknown" ? state_of_health : device.calculate_percentage (double.parse (device.energy_full), double.parse (device.energy_full_design));
+
             double charge_control_end_threshold = double.parse (this.read_file (Path.build_filename (device.path, "charge_control_end_threshold")));
             device.charge_control_end_threshold = charge_control_end_threshold == 0 ? "Unknown" : "%0.3f".printf (charge_control_end_threshold);
             device.cycle_count = this.read_file (Path.build_filename (device.path, "cycle_count"));
             device.status = this.read_file (Path.build_filename (device.path, "status"));
 
-            device.energy_full_design = this.read_file (Path.build_filename (device.path, "energy_full_design"));
-            device.energy_full = this.read_file (Path.build_filename (device.path, "energy_full"));
+            // Energy metrics (including `energy_full_design` and `energy_full`)
             device.energy_now = this.read_file (Path.build_filename (device.path, "energy_now"));
             device.power_now = this.read_file (Path.build_filename (device.path, "power_now"));
 

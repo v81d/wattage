@@ -335,9 +335,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
             sections.add (model_info);
 
             DeviceInfoSectionData health_stats = new DeviceInfoSectionData (_("Health Evaluations"));
-            string health_percentage = device.calculate_percentage (double.parse (device.energy_full), double.parse (device.energy_full_design));
-            health_stats.set (_("State of Health"), health_percentage + "%");
-            health_stats.set (_("Device Condition"), device.create_alert (double.parse (health_percentage)));
+            health_stats.set (_("State of Health"), device.state_of_health + "%");
+            health_stats.set (_("Device Condition"), device.create_alert (double.parse (device.state_of_health)));
             sections.add (health_stats);
 
             DeviceInfoSectionData charging_status = new DeviceInfoSectionData (_("Charging Status"));
