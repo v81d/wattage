@@ -52,10 +52,20 @@ Replace `LL` with your language code (e.g., `de`, `fr`, `es`, `pt_BR`, etc.). Ma
 If strings in the app change, update your `.po` file using:
 
 ```bash
-msgmerge po/LL.po po/wattage.pot -o po/LL.po
+msgmerge --update po/LL.po po/wattage.pot
 ```
 
 Again, don't forget to replace `LL` with the correct code.
+
+## Testing Translations
+
+To test your translation, compile, build, and install the project using Meson and Ninja. Then, launch the app using the command:
+
+```bash
+LANG=LL wattage
+```
+
+Make sure to replace `LL` with the correct language code you are testing.
 
 ## Submitting Translations
 
