@@ -23,10 +23,10 @@ using GLib;
 namespace Wattage {
     // This class is used to represent basic information about a single device
     public class Device {
+        public string icon_name = "Unknown";
         public string name = "Unknown";
         public string path = "Unknown";
         public string type = "Unknown";
-        public string status = "Unknown";
         public string manufacturer = "Unknown";
         public string serial_number = "Unknown";
         public string model_name = "Unknown";
@@ -34,13 +34,13 @@ namespace Wattage {
         public string state_of_health = "Unknown";
         public string charge_control_end_threshold = "Unknown"; // charge limit
         public string cycle_count = "Unknown";
+        public string status = "Unknown";
         public string energy_full_design = "Unknown"; // original maximum capacity
         public string energy_full = "Unknown"; // maximum capacity
         public string energy_now = "Unknown";
         public string power_now = "Unknown"; // energy rate
         public string voltage_min_design = "Unknown"; // original minimum voltage
         public string voltage_now = "Unknown";
-        public string icon_name = "Unknown";
 
         public Device () {}
 
@@ -146,20 +146,20 @@ namespace Wattage {
         }
     }
 
-    // This is the publicly accessible class used to probe, enumerate, and inspect battery devices
-    public class BatteryManager : Object {
+    // This is the publicly accessible class used to probe, enumerate, and inspect power devices
+    public class DeviceProber {
         private const string POWER_SUPPLY_PATH = "/sys/class/power_supply"; // directory for device folders
 
-        public BatteryManager () {}
+        public DeviceProber () {}
 
-        private string read_file (string filepath, string fallback = "Unknown") {
+        private string read_file (string filepath) {
             try {
                 string content;
                 if (FileUtils.get_contents (filepath, out content)) {
                     return content.strip ();
                 }
             } catch (Error _) {}
-            return fallback;
+            return "Unknown";
         }
 
         // This method is used to methodically determine the symbolic icon name based on information about a given device
@@ -181,7 +181,7 @@ namespace Wattage {
                 return "battery-full-charged-symbolic";
             }
 
-            if (capacity == 0 && (state == "discharging" || state.down ().contains ("unknown"))) {
+            if (capacity == 0 && (state == "discharging" || state.contains ("unknown"))) {
                 return "battery-empty-symbolic";
             }
 
@@ -221,7 +221,7 @@ namespace Wattage {
 
                 Device device = new Device ();
                 device.name = info.get_name ();
-                device.path = Path.build_filename (POWER_SUPPLY_PATH, device.name);
+                device.path = Path.build_filename (this.POWER_SUPPLY_PATH, device.name);
                 device.type = this.read_file (Path.build_filename (device.path, "type"));
                 device.icon_name = this.get_device_icon_name (device.path);
                 result.append (device);

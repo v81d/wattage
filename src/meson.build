@@ -2,7 +2,7 @@ wattage_sources = [
   'main.vala',
   'application.vala',
   'window.vala',
-  'utils/battery_manager.vala',
+  'utils/device_manager.vala',
 ]
 
 wattage_deps = [
