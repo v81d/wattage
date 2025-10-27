@@ -1,4 +1,4 @@
-# Wattage FAQ
+# Frequently Asked Questions
 
 This FAQ answers common questions regarding Wattage.
 
