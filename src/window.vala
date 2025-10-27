@@ -125,7 +125,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
     private Gtk.Builder preferences_dialog_builder;
     private GLib.Settings settings;
 
-    private Wattage.BatteryManager battery_manager;
+    private Wattage.DeviceProber device_prober;
     private int selected_device_index = 0;
     private Gee.ArrayList<DeviceInfoSection> device_info_sections = new Gee.ArrayList<DeviceInfoSection> ();
 
@@ -140,7 +140,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
     public Window (Gtk.Application app) {
         Object (application: app);
 
-        this.battery_manager = new Wattage.BatteryManager ();
+        this.device_prober = new Wattage.DeviceProber ();
         this.load_device_list ();
 
         // This is the handler for selecting a device in the sidebar
@@ -153,15 +153,13 @@ public class Wattage.Window : Adw.ApplicationWindow {
                         Idle.add (() => {
                             this.selected_device_index = device_row.get_index ();
                             this.device_info_empty_status.set_visible (false);
-                            this.load_device_info (this.battery_manager.fetch_device (action_row.get_title ()));
+                            this.load_device_info (this.device_prober.fetch_device (action_row.get_title ()));
                             return false;
                         });
                     }
                 }
             }
         });
-
-        this.settings = new GLib.Settings ("io.github.v81d.Wattage"); // gsettings
 
         this.initialize_gsettings ();
         this.initialize_preferences_dialog ();
@@ -245,8 +243,6 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
         if (this.auto_refresh) {
             this.start_auto_refresh ();
-        } else {
-            this.stop_auto_refresh ();
         }
 
         auto_refresh_switch.notify["active"].connect (() => {
@@ -266,6 +262,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
         // Auto-refresh delay
         Adw.SpinRow auto_refresh_cooldown_row = this.preferences_dialog_builder.get_object ("auto_refresh_cooldown_row") as Adw.SpinRow;
         auto_refresh_cooldown_row.set_value (this.auto_refresh_cooldown);
+
         auto_refresh_cooldown_row.notify["value"].connect (() => {
             int cooldown = (int) auto_refresh_cooldown_row.get_value ();
             this.settings.set_int ("auto-refresh-cooldown", cooldown);
@@ -452,7 +449,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
             List<Wattage.Device> devices;
 
             try {
-                devices = this.battery_manager.get_devices ();
+                devices = this.device_prober.get_devices ();
                 stdout.printf ("Power devices loaded.\n");
                 device_list_empty_status.set_visible (false);
                 this.device_info_empty_status.set_visible (false);
@@ -521,4 +518,6 @@ public class Wattage.Window : Adw.ApplicationWindow {
         load_device_list ();
     }
 }
+
+
 
