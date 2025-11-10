@@ -54,7 +54,7 @@ public class Wattage.Application : Adw.Application {
             application_icon = "io.github.v81d.Wattage",
             developer_name = "v81d",
             translator_credits = _("translator-credits"),
-            version = "1.0.3",
+            version = "1.1.0",
             developers = developers,
             copyright = "© 2025 v81d",
             license_type = Gtk.License.GPL_3_0,
@@ -64,3 +64,4 @@ public class Wattage.Application : Adw.Application {
         about.present (this.active_window);
     }
 }
+
