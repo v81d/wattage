@@ -7,6 +7,7 @@
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/v81d/wattage)
 ![GitHub License](https://img.shields.io/github/license/v81d/wattage)
 ![GitHub Release](https://img.shields.io/github/v/release/v81d/wattage)
+![Flathub Downloads](https://img.shields.io/flathub/downloads/io.github.v81d.Wattage)
 
 Wattage is an application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 + libadwaita interface.
 
