@@ -62,6 +62,16 @@
   </screenshots>
 
   <releases>
+    <release version="1.1.0" date="2025-11-10">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.4</url>
+      <description translate="no">
+        <ul>
+          <li>Add Italian translations (by @albanobattistella).</li>
+          <li>Add translation testing instructions in documentation.</li>
+          <li>Use sysfs `state_of_health` file for SoH field if present (otherwise use calculated maximum capacity).</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.3" date="2025-10-17">
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.3</url>
       <description translate="no">
