@@ -31,7 +31,7 @@ You can edit `.po` files with [Poedit](https://poedit.net) or simply a text edit
 1. [Fork](https://github.com/v81d/wattage/fork) the repository and clone the `translate` branch locally.
 
 ```bash
-git clone --branch=translate https://github.com/YOUR_USERNAME/wattage.git
+git clone --branch=translate https://github.com/v81d/wattage.git
 cd wattage
 ```
 
