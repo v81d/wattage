@@ -30,7 +30,17 @@ Wattage is an application designed for monitoring the health and status of your 
 
 ## Installation
 
-The following guide provides instructions on how to install Wattage.
+The following guide provides instructions on how to install Wattage on your device.
+
+### Flathub Installation
+
+On Linux, you can install Wattage directly from Flathub:
+
+<a href="https://flathub.org/apps/io.github.v81d.Wattage">
+    <img width="240" alt="Get it on Flathub" src="https://flathub.org/api/badge?locale=en"/>
+</a>
+
+Other platforms are not supported as of now.
 
 ### Manual Installation
 
@@ -168,6 +178,8 @@ To push your features or fixes into this official repository:
 3. Commit your changes (`git commit -m "feat: add new feature"`).
 4. Push the branch (`git push origin feature/my-feature`).
 5. Open a pull request with `contrib` as the base branch. Make sure to create a detailed title and description of your change.
+
+Please follow the [GitHub flow](https://guides.github.com/introduction/flow) and Wattage's [Code of Conduct](CODE_OF_CONDUCT.md) when submitting a pull request.
 
 ## License
 
