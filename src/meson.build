@@ -3,8 +3,7 @@ wattage_sources = [
   'application.vala',
   'window.vala',
   'utils/device_manager.vala',
-  'dbus/interfaces/org-freedesktop.vala',
-  'dbus/interfaces/org-freedesktop-dbus.vala'
+  'dbus/interfaces/org-freedesktop.vala'
 ]
 
 wattage_deps = [
