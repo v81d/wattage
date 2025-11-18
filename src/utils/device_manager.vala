@@ -1,4 +1,4 @@
-/* battery_manager.vala
+/* device_manager.vala
  *
  * Copyright 2025 v81d
  *
