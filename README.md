@@ -32,6 +32,10 @@ Wattage is an application designed for monitoring the health and status of your 
 
 The following guide provides instructions on how to install Wattage on your device.
 
+<a href="https://repology.org/project/wattage/versions">
+    <img src="https://repology.org/badge/vertical-allrepos/wattage.svg" alt="Packaging status" align="right">
+</a>
+
 ### Flathub Installation
 
 On Linux, you can install Wattage directly from Flathub:
