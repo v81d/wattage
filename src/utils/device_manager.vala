@@ -19,10 +19,13 @@
  */
 
 using GLib;
+using org.freedesktop;
 
 namespace Wattage {
     // This class is used to represent basic information about a single device
     public class Device {
+        public UPowerDevice? upower_proxy;
+
         public string icon_name = "Unknown";
         public string name = "Unknown";
         public string path = "Unknown";
@@ -162,6 +165,38 @@ namespace Wattage {
             return "Unknown";
         }
 
+        private UPowerDevice? get_dbus_proxy (string device_name) {
+            try {
+                // Create a UPower proxy
+                UPowerSync upower = Bus.get_proxy_sync (
+                    BusType.SYSTEM,
+                    "org.freedesktop.UPower",
+                    "/org/freedesktop/UPower"
+                );
+
+                ObjectPath[] devices = upower.enumerate_devices ();
+
+                /* For each device detected by the UPower proxy, check if its name is the given device name.
+                 * We must iterate over the devices to do this since the device name does not deterministically correspond to a UPower path by itself.
+                 */
+                foreach (var device_path in devices) {
+                    UPowerDevice device_proxy = Bus.get_proxy_sync (
+                        BusType.SYSTEM,
+                        "org.freedesktop.UPower",
+                        device_path
+                    );
+
+                    if (device_proxy.native_path == device_name) {
+                        return device_proxy;
+                    }
+                }
+            } catch (Error e) {
+                stderr.printf ("Error locating UPower device: %s\n", e.message);
+            }
+
+            return null;
+        }
+
         // This method is used to methodically determine the symbolic icon name based on information about a given device
         private string get_device_icon_name (string device_path) {
             // Store the properties of the device
@@ -221,9 +256,10 @@ namespace Wattage {
 
                 Device device = new Device ();
                 device.name = info.get_name ();
-                device.path = Path.build_filename (this.POWER_SUPPLY_PATH, device.name);
+                device.path = Path.build_filename (POWER_SUPPLY_PATH, device.name);
                 device.type = this.read_file (Path.build_filename (device.path, "type"));
                 device.icon_name = this.get_device_icon_name (device.path);
+                device.upower_proxy = this.get_dbus_proxy (device.name);
                 result.append (device);
             }
 
@@ -249,6 +285,8 @@ namespace Wattage {
              * Should create a `Device` object containing all necessary information.
              */
             Device device = new Device ();
+
+            device.upower_proxy = this.get_dbus_proxy (device_name);
 
             device.name = device_name;
             device.path = Path.build_filename (POWER_SUPPLY_PATH, device_name);
