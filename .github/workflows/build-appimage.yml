@@ -5,6 +5,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  release:
+    types: [published]
   workflow_dispatch:
 
 jobs:
@@ -65,3 +67,11 @@ jobs:
         with:
           name: Wattage-AppImage
           path: Wattage-latest-x86_64.AppImage
+
+      - name: Upload .AppImage to GitHub Release (only for releases)
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "artifacts/*.AppImage"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
