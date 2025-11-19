@@ -1,8 +1,6 @@
 name: Build AppImage (arm64)
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   release:
