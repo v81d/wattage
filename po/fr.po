@@ -1,0 +1,398 @@
+# French translation of the Wattage program.
+# Copyright (C) 2025 v81d
+# This file is distributed under the same license as the Wattage package.
+# Cardpuncher, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Wattage\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-16 21:06-0400\n"
+"PO-Revision-Date: 2025-11-19 17:54+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: data/io.github.v81d.Wattage.desktop.in:8
+msgid ""
+"GTK;Battery monitor;Battery health;Power statistics;Power usage;Power "
+"devices;"
+msgstr ""
+"GTK;surveiller la batterie;état de la batterie;statistiques "
+"d'alimentation;Consommation d'énergie;Appareils d'alimentation"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:8
+msgid "Monitor power devices"
+msgstr "Surveiller les périphériques d'alimentation"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:10
+msgid ""
+"Wattage is an application designed for monitoring the health and status of "
+"your power devices."
+msgstr ""
+"Wattage est une application conçue pour surveiller l'état et la santé de vos "
+"périphériques d'alimentation."
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:52
+msgid "General battery information"
+msgstr "Informations générales sur la batterie"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:56
+msgid "Health and energy statistics"
+msgstr "Statistiques d'état et d'énergie"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:60
+msgid "Preferences dialog"
+msgstr "Dialogue des préférences"
+
+#: data/io.github.v81d.Wattage.gschema.xml:6
+msgid "Enable auto-refresh"
+msgstr "Activer le rafraîchissement automatique"
+
+#: data/io.github.v81d.Wattage.gschema.xml:7
+msgid "Whether the app automatically refreshes data."
+msgstr "Si l'application rafraîchit automatiquement les données ou pas."
+
+#: data/io.github.v81d.Wattage.gschema.xml:12
+msgid "Auto-refresh cooldown"
+msgstr "Délai de rafraîchissement automatique"
+
+#: data/io.github.v81d.Wattage.gschema.xml:13
+msgid "Interval in seconds between auto-refresh operations."
+msgstr ""
+"Intervalle en secondes entre les opérations de rafraîchissements "
+"automatiques."
+
+#: data/io.github.v81d.Wattage.gschema.xml:17
+msgid "Energy unit"
+msgstr "Unité d'énergie"
+
+#: data/io.github.v81d.Wattage.gschema.xml:18
+msgid "The unit used to display energy measurements."
+msgstr "L'unité employée pour les mesures d'énergie."
+
+#: data/io.github.v81d.Wattage.gschema.xml:22
+msgid "Power unit"
+msgstr "Unité de puissance"
+
+#: data/io.github.v81d.Wattage.gschema.xml:23
+msgid "The unit used to display power measurements."
+msgstr "L'unité à employer pour afficher les mesures de puissance."
+
+#: data/io.github.v81d.Wattage.gschema.xml:27
+msgid "Voltage unit"
+msgstr "Unité de tension"
+
+#: data/io.github.v81d.Wattage.gschema.xml:28
+msgid "The unit used to display voltage measurements."
+msgstr "L'unité employée pour afficher les mesures de tension."
+
+#: src/ui/preferences-dialog.ui:6 src/ui/shortcuts-dialog.ui:6
+msgid "General"
+msgstr "Général"
+
+#: src/ui/preferences-dialog.ui:9
+msgid "Automation"
+msgstr "Automatisation"
+
+#: src/ui/preferences-dialog.ui:12
+msgid "Auto-Refresh"
+msgstr "Rafraîchissement automatique"
+
+#: src/ui/preferences-dialog.ui:17
+msgid "Auto-Refresh Cooldown (seconds)"
+msgstr "Délai de rafraîchissement automatique (secondes)"
+
+#: src/ui/preferences-dialog.ui:32
+msgid "Measurements"
+msgstr "Mesures"
+
+#: src/ui/preferences-dialog.ui:35
+msgid "Energy Unit"
+msgstr "Unité d'énergie"
+
+#: src/ui/preferences-dialog.ui:51
+msgid "Power Unit"
+msgstr "L'unité de puissance"
+
+#: src/ui/preferences-dialog.ui:67
+msgid "Voltage Unit"
+msgstr "Unité de tension"
+
+#: src/ui/shortcuts-dialog.ui:9
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Afficher les raccourcis"
+
+#: src/ui/shortcuts-dialog.ui:15
+msgctxt "shortcut window"
+msgid "Open Preferences"
+msgstr "Ouvrir les préférences"
+
+#: src/ui/shortcuts-dialog.ui:21
+msgctxt "shortcut window"
+msgid "Show About Page"
+msgstr "Afficher la page À propos"
+
+#: src/ui/shortcuts-dialog.ui:27
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Quitter"
+
+#: src/ui/shortcuts-dialog.ui:35
+msgid "Content & Navigation"
+msgstr "Contenu et navigation"
+
+#: src/ui/shortcuts-dialog.ui:38
+msgctxt "shortcut window"
+msgid "Refresh Content"
+msgstr "Rafraîchir le contenu"
+
+#: src/ui/shortcuts-dialog.ui:44
+msgctxt "shortcut window"
+msgid "Select Next Device"
+msgstr "Sélectionner l'appareil suivant"
+
+#: src/ui/shortcuts-dialog.ui:50
+msgctxt "shortcut window"
+msgid "Select Previous Device"
+msgstr "Sélectionner l'appareil précédent"
+
+#: src/ui/window.ui:19
+msgid "Devices"
+msgstr "Appareils"
+
+#: src/ui/window.ui:69
+msgid "Toggle Sidebar"
+msgstr "Basculer la barre latérale"
+
+#: src/ui/window.ui:78
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: src/ui/window.ui:85
+msgid "Refresh"
+msgstr "Rafraîchir"
+
+#: src/ui/window.ui:139
+msgid "Preferences"
+msgstr "Préférences"
+
+#: src/ui/window.ui:143
+msgid "Keyboard Shortcuts"
+msgstr "Raccourcis clavier"
+
+#: src/ui/window.ui:147
+msgid "About Wattage"
+msgstr "À propos de Wattage"
+
+#: src/utils/battery_manager.vala:102
+msgid ""
+"The device performs close to its original capacity. It is suitable for daily "
+"use with minimal wear."
+msgstr ""
+"L'appareil fonctionne pratiquement à son niveau d'origine. Il convient pour "
+"une utilisation quotidienne et ne présente qu'une usure minimale."
+
+#: src/utils/battery_manager.vala:104
+msgid ""
+"The device bears slight capacity loss but is still in good condition for "
+"most tasks."
+msgstr ""
+"L'appareil présente un légère perte de capacité mais est en bon état pour la "
+"plupart des tâches."
+
+#: src/utils/battery_manager.vala:106
+msgid ""
+"The device shows a considerable degradation in capacity. Usage time is "
+"noticeably shorter than at its optimal state."
+msgstr ""
+"L'appareil présente une dégradation considérable de sa capacité. Le temps "
+"d'utilisation est sensiblement plus court qu'à son état optimal."
+
+#: src/utils/battery_manager.vala:108
+msgid ""
+"The device has a significant drop in capacity. Expect arbitrary shutdowns "
+"and shortened runtime during extended use."
+msgstr ""
+"L'appareil présente une perte importante de capacité. Attendez-vous à des "
+"arrêts intempestifs et à une autonomie réduite lors d'une utilisation "
+"prolongée."
+
+#: src/utils/battery_manager.vala:110
+msgid ""
+"The device has experienced substantial deterioration. Consider replacing the "
+"device to avoid further damage."
+msgstr ""
+"L'appareil a connu une détérioration substantielle. Prévoyez de le remplacer "
+"pour éviter des d'autres dommages."
+
+#: src/utils/battery_manager.vala:121
+msgid "Battery"
+msgstr "Batterie"
+
+#: src/utils/battery_manager.vala:123
+msgid "UPS"
+msgstr "UPS"
+
+#: src/utils/battery_manager.vala:125
+msgid "Mains"
+msgstr "Réseau électrique"
+
+#: src/utils/battery_manager.vala:127
+msgid "USB"
+msgstr "USB"
+
+#: src/utils/battery_manager.vala:129
+msgid "Wireless"
+msgstr "Sans-fil"
+
+#: src/utils/battery_manager.vala:133
+msgid "Charging"
+msgstr "En charge"
+
+#: src/utils/battery_manager.vala:135
+msgid "Discharging"
+msgstr "En cours de décharge"
+
+#: src/utils/battery_manager.vala:137
+msgid "Not charging"
+msgstr "Pas en charge"
+
+#: src/utils/battery_manager.vala:139
+msgid "Full"
+msgstr "Pleine"
+
+#: src/application.vala:56
+msgid "translator-credits"
+msgstr ""
+
+#: src/window.vala:321
+msgid "General Information"
+msgstr "Informations générales"
+
+#: src/window.vala:322
+msgid "Device Name"
+msgstr "Nom de l'appareil"
+
+#: src/window.vala:323
+msgid "Sysfs Path"
+msgstr "Chemin vers Sysfs"
+
+#: src/window.vala:324
+msgid "Device Type"
+msgstr "Type d'appareil"
+
+#: src/window.vala:327
+msgid "Manufacturing Details"
+msgstr "Détails de fabrication"
+
+#: src/window.vala:328
+msgid "Manufacturer"
+msgstr "Fabricant"
+
+#: src/window.vala:329
+msgid "Serial Number"
+msgstr "Numéro de série"
+
+#: src/window.vala:332
+msgid "Model Information"
+msgstr "Informations sur le modèle"
+
+#: src/window.vala:333
+msgid "Model Name"
+msgstr "Nom du modèle"
+
+#: src/window.vala:334
+msgid "Technology"
+msgstr "Technologie"
+
+#: src/window.vala:337
+msgid "Health Evaluations"
+msgstr "Évaluations d'état"
+
+#: src/window.vala:339
+msgid "State of Health"
+msgstr "État"
+
+#: src/window.vala:340
+msgid "Device Condition"
+msgstr "État de l'appareil"
+
+#: src/window.vala:343
+msgid "Charging Status"
+msgstr "État de charge"
+
+#: src/window.vala:344
+msgid "Charge Limit Percentage"
+msgstr "Pourcentage de limite de chargement"
+
+#: src/window.vala:345
+msgid "Cycle Count"
+msgstr "Compteur de cycles"
+
+#: src/window.vala:346
+msgid "Current Charge Percentage"
+msgstr "Pourcentage de charge actuel"
+
+#: src/window.vala:347
+msgid "Status"
+msgstr "État"
+
+#: src/window.vala:350
+msgid "Time Calculations"
+msgstr "Calculs de délais"
+
+#: src/window.vala:351
+msgid "Time to Empty"
+msgstr "Autonomie restante"
+
+#: src/window.vala:352
+msgid "Projected Runtime with Current Usage"
+msgstr "Autonome projetée avec l'utilisation actuelle"
+
+#: src/window.vala:355
+msgid "Energy Metrics"
+msgstr "Indicateurs énergétiques"
+
+#: src/window.vala:356
+msgid "Maximum Rated Capacity"
+msgstr "Capacité nominale maximale"
+
+#: src/window.vala:357
+msgid "Maximum Capacity"
+msgstr "Capacité maximale"
+
+#: src/window.vala:358
+msgid "Remaining Energy"
+msgstr "Énergie restante"
+
+#: src/window.vala:359
+msgid "Energy Transfer Rate"
+msgstr "Taux de transfert d'énergie"
+
+#: src/window.vala:362
+msgid "Voltage Statistics"
+msgstr "Statistiques de tension"
+
+#: src/window.vala:363
+msgid "Minimum Rated Voltage"
+msgstr "Tension nominale maximale"
+
+#: src/window.vala:364
+msgid "Current Voltage"
+msgstr "Tension actuelle"
+
+#: src/window.vala:489
+#, c-format
+msgid ""
+"Path: %s\n"
+"Type: %s"
+msgstr ""
+"Chemin : %s\n"
+"Type : %s"
