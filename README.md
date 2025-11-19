@@ -114,7 +114,7 @@ If you want to export the app as an AppImage, begin by installing [appimage-buil
 
 ```bash
 meson install -C _build --no-rebuild --destdir "AppDir"
-appimage-builder --appdir _build/AppDir --recipe AppImageBuilder.yml
+appimage-builder --appdir _build/AppDir --recipe AppImageBuilder.yml --skip-tests
 ```
 
 A `Wattage-latest-x86_64.AppImage` file should then appear in the project root. To launch the AppImage, run:
