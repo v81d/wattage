@@ -36,15 +36,14 @@ The following guide provides instructions on how to install Wattage on your devi
     <img src="https://repology.org/badge/vertical-allrepos/wattage.svg" alt="Packaging status" align="right">
 </a>
 
-### Flathub Installation
-
-On Linux, you can install Wattage directly from Flathub:
-
-<a href="https://flathub.org/apps/io.github.v81d.Wattage">
-    <img width="240" alt="Get it on Flathub" src="https://flathub.org/api/badge?locale=en"/>
-</a>
-
-Other platforms are not supported as of now.
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px;">
+    <a href="https://nightly.link/v81d/wattage/workflows/build-appimage/main">
+        <img width="240" alt="Download as an AppImage" src="https://docs.appimage.org/_images/download-appimage-banner.svg" />
+    </a>
+    <a href="https://flathub.org/apps/io.github.v81d.Wattage">
+        <img width="240" alt="Get it on Flathub" src="https://flathub.org/api/badge?locale=en" />
+    </a>
+</div>
 
 ### Manual Installation
 
