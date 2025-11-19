@@ -1,4 +1,4 @@
-name: Build AppImage (arm64)
+name: Build AppImage (arm64, native runner)
 
 on:
   pull_request:
@@ -8,81 +8,74 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-arm64:
-    runs-on: ubuntu-latest
+  build-arm64-native:
+    # This targets a self-hosted ARM64 runner. GitHub-hosted runners are x86_64 by default;
+    # use a self-hosted machine with the `arm64` label (or GitHub-hosted arm64 if available)
+    runs-on: [self-hosted, linux, arm64]
+
+    # Optional: run inside a Fedora container on the ARM64 runner (container will be native if the runner is ARM64).
+    # If your self-hosted runner does not have Docker, remove the `container:` block and run the install steps on the host.
+    container:
+      image: fedora:rawhide
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up QEMU emulation (allow running arm64 containers on x86 runners)
-        uses: docker/setup-qemu-action@v2
-
-      - name: Build inside an arm64 Fedora container
+      - name: Install build dependencies (Fedora)
         run: |
-          set -euxo pipefail
-          # Run a single container invocation (arm64) and execute the full build inside it.
-          # Mount the workspace so generated AppImage is available to the runner for artifact upload.
-          docker run --platform linux/arm64 --rm \
-            -v "${GITHUB_WORKSPACE}":/work -w /work \
-            arm64v8/fedora:rawhide /bin/bash -lc '
-              set -euxo pipefail
+          dnf -y update
+          dnf install -y \
+            meson \
+            ninja-build \
+            vala \
+            gtk4-devel \
+            libadwaita-devel \
+            glib2-devel \
+            libgee-devel \
+            pkgconf \
+            desktop-file-utils \
+            patchelf \
+            squashfs-tools \
+            python3-pip \
+            python3-setuptools \
+            python3-virtualenv \
+            gcc \
+            gcc-c++ \
+            zsync
 
-              # Install build dependencies
-              dnf -y update
-              dnf install -y \
-                meson \
-                ninja-build \
-                vala \
-                gtk4-devel \
-                libadwaita-devel \
-                glib2-devel \
-                libgee-devel \
-                pkgconf \
-                desktop-file-utils \
-                patchelf \
-                squashfs-tools \
-                python3-pip \
-                python3-setuptools \
-                python3-virtualenv \
-                gcc \
-                gcc-c++ \
-                zsync
+      - name: Set up Python venv and install AppImage-Builder
+        run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install appimage-builder
 
-              # Set up Python venv and install AppImage-Builder
-              python3 -m venv .venv
-              source .venv/bin/activate
-              pip install --upgrade pip
-              pip install appimage-builder
+      - name: Build Wattage
+        run: |
+          source .venv/bin/activate
+          meson setup _build -Dbuildtype=debug
+          ninja -C _build
+          glib-compile-schemas --targetdir=_build/data data || true
 
-              # Build Wattage
-              source .venv/bin/activate
-              meson setup _build -Dbuildtype=debug
-              ninja -C _build
-              # compile schemas into build tree
-              glib-compile-schemas --targetdir=_build/data data || true
+      - name: Prepare AppDir
+        run: |
+          source .venv/bin/activate
+          rm -rf _build/AppDir
+          meson install -C _build --no-rebuild --destdir "AppDir"
 
-              # Prepare AppDir
-              rm -rf _build/AppDir
-              meson install -C _build --no-rebuild --destdir "AppDir"
-
-              # Build AppImage
-              source .venv/bin/activate
-              appimage-builder --appdir _build/AppDir --recipe AppImageBuilder.yml --skip-tests
-
-              # Normalize AppImage name for artifact upload
-              # Move any generated AppImage to a predictable name in workspace root
-              shopt -s nullglob || true
-              for f in *.AppImage _build/*.AppImage _build/AppDir/*.AppImage; do
-                if [ -f "$f" ]; then
-                  mv "$f" Wattage-latest-aarch64.AppImage
-                  break
-                fi
-              done || true
-            '
-
-      - name: List workspace (debug)
-        run: ls -la
+      - name: Build AppImage
+        run: |
+          source .venv/bin/activate
+          appimage-builder --appdir _build/AppDir --recipe AppImageBuilder.yml --skip-tests
+          # Move resulting AppImage to a predictable filename for artifact upload
+          shopt -s nullglob || true
+          for f in *.AppImage _build/*.AppImage _build/AppDir/*.AppImage; do
+            if [ -f "$f" ]; then
+              mv "$f" Wattage-latest-aarch64.AppImage
+              break
+            fi
+          done || true
 
       - name: Upload AppImage artifact (arm64)
         uses: actions/upload-artifact@v4
