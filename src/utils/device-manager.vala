@@ -1,4 +1,4 @@
-/* device_manager.vala
+/* device-manager.vala
  *
  * Copyright 2025 v81d
  *
@@ -24,7 +24,7 @@ using org.freedesktop;
 namespace Wattage {
     // This class is used to represent basic information about a single device
     public class Device {
-        public UPowerDevice? upower_proxy;
+        public UPower.Device? upower_proxy;
 
         public string icon_name = "Unknown";
         public string name = "Unknown";
@@ -165,7 +165,7 @@ namespace Wattage {
             return "Unknown";
         }
 
-        private UPowerDevice? get_dbus_proxy (string device_name) {
+        private UPower.Device? get_dbus_proxy (string device_name) {
             try {
                 // Create a UPower proxy
                 UPowerSync upower = Bus.get_proxy_sync (
@@ -180,7 +180,7 @@ namespace Wattage {
                  * We must iterate over the devices to do this since the device name does not deterministically correspond to a UPower path by itself.
                  */
                 foreach (var device_path in devices) {
-                    UPowerDevice device_proxy = Bus.get_proxy_sync (
+                    UPower.Device device_proxy = Bus.get_proxy_sync (
                         BusType.SYSTEM,
                         "org.freedesktop.UPower",
                         device_path
