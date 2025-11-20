@@ -518,6 +518,3 @@ public class Wattage.Window : Adw.ApplicationWindow {
         load_device_list ();
     }
 }
-
-
-

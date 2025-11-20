@@ -121,7 +121,7 @@ namespace Wattage {
             // The below switch statement should not match any "Unknown" values, as those should not be translated nor displayed to the user
             switch (property_value.down ()) {
             // `device.type`
-            case "battery":
+            case "battery" :
                 return _("Battery");
             case "ups":
                 return _("UPS");
@@ -169,9 +169,9 @@ namespace Wattage {
             try {
                 // Create a UPower proxy
                 UPowerSync upower = Bus.get_proxy_sync (
-                    BusType.SYSTEM,
-                    "org.freedesktop.UPower",
-                    "/org/freedesktop/UPower"
+                                                        BusType.SYSTEM,
+                                                        "org.freedesktop.UPower",
+                                                        "/org/freedesktop/UPower"
                 );
 
                 ObjectPath[] devices = upower.enumerate_devices ();
@@ -181,9 +181,9 @@ namespace Wattage {
                  */
                 foreach (var device_path in devices) {
                     UPower.Device device_proxy = Bus.get_proxy_sync (
-                        BusType.SYSTEM,
-                        "org.freedesktop.UPower",
-                        device_path
+                                                                     BusType.SYSTEM,
+                                                                     "org.freedesktop.UPower",
+                                                                     device_path
                     );
 
                     if (device_proxy.native_path == device_name) {
