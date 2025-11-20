@@ -21,39 +21,39 @@
 using GLib;
 
 namespace org {
-	namespace freedesktop {
-		[DBus (name = "org.freedesktop.UPower", timeout = 120000)]
-		public interface UPower : GLib.Object {
-			[DBus (name = "EnumerateDevices")]
-			public abstract async GLib.ObjectPath[] enumerate_devices () throws DBusError, IOError;
+    namespace freedesktop {
+        [DBus (name = "org.freedesktop.UPower", timeout = 120000)]
+        public interface UPower : GLib.Object {
+            [DBus (name = "EnumerateDevices")]
+            public abstract async GLib.ObjectPath[] enumerate_devices () throws DBusError, IOError;
 
-		    [DBus (name = "org.freedesktop.UPower.Device", timeout = 120000)]
-		    public interface Device : GLib.Object {
+            [DBus (name = "org.freedesktop.UPower.Device", timeout = 120000)]
+            public interface Device : GLib.Object {
                 // General information
-			    [DBus (name = "NativePath")]
-			    public abstract string native_path { owned get; }
+                [DBus (name = "NativePath")]
+                public abstract string native_path { owned get; }
 
                 // Manufacturing details
-			    [DBus (name = "Vendor")]
-			    public abstract string manufacturer { owned get; }
+                [DBus (name = "Vendor")]
+                public abstract string manufacturer { owned get; }
 
-			    // Model information
-			    [DBus (name = "Model")]
-			    public abstract string model { owned get; }
+                // Model information
+                [DBus (name = "Model")]
+                public abstract string model { owned get; }
 
-			    [DBus (name = "Serial")]
-			    public abstract string serial { owned get; }
+                [DBus (name = "Serial")]
+                public abstract string serial { owned get; }
 
-			    // Health evaluations
-			    [DBus (name = "Capacity")]
-			    public abstract double capacity { owned get; }
-		    }
-		}
+                // Health evaluations
+                [DBus (name = "Capacity")]
+                public abstract double capacity { owned get; }
+            }
+        }
 
-		[DBus (name = "org.freedesktop.UPower", timeout = 120000)]
-		public interface UPowerSync : GLib.Object {
-			[DBus (name = "EnumerateDevices")]
-			public abstract GLib.ObjectPath[] enumerate_devices () throws DBusError, IOError;
-		}
-	}
+        [DBus (name = "org.freedesktop.UPower", timeout = 120000)]
+        public interface UPowerSync : GLib.Object {
+            [DBus (name = "EnumerateDevices")]
+            public abstract GLib.ObjectPath[] enumerate_devices () throws DBusError, IOError;
+        }
+    }
 }
