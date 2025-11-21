@@ -331,7 +331,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
             DeviceInfoSectionData general_info = new DeviceInfoSectionData (_("General Information"));
             general_info.set (_("Device Name"), device.name);
-            general_info.set (_("Sysfs Path"), device.path);
+            general_info.set (_("Object Path"), device.path);
             general_info.set (_("Device Type"), device.type);
             sections.add (general_info);
 
