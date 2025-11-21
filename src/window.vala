@@ -26,13 +26,15 @@ using GLib;
 public class DeviceRow : Gtk.ListBoxRow {
     public Wattage.Device device { get; private set; }
 
-    public DeviceRow (string name, string description, string icon_name) {
+    public DeviceRow (Wattage.Device device) {
+        this.device = device;
+
         Adw.ActionRow row = new Adw.ActionRow ();
-        row.set_title (name);
-        row.set_subtitle (description);
+        row.set_title (device.name);
+        row.set_subtitle (device.path);
 
         // Due to the deprecation of `row.icon_name` and `row.set_icon_name ()`, the icon should be prepended as a widget
-        Gtk.Image icon = new Gtk.Image.from_icon_name (icon_name);
+        Gtk.Image icon = new Gtk.Image.from_icon_name (device.icon_name);
         icon.set_pixel_size (24);
         row.add_prefix (icon);
 
@@ -151,14 +153,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                         Idle.add (() => {
                             this.selected_device_index = device_row.get_index ();
                             this.device_info_empty_status.set_visible (false);
-
-                            try {
-                                Wattage.Device device = this.device_prober.fetch_device (action_row.get_subtitle ());
-                                this.load_device_info (device);
-                            } catch (Error e) {
-                                stderr.printf ("Could not open device: %s\n", e.message);
-                            }
-
+                            this.load_device_info (device_row.device);
                             return false;
                         });
                     }
@@ -491,8 +486,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
     }
 
     private void append_device (Wattage.Device device) {
-        string description = device.path;
-        DeviceRow row = new DeviceRow (device.name, description, device.icon_name);
+        DeviceRow row = new DeviceRow (device);
         this.device_list.append (row);
     }
 
