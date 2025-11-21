@@ -153,7 +153,14 @@ public class Wattage.Window : Adw.ApplicationWindow {
                         Idle.add (() => {
                             this.selected_device_index = device_row.get_index ();
                             this.device_info_empty_status.set_visible (false);
-                            this.load_device_info (this.device_prober.fetch_device (action_row.get_title ()));
+
+                            try {
+                                Wattage.Device device = this.device_prober.fetch_device (action_row.get_subtitle ());
+                                this.load_device_info (device);
+                            } catch (Error e) {
+                                stderr.printf ("Could not open device: %s\n", e.message);
+                            }
+
                             return false;
                         });
                     }
@@ -234,7 +241,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
         try {
             this.preferences_dialog_builder.add_from_resource ("/io/github/v81d/Wattage/preferences-dialog.ui");
         } catch (Error e) {
-            stderr.printf ("[preferences_dialog_builder.add_from_resource ()] %s\n", e.message);
+            stderr.printf ("Could not open preferences dialog: %s\n", e.message);
         }
 
         // Auto-refresh switch
@@ -267,6 +274,13 @@ public class Wattage.Window : Adw.ApplicationWindow {
             int cooldown = (int) auto_refresh_cooldown_row.get_value ();
             this.settings.set_int ("auto-refresh-cooldown", cooldown);
             this.auto_refresh_cooldown = cooldown;
+
+            // Restart auto-refresh loop
+            if (this.auto_refresh) {
+                this.stop_auto_refresh ();
+                this.start_auto_refresh ();
+            }
+
             load_device_list ();
         });
 
@@ -318,7 +332,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
             DeviceInfoSectionData general_info = new DeviceInfoSectionData (_("General Information"));
             general_info.set (_("Device Name"), device.name);
             general_info.set (_("Sysfs Path"), device.path);
-            general_info.set (_("Device Type"), device.map_property_translation (device.type));
+            general_info.set (_("Device Type"), device.type);
             sections.add (general_info);
 
             DeviceInfoSectionData manufacturing_details = new DeviceInfoSectionData (_("Manufacturing Details"));
@@ -340,7 +354,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
             charging_status.set (_("Charge Limit Percentage"), device.charge_control_end_threshold + "%");
             charging_status.set (_("Cycle Count"), device.cycle_count);
             charging_status.set (_("Current Charge Percentage"), device.calculate_percentage (double.parse (device.energy_now), double.parse (device.energy_full)) + "%");
-            charging_status.set (_("Status"), device.map_property_translation (device.status));
+            charging_status.set (_("Status"), device.status);
             sections.add (charging_status);
 
             DeviceInfoSectionData time_calculations = new DeviceInfoSectionData (_("Time Calculations"));
@@ -469,7 +483,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                     this.device_list.select_row (this.device_list.get_row_at_index (0));
                     stdout.printf ("The device at index %s cannot be found. Device at index 0 will be selected.\n", this.selected_device_index.to_string ());
                 } else {
-                    stderr.printf ("No power devices found under the sysfs path.\n");
+                    stderr.printf ("No power devices were detected by UPower.\n");
                     this.device_list_empty_status.set_visible (true);
                     this.device_info_empty_status.set_visible (true);
                 }
@@ -482,7 +496,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
     }
 
     private void append_device (Wattage.Device device) {
-        string description = _("Path: %s\nType: %s").printf (device.path, device.type);
+        string description = device.path;
         DeviceRow row = new DeviceRow (device.name, description, device.icon_name);
         this.device_list.append (row);
     }

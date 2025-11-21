@@ -24,47 +24,48 @@ using org.freedesktop;
 namespace Wattage {
     // This class is used to represent basic information about a single device
     public class Device {
-        public UPower.Device? upower_proxy;
+        public UPower.Device upower_proxy;
 
-        public string icon_name = "Unknown";
-        public string name = "Unknown";
-        public string path = "Unknown";
-        public string type = "Unknown";
-        public string manufacturer = "Unknown";
-        public string serial_number = "Unknown";
-        public string model_name = "Unknown";
-        public string technology = "Unknown";
-        public string state_of_health = "Unknown";
-        public string charge_control_end_threshold = "Unknown"; // charge limit
-        public string cycle_count = "Unknown";
-        public string status = "Unknown";
-        public string energy_full_design = "Unknown"; // original maximum capacity
-        public string energy_full = "Unknown"; // maximum capacity
-        public string energy_now = "Unknown";
-        public string power_now = "Unknown"; // energy rate
-        public string voltage_min_design = "Unknown"; // original minimum voltage
-        public string voltage_now = "Unknown";
+        public string icon_name = "unknown";
+        public string name = "unknown";
+        public string path = "unknown";
+        public string type = "unknown";
+        public string manufacturer = "unknown";
+        public string serial_number = "unknown";
+        public string model_name = "unknown";
+        public string technology = "unknown";
+        public string state_of_health = "unknown";
+        public string charge_control_end_threshold = "unknown"; // charge limit
+        public string cycle_count = "unknown";
+        public string status = "unknown";
+        public string energy_full_design = "unknown"; // original maximum capacity
+        public string energy_full = "unknown"; // maximum capacity
+        public string energy_now = "unknown";
+        public string power_now = "unknown"; // energy rate
+        public string voltage_min_design = "unknown"; // original minimum voltage
+        public string voltage_now = "unknown";
 
         public Device () {}
 
         public string convert_to_unit (string value, string unit) {
-            // Assumes starting unit of value is micro(-units)
+            // Assumes starting unit of value is base unit
             double val = double.parse (value);
 
-            if (unit.has_prefix ("m")) {
-                // mWh, mW, mV
-                val /= 1000;
+            if (unit.has_prefix ("μ")) {
+                // μ-unit
+                val *= 1000000;
+            } else if (unit.has_prefix ("m")) {
+                // m-unit
+                val *= 1000;
             } else if (unit.has_prefix ("k")) {
-                // kWh, kW, kV
-                val /= 1000000000;
+                // k-unit
+                val /= 1000;
             } else if (unit == "J") {
-                val *= 0.0036;
-            } else if (!unit.has_prefix ("μ")) {
-                // standard case (Wh, W, V)
-                val /= 1000000;
+                // Joules
+                val *= 3600;
             }
 
-            return val == 0 ? "Unknown" : "%.3f %s".printf (val, unit);
+            return val == 0 ? "unknown" : "%.3f %s".printf (val, unit);
         }
 
         public string calculate_percentage (double part, double total) {
@@ -72,7 +73,7 @@ namespace Wattage {
              * To avoid division by zero, we should instead return "Unknown" early.
              */
             if (total == 0) {
-                return "Unknown";
+                return "unknown";
             }
 
             double percentage = (part / total) * 100;
@@ -95,7 +96,7 @@ namespace Wattage {
             double rate = double.parse (this.power_now);
 
             if (rate == 0 || this.status.down () == "charging") {
-                return "Unknown";
+                return "unknown";
             }
 
             return this.hours_to_hms (total / rate);
@@ -113,153 +114,87 @@ namespace Wattage {
             } else if (health_percentage > 0) {
                 return _("The device has experienced substantial deterioration. Consider replacing the device to avoid further damage.");
             } else {
-                return "Unknown";
-            }
-        }
-
-        public string map_property_translation (string property_value) {
-            // The below switch statement should not match any "Unknown" values, as those should not be translated nor displayed to the user
-            switch (property_value.down ()) {
-            // `device.type`
-            case "battery" :
-                return _("Battery");
-            case "ups":
-                return _("UPS");
-            case "mains":
-                return _("Mains");
-            case "usb":
-                return _("USB");
-            case "wireless":
-                return _("Wireless");
-
-            // `device.status`
-            case "charging":
-                return _("Charging");
-            case "discharging":
-                return _("Discharging");
-            case "not charging":
-                return _("Not charging");
-            case "full":
-                return _("Full");
-
-            // If none of the above match, just return the untranslated property value
-            default:
-                return property_value;
+                return "unknown";
             }
         }
     }
 
     // This is the publicly accessible class used to probe, enumerate, and inspect power devices
     public class DeviceProber {
-        private const string POWER_SUPPLY_PATH = "/sys/class/power_supply"; // directory for device folders
-
         public DeviceProber () {}
 
-        private string read_file (string filepath) {
-            try {
-                string content;
-                if (FileUtils.get_contents (filepath, out content)) {
-                    return content.strip ();
-                }
-            } catch (Error _) {}
-            return "Unknown";
+        private string type_uint32_to_string (uint32 type_uint32) {
+            switch (type_uint32) {
+            case 1:  return _("Line Power");
+            case 2:  return _("Battery");
+            case 3:  return _("UPS");
+            case 4:  return _("Monitor");
+            case 5:  return _("Mouse");
+            case 6:  return _("Keyboard");
+            case 7:  return _("PDA");
+            case 8:  return _("Phone");
+            case 9:  return _("Media Player");
+            case 10: return _("Tablet");
+            case 11: return _("Computer");
+            case 12: return _("Gaming Input");
+            case 13: return _("Pen");
+            case 14: return _("Touchpad");
+            case 15: return _("Modem");
+            case 16: return _("Network");
+            case 17: return _("Headset");
+            case 18: return _("Speakers");
+            case 19: return _("Headphones");
+            case 20: return _("Video");
+            case 21: return _("Other Audio");
+            case 22: return _("Remote Control");
+            case 23: return _("Printer");
+            case 24: return _("Scanner");
+            case 25: return _("Camera");
+            case 26: return _("Wearable");
+            case 27: return _("Toy");
+            case 28: return _("Bluetooth Generic");
+            default: return "unknown";
+            }
         }
 
-        private UPower.Device? get_dbus_proxy (string device_name) {
-            try {
-                // Create a UPower proxy
-                UPowerSync upower = Bus.get_proxy_sync (
-                                                        BusType.SYSTEM,
-                                                        "org.freedesktop.UPower",
-                                                        "/org/freedesktop/UPower"
-                );
-
-                ObjectPath[] devices = upower.enumerate_devices ();
-
-                /* For each device detected by the UPower proxy, check if its name is the given device name.
-                 * We must iterate over the devices to do this since the device name does not deterministically correspond to a UPower path by itself.
-                 */
-                foreach (var device_path in devices) {
-                    UPower.Device device_proxy = Bus.get_proxy_sync (
-                                                                     BusType.SYSTEM,
-                                                                     "org.freedesktop.UPower",
-                                                                     device_path
-                    );
-
-                    if (device_proxy.native_path == device_name) {
-                        return device_proxy;
-                    }
-                }
-            } catch (Error e) {
-                stderr.printf ("Error locating UPower device: %s\n", e.message);
+        private string technology_uint32_to_string (uint32 technology_uint32) {
+            switch (technology_uint32) {
+            case 1:  return _("Lithium ion");
+            case 2:  return _("Lithium polymer");
+            case 3:  return _("Lithium iron phosphate");
+            case 4:  return _("Lead acid");
+            case 5:  return _("Nickel cadmium");
+            case 6:  return _("Nickel metal hydride");
+            default: return "unknown";
             }
-
-            return null;
         }
 
-        // This method is used to methodically determine the symbolic icon name based on information about a given device
-        private string get_device_icon_name (string device_path) {
-            // Store the properties of the device
-            string present = this.read_file (Path.build_filename (device_path, "present"));
-            string capacity_string = this.read_file (Path.build_filename (device_path, "capacity"));
-            string status = this.read_file (Path.build_filename (device_path, "status"));
-
-            // If `present` is not 1 (true), then the device is missing
-            if (present != "1") {
-                return "battery-missing-symbolic";
+        private string state_uint32_to_string (uint32 state_uint32) {
+            switch (state_uint32) {
+            case 1:  return _("Charging");
+            case 2:  return _("Discharging");
+            case 3:  return _("Empty");
+            case 4:  return _("Fully charged");
+            case 5:  return _("Pending charge");
+            case 6:  return _("Pending discharge");
+            default: return "unknown";
             }
-
-            int capacity = capacity_string != "" ? int.parse (capacity_string) : -1;
-            string state = status.down ();
-
-            if (state == "full" || state == "not charging") {
-                return "battery-full-charged-symbolic";
-            }
-
-            if (capacity == 0 && (state == "discharging" || state.contains ("unknown"))) {
-                return "battery-empty-symbolic";
-            }
-
-            string level = "";
-            if (capacity <= 10) {
-                level = "caution";
-            } else if (capacity <= 30) {
-                level = "low";
-            } else if (capacity <= 90) {
-                level = "good";
-            } else {
-                level = "full";
-            }
-
-            string suffix = "";
-            if (state == "charging") {
-                suffix = "-charging";
-            }
-
-            return "battery-" + level + suffix + "-symbolic";
         }
 
         public List<Device> get_devices () throws GLib.Error {
             List<Device> result = new List<Device> ();
 
-            File path = File.new_for_path (POWER_SUPPLY_PATH);
-            FileEnumerator enumerator = path.enumerate_children ("*", FileQueryInfoFlags.NONE, null);
+            // Create a UPower proxy
+            UPower upower = Bus.get_proxy_sync (
+                                                BusType.SYSTEM,
+                                                "org.freedesktop.UPower",
+                                                "/org/freedesktop/UPower"
+            );
 
-            FileInfo info;
-            while ((info = enumerator.next_file (null)) != null) {
-                /* This loop should only accept folders that represent a power device such as a battery.
-                 * If the device is not a folder, skip it.
-                 */
-                if (info.get_file_type () != FileType.DIRECTORY) {
-                    continue;
-                }
+            ObjectPath[] paths = upower.enumerate_devices ();
 
-                Device device = new Device ();
-                device.name = info.get_name ();
-                device.path = Path.build_filename (POWER_SUPPLY_PATH, device.name);
-                device.type = this.read_file (Path.build_filename (device.path, "type"));
-                device.icon_name = this.get_device_icon_name (device.path);
-                device.upower_proxy = this.get_dbus_proxy (device.name);
+            foreach (var path in paths) {
+                Device device = this.fetch_device (path);
                 result.append (device);
             }
 
@@ -280,59 +215,46 @@ namespace Wattage {
             return result;
         }
 
-        public Device fetch_device (string device_name) {
+        public Device fetch_device (string path) throws IOError {
+            UPower.Device upower_proxy = Bus.get_proxy_sync (
+                                                             BusType.SYSTEM,
+                                                             "org.freedesktop.UPower",
+                                                             path
+            );
+
             /* Fetch all properties, statistics, and information about the specified device.
              * Should create a `Device` object containing all necessary information.
              */
             Device device = new Device ();
 
-            device.upower_proxy = this.get_dbus_proxy (device_name);
+            device.upower_proxy = upower_proxy;
+            device.name = upower_proxy.native_path;
+            device.path = path;
+            device.type = this.type_uint32_to_string (upower_proxy.device_type);
 
-            device.name = device_name;
-            device.path = Path.build_filename (POWER_SUPPLY_PATH, device_name);
-            device.type = this.read_file (Path.build_filename (device.path, "type"));
+            device.manufacturer = upower_proxy.manufacturer;
+            device.serial_number = upower_proxy.serial_number;
 
-            device.manufacturer = this.read_file (Path.build_filename (device.path, "manufacturer"));
+            device.model_name = upower_proxy.model_name;
+            device.technology = this.technology_uint32_to_string (upower_proxy.technology);
 
-            // Mask serial number
-            string serial_number = this.read_file (Path.build_filename (device.path, "serial_number"));
-            string masked_serial_number;
-            if (serial_number.length > 4 && !serial_number.down ().contains ("unknown")) {
-                int mask_length = serial_number.length - 4;
-                string mask = "";
-                for (int i = 0; i < mask_length; i++) {
-                    mask += "*";
-                }
-                masked_serial_number = mask + serial_number.slice (mask_length, serial_number.length);
-            } else {
-                masked_serial_number = serial_number;
-            }
+            device.state_of_health = upower_proxy.state_of_health > 0 ? "%0.3f".printf (upower_proxy.state_of_health) : "unknown";
 
-            device.serial_number = masked_serial_number;
+            device.charge_control_end_threshold =
+                upower_proxy.charge_threshold_enabled && upower_proxy.charge_threshold_supported ?
+                upower_proxy.charge_end_threshold.to_string () : "unknown";
+            device.cycle_count = upower_proxy.charge_cycles > 0 ? upower_proxy.charge_cycles.to_string () : "unknown";
+            device.status = this.state_uint32_to_string (upower_proxy.state);
 
-            device.model_name = this.read_file (Path.build_filename (device.path, "model_name"));
-            device.technology = this.read_file (Path.build_filename (device.path, "technology"));
+            device.energy_full_design = upower_proxy.energy_full_design.to_string ();
+            device.energy_full = upower_proxy.energy_full.to_string ();
+            device.energy_now = upower_proxy.energy.to_string ();
+            device.power_now = upower_proxy.energy_rate.to_string ();
 
-            // These should be calculated before state of health
-            device.energy_full_design = this.read_file (Path.build_filename (device.path, "energy_full_design"));
-            device.energy_full = this.read_file (Path.build_filename (device.path, "energy_full"));
+            device.voltage_min_design = upower_proxy.voltage_min_design.to_string ();
+            device.voltage_now = upower_proxy.voltage.to_string ();
 
-            string state_of_health = device.state_of_health = this.read_file (Path.build_filename (device.path, "state_of_health"));
-            device.state_of_health = state_of_health.down () != "unknown" ? state_of_health : device.calculate_percentage (double.parse (device.energy_full), double.parse (device.energy_full_design));
-
-            double charge_control_end_threshold = double.parse (this.read_file (Path.build_filename (device.path, "charge_control_end_threshold")));
-            device.charge_control_end_threshold = charge_control_end_threshold == 0 ? "Unknown" : "%0.3f".printf (charge_control_end_threshold);
-            device.cycle_count = this.read_file (Path.build_filename (device.path, "cycle_count"));
-            device.status = this.read_file (Path.build_filename (device.path, "status"));
-
-            // Energy metrics (including `energy_full_design` and `energy_full`)
-            device.energy_now = this.read_file (Path.build_filename (device.path, "energy_now"));
-            device.power_now = this.read_file (Path.build_filename (device.path, "power_now"));
-
-            device.voltage_min_design = this.read_file (Path.build_filename (device.path, "voltage_min_design"));
-            device.voltage_now = this.read_file (Path.build_filename (device.path, "voltage_now"));
-
-            device.icon_name = this.get_device_icon_name (device.path);
+            device.icon_name = upower_proxy.icon_name;
 
             return device;
         }
