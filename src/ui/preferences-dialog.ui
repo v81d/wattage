@@ -17,7 +17,7 @@
                 <property name="title" translatable="yes">Auto-Refresh Cooldown (seconds)</property>
                 <property name="adjustment">
                   <object class="GtkAdjustment">
-                    <property name="lower">1</property>
+                    <property name="lower">5</property>
                     <property name="upper">3600</property>
                     <property name="step-increment">1</property>
                     <property name="page-increment">5</property>
