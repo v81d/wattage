@@ -24,6 +24,8 @@ using GLib;
  * Use as a constructor for a single row in the device list sidebar.
  */
 public class DeviceRow : Gtk.ListBoxRow {
+    public Wattage.Device device { get; private set; }
+
     public DeviceRow (string name, string description, string icon_name) {
         Adw.ActionRow row = new Adw.ActionRow ();
         row.set_title (name);
@@ -42,11 +44,11 @@ public class DeviceRow : Gtk.ListBoxRow {
  * Use as a constructor for a single section in the device information view.
  */
 public class DeviceInfoSection : Gtk.Box {
-    private string _title;
-    private Gtk.ListBox _list;
+    public string title { get; private set; }
+    private Gtk.ListBox list { private get; private set; }
 
     public DeviceInfoSection (string title, Gee.ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
-        this._title = title;
+        this.title = title;
         this.set_orientation (Gtk.Orientation.VERTICAL);
         this.set_spacing (12);
 
@@ -55,23 +57,19 @@ public class DeviceInfoSection : Gtk.Box {
         label.add_css_class ("title-2");
         this.append (label);
 
-        this._list = new Gtk.ListBox ();
-        this._list.set_selection_mode (Gtk.SelectionMode.NONE);
-        this._list.set_hexpand (true);
-        this._list.add_css_class ("boxed-list");
-        this.append (this._list);
+        this.list = new Gtk.ListBox ();
+        this.list.set_selection_mode (Gtk.SelectionMode.NONE);
+        this.list.set_hexpand (true);
+        this.list.add_css_class ("boxed-list");
+        this.append (this.list);
 
         this.update (properties);
     }
 
-    public string get_title () {
-        return this._title;
-    }
-
     public void update (Gee.ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
         Gtk.ListBoxRow? row;
-        while ((row = this._list.get_row_at_index (0)) != null) {
-            this._list.remove (row);
+        while ((row = this.list.get_row_at_index (0)) != null) {
+            this.list.remove (row);
         }
 
         foreach (DeviceInfoSectionData.DeviceProperty property in properties) {
@@ -80,15 +78,15 @@ public class DeviceInfoSection : Gtk.Box {
             action_row.set_subtitle (property.value);
             action_row.set_subtitle_selectable (true);
             action_row.set_css_classes ({ "property", "monospace" });
-            this._list.append (action_row);
+            this.list.append (action_row);
         }
     }
 }
 
 public class DeviceInfoSectionData {
     public class DeviceProperty {
-        public string name;
-        public string value;
+        public string name { get; set; }
+        public string value { get; set; }
 
         public DeviceProperty (string name, string value) {
             this.name = name;
@@ -96,8 +94,8 @@ public class DeviceInfoSectionData {
         }
     }
 
-    public string title;
-    public Gee.ArrayList<DeviceProperty> properties;
+    public string title { get; private set; }
+    public Gee.ArrayList<DeviceProperty> properties { get; private set; }
 
     public DeviceInfoSectionData (string title) {
         this.title = title;
@@ -332,53 +330,50 @@ public class Wattage.Window : Adw.ApplicationWindow {
             DeviceInfoSectionData general_info = new DeviceInfoSectionData (_("General Information"));
             general_info.set (_("Device Name"), device.name);
             general_info.set (_("Object Path"), device.path);
-            general_info.set (_("Device Type"), device.type);
+            general_info.set (_("Device Type"), device.device_type);
             sections.add (general_info);
 
-            DeviceInfoSectionData manufacturing_details = new DeviceInfoSectionData (_("Manufacturing Details"));
-            manufacturing_details.set (_("Manufacturer"), device.manufacturer);
-            manufacturing_details.set (_("Serial Number"), device.serial_number);
-            sections.add (manufacturing_details);
-
-            DeviceInfoSectionData model_info = new DeviceInfoSectionData (_("Model Information"));
-            model_info.set (_("Model Name"), device.model_name);
-            model_info.set (_("Technology"), device.technology);
-            sections.add (model_info);
+            DeviceInfoSectionData model_details = new DeviceInfoSectionData (_("Model Details"));
+            model_details.set (_("Vendor"), device.vendor);
+            model_details.set (_("Serial Number"), device.serial);
+            model_details.set (_("Model Name"), device.model);
+            model_details.set (_("Technology"), device.technology);
+            sections.add (model_details);
 
             DeviceInfoSectionData health_stats = new DeviceInfoSectionData (_("Health Evaluations"));
-            health_stats.set (_("State of Health"), device.state_of_health + "%");
-            health_stats.set (_("Device Condition"), device.create_alert (double.parse (device.state_of_health)));
+            health_stats.set (_("State of Health"), device.capacity + "%");
+            health_stats.set (_("Device Condition"), device.create_alert (double.parse (device.capacity)));
             sections.add (health_stats);
 
             DeviceInfoSectionData charging_status = new DeviceInfoSectionData (_("Charging Status"));
             charging_status.set (_("Charge Limit Percentage"), device.charge_control_end_threshold + "%");
-            charging_status.set (_("Cycle Count"), device.cycle_count);
-            charging_status.set (_("Current Charge Percentage"), device.calculate_percentage (double.parse (device.energy_now), double.parse (device.energy_full)) + "%");
-            charging_status.set (_("Status"), device.status);
+            charging_status.set (_("Cycle Count"), device.charge_cycles);
+            charging_status.set (_("Current Charge Percentage"), device.calculate_percentage (double.parse (device.energy), double.parse (device.energy_full)) + "%");
+            charging_status.set (_("State"), device.state);
             sections.add (charging_status);
 
             DeviceInfoSectionData time_calculations = new DeviceInfoSectionData (_("Time Calculations"));
-            time_calculations.set (_("Time to Empty"), device.calculate_time (device.energy_now));
+            time_calculations.set (_("Time to Empty"), device.calculate_time (device.energy));
             time_calculations.set (_("Projected Runtime with Current Usage"), device.calculate_time (device.energy_full));
             sections.add (time_calculations);
 
             DeviceInfoSectionData energy_metrics = new DeviceInfoSectionData (_("Energy Metrics"));
             energy_metrics.set (_("Maximum Rated Capacity"), device.convert_to_unit (device.energy_full_design, this.energy_unit));
             energy_metrics.set (_("Maximum Capacity"), device.convert_to_unit (device.energy_full, this.energy_unit));
-            energy_metrics.set (_("Remaining Energy"), device.convert_to_unit (device.energy_now, this.energy_unit));
-            energy_metrics.set (_("Energy Transfer Rate"), device.convert_to_unit (device.power_now, this.power_unit));
+            energy_metrics.set (_("Remaining Energy"), device.convert_to_unit (device.energy, this.energy_unit));
+            energy_metrics.set (_("Energy Transfer Rate"), device.convert_to_unit (device.energy_rate, this.power_unit));
             sections.add (energy_metrics);
 
             DeviceInfoSectionData voltage_stats = new DeviceInfoSectionData (_("Voltage Statistics"));
             voltage_stats.set (_("Minimum Rated Voltage"), device.convert_to_unit (device.voltage_min_design, this.voltage_unit));
-            voltage_stats.set (_("Current Voltage"), device.convert_to_unit (device.voltage_now, this.voltage_unit));
+            voltage_stats.set (_("Current Voltage"), device.convert_to_unit (device.voltage, this.voltage_unit));
             sections.add (voltage_stats);
 
             Idle.add (() => {
                 // Titles of existing sections
                 Gee.ArrayList<string> existing_titles = new Gee.ArrayList<string> ();
-                foreach (DeviceInfoSection s in this.device_info_sections) {
-                    existing_titles.add (s.get_title ());
+                foreach (DeviceInfoSection section in this.device_info_sections) {
+                    existing_titles.add (section.title);
                 }
 
                 // Titles of new sections
@@ -431,7 +426,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                         // Match existing sections by title
                         DeviceInfoSection? existing_section = null;
                         foreach (DeviceInfoSection s in this.device_info_sections) {
-                            if (s.get_title () == section.title) {
+                            if (s.title == section.title) {
                                 existing_section = s;
                                 break;
                             }

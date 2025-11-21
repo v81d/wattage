@@ -24,26 +24,32 @@ using org.freedesktop;
 namespace Wattage {
     // This class is used to represent basic information about a single device
     public class Device {
-        public UPower.Device upower_proxy;
+        public UPower.Device upower_proxy { get; set; }
 
-        public string icon_name = "unknown";
-        public string name = "unknown";
-        public string path = "unknown";
-        public string type = "unknown";
-        public string manufacturer = "unknown";
-        public string serial_number = "unknown";
-        public string model_name = "unknown";
-        public string technology = "unknown";
-        public string state_of_health = "unknown";
-        public string charge_control_end_threshold = "unknown"; // charge limit
-        public string cycle_count = "unknown";
-        public string status = "unknown";
-        public string energy_full_design = "unknown"; // original maximum capacity
-        public string energy_full = "unknown"; // maximum capacity
-        public string energy_now = "unknown";
-        public string power_now = "unknown"; // energy rate
-        public string voltage_min_design = "unknown"; // original minimum voltage
-        public string voltage_now = "unknown";
+        public string path { get; set; default = "unknown"; }
+
+        public string name { get; set; default = "unknown"; }
+        public string vendor { get; set; default = "unknown"; }
+        public string model { get; set; default = "unknown"; }
+        public string serial { get; set; default = "unknown"; }
+
+        public string device_type { get; set; default = "unknown"; }
+        public string technology { get; set; default = "unknown"; }
+
+        public string state { get; set; default = "unknown"; }
+
+        public string energy { get; set; default = "unknown"; }
+        public string energy_full { get; set; default = "unknown"; }
+        public string energy_full_design { get; set; default = "unknown"; }
+        public string energy_rate { get; set; default = "unknown"; }
+        public string voltage { get; set; default = "unknown"; }
+        public string voltage_min_design { get; set; default = "unknown"; }
+
+        public string charge_cycles { get; set; default = "unknown"; }
+        public string charge_control_end_threshold { get; set; default = "unknown"; }
+
+        public string capacity { get; set; default = "unknown"; }
+        public string icon_name { get; set; default = "unknown"; }
 
         public Device () {}
 
@@ -93,9 +99,9 @@ namespace Wattage {
 
         public string calculate_time (string total_energy) {
             double total = double.parse (total_energy);
-            double rate = double.parse (this.power_now);
+            double rate = double.parse (this.energy_rate);
 
-            if (rate == 0 || this.status.down () == "charging") {
+            if (rate == 0 || this.state.down () == "charging") {
                 return "unknown";
             }
 
@@ -203,9 +209,9 @@ namespace Wattage {
              * The sorting comparison below moves batteries to the beginning and sorts miscellaneous devices after.
              */
             result.sort ((a, b) => {
-                if (a.type.down () == "battery" && b.type.down () != "battery") {
+                if (a.device_type.down () == "battery" && b.device_type.down () != "battery") {
                     return -1; // a before b
-                } else if (a.type.down () != "battery" && b.type.down () == "battery") {
+                } else if (a.device_type.down () != "battery" && b.device_type.down () == "battery") {
                     return 1; // b before a
                 } else {
                     return strcmp (a.name, b.name); // alphabetical order
@@ -230,29 +236,29 @@ namespace Wattage {
             device.upower_proxy = upower_proxy;
             device.name = upower_proxy.native_path;
             device.path = path;
-            device.type = this.type_uint32_to_string (upower_proxy.device_type);
+            device.device_type = this.type_uint32_to_string (upower_proxy.device_type);
 
-            device.manufacturer = upower_proxy.manufacturer;
-            device.serial_number = upower_proxy.serial_number;
+            device.vendor = upower_proxy.vendor;
+            device.serial = upower_proxy.serial;
 
-            device.model_name = upower_proxy.model_name;
+            device.model = upower_proxy.model;
             device.technology = this.technology_uint32_to_string (upower_proxy.technology);
 
-            device.state_of_health = upower_proxy.state_of_health > 0 ? "%0.3f".printf (upower_proxy.state_of_health) : "unknown";
+            device.capacity = upower_proxy.capacity > 0 ? "%0.3f".printf (upower_proxy.capacity) : "unknown";
 
             device.charge_control_end_threshold =
                 upower_proxy.charge_threshold_enabled && upower_proxy.charge_threshold_supported ?
                 upower_proxy.charge_end_threshold.to_string () : "unknown";
-            device.cycle_count = upower_proxy.charge_cycles > 0 ? upower_proxy.charge_cycles.to_string () : "unknown";
-            device.status = this.state_uint32_to_string (upower_proxy.state);
+            device.charge_cycles = upower_proxy.charge_cycles > 0 ? upower_proxy.charge_cycles.to_string () : "unknown";
+            device.state = this.state_uint32_to_string (upower_proxy.state);
 
             device.energy_full_design = upower_proxy.energy_full_design.to_string ();
             device.energy_full = upower_proxy.energy_full.to_string ();
-            device.energy_now = upower_proxy.energy.to_string ();
-            device.power_now = upower_proxy.energy_rate.to_string ();
+            device.energy = upower_proxy.energy.to_string ();
+            device.energy_rate = upower_proxy.energy_rate.to_string ();
 
             device.voltage_min_design = upower_proxy.voltage_min_design.to_string ();
-            device.voltage_now = upower_proxy.voltage.to_string ();
+            device.voltage = upower_proxy.voltage.to_string ();
 
             device.icon_name = upower_proxy.icon_name;
 
