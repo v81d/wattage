@@ -30,9 +30,9 @@ namespace org {
             [DBus (name = "org.freedesktop.UPower.Device", timeout = 120000)]
             public interface Device : GLib.Object {
                 [DBus (name = "NativePath")]           public abstract string native_path { owned get; }
-                [DBus (name = "Vendor")]               public abstract string manufacturer { owned get; }
-                [DBus (name = "Model")]                public abstract string model_name { owned get; }
-                [DBus (name = "Serial")]               public abstract string serial_number { owned get; }
+                [DBus (name = "Vendor")]               public abstract string vendor { owned get; }
+                [DBus (name = "Model")]                public abstract string model { owned get; }
+                [DBus (name = "Serial")]               public abstract string serial { owned get; }
 
                 [DBus (name = "Type")]                 public abstract uint32 device_type { owned get; }
                 [DBus (name = "PowerSupply")]          public abstract bool power_supply { owned get; }
@@ -66,7 +66,7 @@ namespace org {
                 [DBus (name = "TimeToFull")]           public abstract int64 time_to_full { owned get; }
                 [DBus (name = "Percentage")]           public abstract double percentage { owned get; }
                 [DBus (name = "Temperature")]          public abstract double temperature { owned get; }
-                [DBus (name = "Capacity")]             public abstract double state_of_health { owned get; }
+                [DBus (name = "Capacity")]             public abstract double capacity { owned get; }
                 [DBus (name = "WarningLevel")]         public abstract uint32 warning_level { owned get; }
                 [DBus (name = "BatteryLevel")]         public abstract uint32 battery_level { owned get; }
                 [DBus (name = "IconName")]             public abstract string icon_name { owned get; }
