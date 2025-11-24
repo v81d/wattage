@@ -2,6 +2,7 @@ wattage_sources = [
   'main.vala',
   'application.vala',
   'window.vala',
+  'utils/numeric-toolkit.vala',
   'utils/device-manager.vala',
   'interfaces/dbus-upower.vala'
 ]
