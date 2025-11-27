@@ -17,7 +17,9 @@ Wattage is an application designed for monitoring the health and status of your 
 
 ## Notices
 
-- Wattage does not support Windows, macOS, or any system that does not support retrieving battery information from the sysfs path `/sys/class/power_supply`
+- Wattage does not support Windows, macOS, or any system that does not support retrieving power information from [UPower](https://upower.freedesktop.org).
+- Nearly all Linux distributions with a user interface or desktop environment (such as GNOME, KDE Plasma, etc.) have UPower installed.
+- Some BSD operating systems also support UPower, but full functionality is not guaranteed.
 
 ## Features
 
@@ -26,14 +28,14 @@ Wattage is an application designed for monitoring the health and status of your 
 - Support for multiple batteries or power sources.
 - Interface built with GTK 4 and libadwaita.
 - Written in Vala, which is fast since it compiles to C.
-- Designed for GNU/Linux systems with sysfs battery information.
+- Designed for systems with UPower power information.
 
 ## Installation
 
 The following guide provides instructions on how to install Wattage on your device.
 
 <a href="https://repology.org/project/wattage/versions">
-    <img src="https://repology.org/badge/vertical-allrepos/wattage.svg" alt="Packaging status" align="right">
+    <img src="https://repology.org/badge/vertical-allrepos/wattage.svg" alt="Packaging Status" align="right">
 </a>
 
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px;">
@@ -178,7 +180,7 @@ To push your features or fixes into this official repository:
 
 1. Fork the repository.
 2. Create a feature branch (`git checkout -b feature/my-feature`) or a fix branch (`git checkout -b fix/my-fix`).
-3. Commit your changes (`git commit -m "feat: add new feature"`).
+3. Commit your changes (`git commit -m "feat: add new feature"`). **Please follow the [Conventional Commits](https://www.conventionalcommits.org) guideline when doing so!**
 4. Push the branch (`git push origin feature/my-feature`).
 5. Open a pull request with `contrib` as the base branch. Make sure to create a detailed title and description of your change.
 
