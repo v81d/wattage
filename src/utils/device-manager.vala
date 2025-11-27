@@ -58,21 +58,23 @@ namespace DeviceManager {
 
         public DeviceObject () {}
 
-        public string ? create_alert () {
+        public string ? create_health_alert () {
             if (this.capacity == null) {
                 return null;
             }
 
-            if (this.capacity >= 90) {
-                return _("The device performs close to its original capacity. It is suitable for daily use with minimal wear.");
+            if (this.capacity >= 95) {
+                return _("The device is near or at its maximum rated capacity. It is in excellent condition and should not require much intervention.");
+            } else if (this.capacity >= 90) {
+                return _("The device performs close to its original capacity. There is little noticeable difference from its optimal state.");
             } else if (this.capacity >= 80) {
-                return _("The device bears slight capacity loss but is still in good condition for most tasks.");
+                return _("The device has lost some capacity, but it should not be of much concern. Continue to take precautions regarding your power device like limiting its charge and using power-saving settings.");
             } else if (this.capacity >= 70) {
-                return _("The device shows a considerable degradation in capacity. Usage time is noticeably shorter than at its optimal state.");
-            } else if (this.capacity >= 50) {
-                return _("The device has a significant drop in capacity. Expect arbitrary shutdowns and shortened runtime during extended use.");
+                return _("The device has noticeably degraded in capacity, but is still usable. Runtime may be shorter than at its original capacity. Use power-optimizing settings to extend longevity and slow down degradation.");
+            } else if (this.capacity >= 60) {
+                return _("The device has experienced a significant drop in capacity. Mobility can be more difficult due to a decrease in runtime. Depending on usage habits, replacement may be necessary in the future.");
             } else if (this.capacity > 0) {
-                return _("The device has experienced substantial deterioration. Consider replacing the device to avoid further damage.");
+                return _("The device has undergone substantial deterioration. Power instability and potential overheating can damage other components. Replace the device to avoid further damage.");
             } else {
                 return null;
             }

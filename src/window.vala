@@ -342,7 +342,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 health_stats.set (_("State of Health"), "%.03f%%".printf (device.capacity));
             }
 
-            string? health_alert = device.create_alert ();
+            string? health_alert = device.create_health_alert ();
             if (health_alert != null) {
                 health_stats.set (_("Device Condition"), health_alert);
             }
