@@ -7,7 +7,8 @@
     "finish-args" : [
         "--share=ipc",
         "--socket=fallback-x11",
-        "--socket=wayland"
+        "--socket=wayland",
+        "--system-talk-name=org.freedesktop.UPower"
     ],
     "build-options" : {
         "append-path" : "/usr/lib/sdk/vala/bin",

@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Wattage
+Comment=Monitor power devices
 Exec=wattage
 Icon=io.github.v81d.Wattage
 Terminal=false

@@ -37,7 +37,7 @@
                     <child type="overlay">
                       <object class="AdwStatusPage" id="device_list_empty_status">
                         <property name="title">No Devices Found</property>
-                        <property name="description">No power devices were detected under the sysfs directory.</property>
+                        <property name="description">No power devices detected. Please check your UPower connection.</property>
                         <property name="icon-name">battery-missing-symbolic</property>
                         <property name="visible">false</property>
                       </object>
@@ -109,8 +109,8 @@
                       <object class="AdwStatusPage" id="device_info_empty_status">
                         <property name="hexpand">true</property>
                         <property name="vexpand">true</property>
-                        <property name="title">No Device Loaded</property>
-                        <property name="description">Load a device to view its information.</property>
+                        <property name="title">No Device Information</property>
+                        <property name="description">Load a valid device to view its information.</property>
                         <property name="icon-name">info-outline-symbolic</property>
                         <property name="visible">false</property>
                       </object>
