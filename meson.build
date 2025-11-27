@@ -8,7 +8,6 @@ i18n = import('i18n')
 gnome = import('gnome')
 valac = meson.get_compiler('vala')
 
-
 srcdir = meson.project_source_root() / 'src'
 
 config_h = configuration_data()
@@ -21,7 +20,6 @@ config_dep = valac.find_library ('config', dirs: srcdir)
 config_inc = include_directories('.')
 
 add_project_arguments('-DGETTEXT_PACKAGE="' + meson.project_name () + '"', language: 'c')
-
 
 subdir('data')
 subdir('src')

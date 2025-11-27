@@ -6,7 +6,9 @@ data/io.github.v81d.Wattage.gschema.xml
 src/ui/preferences-dialog.ui
 src/ui/shortcuts-dialog.ui
 src/ui/window.ui
-src/utils/battery_manager.vala
+src/utils/numeric-toolkit.vala
+src/utils/device-manager.vala
+src/interfaces/dbus-upower.vala
 src/application.vala
 src/main.vala
 src/window.vala
