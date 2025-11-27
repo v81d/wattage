@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 21:06-0400\n"
+"POT-Creation-Date: 2025-11-27 18:01-0500\n"
 "PO-Revision-Date: 2025-11-19 17:54+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,17 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.8\n"
 
-#: data/io.github.v81d.Wattage.desktop.in:8
+#: data/io.github.v81d.Wattage.desktop.in:3
+#: data/io.github.v81d.Wattage.metainfo.xml.in:8
+msgid "Monitor power devices"
+msgstr "Surveiller les périphériques d'alimentation"
+
+#: data/io.github.v81d.Wattage.desktop.in:9
 msgid ""
 "GTK;Battery monitor;Battery health;Power statistics;Power usage;Power "
 "devices;"
 msgstr ""
 "GTK;surveiller la batterie;état de la batterie;statistiques "
 "d'alimentation;Consommation d'énergie;Appareils d'alimentation"
-
-#: data/io.github.v81d.Wattage.metainfo.xml.in:8
-msgid "Monitor power devices"
-msgstr "Surveiller les périphériques d'alimentation"
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:10
 msgid ""
@@ -63,7 +64,8 @@ msgid "Auto-refresh cooldown"
 msgstr "Délai de rafraîchissement automatique"
 
 #: data/io.github.v81d.Wattage.gschema.xml:13
-msgid "Interval in seconds between auto-refresh operations."
+#, fuzzy
+msgid "Interval, in seconds, between auto-refresh operations."
 msgstr ""
 "Intervalle en secondes entre les opérations de rafraîchissements "
 "automatiques."
@@ -191,208 +193,411 @@ msgstr "Raccourcis clavier"
 msgid "About Wattage"
 msgstr "À propos de Wattage"
 
-#: src/utils/battery_manager.vala:102
+#: src/utils/device-manager.vala:67
 msgid ""
-"The device performs close to its original capacity. It is suitable for daily "
-"use with minimal wear."
+"The device is near or at its maximum rated capacity. It is in excellent "
+"condition and should not require much intervention."
+msgstr ""
+
+#: src/utils/device-manager.vala:69
+#, fuzzy
+msgid ""
+"The device performs close to its original capacity. There is little "
+"noticeable difference from its optimal state."
 msgstr ""
 "L'appareil fonctionne pratiquement à son niveau d'origine. Il convient pour "
 "une utilisation quotidienne et ne présente qu'une usure minimale."
 
-#: src/utils/battery_manager.vala:104
+#: src/utils/device-manager.vala:71
 msgid ""
-"The device bears slight capacity loss but is still in good condition for "
-"most tasks."
+"The device has lost some capacity, but it should not be of much concern. "
+"Continue to take precautions regarding your power device like limiting its "
+"charge and using power-saving settings."
 msgstr ""
-"L'appareil présente un légère perte de capacité mais est en bon état pour la "
-"plupart des tâches."
 
-#: src/utils/battery_manager.vala:106
+#: src/utils/device-manager.vala:73
 msgid ""
-"The device shows a considerable degradation in capacity. Usage time is "
-"noticeably shorter than at its optimal state."
+"The device has noticeably degraded in capacity, but is still usable. Runtime "
+"may be shorter than at its original capacity. Use power-optimizing settings "
+"to extend longevity and slow down degradation."
 msgstr ""
-"L'appareil présente une dégradation considérable de sa capacité. Le temps "
-"d'utilisation est sensiblement plus court qu'à son état optimal."
 
-#: src/utils/battery_manager.vala:108
+#: src/utils/device-manager.vala:75
 msgid ""
-"The device has a significant drop in capacity. Expect arbitrary shutdowns "
-"and shortened runtime during extended use."
+"The device has experienced a significant drop in capacity. Mobility can be "
+"more difficult due to a decrease in runtime. Depending on usage habits, "
+"replacement may be necessary in the future."
 msgstr ""
-"L'appareil présente une perte importante de capacité. Attendez-vous à des "
-"arrêts intempestifs et à une autonomie réduite lors d'une utilisation "
-"prolongée."
 
-#: src/utils/battery_manager.vala:110
+#: src/utils/device-manager.vala:77
+#, fuzzy
 msgid ""
-"The device has experienced substantial deterioration. Consider replacing the "
-"device to avoid further damage."
+"The device has undergone substantial deterioration. Power instability and "
+"potential overheating can damage other components. Replace the device to "
+"avoid further damage."
 msgstr ""
 "L'appareil a connu une détérioration substantielle. Prévoyez de le remplacer "
 "pour éviter des d'autres dommages."
 
-#: src/utils/battery_manager.vala:121
+#: src/utils/device-manager.vala:94
+msgid "Line Power"
+msgstr ""
+
+#: src/utils/device-manager.vala:95
 msgid "Battery"
 msgstr "Batterie"
 
-#: src/utils/battery_manager.vala:123
+#: src/utils/device-manager.vala:96
 msgid "UPS"
 msgstr "UPS"
 
-#: src/utils/battery_manager.vala:125
-msgid "Mains"
-msgstr "Réseau électrique"
+#: src/utils/device-manager.vala:97
+msgid "Monitor"
+msgstr ""
 
-#: src/utils/battery_manager.vala:127
-msgid "USB"
-msgstr "USB"
+#: src/utils/device-manager.vala:98
+msgid "Mouse"
+msgstr ""
 
-#: src/utils/battery_manager.vala:129
-msgid "Wireless"
-msgstr "Sans-fil"
+#: src/utils/device-manager.vala:99
+#, fuzzy
+msgid "Keyboard"
+msgstr "Raccourcis clavier"
 
-#: src/utils/battery_manager.vala:133
+#: src/utils/device-manager.vala:100
+msgid "PDA"
+msgstr ""
+
+#: src/utils/device-manager.vala:101
+msgid "Phone"
+msgstr ""
+
+#: src/utils/device-manager.vala:102
+msgid "Media Player"
+msgstr ""
+
+#: src/utils/device-manager.vala:103
+msgid "Tablet"
+msgstr ""
+
+#: src/utils/device-manager.vala:104
+msgid "Computer"
+msgstr ""
+
+#: src/utils/device-manager.vala:105
+msgid "Gaming Input"
+msgstr ""
+
+#: src/utils/device-manager.vala:106
+msgid "Pen"
+msgstr ""
+
+#: src/utils/device-manager.vala:107
+msgid "Touchpad"
+msgstr ""
+
+#: src/utils/device-manager.vala:108
+#, fuzzy
+msgid "Modem"
+msgstr "Nom du modèle"
+
+#: src/utils/device-manager.vala:109
+msgid "Network"
+msgstr ""
+
+#: src/utils/device-manager.vala:110
+msgid "Headset"
+msgstr ""
+
+#: src/utils/device-manager.vala:111
+msgid "Speakers"
+msgstr ""
+
+#: src/utils/device-manager.vala:112
+msgid "Headphones"
+msgstr ""
+
+#: src/utils/device-manager.vala:113
+msgid "Video"
+msgstr ""
+
+#: src/utils/device-manager.vala:114
+msgid "Other Audio"
+msgstr ""
+
+#: src/utils/device-manager.vala:115
+msgid "Remote Control"
+msgstr ""
+
+#: src/utils/device-manager.vala:116
+msgid "Printer"
+msgstr ""
+
+#: src/utils/device-manager.vala:117
+msgid "Scanner"
+msgstr ""
+
+#: src/utils/device-manager.vala:118
+msgid "Camera"
+msgstr ""
+
+#: src/utils/device-manager.vala:119
+msgid "Wearable"
+msgstr ""
+
+#: src/utils/device-manager.vala:120
+msgid "Toy"
+msgstr ""
+
+#: src/utils/device-manager.vala:121
+msgid "Bluetooth Generic"
+msgstr ""
+
+#: src/utils/device-manager.vala:132
+msgid "Lithium ion"
+msgstr ""
+
+#: src/utils/device-manager.vala:133
+msgid "Lithium polymer"
+msgstr ""
+
+#: src/utils/device-manager.vala:134
+msgid "Lithium iron phosphate"
+msgstr ""
+
+#: src/utils/device-manager.vala:135
+msgid "Lead acid"
+msgstr ""
+
+#: src/utils/device-manager.vala:136
+msgid "Nickel cadmium"
+msgstr ""
+
+#: src/utils/device-manager.vala:137
+msgid "Nickel metal hydride"
+msgstr ""
+
+#: src/utils/device-manager.vala:148
 msgid "Charging"
 msgstr "En charge"
 
-#: src/utils/battery_manager.vala:135
+#: src/utils/device-manager.vala:149
 msgid "Discharging"
 msgstr "En cours de décharge"
 
-#: src/utils/battery_manager.vala:137
-msgid "Not charging"
-msgstr "Pas en charge"
+#: src/utils/device-manager.vala:150
+msgid "Empty"
+msgstr ""
 
-#: src/utils/battery_manager.vala:139
-msgid "Full"
-msgstr "Pleine"
+#: src/utils/device-manager.vala:151
+msgid "Fully charged"
+msgstr ""
+
+#: src/utils/device-manager.vala:152
+msgid "Pending charge"
+msgstr ""
+
+#: src/utils/device-manager.vala:153
+msgid "Pending discharge"
+msgstr ""
 
 #: src/application.vala:56
 msgid "translator-credits"
 msgstr ""
 
-#: src/window.vala:321
+#: src/window.vala:326
 msgid "General Information"
 msgstr "Informations générales"
 
-#: src/window.vala:322
-msgid "Device Name"
-msgstr "Nom de l'appareil"
+#: src/window.vala:327
+msgid "Native Path"
+msgstr ""
 
-#: src/window.vala:323
-msgid "Sysfs Path"
-msgstr "Chemin vers Sysfs"
+#: src/window.vala:328
+msgid "Object Path"
+msgstr ""
 
-#: src/window.vala:324
+#: src/window.vala:329
 msgid "Device Type"
 msgstr "Type d'appareil"
 
-#: src/window.vala:327
-msgid "Manufacturing Details"
-msgstr "Détails de fabrication"
+#: src/window.vala:332
+#, fuzzy
+msgid "Model Details"
+msgstr "Nom du modèle"
 
-#: src/window.vala:328
-msgid "Manufacturer"
-msgstr "Fabricant"
+#: src/window.vala:333
+msgid "Vendor"
+msgstr ""
 
-#: src/window.vala:329
+#: src/window.vala:334
 msgid "Serial Number"
 msgstr "Numéro de série"
 
-#: src/window.vala:332
-msgid "Model Information"
-msgstr "Informations sur le modèle"
-
-#: src/window.vala:333
+#: src/window.vala:335
 msgid "Model Name"
 msgstr "Nom du modèle"
 
-#: src/window.vala:334
+#: src/window.vala:336
 msgid "Technology"
 msgstr "Technologie"
 
-#: src/window.vala:337
+#: src/window.vala:339
 msgid "Health Evaluations"
 msgstr "Évaluations d'état"
 
-#: src/window.vala:339
+#: src/window.vala:342
 msgid "State of Health"
 msgstr "État"
 
-#: src/window.vala:340
+#: src/window.vala:347
 msgid "Device Condition"
 msgstr "État de l'appareil"
 
-#: src/window.vala:343
+#: src/window.vala:352
 msgid "Charging Status"
 msgstr "État de charge"
 
-#: src/window.vala:344
-msgid "Charge Limit Percentage"
-msgstr "Pourcentage de limite de chargement"
+#: src/window.vala:355
+msgid "Charge Start Threshold"
+msgstr ""
 
-#: src/window.vala:345
+#: src/window.vala:359
+msgid "Charge End Threshold"
+msgstr ""
+
+#: src/window.vala:363
 msgid "Cycle Count"
 msgstr "Compteur de cycles"
 
-#: src/window.vala:346
+#: src/window.vala:368
 msgid "Current Charge Percentage"
 msgstr "Pourcentage de charge actuel"
 
-#: src/window.vala:347
-msgid "Status"
+#: src/window.vala:371
+#, fuzzy
+msgid "State"
 msgstr "État"
 
-#: src/window.vala:350
+#: src/window.vala:374
 msgid "Time Calculations"
 msgstr "Calculs de délais"
 
-#: src/window.vala:351
+#: src/window.vala:378
 msgid "Time to Empty"
 msgstr "Autonomie restante"
 
-#: src/window.vala:352
-msgid "Projected Runtime with Current Usage"
-msgstr "Autonome projetée avec l'utilisation actuelle"
+#: src/window.vala:383
+#, fuzzy
+msgid "Time to Full"
+msgstr "Autonomie restante"
 
-#: src/window.vala:355
+#: src/window.vala:394
+msgid "Projected Battery Life"
+msgstr ""
+
+#: src/window.vala:400
+msgid "Sensor Readings"
+msgstr ""
+
+#: src/window.vala:403
+msgid "Temperature"
+msgstr ""
+
+#: src/window.vala:408
 msgid "Energy Metrics"
 msgstr "Indicateurs énergétiques"
 
-#: src/window.vala:356
+#: src/window.vala:413
 msgid "Maximum Rated Capacity"
 msgstr "Capacité nominale maximale"
 
-#: src/window.vala:357
+#: src/window.vala:420
 msgid "Maximum Capacity"
 msgstr "Capacité maximale"
 
-#: src/window.vala:358
+#: src/window.vala:427
 msgid "Remaining Energy"
 msgstr "Énergie restante"
 
-#: src/window.vala:359
+#: src/window.vala:434
 msgid "Energy Transfer Rate"
 msgstr "Taux de transfert d'énergie"
 
-#: src/window.vala:362
+#: src/window.vala:440
 msgid "Voltage Statistics"
 msgstr "Statistiques de tension"
 
-#: src/window.vala:363
+#: src/window.vala:445
 msgid "Minimum Rated Voltage"
 msgstr "Tension nominale maximale"
 
-#: src/window.vala:364
+#: src/window.vala:452
 msgid "Current Voltage"
 msgstr "Tension actuelle"
 
-#: src/window.vala:489
+#~ msgid ""
+#~ "The device bears slight capacity loss but is still in good condition for "
+#~ "most tasks."
+#~ msgstr ""
+#~ "L'appareil présente un légère perte de capacité mais est en bon état pour "
+#~ "la plupart des tâches."
+
+#~ msgid ""
+#~ "The device shows a considerable degradation in capacity. Usage time is "
+#~ "noticeably shorter than at its optimal state."
+#~ msgstr ""
+#~ "L'appareil présente une dégradation considérable de sa capacité. Le temps "
+#~ "d'utilisation est sensiblement plus court qu'à son état optimal."
+
+#~ msgid ""
+#~ "The device has a significant drop in capacity. Expect arbitrary shutdowns "
+#~ "and shortened runtime during extended use."
+#~ msgstr ""
+#~ "L'appareil présente une perte importante de capacité. Attendez-vous à des "
+#~ "arrêts intempestifs et à une autonomie réduite lors d'une utilisation "
+#~ "prolongée."
+
+#~ msgid "Mains"
+#~ msgstr "Réseau électrique"
+
+#~ msgid "USB"
+#~ msgstr "USB"
+
+#~ msgid "Wireless"
+#~ msgstr "Sans-fil"
+
+#~ msgid "Not charging"
+#~ msgstr "Pas en charge"
+
+#~ msgid "Full"
+#~ msgstr "Pleine"
+
+#~ msgid "Device Name"
+#~ msgstr "Nom de l'appareil"
+
+#~ msgid "Sysfs Path"
+#~ msgstr "Chemin vers Sysfs"
+
+#~ msgid "Manufacturing Details"
+#~ msgstr "Détails de fabrication"
+
+#~ msgid "Manufacturer"
+#~ msgstr "Fabricant"
+
+#~ msgid "Model Information"
+#~ msgstr "Informations sur le modèle"
+
+#~ msgid "Charge Limit Percentage"
+#~ msgstr "Pourcentage de limite de chargement"
+
+#~ msgid "Projected Runtime with Current Usage"
+#~ msgstr "Autonome projetée avec l'utilisation actuelle"
+
 #, c-format
-msgid ""
-"Path: %s\n"
-"Type: %s"
-msgstr ""
-"Chemin : %s\n"
-"Type : %s"
+#~ msgid ""
+#~ "Path: %s\n"
+#~ "Type: %s"
+#~ msgstr ""
+#~ "Chemin : %s\n"
+#~ "Type : %s"

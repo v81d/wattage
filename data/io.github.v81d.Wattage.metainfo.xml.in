@@ -62,11 +62,22 @@
   </screenshots>
 
   <releases>
-    <release version="1.1.0" date="2025-11-10">
-      <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.4</url>
+    <release version="1.2.0" date="2025-11-27">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/1.2.0</url>
       <description translate="no">
         <ul>
-          <li>Add Italian translations (by @albanobattistella).</li>
+          <li>Automatically upload AppImage to published releases by @archisman-panigrahi.</li>
+          <li>Add French and Turkish translations by @cardpuncher.</li>
+          <li>Read from UPower instead of sysfs by @v81d.</li>
+          <li>Make various changes for performance.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.1.0" date="2025-11-10">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/1.1.0</url>
+      <description translate="no">
+        <ul>
+          <li>Add Italian translations by @albanobattistella.</li>
           <li>Add translation testing instructions in documentation.</li>
           <li>Use sysfs `state_of_health` file for SoH field if present (otherwise use calculated maximum capacity).</li>
         </ul>

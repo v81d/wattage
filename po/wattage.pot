@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wattage 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-22 17:28-0500\n"
+"POT-Creation-Date: 2025-11-27 18:01-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -187,191 +187,201 @@ msgstr ""
 
 #: src/utils/device-manager.vala:67
 msgid ""
-"The device performs close to its original capacity. It is suitable for daily "
-"use with minimal wear."
+"The device is near or at its maximum rated capacity. It is in excellent "
+"condition and should not require much intervention."
 msgstr ""
 
 #: src/utils/device-manager.vala:69
 msgid ""
-"The device bears slight capacity loss but is still in good condition for "
-"most tasks."
+"The device performs close to its original capacity. There is little "
+"noticeable difference from its optimal state."
 msgstr ""
 
 #: src/utils/device-manager.vala:71
 msgid ""
-"The device shows a considerable degradation in capacity. Usage time is "
-"noticeably shorter than at its optimal state."
+"The device has lost some capacity, but it should not be of much concern. "
+"Continue to take precautions regarding your power device like limiting its "
+"charge and using power-saving settings."
 msgstr ""
 
 #: src/utils/device-manager.vala:73
 msgid ""
-"The device has a significant drop in capacity. Expect arbitrary shutdowns "
-"and shortened runtime during extended use."
+"The device has noticeably degraded in capacity, but is still usable. Runtime "
+"may be shorter than at its original capacity. Use power-optimizing settings "
+"to extend longevity and slow down degradation."
 msgstr ""
 
 #: src/utils/device-manager.vala:75
 msgid ""
-"The device has experienced substantial deterioration. Consider replacing the "
-"device to avoid further damage."
+"The device has experienced a significant drop in capacity. Mobility can be "
+"more difficult due to a decrease in runtime. Depending on usage habits, "
+"replacement may be necessary in the future."
 msgstr ""
 
-#: src/utils/device-manager.vala:92
-msgid "Line Power"
-msgstr ""
-
-#: src/utils/device-manager.vala:93
-msgid "Battery"
+#: src/utils/device-manager.vala:77
+msgid ""
+"The device has undergone substantial deterioration. Power instability and "
+"potential overheating can damage other components. Replace the device to "
+"avoid further damage."
 msgstr ""
 
 #: src/utils/device-manager.vala:94
-msgid "UPS"
+msgid "Line Power"
 msgstr ""
 
 #: src/utils/device-manager.vala:95
-msgid "Monitor"
+msgid "Battery"
 msgstr ""
 
 #: src/utils/device-manager.vala:96
-msgid "Mouse"
+msgid "UPS"
 msgstr ""
 
 #: src/utils/device-manager.vala:97
-msgid "Keyboard"
+msgid "Monitor"
 msgstr ""
 
 #: src/utils/device-manager.vala:98
-msgid "PDA"
+msgid "Mouse"
 msgstr ""
 
 #: src/utils/device-manager.vala:99
-msgid "Phone"
+msgid "Keyboard"
 msgstr ""
 
 #: src/utils/device-manager.vala:100
-msgid "Media Player"
+msgid "PDA"
 msgstr ""
 
 #: src/utils/device-manager.vala:101
-msgid "Tablet"
+msgid "Phone"
 msgstr ""
 
 #: src/utils/device-manager.vala:102
-msgid "Computer"
+msgid "Media Player"
 msgstr ""
 
 #: src/utils/device-manager.vala:103
-msgid "Gaming Input"
+msgid "Tablet"
 msgstr ""
 
 #: src/utils/device-manager.vala:104
-msgid "Pen"
+msgid "Computer"
 msgstr ""
 
 #: src/utils/device-manager.vala:105
-msgid "Touchpad"
+msgid "Gaming Input"
 msgstr ""
 
 #: src/utils/device-manager.vala:106
-msgid "Modem"
+msgid "Pen"
 msgstr ""
 
 #: src/utils/device-manager.vala:107
-msgid "Network"
+msgid "Touchpad"
 msgstr ""
 
 #: src/utils/device-manager.vala:108
-msgid "Headset"
+msgid "Modem"
 msgstr ""
 
 #: src/utils/device-manager.vala:109
-msgid "Speakers"
+msgid "Network"
 msgstr ""
 
 #: src/utils/device-manager.vala:110
-msgid "Headphones"
+msgid "Headset"
 msgstr ""
 
 #: src/utils/device-manager.vala:111
-msgid "Video"
+msgid "Speakers"
 msgstr ""
 
 #: src/utils/device-manager.vala:112
-msgid "Other Audio"
+msgid "Headphones"
 msgstr ""
 
 #: src/utils/device-manager.vala:113
-msgid "Remote Control"
+msgid "Video"
 msgstr ""
 
 #: src/utils/device-manager.vala:114
-msgid "Printer"
+msgid "Other Audio"
 msgstr ""
 
 #: src/utils/device-manager.vala:115
-msgid "Scanner"
+msgid "Remote Control"
 msgstr ""
 
 #: src/utils/device-manager.vala:116
-msgid "Camera"
+msgid "Printer"
 msgstr ""
 
 #: src/utils/device-manager.vala:117
-msgid "Wearable"
+msgid "Scanner"
 msgstr ""
 
 #: src/utils/device-manager.vala:118
-msgid "Toy"
+msgid "Camera"
 msgstr ""
 
 #: src/utils/device-manager.vala:119
+msgid "Wearable"
+msgstr ""
+
+#: src/utils/device-manager.vala:120
+msgid "Toy"
+msgstr ""
+
+#: src/utils/device-manager.vala:121
 msgid "Bluetooth Generic"
 msgstr ""
 
-#: src/utils/device-manager.vala:130
+#: src/utils/device-manager.vala:132
 msgid "Lithium ion"
 msgstr ""
 
-#: src/utils/device-manager.vala:131
+#: src/utils/device-manager.vala:133
 msgid "Lithium polymer"
 msgstr ""
 
-#: src/utils/device-manager.vala:132
+#: src/utils/device-manager.vala:134
 msgid "Lithium iron phosphate"
 msgstr ""
 
-#: src/utils/device-manager.vala:133
+#: src/utils/device-manager.vala:135
 msgid "Lead acid"
 msgstr ""
 
-#: src/utils/device-manager.vala:134
+#: src/utils/device-manager.vala:136
 msgid "Nickel cadmium"
 msgstr ""
 
-#: src/utils/device-manager.vala:135
+#: src/utils/device-manager.vala:137
 msgid "Nickel metal hydride"
 msgstr ""
 
-#: src/utils/device-manager.vala:146
+#: src/utils/device-manager.vala:148
 msgid "Charging"
 msgstr ""
 
-#: src/utils/device-manager.vala:147
+#: src/utils/device-manager.vala:149
 msgid "Discharging"
 msgstr ""
 
-#: src/utils/device-manager.vala:148
+#: src/utils/device-manager.vala:150
 msgid "Empty"
 msgstr ""
 
-#: src/utils/device-manager.vala:149
+#: src/utils/device-manager.vala:151
 msgid "Fully charged"
 msgstr ""
 
-#: src/utils/device-manager.vala:150
+#: src/utils/device-manager.vala:152
 msgid "Pending charge"
 msgstr ""
 
-#: src/utils/device-manager.vala:151
+#: src/utils/device-manager.vala:153
 msgid "Pending discharge"
 msgstr ""
 
