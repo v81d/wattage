@@ -35,6 +35,8 @@ git clone --branch=translate https://github.com/v81d/wattage.git
 cd wattage
 ```
 
+> In case the template is not up-to-date, you can regenerate the template with the command: `xgettext -f po/POTFILES.in -o po/wattage.pot --package-name=Wattage`.
+
 2. Create a `.po` file under the `po/` directory (only if it does not already exist):
 
 ```bash
