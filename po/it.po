@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-27 18:01-0500\n"
-"PO-Revision-Date: 2025-10-15 20:33+0200\n"
+"PO-Revision-Date: 2025-11-28 15:58+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -62,9 +62,8 @@ msgid "Auto-refresh cooldown"
 msgstr "Intervallo di aggiornamento automatico"
 
 #: data/io.github.v81d.Wattage.gschema.xml:13
-#, fuzzy
 msgid "Interval, in seconds, between auto-refresh operations."
-msgstr "Intervallo in secondi tra le operazioni di aggiornamento automatico."
+msgstr "Intervallo, in secondi, tra le operazioni di aggiornamento automatico."
 
 #: data/io.github.v81d.Wattage.gschema.xml:17
 msgid "Energy unit"
@@ -195,15 +194,16 @@ msgid ""
 "The device is near or at its maximum rated capacity. It is in excellent "
 "condition and should not require much intervention."
 msgstr ""
+"Il dispositivo è prossimo o ha raggiunto la sua capacità massima nominale. È in ottime condizioni "
+"e non dovrebbe richiedere molti interventi."
 
 #: src/utils/device-manager.vala:69
-#, fuzzy
 msgid ""
 "The device performs close to its original capacity. There is little "
 "noticeable difference from its optimal state."
 msgstr ""
-"Il dispositivo funziona quasi alla sua capacità originale. È adatto all'uso "
-"quotidiano con un'usura minima."
+"Il dispositivo funziona quasi alla sua capacità originale. Ci sono poche "
+"differenze evidenti rispetto al suo stato ottimale."
 
 #: src/utils/device-manager.vala:71
 msgid ""
@@ -211,6 +211,9 @@ msgid ""
 "Continue to take precautions regarding your power device like limiting its "
 "charge and using power-saving settings."
 msgstr ""
+"Il dispositivo ha perso un po' di capacità, ma non dovrebbe destare particolare preoccupazione."
+"Continua a prendere precauzioni per quanto riguarda l'alimentazione del tuo dispositivo, come limitarne la "
+"carica e utilizzare le impostazioni di risparmio energetico."
 
 #: src/utils/device-manager.vala:73
 msgid ""
@@ -218,6 +221,9 @@ msgid ""
 "may be shorter than at its original capacity. Use power-optimizing settings "
 "to extend longevity and slow down degradation."
 msgstr ""
+"La capacità del dispositivo è notevolmente diminuita, ma è ancora utilizzabile. L'autonomia "
+"potrebbe essere inferiore rispetto alla capacità originale. Utilizzare impostazioni di ottimizzazione del consumo energetico "
+"per prolungare la longevità e rallentare il degrado."
 
 #: src/utils/device-manager.vala:75
 msgid ""
@@ -225,20 +231,23 @@ msgid ""
 "more difficult due to a decrease in runtime. Depending on usage habits, "
 "replacement may be necessary in the future."
 msgstr ""
+"Il dispositivo ha subito un calo significativo della capacità. La mobilità può essere "
+"più difficile a causa della riduzione dell'autonomia. A seconda delle abitudini di utilizzo, "
+"potrebbe essere necessaria la sostituzione in futuro."
 
 #: src/utils/device-manager.vala:77
-#, fuzzy
 msgid ""
 "The device has undergone substantial deterioration. Power instability and "
 "potential overheating can damage other components. Replace the device to "
 "avoid further damage."
 msgstr ""
-"Il dispositivo ha subito un deterioramento sostanziale. Prendi in "
-"considerazione la sostituzione del dispositivo per evitare ulteriori danni."
+"Il dispositivo ha subito un deterioramento sostanziale. L'instabilità di alimentazione e il "
+"potenziale surriscaldamento possono danneggiare altri componenti. Sostituire il dispositivo per "
+"evitare ulteriori danni."
 
 #: src/utils/device-manager.vala:94
 msgid "Line Power"
-msgstr ""
+msgstr "Linea di alimentazione"
 
 #: src/utils/device-manager.vala:95
 msgid "Battery"
@@ -250,129 +259,127 @@ msgstr "UPS"
 
 #: src/utils/device-manager.vala:97
 msgid "Monitor"
-msgstr ""
+msgstr "Monitor"
 
 #: src/utils/device-manager.vala:98
 msgid "Mouse"
-msgstr ""
+msgstr "Mouse"
 
 #: src/utils/device-manager.vala:99
-#, fuzzy
 msgid "Keyboard"
-msgstr "Scorciatoie da tastiera"
+msgstr "Tastiera"
 
 #: src/utils/device-manager.vala:100
 msgid "PDA"
-msgstr ""
+msgstr "PDA"
 
 #: src/utils/device-manager.vala:101
 msgid "Phone"
-msgstr ""
+msgstr "Telefono"
 
 #: src/utils/device-manager.vala:102
 msgid "Media Player"
-msgstr ""
+msgstr "Lettore multimediale"
 
 #: src/utils/device-manager.vala:103
 msgid "Tablet"
-msgstr ""
+msgstr "Tablet"
 
 #: src/utils/device-manager.vala:104
 msgid "Computer"
-msgstr ""
+msgstr "Computer"
 
 #: src/utils/device-manager.vala:105
 msgid "Gaming Input"
-msgstr ""
+msgstr "Input di gioco"
 
 #: src/utils/device-manager.vala:106
 msgid "Pen"
-msgstr ""
+msgstr "Penna"
 
 #: src/utils/device-manager.vala:107
 msgid "Touchpad"
-msgstr ""
+msgstr "Touchpad"
 
 #: src/utils/device-manager.vala:108
-#, fuzzy
 msgid "Modem"
-msgstr "Nome modello"
+msgstr "Modem"
 
 #: src/utils/device-manager.vala:109
 msgid "Network"
-msgstr ""
+msgstr "Rete"
 
 #: src/utils/device-manager.vala:110
 msgid "Headset"
-msgstr ""
+msgstr "Cuffia"
 
 #: src/utils/device-manager.vala:111
 msgid "Speakers"
-msgstr ""
+msgstr "Altoparlanti"
 
 #: src/utils/device-manager.vala:112
 msgid "Headphones"
-msgstr ""
+msgstr "Cuffie"
 
 #: src/utils/device-manager.vala:113
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: src/utils/device-manager.vala:114
 msgid "Other Audio"
-msgstr ""
+msgstr "Altro audio"
 
 #: src/utils/device-manager.vala:115
 msgid "Remote Control"
-msgstr ""
+msgstr "Telecomando"
 
 #: src/utils/device-manager.vala:116
 msgid "Printer"
-msgstr ""
+msgstr "Stampante"
 
 #: src/utils/device-manager.vala:117
 msgid "Scanner"
-msgstr ""
+msgstr "Scanner"
 
 #: src/utils/device-manager.vala:118
 msgid "Camera"
-msgstr ""
+msgstr "Camera"
 
 #: src/utils/device-manager.vala:119
 msgid "Wearable"
-msgstr ""
+msgstr "Indossabile"
 
 #: src/utils/device-manager.vala:120
 msgid "Toy"
-msgstr ""
+msgstr "Giocattolo"
 
 #: src/utils/device-manager.vala:121
 msgid "Bluetooth Generic"
-msgstr ""
+msgstr "Bluetooth generico"
 
 #: src/utils/device-manager.vala:132
 msgid "Lithium ion"
-msgstr ""
+msgstr "Ioni di litio"
 
 #: src/utils/device-manager.vala:133
 msgid "Lithium polymer"
-msgstr ""
+msgstr "Polimero di litio"
 
 #: src/utils/device-manager.vala:134
 msgid "Lithium iron phosphate"
-msgstr ""
+msgstr "Fosfato di ferro e litio"
 
 #: src/utils/device-manager.vala:135
 msgid "Lead acid"
-msgstr ""
+msgstr "Piombo-acido"
 
 #: src/utils/device-manager.vala:136
 msgid "Nickel cadmium"
-msgstr ""
+msgstr "Nichel cadmio"
 
 #: src/utils/device-manager.vala:137
 msgid "Nickel metal hydride"
-msgstr ""
+msgstr "Idruro di nichel metallico"
 
 #: src/utils/device-manager.vala:148
 msgid "Charging"
@@ -384,19 +391,19 @@ msgstr "In scaricamento"
 
 #: src/utils/device-manager.vala:150
 msgid "Empty"
-msgstr ""
+msgstr "Scarica"
 
 #: src/utils/device-manager.vala:151
 msgid "Fully charged"
-msgstr ""
+msgstr "Completamente carica"
 
 #: src/utils/device-manager.vala:152
 msgid "Pending charge"
-msgstr ""
+msgstr "Ricarica in sospeso"
 
 #: src/utils/device-manager.vala:153
 msgid "Pending discharge"
-msgstr ""
+msgstr "Scarica in sospeso"
 
 #: src/application.vala:56
 msgid "translator-credits"
@@ -408,24 +415,23 @@ msgstr "Informazioni generali"
 
 #: src/window.vala:327
 msgid "Native Path"
-msgstr ""
+msgstr "Percorso nativo"
 
 #: src/window.vala:328
 msgid "Object Path"
-msgstr ""
+msgstr "Percorso dell'oggetto"
 
 #: src/window.vala:329
 msgid "Device Type"
 msgstr "Tipo di dispositivo"
 
 #: src/window.vala:332
-#, fuzzy
 msgid "Model Details"
-msgstr "Nome modello"
+msgstr "Dettaglio del modello"
 
 #: src/window.vala:333
 msgid "Vendor"
-msgstr ""
+msgstr "Venditore"
 
 #: src/window.vala:334
 msgid "Serial Number"
@@ -457,11 +463,11 @@ msgstr "Stato di carica"
 
 #: src/window.vala:355
 msgid "Charge Start Threshold"
-msgstr ""
+msgstr "Soglia di inizio carica"
 
 #: src/window.vala:359
 msgid "Charge End Threshold"
-msgstr ""
+msgstr "Soglia di fine carica"
 
 #: src/window.vala:363
 msgid "Cycle Count"
@@ -472,7 +478,6 @@ msgid "Current Charge Percentage"
 msgstr "Percentuale di carica attuale"
 
 #: src/window.vala:371
-#, fuzzy
 msgid "State"
 msgstr "Stato"
 
@@ -485,21 +490,20 @@ msgid "Time to Empty"
 msgstr "Tempo rimanente prima dello scaricamento completo"
 
 #: src/window.vala:383
-#, fuzzy
 msgid "Time to Full"
-msgstr "Tempo rimanente prima dello scaricamento completo"
+msgstr "Tempo caricamento completo"
 
 #: src/window.vala:394
 msgid "Projected Battery Life"
-msgstr ""
+msgstr "Durata prevista della batteria"
 
 #: src/window.vala:400
 msgid "Sensor Readings"
-msgstr ""
+msgstr "Letture del sensore"
 
 #: src/window.vala:403
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatura"
 
 #: src/window.vala:408
 msgid "Energy Metrics"
