@@ -1,21 +1,23 @@
 # Turkish translation of the Wattage program.
 # Copyright (C) 2025 v81d
 # This file is distributed under the same license as the Wattage package.
-# Cardpuncher, 2025.
 #
-#, fuzzy
+# Cardpuncher, 2025.
+# Sabri Ünal <yakushabb@gmail.com>, 2025.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-27 18:01-0500\n"
-"PO-Revision-Date: 2025-11-19 17:51+0300\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2025-12-08 21:25+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.8\n"
 
 #: data/io.github.v81d.Wattage.desktop.in:3
@@ -28,14 +30,16 @@ msgid ""
 "GTK;Battery monitor;Battery health;Power statistics;Power usage;Power "
 "devices;"
 msgstr ""
-"GTK;Batarya takibi;Pil durumu;Güç istatistikleri;Güç kullanımı;Güç cihazları;"
+"GTK;Battery monitor;Battery health;Power statistics;Power usage;Power "
+"devices;Batarya takibi;Pil İzleme;Pil durumu;Güç istatistikleri;Güç "
+"kullanımı;Güç cihazları;Güç Aygıtları;"
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:10
 msgid ""
 "Wattage is an application designed for monitoring the health and status of "
 "your power devices."
 msgstr ""
-"Wattage, güç cihazlarınızın durumunu ve sağlığını takip etmeniz için "
+"Wattage, güç aygıtlarınızın durumunu ve sağlığını takip etmeniz için "
 "tasarlanmış bir uygulamadır."
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:52
@@ -63,9 +67,8 @@ msgid "Auto-refresh cooldown"
 msgstr "Otomatik yenileme bekleme süresi"
 
 #: data/io.github.v81d.Wattage.gschema.xml:13
-#, fuzzy
 msgid "Interval, in seconds, between auto-refresh operations."
-msgstr "Saniye olarak otomatik tazeleme işlemleri arasındaki süre."
+msgstr "Saniye olarak kendiliğinden yenileme işlemleri arasındaki süre."
 
 #: data/io.github.v81d.Wattage.gschema.xml:17
 msgid "Energy unit"
@@ -101,11 +104,11 @@ msgstr "Otomasyon"
 
 #: src/ui/preferences-dialog.ui:12
 msgid "Auto-Refresh"
-msgstr "Otomatik Tazeleme"
+msgstr "Kendiliğinden Tazele"
 
 #: src/ui/preferences-dialog.ui:17
 msgid "Auto-Refresh Cooldown (seconds)"
-msgstr "Otomatik Tazeleme Bekleme Süresi (saniye)"
+msgstr "Kendiliğinden Tazeleme Bekleme Süresi (saniye)"
 
 #: src/ui/preferences-dialog.ui:32
 msgid "Measurements"
@@ -136,7 +139,7 @@ msgstr "Tercihleri Aç"
 #: src/ui/shortcuts-dialog.ui:21
 msgctxt "shortcut window"
 msgid "Show About Page"
-msgstr "Hakkında Sayfası'nı Göster"
+msgstr "Hakkında Sayfasını Göster"
 
 #: src/ui/shortcuts-dialog.ui:27
 msgctxt "shortcut window"
@@ -155,16 +158,16 @@ msgstr "İçeriği Tazele"
 #: src/ui/shortcuts-dialog.ui:44
 msgctxt "shortcut window"
 msgid "Select Next Device"
-msgstr "Sonraki Cihazı Seç"
+msgstr "Sonraki Aygıtı Seç"
 
 #: src/ui/shortcuts-dialog.ui:50
 msgctxt "shortcut window"
 msgid "Select Previous Device"
-msgstr "Önceki Cihazı Seç"
+msgstr "Önceki Aygıtı Seç"
 
 #: src/ui/window.ui:19
 msgid "Devices"
-msgstr "Cihazlar"
+msgstr "Aygıtlar"
 
 #: src/ui/window.ui:69
 msgid "Toggle Sidebar"
@@ -195,15 +198,15 @@ msgid ""
 "The device is near or at its maximum rated capacity. It is in excellent "
 "condition and should not require much intervention."
 msgstr ""
+"Aygıt, en yüksek nominal kapasitesine yakın ya da en yüksek kapasitede. "
+"Mükemmel durumda ve fazla müdahale gerektirmiyor."
 
 #: src/utils/device-manager.vala:69
-#, fuzzy
 msgid ""
 "The device performs close to its original capacity. There is little "
 "noticeable difference from its optimal state."
 msgstr ""
-"Cihaz, orijinal kapasitesine yakın çalışıyor. Asgari yıpranmayla günlük "
-"çalışma için uygundur."
+"Aygıt, özgün kapasitesine yakın çalışıyor. En iyi durumundan çok az fark var."
 
 #: src/utils/device-manager.vala:71
 msgid ""
@@ -211,6 +214,9 @@ msgid ""
 "Continue to take precautions regarding your power device like limiting its "
 "charge and using power-saving settings."
 msgstr ""
+"Aygıtın kapasitesi biraz azalmış, ancak çok endişe verici bir durum değil. "
+"Şarjını sınırlamak ve güç tutumu ayarlarını kullanmak gibi güç "
+"aygıtlarınızla ilgili önlemleri almaya devam edin."
 
 #: src/utils/device-manager.vala:73
 msgid ""
@@ -218,6 +224,9 @@ msgid ""
 "may be shorter than at its original capacity. Use power-optimizing settings "
 "to extend longevity and slow down degradation."
 msgstr ""
+"Aygıtın kapasitesi belirgin şekilde azalmış, ancak hala kullanılabilir "
+"durumda. Çalışma süresi, özgün kapasitesine göre daha kısa olabilir. Güç "
+"eniyileme ayarlarını kullanarak ömrünü uzatın ve kapasite kaybını yavaşlatın."
 
 #: src/utils/device-manager.vala:75
 msgid ""
@@ -225,20 +234,23 @@ msgid ""
 "more difficult due to a decrease in runtime. Depending on usage habits, "
 "replacement may be necessary in the future."
 msgstr ""
+"Aygıtın kapasitesinde önemli düşüş yaşanmış. Çalışma süresinin azalması "
+"nedeniyle hareketlilik daha zor hale gelebilir. Kullanım alışkanlıklarına "
+"bağlı olarak, gelecekte aygıtın değiştirilmesi gerekebilir."
 
 #: src/utils/device-manager.vala:77
-#, fuzzy
 msgid ""
 "The device has undergone substantial deterioration. Power instability and "
 "potential overheating can damage other components. Replace the device to "
 "avoid further damage."
 msgstr ""
-"Cihaz, son derece bozulmuş durumdadır. Daha fazla hasarı önlemek için yerine "
-"yenisini almayı bir düşünün."
+"Aygıt önemli ölçüde bozulmuş. Güç dengesizliği ve olası aşırı ısınma diğer "
+"bileşenlere zarar verebilir. Daha fazla hasarı önlemek için aygıtı "
+"değiştirin."
 
 #: src/utils/device-manager.vala:94
 msgid "Line Power"
-msgstr ""
+msgstr "Hat Gücü"
 
 #: src/utils/device-manager.vala:95
 msgid "Battery"
@@ -250,157 +262,157 @@ msgstr "UPS"
 
 #: src/utils/device-manager.vala:97
 msgid "Monitor"
-msgstr ""
+msgstr "Ekran"
 
 #: src/utils/device-manager.vala:98
 msgid "Mouse"
-msgstr ""
+msgstr "Fare"
 
 #: src/utils/device-manager.vala:99
-#, fuzzy
 msgid "Keyboard"
 msgstr "Klavye Kısayolları"
 
 #: src/utils/device-manager.vala:100
 msgid "PDA"
-msgstr ""
+msgstr "PDA"
 
 #: src/utils/device-manager.vala:101
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: src/utils/device-manager.vala:102
 msgid "Media Player"
-msgstr ""
+msgstr "Ortam Oynatıcı"
 
 #: src/utils/device-manager.vala:103
 msgid "Tablet"
-msgstr ""
+msgstr "Tablet"
 
 #: src/utils/device-manager.vala:104
 msgid "Computer"
-msgstr ""
+msgstr "Bilgisayar"
 
 #: src/utils/device-manager.vala:105
 msgid "Gaming Input"
-msgstr ""
+msgstr "Oyun Girdi Aygıtı"
 
 #: src/utils/device-manager.vala:106
 msgid "Pen"
-msgstr ""
+msgstr "Kalem"
 
 #: src/utils/device-manager.vala:107
 msgid "Touchpad"
-msgstr ""
+msgstr "Dokunmatik Yüzey"
 
 #: src/utils/device-manager.vala:108
-#, fuzzy
 msgid "Modem"
-msgstr "Model İsmi"
+msgstr "Model"
 
 #: src/utils/device-manager.vala:109
 msgid "Network"
-msgstr ""
+msgstr "Ağ"
 
 #: src/utils/device-manager.vala:110
 msgid "Headset"
-msgstr ""
+msgstr "Kulaklıklı Mikrofon"
 
 #: src/utils/device-manager.vala:111
 msgid "Speakers"
-msgstr ""
+msgstr "Hoparlör"
 
 #: src/utils/device-manager.vala:112
 msgid "Headphones"
-msgstr ""
+msgstr "Kulaklık"
 
 #: src/utils/device-manager.vala:113
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: src/utils/device-manager.vala:114
 msgid "Other Audio"
-msgstr ""
+msgstr "Diğer Sesler"
 
 #: src/utils/device-manager.vala:115
 msgid "Remote Control"
-msgstr ""
+msgstr "Uzaktan Kumanda"
 
 #: src/utils/device-manager.vala:116
 msgid "Printer"
-msgstr ""
+msgstr "Yazıcı"
 
 #: src/utils/device-manager.vala:117
 msgid "Scanner"
-msgstr ""
+msgstr "Tarayıcı"
 
 #: src/utils/device-manager.vala:118
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: src/utils/device-manager.vala:119
 msgid "Wearable"
-msgstr ""
+msgstr "Giyilebilir"
 
 #: src/utils/device-manager.vala:120
 msgid "Toy"
-msgstr ""
+msgstr "Oyuncak"
 
 #: src/utils/device-manager.vala:121
 msgid "Bluetooth Generic"
-msgstr ""
+msgstr "Bluetooth Genel"
 
 #: src/utils/device-manager.vala:132
 msgid "Lithium ion"
-msgstr ""
+msgstr "Lityum İyon"
 
 #: src/utils/device-manager.vala:133
 msgid "Lithium polymer"
-msgstr ""
+msgstr "Lityum Polimer"
 
 #: src/utils/device-manager.vala:134
 msgid "Lithium iron phosphate"
-msgstr ""
+msgstr "Lityum Demir Fosfat"
 
 #: src/utils/device-manager.vala:135
 msgid "Lead acid"
-msgstr ""
+msgstr "Kurşun Asit"
 
 #: src/utils/device-manager.vala:136
 msgid "Nickel cadmium"
-msgstr ""
+msgstr "Nikel Kadmiyum"
 
 #: src/utils/device-manager.vala:137
 msgid "Nickel metal hydride"
-msgstr ""
+msgstr "Nikel Metal Hidrür"
 
 #: src/utils/device-manager.vala:148
 msgid "Charging"
-msgstr "Şarj Oluyor"
+msgstr "Şarj oluyor"
 
 #: src/utils/device-manager.vala:149
 msgid "Discharging"
-msgstr "Şarj Boşalıyor"
+msgstr "Şarj boşalıyor"
 
 #: src/utils/device-manager.vala:150
 msgid "Empty"
-msgstr ""
+msgstr "Boş"
 
 #: src/utils/device-manager.vala:151
 msgid "Fully charged"
-msgstr ""
+msgstr "Tümüyle şarj oldu"
 
 #: src/utils/device-manager.vala:152
 msgid "Pending charge"
-msgstr ""
+msgstr "Şarj olması bekleniyor"
 
 #: src/utils/device-manager.vala:153
 msgid "Pending discharge"
-msgstr ""
+msgstr "Boşalması bekleniyor"
 
 #: src/application.vala:56
 msgid "translator-credits"
 msgstr ""
+"Cardpuncher\n"
+"Sabri Ünal <yakushabb@gmail.com>"
 
 #: src/window.vala:326
 msgid "General Information"
@@ -408,32 +420,31 @@ msgstr "Genel Bilgi"
 
 #: src/window.vala:327
 msgid "Native Path"
-msgstr ""
+msgstr "Doğal Yol"
 
 #: src/window.vala:328
 msgid "Object Path"
-msgstr ""
+msgstr "Nesne Yolu"
 
 #: src/window.vala:329
 msgid "Device Type"
-msgstr "Cihaz Türü"
+msgstr "Aygıt Türü"
 
 #: src/window.vala:332
-#, fuzzy
 msgid "Model Details"
-msgstr "Model İsmi"
+msgstr "Model Ayrıntıları"
 
 #: src/window.vala:333
 msgid "Vendor"
-msgstr ""
+msgstr "Üretici"
 
 #: src/window.vala:334
 msgid "Serial Number"
-msgstr "Seri Numara"
+msgstr "Seri Numarası"
 
 #: src/window.vala:335
 msgid "Model Name"
-msgstr "Model İsmi"
+msgstr "Model Adı"
 
 #: src/window.vala:336
 msgid "Technology"
@@ -449,7 +460,7 @@ msgstr "Sağlık Durumu"
 
 #: src/window.vala:347
 msgid "Device Condition"
-msgstr "Cihaz Durumu"
+msgstr "Aygıt Durumu"
 
 #: src/window.vala:352
 msgid "Charging Status"
@@ -457,11 +468,11 @@ msgstr "Şarj Durumu"
 
 #: src/window.vala:355
 msgid "Charge Start Threshold"
-msgstr ""
+msgstr "Şarj Başlama Eşiği"
 
 #: src/window.vala:359
 msgid "Charge End Threshold"
-msgstr ""
+msgstr "Şarj Bitiş Eşiği"
 
 #: src/window.vala:363
 msgid "Cycle Count"
@@ -472,7 +483,6 @@ msgid "Current Charge Percentage"
 msgstr "Güncel Şarj Yüzdesi"
 
 #: src/window.vala:371
-#, fuzzy
 msgid "State"
 msgstr "Durum"
 
@@ -485,21 +495,20 @@ msgid "Time to Empty"
 msgstr "Boşalmasına Kalan Süre"
 
 #: src/window.vala:383
-#, fuzzy
 msgid "Time to Full"
-msgstr "Boşalmasına Kalan Süre"
+msgstr "Dolma Zamanı"
 
 #: src/window.vala:394
 msgid "Projected Battery Life"
-msgstr ""
+msgstr "Tahmini Pil Ömrü"
 
 #: src/window.vala:400
 msgid "Sensor Readings"
-msgstr ""
+msgstr "Algılayıcı Okumaları"
 
 #: src/window.vala:403
 msgid "Temperature"
-msgstr ""
+msgstr "Sıcaklık"
 
 #: src/window.vala:408
 msgid "Energy Metrics"
@@ -507,11 +516,11 @@ msgstr "Enerji Ölçümleri"
 
 #: src/window.vala:413
 msgid "Maximum Rated Capacity"
-msgstr "Azami Nominal Kapasite"
+msgstr "En Çok Nominal Kapasite"
 
 #: src/window.vala:420
 msgid "Maximum Capacity"
-msgstr "Azami Kapasite"
+msgstr "En Çok Kapasite"
 
 #: src/window.vala:427
 msgid "Remaining Energy"
@@ -527,74 +536,8 @@ msgstr "Voltaj İstatistikleri"
 
 #: src/window.vala:445
 msgid "Minimum Rated Voltage"
-msgstr "Asgari Nominal Voltaj"
+msgstr "En Düşük Nominal Voltaj"
 
 #: src/window.vala:452
 msgid "Current Voltage"
 msgstr "Güncel Voltaj"
-
-#~ msgid ""
-#~ "The device bears slight capacity loss but is still in good condition for "
-#~ "most tasks."
-#~ msgstr ""
-#~ "Cihaz, hafif bir kapasite kaybı göstermektedir fakat görevlerin "
-#~ "ekseriyeti için hâlâ iyi bir durumdadır."
-
-#~ msgid ""
-#~ "The device shows a considerable degradation in capacity. Usage time is "
-#~ "noticeably shorter than at its optimal state."
-#~ msgstr ""
-#~ "Cihaz, kapasite alanında hatırı sayılır bir düşüş göstermektedir. "
-#~ "Kullanma süresi, en iyi durumuna göre fark edilir biçimde azalmıştır."
-
-#~ msgid ""
-#~ "The device has a significant drop in capacity. Expect arbitrary shutdowns "
-#~ "and shortened runtime during extended use."
-#~ msgstr ""
-#~ "Cihaz, kapasite olarak önemli bir düşüş göstermektedir. Uzun süreli "
-#~ "kullanımlarda beklenmedik kapanmalar ve çalışma süresinin kısalmasına "
-#~ "hazırlıklı olun."
-
-#~ msgid "Mains"
-#~ msgstr "Elektrik Şebekesi"
-
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#~ msgid "Wireless"
-#~ msgstr "Telsiz"
-
-#~ msgid "Not charging"
-#~ msgstr "Şarj Olmuyor"
-
-#~ msgid "Full"
-#~ msgstr "Dolu"
-
-#~ msgid "Device Name"
-#~ msgstr "Cihaz İsmi"
-
-#~ msgid "Sysfs Path"
-#~ msgstr "Sysfs Yolu"
-
-#~ msgid "Manufacturing Details"
-#~ msgstr "Üretim Ayrıntıları"
-
-#~ msgid "Manufacturer"
-#~ msgstr "Üretici"
-
-#~ msgid "Model Information"
-#~ msgstr "Model Bilgileri"
-
-#~ msgid "Charge Limit Percentage"
-#~ msgstr "Şarj Sınır Yüzdesi"
-
-#~ msgid "Projected Runtime with Current Usage"
-#~ msgstr "Güncel Kullanımla Tahmini Çalışma Süresi"
-
-#, c-format
-#~ msgid ""
-#~ "Path: %s\n"
-#~ "Type: %s"
-#~ msgstr ""
-#~ "Yol: %s\n"
-#~ "Tür: %s"
