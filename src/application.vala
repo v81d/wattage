@@ -33,7 +33,7 @@ public class Wattage.Application : Adw.Application {
             { "quit", this.quit }
         };
         this.add_action_entries (action_entries, this);
-        this.set_accels_for_action ("win.preferences", { "<primary>p" });
+        this.set_accels_for_action ("win.preferences", { "<primary>comma" });
         this.set_accels_for_action ("app.about", { "<primary>i" });
         this.set_accels_for_action ("app.quit", { "<primary>q" });
         this.set_accels_for_action ("win.refresh", { "<primary>r" });
