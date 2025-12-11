@@ -65,10 +65,12 @@
     <release version="1.2.1" date="2025-12-11">
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.2.1</url>
       <description translate="no">
-        <li>Update Italian translations by @albanobattistella.</li>
-        <li>Update preferences shortcut to align with GNOME HIG by @yakushabb.</li>
-        <li>Add Czech translations by @Fjuro.</li>
-        <li>Update Turkish translations by @yakushabb.</li>
+        <ul>
+          <li>Update Italian translations by @albanobattistella.</li>
+          <li>Update preferences shortcut to align with GNOME HIG by @yakushabb.</li>
+          <li>Add Czech translations by @Fjuro.</li>
+          <li>Update Turkish translations by @yakushabb.</li>
+        </ul>
       </description>
     </release>
     <release version="1.2.0" date="2025-11-27">
