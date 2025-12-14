@@ -25,8 +25,8 @@ jobs:
           image: lopsided/archlinux-arm64v8
           options: "--rm"
           run: |
-            pacman -Syu --noconfirm
-            pacman -S --noconfirm meson ninja vala libadwaita gtk4 libgee squashfs-tools zsync fakeroot python python-virtualenv python-pip patchelf
+            pacman -Syu --noconfirm --disable-sandbox
+            pacman -S --noconfirm --disable-sandbox meson ninja vala libadwaita gtk4 libgee squashfs-tools zsync fakeroot python python-virtualenv python-pip patchelf
             python -m venv .venv
             source .venv/bin/activate
             pip install --upgrade pip
