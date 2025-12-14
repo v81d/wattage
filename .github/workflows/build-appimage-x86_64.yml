@@ -1,0 +1,54 @@
+name: Build AppImage
+permissions:
+  contents: write
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  release:
+    types: [published]
+  workflow_dispatch:
+jobs:
+  build-x86_64:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install build dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S meson ninja vala libadwaita gtk4 libgee squashfs-tools zsync fakeroot --noconfirm
+      - name: Install appimage-builder
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install appimage-builder
+      - name: Build Wattage
+        run: |
+          meson setup _build -Dprefix=/usr
+          ninja -C _build
+      - name: Prepare AppDir
+        run: |
+          rm -rf _build/AppDir
+          meson install -C _build --no-rebuild --destdir AppDir
+          glib-compile-schemas _build/AppDir/usr/share/glib-2.0/schemas
+      - name: Build AppImage
+        run: |
+          source .venv/bin/activate
+          appimage-builder --appdir _build/AppDir --recipe AppImageBuilder-x86_64.yml --skip-tests
+      - name: Upload AppImage as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Wattage-x86_64
+          path: Wattage-latest-x86_64.AppImage
+      - name: Upload AppImage to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.AppImage"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
