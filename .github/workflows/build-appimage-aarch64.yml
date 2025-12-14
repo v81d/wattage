@@ -1,0 +1,52 @@
+name: Build AppImage
+permissions:
+  contents: write
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  release:
+    types: [published]
+  workflow_dispatch:
+jobs:
+  build-aarch64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: arm64
+      - name: Run ARM64 Arch Linux container
+        uses: addnab/docker-run-action@v3
+        with:
+          image: lopsided/archlinux-arm64v8
+          options: "--rm"
+          run: |
+            pacman -Syu --noconfirm
+            pacman -S --noconfirm meson ninja vala libadwaita gtk4 libgee squashfs-tools zsync fakeroot python python-virtualenv python-pip patchelf
+            python -m venv .venv
+            source .venv/bin/activate
+            pip install --upgrade pip
+            pip install appimage-builder
+            meson setup _build -Dprefix=/usr
+            ninja -C _build
+            rm -rf _build/AppDir
+            meson install -C _build --no-rebuild --destdir _build/AppDir
+            glib-compile-schemas _build/AppDir/usr/share/glib-2.0/schemas
+            appimage-builder --appdir _build/AppDir --recipe AppImageBuilder-aarch64.yml --skip-tests
+            mv *.AppImage /github/workspace/Wattage-latest-aarch64.AppImage
+      - name: Upload AppImage as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Wattage-aarch64
+          path: Wattage-latest-aarch64.AppImage
+      - name: Upload AppImage to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.AppImage"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
