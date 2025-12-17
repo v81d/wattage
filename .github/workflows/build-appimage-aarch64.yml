@@ -23,21 +23,34 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: lopsided/archlinux-arm64v8
-          options: "--rm"
+          options: "-v ${{ github.workspace }}:/workspace"
           run: |
+            set -eux
+
+            cd /workspace
+
             pacman -Syu --noconfirm --disable-sandbox
-            pacman -S --noconfirm --disable-sandbox meson ninja vala libadwaita gtk4 libgee squashfs-tools zsync fakeroot python python-virtualenv python-pip patchelf
+            pacman -S --noconfirm --disable-sandbox \
+            binutils desktop-file-utils fakeroot gdk-pixbuf2 patchelf \
+            python python-pip python-virtualenv python-setuptools \
+            squashfs-tools strace wget zsync meson ninja vala \
+            libadwaita gtk4 libgee procps
+
             python -m venv .venv
             source .venv/bin/activate
             pip install --upgrade pip
             pip install appimage-builder
+
             meson setup _build -Dprefix=/usr
             ninja -C _build
+
             rm -rf _build/AppDir
-            meson install -C _build --no-rebuild --destdir _build/AppDir
+            meson install -C _build --no-rebuild --destdir AppDir
+
             glib-compile-schemas _build/AppDir/usr/share/glib-2.0/schemas
+
             appimage-builder --appdir _build/AppDir --recipe AppImageBuilder-aarch64.yml --skip-tests
-            mv *.AppImage /github/workspace/Wattage-latest-aarch64.AppImage
+            mv *.AppImage Wattage-latest-aarch64.AppImage
       - name: Upload AppImage as artifact
         uses: actions/upload-artifact@v4
         with:
@@ -47,6 +60,6 @@ jobs:
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
-          files: "*.AppImage"
+          files: Wattage-latest-aarch64.AppImage
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
