@@ -1,4 +1,4 @@
-name: Build AppImage
+name: Build AppImage for aarch64
 permissions:
   contents: write
 on:
@@ -11,30 +11,40 @@ on:
   workflow_dispatch:
 jobs:
   build-aarch64:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
-      - name: Setup QEMU
-        uses: docker/setup-qemu-action@v2
-        with:
-          platforms: arm64
-      - name: Run ARM64 Arch Linux container
-        uses: addnab/docker-run-action@v3
-        with:
-          image: lopsided/archlinux-arm64v8
-          options: "-v ${{ github.workspace }}:/workspace"
-          run: |
-            set -eux
 
-            cd /workspace
+      - name: Download Arch Linux ARM rootfs
+        run: |
+          wget http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
+          sudo mkdir /arch
+          sudo tar xpf ArchLinuxARM-aarch64-latest.tar.gz -C /arch
 
-            pacman -Syu --noconfirm --disable-sandbox
-            pacman -S --noconfirm --disable-sandbox \
-            binutils desktop-file-utils fakeroot gdk-pixbuf2 patchelf \
-            python python-pip python-virtualenv python-setuptools \
-            squashfs-tools strace wget zsync meson ninja vala \
-            libadwaita gtk4 libgee procps
+      - name: Mount chroot mounts
+        run: |
+          sudo mount --bind /proc /arch/proc
+          sudo mount --bind /sys /arch/sys
+          sudo mount --bind /dev /arch/dev
+
+          sudo mkdir -p /arch/home/build
+          sudo mount --bind $GITHUB_WORKSPACE /arch/home/build
+
+      - name: Run Arch build in chroot
+        run: |
+          sudo chroot /arch /bin/bash -eux << 'EOF'
+            cd /home/build
+
+            pacman-key --init
+            pacman-key --populate archlinuxarm
+
+            pacman -Syu --noconfirm
+            pacman -S --noconfirm \
+              binutils desktop-file-utils fakeroot gdk-pixbuf2 patchelf \
+              python python-pip python-virtualenv python-setuptools \
+              squashfs-tools strace wget zsync meson ninja vala \
+              libadwaita gtk4 libgee procps
 
             python -m venv .venv
             source .venv/bin/activate
@@ -51,12 +61,15 @@ jobs:
 
             appimage-builder --appdir _build/AppDir --recipe AppImageBuilder-aarch64.yml --skip-tests
             mv *.AppImage Wattage-latest-aarch64.AppImage
-      - name: Upload AppImage as artifact
+          EOF
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: Wattage-aarch64
           path: Wattage-latest-aarch64.AppImage
-      - name: Upload AppImage to GitHub Release
+
+      - name: Upload release release
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:

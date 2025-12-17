@@ -1,4 +1,4 @@
-name: Build AppImage
+name: Build AppImage for x86_64
 permissions:
   contents: write
 on:
@@ -21,11 +21,11 @@ jobs:
         run: |
           set -eux
           pacman -Syu --noconfirm
-          pacman -S --noconfirm --disable-sandbox \
-          binutils desktop-file-utils fakeroot gdk-pixbuf2 patchelf \
-          python python-pip python-virtualenv python-setuptools \
-          squashfs-tools strace wget zsync meson ninja vala \
-          libadwaita gtk4 libgee procps
+          pacman -S --noconfirm \
+            binutils desktop-file-utils fakeroot gdk-pixbuf2 patchelf \
+            python python-pip python-virtualenv python-setuptools \
+            squashfs-tools strace wget zsync meson ninja vala \
+            libadwaita gtk4 libgee procps
       - name: Install appimage-builder
         run: |
           set -eux
