@@ -73,14 +73,13 @@ cd wattage
 2. Configure the build directory as `_build/`:
 
 ```bash
-meson setup _build -Dbuildtype=debug
+meson setup _build -Dprefix=/usr
 ```
 
 3. Compile the project and the settings schema in `_build/data/`:
 
 ```bash
 ninja -C _build
-glib-compile-schemas --targetdir=_build/data data
 ```
 
 4. Verify that the app runs:
@@ -114,8 +113,9 @@ sudo ninja -C _build uninstall
 If you want to export the app as an AppImage, begin by installing [appimage-builder](https://github.com/AppImageCrafters/appimage-builder). Then, build the file:
 
 ```bash
-meson install -C _build --no-rebuild --destdir "AppDir"
-appimage-builder --appdir _build/AppDir --recipe AppImageBuilder.yml --skip-tests
+meson install -C _build --no-rebuild --destdir AppDir
+glib-compile-schemas _build/AppDir/usr/share/glib-2.0/schemas
+appimage-builder --appdir _build/AppDir --recipe AppImageBuilder-x86_64.yml --skip-tests
 ```
 
 A `Wattage-latest-x86_64.AppImage` file should then appear in the project root. To launch the AppImage, run:

@@ -1,27 +1,28 @@
 version: 1
-
 AppDir:
   path: AppDir
-
   app_info:
     id: io.github.v81d.Wattage
     name: Wattage
     icon: io.github.v81d.Wattage
     version: latest
-    exec: usr/local/bin/wattage
+    exec: usr/bin/wattage
     exec_args: $@
-
+  pacman:
+    include:
+      - gtk4
+      - libadwaita
+      - dbus
+    exclude: []
   files:
     include:
       - lib64/ld-linux-x86-64.so.2
-
     exclude:
       - usr/share/man
       - usr/share/doc/*/README.*
       - usr/share/doc/*/changelog.*
       - usr/share/doc/*/NEWS.*
       - usr/share/doc/*/TODO.*
-
   test:
     fedora-30:
       image: appimagecrafters/tests-env:fedora-30
@@ -38,7 +39,6 @@ AppDir:
     ubuntu-xenial:
       image: appimagecrafters/tests-env:ubuntu-xenial
       command: ./AppRun
-
 AppImage:
-  arch: x86_64
+  arch: aarch64
   update-information: guess
