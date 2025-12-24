@@ -37,8 +37,8 @@ public class Wattage.Application : Adw.Application {
         this.set_accels_for_action ("app.about", { "<primary>i" });
         this.set_accels_for_action ("app.quit", { "<primary>q" });
         this.set_accels_for_action ("win.refresh", { "<primary>r" });
-        this.set_accels_for_action ("win.select_next_device", { "<primary>d" });
-        this.set_accels_for_action ("win.select_previous_device", { "<primary>u" });
+        this.set_accels_for_action ("win.select_next_device", { "Page_Down" });
+        this.set_accels_for_action ("win.select_previous_device", { "Page_Up" });
     }
 
     public override void activate () {
