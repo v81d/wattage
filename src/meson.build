@@ -11,7 +11,8 @@ wattage_deps = [
   config_dep,
   dependency('gtk4'),
   dependency('libadwaita-1', version: '>= 1.8.0'),
-  dependency('gee-0.8')
+  dependency('gee-0.8'),
+  dependency('livechart')
 ]
 
 wattage_sources += gnome.compile_resources('wattage-resources',
