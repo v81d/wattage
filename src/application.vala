@@ -64,4 +64,3 @@ public class Wattage.Application : Adw.Application {
         about.present (this.active_window);
     }
 }
-

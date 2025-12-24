@@ -182,6 +182,10 @@ public class Wattage.Window : Adw.ApplicationWindow {
         SimpleAction select_previous_device_action = new SimpleAction ("select_previous_device", null);
         select_previous_device_action.activate.connect (this.on_select_previous_device_action);
         this.add_action (select_previous_device_action);
+
+        SimpleAction device_history_action = new SimpleAction ("device_history", null);
+        device_history_action.activate.connect (this.on_device_history_action);
+        this.add_action (device_history_action);
     }
 
     private void start_auto_refresh () {
@@ -579,6 +583,32 @@ public class Wattage.Window : Adw.ApplicationWindow {
     private void append_device (DeviceObject device) {
         DeviceRow row = new DeviceRow (device);
         this.device_list.append (row);
+    }
+
+    // Display device history dialog
+    public void on_device_history_action () {
+        Adw.Dialog device_history_dialog = new Adw.Dialog ();
+        device_history_dialog.set_title ("Device History");
+
+        Adw.ToolbarView toolbar_view = new Adw.ToolbarView ();
+
+        Adw.HeaderBar header_bar = new Adw.HeaderBar ();
+        header_bar.set_title_widget (new Adw.WindowTitle ("Device History", null));
+        toolbar_view.add_top_bar (header_bar);
+
+        Gtk.ScrolledWindow scrolled_window = new Gtk.ScrolledWindow ();
+
+        Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
+        box.set_margin_top (12);
+
+        Gtk.Label label = new Gtk.Label ("Device history goes here.");
+        box.append (label);
+
+        scrolled_window.set_child (box);
+        toolbar_view.set_content (scrolled_window);
+        device_history_dialog.set_child (toolbar_view);
+
+        device_history_dialog.present (this);
     }
 
     [GtkCallback]
