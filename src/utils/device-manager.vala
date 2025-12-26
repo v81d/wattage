@@ -19,8 +19,9 @@
  */
 
 using GLib;
-using NumericToolkit;
+
 using DBusInterface;
+using NumericToolkit;
 
 namespace DeviceManager {
     // This class is used to represent basic information about a single device
@@ -60,25 +61,22 @@ namespace DeviceManager {
         public DeviceObject () {}
 
         public string ? create_health_alert () {
-            if (this.capacity == null) {
-                return null;
-            }
+            if (this.capacity == null)return null;
 
-            if (this.capacity >= 95) {
+            if (this.capacity >= 95)
                 return _("The device is near or at its maximum rated capacity. It is in excellent condition and should not require much intervention.");
-            } else if (this.capacity >= 90) {
+            else if (this.capacity >= 90)
                 return _("The device performs close to its original capacity. There is little noticeable difference from its optimal state.");
-            } else if (this.capacity >= 80) {
+            else if (this.capacity >= 80)
                 return _("The device has lost some capacity, but it should not be of much concern. Continue to take precautions regarding your power device like limiting its charge and using power-saving settings.");
-            } else if (this.capacity >= 70) {
+            else if (this.capacity >= 70)
                 return _("The device has noticeably degraded in capacity, but is still usable. Runtime may be shorter than at its original capacity. Use power-optimizing settings to extend longevity and slow down degradation.");
-            } else if (this.capacity >= 60) {
+            else if (this.capacity >= 60)
                 return _("The device has experienced a significant drop in capacity. Mobility can be more difficult due to a decrease in runtime. Depending on usage habits, replacement may be necessary in the future.");
-            } else if (this.capacity > 0) {
+            else if (this.capacity > 0)
                 return _("The device has undergone substantial deterioration. Power instability and potential overheating can damage other components. Replace the device to avoid further damage.");
-            } else {
-                return null;
-            }
+
+            return null;
         }
     }
 
@@ -87,9 +85,7 @@ namespace DeviceManager {
         public DeviceProber () {}
 
         public static string ? stringify_device_type (uint32? device_type) {
-            if (device_type == null) {
-                return null;
-            }
+            if (device_type == null)return null;
 
             switch (device_type) {
             case 1 : return _("Line Power");
@@ -125,9 +121,7 @@ namespace DeviceManager {
         }
 
         public static string ? stringify_device_technology (uint32? device_technology) {
-            if (device_technology == null) {
-                return null;
-            }
+            if (device_technology == null)return null;
 
             switch (device_technology) {
             case 1 : return _("Lithium ion");
@@ -141,9 +135,7 @@ namespace DeviceManager {
         }
 
         public static string ? stringify_device_state (uint32? device_state) {
-            if (device_state == null) {
-                return null;
-            }
+            if (device_state == null)return null;
 
             switch (device_state) {
             case 1 : return _("Charging");
@@ -174,8 +166,8 @@ namespace DeviceManager {
             }
 
             /* Usually, users will most likely be looking for information regarding their battery.
-             * Other devices should listed after batteries.
-             * The sorting comparison below moves batteries to the beginning and sorts miscellaneous devices after.
+             * Other devices should listed after batteries. The sorting comparison below moves
+             * batteries to the beginning and sorts miscellaneous devices after.
              */
             result.sort ((a, b) => {
                 string a_type = a.device_type != null ? a.device_type.down () : "";
@@ -203,40 +195,34 @@ namespace DeviceManager {
             );
 
             DeviceObject device = new DeviceObject ();
-
             device.upower_proxy = upower_proxy;
             device.object_path = object_path;
-
-            device.native_path = upower_proxy.native_path.length > 0 ? (string?) upower_proxy.native_path : null;
-            device.vendor = upower_proxy.vendor.length > 0 ? (string?) upower_proxy.vendor : null;
-            device.model = upower_proxy.model.length > 0 ? (string?) upower_proxy.model : null;
-            device.serial = upower_proxy.serial.length > 0 ? (string?) upower_proxy.serial : null;
-
+            device.native_path = non_empty_string (upower_proxy.native_path);
+            device.vendor = non_empty_string (upower_proxy.vendor);
+            device.model = non_empty_string (upower_proxy.model);
+            device.serial = non_empty_string (upower_proxy.serial);
             device.device_type = DeviceProber.stringify_device_type (upower_proxy.device_type);
             device.technology = DeviceProber.stringify_device_technology (upower_proxy.technology);
             device.state = DeviceProber.stringify_device_state (upower_proxy.state);
+            device.energy = positive_double (upower_proxy.energy);
+            device.energy_full = positive_double (upower_proxy.energy_full);
+            device.energy_full_design = positive_double (upower_proxy.energy_full_design);
+            device.energy_rate = positive_double (upower_proxy.energy_rate);
+            device.voltage = positive_double (upower_proxy.voltage);
+            device.voltage_min_design = positive_double (upower_proxy.voltage_min_design);
+            device.charge_cycles = positive_int32 (upower_proxy.charge_cycles);
 
-            device.energy = upower_proxy.energy > 0 ? (double?) upower_proxy.energy : null;
-            device.energy_full = upower_proxy.energy_full > 0 ? (double?) upower_proxy.energy_full : null;
-            device.energy_full_design = upower_proxy.energy_full_design > 0 ? (double?) upower_proxy.energy_full_design : null;
-            device.energy_rate = upower_proxy.energy_rate > 0 ? (double?) upower_proxy.energy_rate : null;
-            device.voltage = upower_proxy.voltage > 0 ? (double?) upower_proxy.voltage : null;
-            device.voltage_min_design = upower_proxy.voltage_min_design > 0 ? (double?) upower_proxy.voltage_min_design : null;
-
-            device.charge_cycles = upower_proxy.charge_cycles > 0 ? (int32?) upower_proxy.charge_cycles : null;
-
-            if (upower_proxy.charge_threshold_enabled && upower_proxy.charge_threshold_enabled
-                && upower_proxy.charge_threshold_supported) {
-                device.charge_start_threshold = upower_proxy.charge_start_threshold > 0 ? (uint32?) upower_proxy.charge_start_threshold : null;
-                device.charge_end_threshold = upower_proxy.charge_end_threshold > 0 ? (uint32?) upower_proxy.charge_end_threshold : null;
+            if (upower_proxy.charge_threshold_enabled &&
+                upower_proxy.charge_threshold_supported) {
+                device.charge_start_threshold = positive_uint32 (upower_proxy.charge_start_threshold);
+                device.charge_end_threshold = positive_uint32 (upower_proxy.charge_end_threshold);
             }
 
             device.has_history = upower_proxy.has_history;
-            device.time_to_empty = upower_proxy.time_to_empty > 0 ? (int64?) upower_proxy.time_to_empty : null;
-            device.time_to_full = upower_proxy.time_to_full > 0 ? (int64?) upower_proxy.time_to_full : null;
-            device.temperature = upower_proxy.temperature > 0 ? (double?) upower_proxy.temperature : null;
-            device.capacity = upower_proxy.capacity > 0 ? (double?) upower_proxy.capacity : null;
-
+            device.time_to_empty = positive_int64 (upower_proxy.time_to_empty);
+            device.time_to_full = positive_int64 (upower_proxy.time_to_full);
+            device.temperature = positive_double (upower_proxy.temperature);
+            device.capacity = positive_double (upower_proxy.capacity);
             device.icon_name = upower_proxy.icon_name;
 
             return device;
