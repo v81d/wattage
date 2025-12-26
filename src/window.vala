@@ -576,7 +576,18 @@ public class Wattage.Window : Adw.ApplicationWindow {
         }
 
         try {
-            UPower.HistoryItem[] history_items = device.upower_proxy.get_history (this.history_type, this.history_timespan * 60, this.history_resolution);
+            UPower.HistoryItem[] history_items = device.upower_proxy.get_history (this.history_type,
+                                                                                  this.history_timespan * 60,
+                                                                                  this.history_resolution);
+            Gee.ArrayList<UPower.HistoryItem?> history_sorted = new Gee.ArrayList<UPower.HistoryItem?> ();
+            foreach (UPower.HistoryItem item in history_items)history_sorted.add (item);
+
+            // Sort in chronological order
+            history_sorted.sort ((a, b) => {
+                if (a.time < b.time)return -1; // `a` before `b`
+                if (a.time > b.time)return 1; // `b` before `a`
+                return 0;
+            });
 
             uint count = 0;
 
@@ -586,10 +597,13 @@ public class Wattage.Window : Adw.ApplicationWindow {
             Gtk.DrawingArea drawing_area = new Gtk.DrawingArea ();
             drawing_area.set_size_request (-1, 150);
 
-            LineGraph graph = new LineGraph (null, null, 0, 100);
+            LineGraph graph = new LineGraph (null,
+                                             null,
+                                             0,
+                                             this.history_type == "charge" ? (double?) 100 : null);
             drawing_area.set_draw_func ((widget, cr, width, height) => graph.draw (cr, width, height));
 
-            foreach (DBusInterface.UPower.HistoryItem item in history_items) {
+            foreach (UPower.HistoryItem item in history_sorted) {
                 string state = DeviceProber.stringify_device_state (item.state);
                 if (state == null)continue;
 
@@ -604,8 +618,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 row.set_title (timestamp);
                 row.set_subtitle ("%s: %.3f%s (%s)".printf (
                                                             this.history_type == "rate" ? _("Rate") : _("Charge"),
-                                                            si_convert (val, this.energy_unit),
-                                                            this.history_type == "rate" ? " " + this.energy_unit : "%",
+                                                            si_convert (val, this.power_unit),
+                                                            this.history_type == "rate" ? " " + this.power_unit : "%",
                                                             state.down ()));
 
                 Gtk.Label placement_label = new Gtk.Label (count.to_string ());
@@ -614,7 +628,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
                 expander_row.add_row (row);
 
-                double x = (double) item.time - (double) history_items[0].time;
+                double x = (double) item.time - (double) history_sorted.get (0).time;
                 double y = val;
 
                 graph.plot (x, y);
@@ -641,7 +655,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 list_box.append (expander_row);
                 result_box.append (list_box);
 
-                expander_row.set_subtitle (_("%u history entries discovered.").printf (count));
+                expander_row.set_subtitle (_("%u history item(s) discovered.").printf (count));
 
                 history_box.append (result_box);
             }
