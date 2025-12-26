@@ -50,6 +50,7 @@ namespace DeviceManager {
         public uint32? charge_start_threshold { get; set; }
         public uint32? charge_end_threshold { get; set; }
 
+        public bool? has_history { get; set; }
         public int64? time_to_empty { get; set; }
         public int64? time_to_full { get; set; }
         public double? temperature { get; set; }
@@ -85,7 +86,7 @@ namespace DeviceManager {
     public class DeviceProber {
         public DeviceProber () {}
 
-        private string ? up_device_type (uint32? device_type) {
+        public static string ? stringify_device_type (uint32? device_type) {
             if (device_type == null) {
                 return null;
             }
@@ -123,7 +124,7 @@ namespace DeviceManager {
             }
         }
 
-        private string ? up_device_technology (uint32? device_technology) {
+        public static string ? stringify_device_technology (uint32? device_technology) {
             if (device_technology == null) {
                 return null;
             }
@@ -139,7 +140,7 @@ namespace DeviceManager {
             }
         }
 
-        private string ? up_device_state (uint32? device_state) {
+        public static string ? stringify_device_state (uint32? device_state) {
             if (device_state == null) {
                 return null;
             }
@@ -202,6 +203,7 @@ namespace DeviceManager {
             );
 
             DeviceObject device = new DeviceObject ();
+
             device.upower_proxy = upower_proxy;
             device.object_path = object_path;
 
@@ -210,9 +212,9 @@ namespace DeviceManager {
             device.model = upower_proxy.model.length > 0 ? (string?) upower_proxy.model : null;
             device.serial = upower_proxy.serial.length > 0 ? (string?) upower_proxy.serial : null;
 
-            device.device_type = this.up_device_type (upower_proxy.device_type);
-            device.technology = this.up_device_technology (upower_proxy.technology);
-            device.state = this.up_device_state (upower_proxy.state);
+            device.device_type = DeviceProber.stringify_device_type (upower_proxy.device_type);
+            device.technology = DeviceProber.stringify_device_technology (upower_proxy.technology);
+            device.state = DeviceProber.stringify_device_state (upower_proxy.state);
 
             device.energy = upower_proxy.energy > 0 ? (double?) upower_proxy.energy : null;
             device.energy_full = upower_proxy.energy_full > 0 ? (double?) upower_proxy.energy_full : null;
@@ -229,6 +231,7 @@ namespace DeviceManager {
                 device.charge_end_threshold = upower_proxy.charge_end_threshold > 0 ? (uint32?) upower_proxy.charge_end_threshold : null;
             }
 
+            device.has_history = upower_proxy.has_history;
             device.time_to_empty = upower_proxy.time_to_empty > 0 ? (int64?) upower_proxy.time_to_empty : null;
             device.time_to_full = upower_proxy.time_to_full > 0 ? (int64?) upower_proxy.time_to_full : null;
             device.temperature = upower_proxy.temperature > 0 ? (double?) upower_proxy.temperature : null;
