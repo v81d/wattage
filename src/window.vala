@@ -351,6 +351,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
             general_info.set (_("Native Path"), device.native_path);
             general_info.set (_("Object Path"), device.object_path);
             general_info.set (_("Device Type"), device.device_type);
+            general_info.set (_("Has History"), device.has_history ? "Yes" : "No");
             sections.add (general_info);
 
             DeviceInfoSectionData model_details = new DeviceInfoSectionData (_("Model Details"));
