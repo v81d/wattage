@@ -677,13 +677,17 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 label.set_halign (Gtk.Align.START);
                 history_box.append (label);
             } else {
-                Adw.PreferencesGroup result_group = new Adw.PreferencesGroup ();
-                result_group.set_title (_("History"));
-
                 Gtk.Box result_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 18);
                 result_box.set_hexpand (true);
                 result_box.set_vexpand (true);
-                result_box.append (drawing_area);
+
+                if (count == 1) {
+                    Gtk.Label label = new Gtk.Label (_("There are not enough history entries to display a graph."));
+                    label.set_halign (Gtk.Align.START);
+                    result_box.append (label);
+                } else {
+                    result_box.append (drawing_area);
+                }
 
                 Gtk.ListBox list_box = new Gtk.ListBox ();
                 list_box.set_selection_mode (Gtk.SelectionMode.NONE);
@@ -693,9 +697,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
                 expander_row.set_subtitle (_("%u history entries discovered.").printf (count));
 
-                result_group.add (result_box);
-
-                history_box.append (result_group);
+                history_box.append (result_box);
             }
         } catch (Error e) {
             // Clear all of the main box's children
@@ -749,7 +751,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
         clamp.set_tightening_threshold (400);
         scrolled_window.set_child (clamp);
 
-        Gtk.Box main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 18);
+        Gtk.Box main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 24);
         main_box.set_margin_start (12);
         main_box.set_margin_end (12);
         main_box.set_margin_top (12);
@@ -761,10 +763,13 @@ public class Wattage.Window : Adw.ApplicationWindow {
         options_group.set_title (_("Options"));
         main_box.append (options_group);
 
+        Gtk.Separator separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
+        main_box.append (separator);
+
         Gtk.Box history_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 18);
         main_box.append (history_box);
 
-        // History type
+        // History types
         string[] types = { "rate", "charge" };
 
         Adw.ComboRow type_combo_row = new Adw.ComboRow ();
