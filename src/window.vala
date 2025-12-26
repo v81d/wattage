@@ -19,12 +19,14 @@
  */
 
 using GLib;
+
+using ChartDrawer;
 using DBusInterface;
 using DeviceManager;
-using ChartDrawer;
+using NumericToolkit;
 
 /* Define the class `DeviceRow`, which inherits from `Gtk.ListBoxRow`.
- * Use as a constructor for a single row in the device list sidebar.
+ * Used as a constructor for a single row in the device list sidebar.
  */
 private class DeviceRow : Gtk.ListBoxRow {
     public DeviceObject device { get; private set; }
@@ -46,7 +48,7 @@ private class DeviceRow : Gtk.ListBoxRow {
 }
 
 /* This class inherits from `Gtk.Box`.
- * Use as a constructor for a single section in the device information view.
+ * Used as a constructor for a single section in the device information view.
  */
 private class DeviceInfoSection : Gtk.Box {
     public string title { get; private set; }
@@ -57,10 +59,10 @@ private class DeviceInfoSection : Gtk.Box {
         this.set_orientation (Gtk.Orientation.VERTICAL);
         this.set_spacing (12);
 
-        Gtk.Label label = new Gtk.Label (title);
-        label.set_halign (Gtk.Align.START);
-        label.add_css_class ("title-2");
-        this.append (label);
+        Gtk.Label title_label = new Gtk.Label (title);
+        title_label.set_halign (Gtk.Align.START);
+        title_label.add_css_class ("title-2");
+        this.append (title_label);
 
         this.list = new Gtk.ListBox ();
         this.list.set_selection_mode (Gtk.SelectionMode.NONE);
@@ -73,9 +75,8 @@ private class DeviceInfoSection : Gtk.Box {
 
     public void update (Gee.ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
         Gtk.ListBoxRow? row;
-        while ((row = this.list.get_row_at_index (0)) != null) {
+        while ((row = this.list.get_row_at_index (0)) != null)
             this.list.remove (row);
-        }
 
         foreach (DeviceInfoSectionData.DeviceProperty property in properties) {
             Adw.ActionRow action_row = new Adw.ActionRow ();
@@ -107,10 +108,8 @@ private class DeviceInfoSectionData {
         this.properties = new Gee.ArrayList<DeviceProperty> ();
     }
 
-    public void set (string name, string? value) {
-        if (value != null) {
-            this.properties.add (new DeviceProperty (name, value));
-        }
+    public void set (string name, string? val) {
+        if (val != null)this.properties.add (new DeviceProperty (name, val));
     }
 }
 
@@ -153,28 +152,15 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
         // This is the handler for selecting a device in the sidebar
         this.device_list.row_selected.connect ((list, row) => {
-            if (row == null) {
-                return;
+            if (row is DeviceRow) {
+                DeviceRow device_row = (DeviceRow) row;
+                Idle.add (() => {
+                    this.selected_device_index = device_row.get_index ();
+                    this.device_info_empty_status.set_visible (false);
+                    this.load_device_info (device_row.device);
+                    return false;
+                });
             }
-
-            DeviceRow? device_row = row as DeviceRow;
-
-            if (device_row == null) {
-                return;
-            }
-
-            Adw.ActionRow? action_row = device_row.get_child () as Adw.ActionRow;
-
-            if (action_row == null) {
-                return;
-            }
-
-            Idle.add (() => {
-                this.selected_device_index = device_row.get_index ();
-                this.device_info_empty_status.set_visible (false);
-                this.load_device_info (device_row.device);
-                return false;
-            });
         });
 
         this.initialize_gsettings ();
@@ -204,17 +190,17 @@ public class Wattage.Window : Adw.ApplicationWindow {
     }
 
     private void start_auto_refresh () {
-        if (this.auto_refresh && this.auto_refresh_source_id == 0) {
-            this.auto_refresh_source_id = Timeout.add_seconds (this.auto_refresh_cooldown, () => {
-                if (this.auto_refresh) {
-                    this.load_device_list ();
-                    return true;
-                } else {
-                    this.auto_refresh_source_id = 0;
-                    return false;
-                }
-            });
-        }
+        if (!this.auto_refresh || this.auto_refresh_source_id != 0)return;
+
+        this.auto_refresh_source_id = Timeout.add_seconds (this.auto_refresh_cooldown, () => {
+            if (!this.auto_refresh) {
+                this.auto_refresh_source_id = 0;
+                return false;
+            }
+
+            this.load_device_list ();
+            return true;
+        });
     }
 
     private void stop_auto_refresh () {
@@ -227,13 +213,11 @@ public class Wattage.Window : Adw.ApplicationWindow {
     /* This is mostly used for dropdowns in the preferences menu.
      * The function will return the index of a value inside a given array.
      */
-    private static int get_string_array_index (string[] array, string value) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == value) {
-                return i;
-            }
-        }
-        return -1;
+    private static int get_string_array_index (string[] array, string val) {
+        for (int i = 0; i < array.length; i++)
+            if (array[i] == val)return i;
+
+        return 0;
     }
 
     private void initialize_gsettings () {
@@ -248,7 +232,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
         this.power_unit = this.settings.get_string ("power-unit");
         this.voltage_unit = this.settings.get_string ("voltage-unit");
 
-        // History preferences
+        // History
         this.history_type = this.settings.get_string ("history-type");
         this.history_timespan = this.settings.get_uint ("history-timespan");
         this.history_resolution = this.settings.get_uint ("history-resolution");
@@ -266,20 +250,15 @@ public class Wattage.Window : Adw.ApplicationWindow {
         Adw.SwitchRow auto_refresh_switch = this.preferences_dialog_builder.get_object ("auto_refresh_switch") as Adw.SwitchRow;
         auto_refresh_switch.set_active (this.auto_refresh);
 
-        if (this.auto_refresh) {
-            this.start_auto_refresh ();
-        }
+        if (this.auto_refresh)this.start_auto_refresh ();
 
         auto_refresh_switch.notify["active"].connect (() => {
             bool is_active = auto_refresh_switch.get_active ();
             this.settings.set_boolean ("auto-refresh", is_active);
             this.auto_refresh = is_active;
 
-            if (is_active) {
-                this.start_auto_refresh ();
-            } else {
-                this.stop_auto_refresh ();
-            }
+            if (is_active)this.start_auto_refresh ();
+            else this.stop_auto_refresh ();
 
             load_device_list ();
         });
@@ -341,6 +320,17 @@ public class Wattage.Window : Adw.ApplicationWindow {
         preferences_dialog.present (this);
     }
 
+    private static void add_section_metric (DeviceInfoSectionData section,
+                                            double? val,
+                                            string label,
+                                            string unit) {
+        if (val != null) {
+            double? converted = si_convert (val, unit);
+            if (converted != null)
+                section.set (label, "%.03f %s".printf (converted, unit));
+        }
+    }
+
     private void load_device_info (DeviceObject device) {
         this.content_spinner.set_visible (true);
 
@@ -362,51 +352,43 @@ public class Wattage.Window : Adw.ApplicationWindow {
             sections.add (model_details);
 
             DeviceInfoSectionData health_stats = new DeviceInfoSectionData (_("Health Evaluations"));
-
-            if (device.capacity != null) {
+            if (device.capacity != null)
                 health_stats.set (_("State of Health"), "%.03f%%".printf (device.capacity));
-            }
 
             string? health_alert = device.create_health_alert ();
-            if (health_alert != null) {
+            if (health_alert != null)
                 health_stats.set (_("Device Condition"), health_alert);
-            }
 
             sections.add (health_stats);
 
             DeviceInfoSectionData charging_status = new DeviceInfoSectionData (_("Charging Status"));
 
-            if (device.charge_start_threshold != null) {
+            if (device.charge_start_threshold != null)
                 charging_status.set (_("Charge Start Threshold"), "%.03f%%".printf (device.charge_start_threshold));
-            }
 
-            if (device.charge_end_threshold != null) {
+            if (device.charge_end_threshold != null)
                 charging_status.set (_("Charge End Threshold"), "%.03f%%".printf (device.charge_end_threshold));
-            }
 
-            if (device.charge_cycles != null) {
+            if (device.charge_cycles != null)
                 charging_status.set (_("Cycle Count"), device.charge_cycles.to_string ());
-            }
 
-            double? current_charge = NumericToolkit.calculate_percentage (device.energy, device.energy_full);
-            if (current_charge != null) {
+            double? current_charge = calculate_percentage (device.energy, device.energy_full);
+            if (current_charge != null)
                 charging_status.set (_("Current Charge Percentage"), "%.03f%%".printf (current_charge));
-            }
 
             charging_status.set (_("State"), device.state);
+
             sections.add (charging_status);
 
             DeviceInfoSectionData time_calculations = new DeviceInfoSectionData (_("Time Calculations"));
 
-            string? time_to_empty = NumericToolkit.seconds_to_hms (device.time_to_empty);
-            if (time_to_empty != null) {
+            string? time_to_empty = seconds_to_hms (device.time_to_empty);
+            if (time_to_empty != null)
                 time_calculations.set (_("Time to Empty"), time_to_empty);
-            }
 
-            string? time_to_full = NumericToolkit.seconds_to_hms (device.time_to_full);
-            if (time_to_full != null) {
+            string? time_to_full = seconds_to_hms (device.time_to_full);
+            if (time_to_full != null)
                 time_calculations.set (_("Time to Full"), time_to_full);
-            }
 
             if (
                 device.energy_full != null &&
@@ -414,10 +396,9 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 device.energy_rate > 0 &&
                 device.state == _("Discharging")
             ) {
-                string? projected_battery_life = NumericToolkit.seconds_to_hms ((int64) (device.energy_full / device.energy_rate * 3600));
-                if (projected_battery_life != null) {
+                string? projected_battery_life = seconds_to_hms ((int64) (device.energy_full / device.energy_rate * 3600));
+                if (projected_battery_life != null)
                     time_calculations.set (_("Projected Battery Life"), projected_battery_life);
-                }
             }
 
             if (
@@ -426,94 +407,67 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 device.energy_rate > 0 &&
                 device.state == _("Charging")
             ) {
-                string? projected_charging_time = NumericToolkit.seconds_to_hms ((int64) (device.energy_full / device.energy_rate * 3600));
-                if (projected_charging_time != null) {
+                string? projected_charging_time = seconds_to_hms ((int64) (device.energy_full / device.energy_rate * 3600));
+                if (projected_charging_time != null)
                     time_calculations.set (_("Projected Charging Time"), projected_charging_time);
-                }
             }
 
             sections.add (time_calculations);
 
             DeviceInfoSectionData sensor_readings = new DeviceInfoSectionData (_("Sensor Readings"));
 
-            if (device.temperature != null) {
+            if (device.temperature != null)
                 sensor_readings.set (_("Temperature"), "%.03f°C".printf (device.temperature));
-            }
 
             sections.add (sensor_readings);
 
             DeviceInfoSectionData energy_metrics = new DeviceInfoSectionData (_("Energy Metrics"));
 
-            if (device.energy_full_design != null) {
-                double? converted = NumericToolkit.si_convert (device.energy_full_design, this.energy_unit);
-                if (converted != null) {
-                    energy_metrics.set (_("Maximum Rated Capacity"), "%.03f %s".printf (converted, this.energy_unit));
-                }
-            }
+            Window.add_section_metric (energy_metrics, device.energy_full_design,
+                                       _("Maximum Rated Capacity"), this.energy_unit);
 
-            if (device.energy_full != null) {
-                double? converted = NumericToolkit.si_convert (device.energy_full, this.energy_unit);
-                if (converted != null) {
-                    energy_metrics.set (_("Maximum Capacity"), "%.03f %s".printf (converted, this.energy_unit));
-                }
-            }
+            Window.add_section_metric (energy_metrics, device.energy_full,
+                                       _("Maximum Capacity"), this.energy_unit);
 
-            if (device.energy != null) {
-                double? converted = NumericToolkit.si_convert (device.energy, this.energy_unit);
-                if (converted != null) {
-                    energy_metrics.set (_("Remaining Energy"), "%.03f %s".printf (converted, this.energy_unit));
-                }
-            }
+            Window.add_section_metric (energy_metrics, device.energy,
+                                       _("Remaining Energy"), this.energy_unit);
 
-            if (device.energy_rate != null) {
-                double? converted = NumericToolkit.si_convert (device.energy_rate, this.power_unit);
-                if (converted != null) {
-                    energy_metrics.set (_("Energy Transfer Rate"), "%.03f %s".printf (converted, this.power_unit));
-                }
-            }
+            Window.add_section_metric (energy_metrics, device.energy_rate,
+                                       _("Energy Transfer Rate"), this.power_unit);
 
             sections.add (energy_metrics);
 
             DeviceInfoSectionData voltage_stats = new DeviceInfoSectionData (_("Voltage Statistics"));
 
             if (device.voltage_min_design != null) {
-                double? converted = NumericToolkit.si_convert (device.voltage_min_design, this.voltage_unit);
-                if (converted != null) {
+                double? converted = si_convert (device.voltage_min_design, this.voltage_unit);
+                if (converted != null)
                     voltage_stats.set (_("Minimum Rated Voltage"), "%.03f %s".printf (converted, this.voltage_unit));
-                }
             }
 
             if (device.voltage != null) {
-                double? converted = NumericToolkit.si_convert (device.voltage, this.voltage_unit);
-                if (converted != null) {
+                double? converted = si_convert (device.voltage, this.voltage_unit);
+                if (converted != null)
                     voltage_stats.set (_("Current Voltage"), "%.03f %s".printf (converted, this.voltage_unit));
-                }
             }
 
             sections.add (voltage_stats);
 
             Idle.add (() => {
-                // Titles of existing sections
                 Gee.ArrayList<string> existing_titles = new Gee.ArrayList<string> ();
-                foreach (DeviceInfoSection section in this.device_info_sections) {
-                    existing_titles.add (section.title);
-                }
+                foreach (DeviceInfoSection section in this.device_info_sections)existing_titles.add (section.title);
 
-                // Titles of new sections
                 Gee.ArrayList<string> new_titles = new Gee.ArrayList<string> ();
-                foreach (DeviceInfoSectionData section in sections) {
-                    if (section.properties.size > 0) {
-                        new_titles.add (section.title);
-                    }
-                }
+                foreach (DeviceInfoSectionData section in sections)
+                    if (section.properties.size > 0)new_titles.add (section.title);
 
-                // We need to check if both title arrays are exactly the same
-                bool titles_match = true;
-                if (existing_titles.size != new_titles.size) {
-                    titles_match = false;
-                } else {
-                    foreach (string title in new_titles) {
-                        if (!existing_titles.contains (title)) {
+                // Check if both title arrays match
+                bool titles_match = false;
+
+                if (existing_titles.size == new_titles.size) {
+                    titles_match = true;
+                    for (int i = 0; i < existing_titles.size; i++) {
+                        if (existing_titles.get (i) != new_titles.get (i)) {
                             titles_match = false;
                             break;
                         }
@@ -521,30 +475,14 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 }
 
                 /* We should reconstruct the entire content view if the two arrays do not match.
-                 *  - If we were to simply append the missing sections, they would be added directly to the end of the content, which is not always desired.
-                 *  - Rebuilding the view would be the simplest way to resolve this.
-                 * If the two arrays do match, however, we should just update existing sections in place.
+                 * If we were to simply append the missing sections, they would be added directly
+                 * to the end of the content, which is not always desired. Rebuilding the view
+                 * would be the simplest way to resolve this. If the two arrays do match, however,
+                 * we should just update existing sections in place.
                  */
-                if (!titles_match) {
-                    foreach (DeviceInfoSection s in this.device_info_sections) {
-                        this.device_info_box.remove (s);
-                    }
-                    this.device_info_sections.clear ();
-
+                if (titles_match) {
                     foreach (DeviceInfoSectionData section in sections) {
-                        if (section.properties.size == 0) {
-                            continue;
-                        }
-
-                        DeviceInfoSection s = new DeviceInfoSection (section.title, section.properties);
-                        this.device_info_box.append (s);
-                        this.device_info_sections.add (s);
-                    }
-                } else {
-                    foreach (DeviceInfoSectionData section in sections) {
-                        if (section.properties.size == 0) {
-                            continue;
-                        }
+                        if (section.properties.size == 0)continue;
 
                         // Match existing sections by title
                         DeviceInfoSection? existing_section = null;
@@ -555,9 +493,18 @@ public class Wattage.Window : Adw.ApplicationWindow {
                             }
                         }
 
-                        if (existing_section != null) {
-                            existing_section.update (section.properties);
-                        }
+                        if (existing_section != null)existing_section.update (section.properties);
+                    }
+                } else {
+                    foreach (DeviceInfoSection s in this.device_info_sections)this.device_info_box.remove (s);
+                    this.device_info_sections.clear ();
+
+                    foreach (DeviceInfoSectionData section in sections) {
+                        if (section.properties.size == 0)continue;
+
+                        DeviceInfoSection s = new DeviceInfoSection (section.title, section.properties);
+                        this.device_info_box.append (s);
+                        this.device_info_sections.add (s);
                     }
                 }
 
@@ -640,26 +587,24 @@ public class Wattage.Window : Adw.ApplicationWindow {
             drawing_area.set_size_request (-1, 150);
 
             LineGraph graph = new LineGraph (null, null, 0, 100);
-            drawing_area.set_draw_func ((widget, cr, width, height) => {
-                graph.draw (cr, width, height);
-            });
+            drawing_area.set_draw_func ((widget, cr, width, height) => graph.draw (cr, width, height));
 
             foreach (DBusInterface.UPower.HistoryItem item in history_items) {
+                string state = DeviceProber.stringify_device_state (item.state);
+                if (state == null)continue;
+
+                count++;
+
                 DateTime dt = new DateTime.from_unix_local ((int64) item.time);
                 string timestamp = dt.format ("%c");
 
                 double val = double.parse ("%.3f".printf (item.value));
-                string state = DeviceProber.stringify_device_state (item.state);
-
-                if (state == null) {
-                    continue;
-                }
 
                 Adw.ActionRow row = new Adw.ActionRow ();
                 row.set_title (timestamp);
                 row.set_subtitle ("%s: %.3f%s (%s)".printf (
                                                             this.history_type == "rate" ? _("Rate") : _("Charge"),
-                                                            NumericToolkit.si_convert (val, this.energy_unit),
+                                                            si_convert (val, this.energy_unit),
                                                             this.history_type == "rate" ? " " + this.energy_unit : "%",
                                                             state.down ()));
                 expander_row.add_row (row);
@@ -668,12 +613,10 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 double y = val;
 
                 graph.plot (x, y);
-
-                count++;
             }
 
             if (count == 0) {
-                Gtk.Label label = new Gtk.Label (_("No history entries available within the configured timespan."));
+                Gtk.Label label = new Gtk.Label (_("No history entries available within the configured timespan and resolution."));
                 label.set_halign (Gtk.Align.START);
                 history_box.append (label);
             } else {
@@ -685,9 +628,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                     Gtk.Label label = new Gtk.Label (_("There are not enough history entries to display a graph."));
                     label.set_halign (Gtk.Align.START);
                     result_box.append (label);
-                } else {
-                    result_box.append (drawing_area);
-                }
+                } else result_box.append (drawing_area);
 
                 Gtk.ListBox list_box = new Gtk.ListBox ();
                 list_box.set_selection_mode (Gtk.SelectionMode.NONE);
@@ -792,7 +733,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
         options_group.add (type_combo_row);
 
         // History timespan
-        Adw.SpinRow timespan_spin_row = new Adw.SpinRow.with_range (5, 10080, 1);
+        Adw.SpinRow timespan_spin_row = new Adw.SpinRow.with_range (5, 14400, 1);
         timespan_spin_row.set_title (_("Timespan"));
         timespan_spin_row.set_subtitle (_("The timespan, in minutes, to return history data from."));
         options_group.add (timespan_spin_row);
@@ -834,16 +775,14 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
     // Keyboard shortcut select next device action
     private void on_select_next_device_action () {
-        if (this.device_list.get_selected_row () != this.device_list.get_last_child ()) {
+        if (this.device_list.get_selected_row () != this.device_list.get_last_child ())
             this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index + 1));
-        }
     }
 
     // Keyboard shortcut select previous device action
     private void on_select_previous_device_action () {
-        if (this.device_list.get_selected_row () != this.device_list.get_first_child ()) {
+        if (this.device_list.get_selected_row () != this.device_list.get_first_child ())
             this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index - 1));
-        }
     }
 
     // Keyboard shortcut refresh action
