@@ -69,7 +69,7 @@ namespace ChartDrawer {
         public void draw (Context cr, int w, int h) {
             if (xs.length == 0 || ys.length == 0)return;
 
-            double radius = 12.0;
+            double radius = 12;
 
             // Determine min/max
             double min_x = this.umin_x != null ? (double) this.umin_x : xs.index (0);
@@ -124,7 +124,7 @@ namespace ChartDrawer {
             cr.close_path ();
             cr.fill ();
 
-// Line
+            // Line
             cr.set_source_rgb (51 / 255.0, 209 / 255.0, 122 / 255.0);
             cr.set_line_width (2.0);
             cr.new_path ();
