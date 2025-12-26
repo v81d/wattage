@@ -33,12 +33,12 @@
       <description>The type of history to display.</description>
     </key>
     <key name="history-timespan" type="u">
-      <default>60</default>
+      <default>1440</default>
       <summary>History Timespan</summary>
       <description>The timespan, in minutes, to return history data from.</description>
     </key>
     <key name="history-resolution" type="u">
-      <default>10</default>
+      <default>60</default>
       <summary>History Resolution</summary>
       <description>The approximate number of history points to return.</description>
     </key>
