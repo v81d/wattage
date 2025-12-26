@@ -672,7 +672,6 @@ public class Wattage.Window : Adw.ApplicationWindow {
             }
 
             if (count == 0) {
-
                 Gtk.Label label = new Gtk.Label (_("No history entries available within the configured timespan."));
                 label.set_halign (Gtk.Align.START);
                 history_box.append (label);
@@ -701,7 +700,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
             // Clear all of the main box's children
             Gtk.Widget? main_box_child = main_box.get_first_child ();
 
-            while (child != null) {
+            while (main_box_child != null) {
                 Gtk.Widget? next = main_box_child.get_next_sibling ();
                 main_box.remove (main_box_child);
                 main_box_child.destroy ();
