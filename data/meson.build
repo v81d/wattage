@@ -1,3 +1,5 @@
+gnome = import('gnome')
+
 desktop_file = i18n.merge_file(
         input: 'io.github.v81d.Wattage.desktop.in',
        output: 'io.github.v81d.Wattage.desktop',
@@ -33,6 +35,10 @@ test('Validate schema file',
      compile_schemas,
      args: ['--strict', '--dry-run', meson.current_source_dir()])
 
+gnome.compile_schemas(
+  build_by_default: true,
+  depend_files: files('io.github.v81d.Wattage.gschema.xml')
+)
 
 service_conf = configuration_data()
 service_conf.set('bindir', get_option('prefix') / get_option('bindir'))
