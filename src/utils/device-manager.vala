@@ -173,15 +173,13 @@ namespace DeviceManager {
                 string a_type = a.device_type != null ? a.device_type.down () : "";
                 string b_type = b.device_type != null ? b.device_type.down () : "";
 
-                if (a_type == "battery" && b_type != "battery") {
-                    return -1; // a before b
-                } else if (a_type != "battery" && b_type == "battery") {
-                    return 1; // b before a
-                } else {
+                if (a_type == "battery" && b_type != "battery")return -1; // `a` before `b`
+                else if (a_type != "battery" && b_type == "battery")return 1; // `b` before `a`
+                else {
                     string a_path = a.native_path ?? "";
                     string b_path = b.native_path ?? "";
                     return strcmp (a_path, b_path);
-                }
+                } // alphabetical order
             });
 
             return result;
