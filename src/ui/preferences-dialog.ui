@@ -10,11 +10,13 @@
             <child>
               <object class="AdwSwitchRow" id="auto_refresh_switch">
                 <property name="title" translatable="yes">Auto-Refresh</property>
+                <property name="subtitle" translatable="yes">Whether or not the data should refresh automatically.</property>
               </object>
             </child>
             <child>
               <object class="AdwSpinRow" id="auto_refresh_cooldown_row">
-                <property name="title" translatable="yes">Auto-Refresh Cooldown (seconds)</property>
+                <property name="title" translatable="yes">Auto-Refresh Cooldown</property>
+                <property name="subtitle" translatable="yes">The time, in seconds, between each data refresh.</property>
                 <property name="adjustment">
                   <object class="GtkAdjustment">
                     <property name="lower">5</property>
@@ -33,6 +35,7 @@
             <child>
               <object class="AdwComboRow" id="energy_unit">
                 <property name="title" translatable="yes">Energy Unit</property>
+                <property name="subtitle" translatable="yes">The unit for energy measurements.</property>
                 <property name="model">
                   <object class="GtkStringList">
                     <items>
@@ -49,6 +52,7 @@
             <child>
               <object class="AdwComboRow" id="power_unit">
                 <property name="title" translatable="yes">Power Unit</property>
+                <property name="subtitle" translatable="yes">The unit for power measurements.</property>
                 <property name="model">
                   <object class="GtkStringList">
                     <items>
@@ -65,6 +69,7 @@
             <child>
               <object class="AdwComboRow" id="voltage_unit">
                 <property name="title" translatable="yes">Voltage Unit</property>
+                <property name="subtitle" translatable="yes">The unit for voltage measurements.</property>
                 <property name="model">
                   <object class="GtkStringList">
                     <items>
