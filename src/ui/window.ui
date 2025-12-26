@@ -96,11 +96,11 @@
                         <child>
                           <object class="GtkBox" id="device_info_box">
                             <property name="orientation">vertical</property>
-                            <property name="margin-top">32</property>
-                            <property name="margin-start">32</property>
-                            <property name="margin-bottom">32</property>
-                            <property name="margin-end">32</property>
-                            <property name="spacing">32</property>
+                            <property name="margin-start">24</property>
+                            <property name="margin-end">24</property>
+                            <property name="margin-top">24</property>
+                            <property name="margin-bottom">24</property>
+                            <property name="spacing">36</property>
                           </object>
                         </child>
                       </object>
