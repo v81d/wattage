@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-27 18:06-0500\n"
+"POT-Creation-Date: 2025-12-26 17:06-0500\n"
 "PO-Revision-Date: 2025-12-08 11:28+0100\n"
 "Last-Translator: Jonáš Loskot <jonas@jonasloskot.cz>\n"
 "Language-Team: \n"
@@ -30,26 +30,6 @@ msgid ""
 msgstr ""
 "GTK;Monitor baterie;Zdraví baterie;Statistiky napájení;Využití "
 "energie;Napájení zařízení;"
-
-#: data/io.github.v81d.Wattage.metainfo.xml.in:10
-msgid ""
-"Wattage is an application designed for monitoring the health and status of "
-"your power devices."
-msgstr ""
-"Wattage je aplikace navržená pro monitorování zdraví a stavu vašich "
-"napájecích zařízení."
-
-#: data/io.github.v81d.Wattage.metainfo.xml.in:52
-msgid "General battery information"
-msgstr "Obecné informace o baterii"
-
-#: data/io.github.v81d.Wattage.metainfo.xml.in:56
-msgid "Health and energy statistics"
-msgstr "Zdraví a energetické statistiky"
-
-#: data/io.github.v81d.Wattage.metainfo.xml.in:60
-msgid "Preferences dialog"
-msgstr "Dialog předvoleb"
 
 #: data/io.github.v81d.Wattage.gschema.xml:6
 msgid "Enable auto-refresh"
@@ -91,6 +71,54 @@ msgstr "Jednotka napětí"
 msgid "The unit used to display voltage measurements."
 msgstr "Jednotka použitá pro zobrazení měření napětí."
 
+#: data/io.github.v81d.Wattage.gschema.xml:32
+msgid "History Type"
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:33 src/window.vala:737
+msgid "The type of history to display."
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:37
+msgid "History Timespan"
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:757
+msgid "The timespan, in minutes, to return history data from."
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:42
+msgid "History Resolution"
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:772
+msgid "The approximate number of history points to return."
+msgstr ""
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:10
+msgid ""
+"Wattage is an application designed for monitoring the health and status of "
+"your power devices."
+msgstr ""
+"Wattage je aplikace navržená pro monitorování zdraví a stavu vašich "
+"napájecích zařízení."
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:52
+msgid "General battery information"
+msgstr "Obecné informace o baterii"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:56
+msgid "Health and energy statistics"
+msgstr "Zdraví a energetické statistiky"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:60
+msgid "Preferences dialog"
+msgstr "Dialog předvoleb"
+
+#: src/application.vala:56
+msgid "translator-credits"
+msgstr "Jonáš Loskot <jonas@jonasloskot.cz>"
+
 #: src/ui/preferences-dialog.ui:6 src/ui/shortcuts-dialog.ui:6
 msgid "General"
 msgstr "Obecné"
@@ -103,25 +131,50 @@ msgstr "Automatizace"
 msgid "Auto-Refresh"
 msgstr "Automatické obnovování"
 
-#: src/ui/preferences-dialog.ui:17
-msgid "Auto-Refresh Cooldown (seconds)"
-msgstr "Interval automatického obnovování (sekundy)"
+#: src/ui/preferences-dialog.ui:13
+msgid "Whether or not the data should refresh automatically."
+msgstr ""
 
-#: src/ui/preferences-dialog.ui:32
+#: src/ui/preferences-dialog.ui:18
+#, fuzzy
+msgid "Auto-Refresh Cooldown"
+msgstr "Interval automatického obnovování"
+
+#: src/ui/preferences-dialog.ui:19
+#, fuzzy
+msgid "The time, in seconds, between each data refresh."
+msgstr "Interval mezi operacemi automatického obnovení, v sekundách."
+
+#: src/ui/preferences-dialog.ui:34
 msgid "Measurements"
 msgstr "Měření"
 
-#: src/ui/preferences-dialog.ui:35
+#: src/ui/preferences-dialog.ui:37
 msgid "Energy Unit"
 msgstr "Jednotka energie"
 
-#: src/ui/preferences-dialog.ui:51
+#: src/ui/preferences-dialog.ui:38
+#, fuzzy
+msgid "The unit for energy measurements."
+msgstr "Jednotka použitá pro zobrazení měření energie."
+
+#: src/ui/preferences-dialog.ui:54
 msgid "Power Unit"
 msgstr "Jednotka výkonu"
 
-#: src/ui/preferences-dialog.ui:67
+#: src/ui/preferences-dialog.ui:55
+#, fuzzy
+msgid "The unit for power measurements."
+msgstr "Jednotka použitá pro zobrazení měření výkonu."
+
+#: src/ui/preferences-dialog.ui:71
 msgid "Voltage Unit"
 msgstr "Jednotka napětí"
+
+#: src/ui/preferences-dialog.ui:72
+#, fuzzy
+msgid "The unit for voltage measurements."
+msgstr "Jednotka použitá pro zobrazení měření napětí."
 
 #: src/ui/shortcuts-dialog.ui:9
 msgctxt "shortcut window"
@@ -178,15 +231,20 @@ msgstr "Hlavní nabídka"
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: src/ui/window.ui:139
+#: src/ui/window.ui:139 src/window.vala:699
+#, fuzzy
+msgid "Device History"
+msgstr "Stav zařízení"
+
+#: src/ui/window.ui:145
 msgid "Preferences"
 msgstr "Předvolby"
 
-#: src/ui/window.ui:143
+#: src/ui/window.ui:149
 msgid "Keyboard Shortcuts"
 msgstr "Klávesové zkratky"
 
-#: src/ui/window.ui:147
+#: src/ui/window.ui:153
 msgid "About Wattage"
 msgstr "O aplikaci Wattage"
 
@@ -246,283 +304,288 @@ msgstr ""
 "přehřátí mohou poškodit další součásti. Zařízení vyměňte, aby nedošlo k "
 "dalšímu poškození."
 
-#: src/utils/device-manager.vala:94
+#: src/utils/device-manager.vala:91
 msgid "Line Power"
 msgstr "Napájení ze sítě"
 
-#: src/utils/device-manager.vala:95
+#: src/utils/device-manager.vala:92
 msgid "Battery"
 msgstr "Baterie"
 
-#: src/utils/device-manager.vala:96
+#: src/utils/device-manager.vala:93
 msgid "UPS"
 msgstr "UPS"
 
-#: src/utils/device-manager.vala:97
+#: src/utils/device-manager.vala:94
 msgid "Monitor"
 msgstr "Monitor"
 
-#: src/utils/device-manager.vala:98
+#: src/utils/device-manager.vala:95
 msgid "Mouse"
 msgstr "Myš"
 
-#: src/utils/device-manager.vala:99
+#: src/utils/device-manager.vala:96
 msgid "Keyboard"
 msgstr "Klávesnice"
 
-#: src/utils/device-manager.vala:100
+#: src/utils/device-manager.vala:97
 msgid "PDA"
 msgstr "PDA"
 
-#: src/utils/device-manager.vala:101
+#: src/utils/device-manager.vala:98
 msgid "Phone"
 msgstr "Telefon"
 
-#: src/utils/device-manager.vala:102
+#: src/utils/device-manager.vala:99
 msgid "Media Player"
 msgstr "Multimediální přehrávač"
 
-#: src/utils/device-manager.vala:103
+#: src/utils/device-manager.vala:100
 msgid "Tablet"
 msgstr "Tablet"
 
-#: src/utils/device-manager.vala:104
+#: src/utils/device-manager.vala:101
 msgid "Computer"
 msgstr "Počítač"
 
-#: src/utils/device-manager.vala:105
+#: src/utils/device-manager.vala:102
 msgid "Gaming Input"
 msgstr "Herní vstup"
 
-#: src/utils/device-manager.vala:106
+#: src/utils/device-manager.vala:103
 msgid "Pen"
 msgstr "Pero"
 
-#: src/utils/device-manager.vala:107
+#: src/utils/device-manager.vala:104
 msgid "Touchpad"
 msgstr "Touchpad"
 
-#: src/utils/device-manager.vala:108
+#: src/utils/device-manager.vala:105
 msgid "Modem"
 msgstr "Modem"
 
-#: src/utils/device-manager.vala:109
+#: src/utils/device-manager.vala:106
 msgid "Network"
 msgstr "Síť"
 
-#: src/utils/device-manager.vala:110
+#: src/utils/device-manager.vala:107
 msgid "Headset"
 msgstr "Headset"
 
-#: src/utils/device-manager.vala:111
+#: src/utils/device-manager.vala:108
 msgid "Speakers"
 msgstr "Reproduktory"
 
-#: src/utils/device-manager.vala:112
+#: src/utils/device-manager.vala:109
 msgid "Headphones"
 msgstr "Sluchátka"
 
-#: src/utils/device-manager.vala:113
+#: src/utils/device-manager.vala:110
 msgid "Video"
 msgstr "Video"
 
-#: src/utils/device-manager.vala:114
+#: src/utils/device-manager.vala:111
 msgid "Other Audio"
 msgstr "Jiný zvuk"
 
-#: src/utils/device-manager.vala:115
+#: src/utils/device-manager.vala:112
 msgid "Remote Control"
 msgstr "Vzdálené ovládání"
 
-#: src/utils/device-manager.vala:116
+#: src/utils/device-manager.vala:113
 msgid "Printer"
 msgstr "Tiskárna"
 
-#: src/utils/device-manager.vala:117
+#: src/utils/device-manager.vala:114
 msgid "Scanner"
 msgstr "Skener"
 
-#: src/utils/device-manager.vala:118
+#: src/utils/device-manager.vala:115
 msgid "Camera"
 msgstr "Kamera"
 
-#: src/utils/device-manager.vala:119
+#: src/utils/device-manager.vala:116
 msgid "Wearable"
 msgstr "Nositelné zařízení"
 
-#: src/utils/device-manager.vala:120
+#: src/utils/device-manager.vala:117
 msgid "Toy"
 msgstr "Hračka"
 
-#: src/utils/device-manager.vala:121
+#: src/utils/device-manager.vala:118
 msgid "Bluetooth Generic"
 msgstr "Obecné Bluetooth zařízení"
 
-#: src/utils/device-manager.vala:132
+#: src/utils/device-manager.vala:127
 msgid "Lithium ion"
 msgstr "Lithium ion"
 
-#: src/utils/device-manager.vala:133
+#: src/utils/device-manager.vala:128
 msgid "Lithium polymer"
 msgstr "Lithium polymer"
 
-#: src/utils/device-manager.vala:134
+#: src/utils/device-manager.vala:129
 msgid "Lithium iron phosphate"
 msgstr "Lithium-železo-fosfát"
 
-#: src/utils/device-manager.vala:135
+#: src/utils/device-manager.vala:130
 msgid "Lead acid"
 msgstr "Olovo"
 
-#: src/utils/device-manager.vala:136
+#: src/utils/device-manager.vala:131
 msgid "Nickel cadmium"
 msgstr "Nikl-kadmium"
 
-#: src/utils/device-manager.vala:137
+#: src/utils/device-manager.vala:132
 msgid "Nickel metal hydride"
 msgstr "Nikl-metal hydrid"
 
-#: src/utils/device-manager.vala:148
+#: src/utils/device-manager.vala:141 src/window.vala:408
 msgid "Charging"
 msgstr "Nabíjení"
 
-#: src/utils/device-manager.vala:149
+#: src/utils/device-manager.vala:142 src/window.vala:397
 msgid "Discharging"
 msgstr "Vybíjení"
 
-#: src/utils/device-manager.vala:150
+#: src/utils/device-manager.vala:143
 msgid "Empty"
 msgstr "Prázdné"
 
-#: src/utils/device-manager.vala:151
+#: src/utils/device-manager.vala:144
 msgid "Fully charged"
 msgstr "Plně nabito"
 
-#: src/utils/device-manager.vala:152
+#: src/utils/device-manager.vala:145
 msgid "Pending charge"
 msgstr "Čeká na nabití"
 
-#: src/utils/device-manager.vala:153
+#: src/utils/device-manager.vala:146
 msgid "Pending discharge"
 msgstr "Čeká na vybití"
 
-#: src/application.vala:56
-msgid "translator-credits"
-msgstr "Jonáš Loskot <jonas@jonasloskot.cz>"
-
-#: src/window.vala:326
+#: src/window.vala:340
 msgid "General Information"
 msgstr "Obecné informace"
 
-#: src/window.vala:327
+#: src/window.vala:341
 msgid "Native Path"
 msgstr "Nativní cesta"
 
-#: src/window.vala:328
+#: src/window.vala:342
 msgid "Object Path"
 msgstr "Objektová cesta"
 
-#: src/window.vala:329
+#: src/window.vala:343
 msgid "Device Type"
 msgstr "Typ zařízení"
 
-#: src/window.vala:332
+#: src/window.vala:344
+msgid "Has History"
+msgstr ""
+
+#: src/window.vala:347
 msgid "Model Details"
 msgstr "Podrobnosti o modelu"
 
-#: src/window.vala:333
+#: src/window.vala:348
 msgid "Vendor"
 msgstr "Výrobce"
 
-#: src/window.vala:334
+#: src/window.vala:349
 msgid "Serial Number"
 msgstr "Sériové číslo"
 
-#: src/window.vala:335
+#: src/window.vala:350
 msgid "Model Name"
 msgstr "Název modelu"
 
-#: src/window.vala:336
+#: src/window.vala:351
 msgid "Technology"
 msgstr "Technologie"
 
-#: src/window.vala:339
+#: src/window.vala:354
 msgid "Health Evaluations"
 msgstr "Hodnocení zdraví"
 
-#: src/window.vala:342
+#: src/window.vala:356
 msgid "State of Health"
 msgstr "Stav zdraví"
 
-#: src/window.vala:347
+#: src/window.vala:360
 msgid "Device Condition"
 msgstr "Stav zařízení"
 
-#: src/window.vala:352
+#: src/window.vala:364
 msgid "Charging Status"
 msgstr "Stav nabíjení"
 
-#: src/window.vala:355
+#: src/window.vala:367
 msgid "Charge Start Threshold"
 msgstr "Hranice spuštění nabíjení"
 
-#: src/window.vala:359
+#: src/window.vala:370
 msgid "Charge End Threshold"
 msgstr "Hranice ukončení nabíjení"
 
-#: src/window.vala:363
+#: src/window.vala:373
 msgid "Cycle Count"
 msgstr "Počet cyklů"
 
-#: src/window.vala:368
+#: src/window.vala:377
 msgid "Current Charge Percentage"
 msgstr "Aktuální procento nabití"
 
-#: src/window.vala:371
+#: src/window.vala:379
 msgid "State"
 msgstr "Stav"
 
-#: src/window.vala:374
+#: src/window.vala:383
 msgid "Time Calculations"
 msgstr "Výpočet času"
 
-#: src/window.vala:378
+#: src/window.vala:387
 msgid "Time to Empty"
 msgstr "Čas do vybití"
 
-#: src/window.vala:383
+#: src/window.vala:391
 msgid "Time to Full"
 msgstr "Čas do nabití"
 
-#: src/window.vala:394
+#: src/window.vala:401
 msgid "Projected Battery Life"
 msgstr "Předpokládaná životnost baterie"
 
-#: src/window.vala:400
+#: src/window.vala:412
+#, fuzzy
+msgid "Projected Charging Time"
+msgstr "Předpokládaná životnost baterie"
+
+#: src/window.vala:417
 msgid "Sensor Readings"
 msgstr "Čtení ze senzorů"
 
-#: src/window.vala:403
+#: src/window.vala:420
 msgid "Temperature"
 msgstr "Teplota"
 
-#: src/window.vala:408
+#: src/window.vala:424
 msgid "Energy Metrics"
 msgstr "Měření energie"
 
-#: src/window.vala:413
+#: src/window.vala:427
 msgid "Maximum Rated Capacity"
 msgstr "Maximální jmenovitá kapacita"
 
-#: src/window.vala:420
+#: src/window.vala:430
 msgid "Maximum Capacity"
 msgstr "Maximální kapacita"
 
-#: src/window.vala:427
+#: src/window.vala:433
 msgid "Remaining Energy"
 msgstr "Zbývající energie"
 
-#: src/window.vala:434
+#: src/window.vala:436
 msgid "Energy Transfer Rate"
 msgstr "Rychlost přenosu energie"
 
@@ -534,6 +597,56 @@ msgstr "Statistiky napětí"
 msgid "Minimum Rated Voltage"
 msgstr "Minimální jmenovité napětí"
 
-#: src/window.vala:452
+#: src/window.vala:451
 msgid "Current Voltage"
 msgstr "Aktuální napětí"
+
+#: src/window.vala:595
+msgid "Entries"
+msgstr ""
+
+#: src/window.vala:620 src/window.vala:740
+msgid "Rate"
+msgstr ""
+
+#: src/window.vala:620 src/window.vala:740
+#, fuzzy
+msgid "Charge"
+msgstr "Nabíjení"
+
+#: src/window.vala:638
+msgid ""
+"No history entries available within the configured timespan and resolution."
+msgstr ""
+
+#: src/window.vala:647
+msgid "There are not enough history entries to display a graph."
+msgstr ""
+
+#: src/window.vala:658
+#, c-format
+msgid "%u history item(s) discovered."
+msgstr ""
+
+#: src/window.vala:678
+msgid "History Unavailable"
+msgstr ""
+
+#: src/window.vala:723
+msgid "Options"
+msgstr ""
+
+#: src/window.vala:736
+msgid "Type"
+msgstr ""
+
+#: src/window.vala:756
+msgid "Timespan"
+msgstr ""
+
+#: src/window.vala:771
+msgid "Resolution"
+msgstr ""
+
+#~ msgid "Auto-Refresh Cooldown (seconds)"
+#~ msgstr "Interval automatického obnovování (sekundy)"
