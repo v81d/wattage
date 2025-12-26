@@ -70,6 +70,19 @@ namespace DBusInterface {
             [DBus (name = "BatteryLevel")]         public abstract uint32 battery_level { owned get; }
             [DBus (name = "IconName")]             public abstract string icon_name { owned get; }
             [DBus (name = "CapacityLevel")]        public abstract string capacity_level { owned get; }
+
+            [DBus (name = "GetHistory")]
+            public abstract HistoryItem[] get_history (
+                string type,
+                uint32 timespan,
+                uint32 resolution
+            ) throws DBusError, IOError;
+        }
+
+        public struct HistoryItem {
+            public uint32 time;
+            public double value;
+            public uint32 state;
         }
     }
 }
