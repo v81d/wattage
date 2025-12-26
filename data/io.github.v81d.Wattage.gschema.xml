@@ -6,7 +6,7 @@
       <summary>Enable auto-refresh</summary>
       <description>Whether the app automatically refreshes data.</description>
     </key>
-	  <key name="auto-refresh-cooldown" type="i">
+	  <key name="auto-refresh-cooldown" type="u">
 	    <default>20</default>
 	    <range min="10" max="3600"/>
       <summary>Auto-refresh cooldown</summary>
@@ -26,6 +26,21 @@
       <default>'V'</default>
       <summary>Voltage unit</summary>
       <description>The unit used to display voltage measurements.</description>
+    </key>
+    <key name="history-type" type="s">
+      <default>'rate'</default>
+      <summary>History Type</summary>
+      <description>The type of history to display.</description>
+    </key>
+    <key name="history-timespan" type="u">
+      <default>60</default>
+      <summary>History Timespan</summary>
+      <description>The timespan, in minutes, to return history data from.</description>
+    </key>
+    <key name="history-resolution" type="u">
+      <default>10</default>
+      <summary>History Resolution</summary>
+      <description>The approximate number of history points to return.</description>
     </key>
 	</schema>
 </schemalist>
