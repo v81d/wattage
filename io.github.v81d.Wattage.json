@@ -35,20 +35,6 @@
                 {
                     "type" : "dir",
                     "path" : "./"
-                },
-            ]
-        },
-        {
-            "name": "livechart",
-            "buildsystem": "meson",
-            "config-opts": [
-                "--prefix=/app"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/lcallarec/live-chart.git",
-                    "tag": "v1.10.0"
                 }
             ]
         }
