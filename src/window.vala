@@ -225,7 +225,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
         // Automation
         this.auto_refresh = this.settings.get_boolean ("auto-refresh");
-        this.auto_refresh_cooldown = (int) this.settings.get_uint ("auto-refresh-cooldown");
+        this.auto_refresh_cooldown = this.settings.get_uint ("auto-refresh-cooldown");
 
         // Measurements
         this.energy_unit = this.settings.get_string ("energy-unit");
@@ -545,7 +545,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                     this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index));
                 } else if (this.device_list.get_row_at_index (0) != null) {
                     this.device_list.select_row (this.device_list.get_row_at_index (0));
-                    stdout.printf ("The device at index %s cannot be found. The first device will be deselected as fallback.\n", this.selected_device_index.to_string ());
+                    stdout.printf ("The device at index %s cannot be found. The first device will be selected as fallback.\n", this.selected_device_index.to_string ());
                 } else {
                     stderr.printf ("No power devices have been detected by UPower.\n");
                     this.device_list_empty_status.set_visible (true);
@@ -815,3 +815,4 @@ public class Wattage.Window : Adw.ApplicationWindow {
         load_device_list ();
     }
 }
+
