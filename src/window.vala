@@ -607,6 +607,11 @@ public class Wattage.Window : Adw.ApplicationWindow {
                                                             si_convert (val, this.energy_unit),
                                                             this.history_type == "rate" ? " " + this.energy_unit : "%",
                                                             state.down ()));
+
+                Gtk.Label placement_label = new Gtk.Label (count.to_string ());
+                placement_label.add_css_class ("monospace");
+                row.add_suffix (placement_label);
+
                 expander_row.add_row (row);
 
                 double x = (double) item.time - (double) history_items[0].time;
