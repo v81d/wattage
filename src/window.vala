@@ -616,11 +616,17 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
                 Adw.ActionRow row = new Adw.ActionRow ();
                 row.set_title (timestamp);
-                row.set_subtitle ("%s: %.3f%s (%s)".printf (
-                                                            this.history_type == "rate" ? _("Rate") : _("Charge"),
-                                                            si_convert (val, this.power_unit),
-                                                            this.history_type == "rate" ? " " + this.power_unit : "%",
-                                                            state.down ()));
+
+                switch (this.history_type) {
+                case "rate" :
+                    row.set_subtitle ("Rate: %.3f %s (%s)".printf (si_convert (val, this.power_unit),
+                                                                   this.power_unit,
+                                                                   state.down ()));
+                    break;
+                case "charge" :
+                    row.set_subtitle ("Charge: %.3f%% (%s)".printf (val, state.down ()));
+                    break;
+                }
 
                 Gtk.Label placement_label = new Gtk.Label (count.to_string ());
                 placement_label.add_css_class ("monospace");
@@ -815,4 +821,3 @@ public class Wattage.Window : Adw.ApplicationWindow {
         load_device_list ();
     }
 }
-
