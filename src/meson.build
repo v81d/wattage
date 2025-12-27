@@ -4,6 +4,7 @@ wattage_sources = [
   'window.vala',
   'utils/numeric-toolkit.vala',
   'utils/device-manager.vala',
+  'utils/chart-drawer.vala',
   'interfaces/dbus-upower.vala'
 ]
 
@@ -11,7 +12,8 @@ wattage_deps = [
   config_dep,
   dependency('gtk4'),
   dependency('libadwaita-1', version: '>= 1.8.0'),
-  dependency('gee-0.8')
+  dependency('gee-0.8'),
+  dependency('cairo', version: '>= 1.18.4')
 ]
 
 wattage_sources += gnome.compile_resources('wattage-resources',
