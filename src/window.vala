@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+using Gee;
 using GLib;
 
 using ChartDrawer;
@@ -54,7 +55,7 @@ private class DeviceInfoSection : Gtk.Box {
     public string title { get; private set; }
     private Gtk.ListBox list { private get; private set; }
 
-    public DeviceInfoSection (string title, Gee.ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
+    public DeviceInfoSection (string title, ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
         this.title = title;
         this.set_orientation (Gtk.Orientation.VERTICAL);
         this.set_spacing (12);
@@ -73,7 +74,7 @@ private class DeviceInfoSection : Gtk.Box {
         this.update (properties);
     }
 
-    public void update (Gee.ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
+    public void update (ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
         Gtk.ListBoxRow? row;
         while ((row = this.list.get_row_at_index (0)) != null)
             this.list.remove (row);
@@ -101,11 +102,11 @@ private class DeviceInfoSectionData {
     }
 
     public string title { get; private set; }
-    public Gee.ArrayList<DeviceProperty> properties { get; private set; }
+    public ArrayList<DeviceProperty> properties { get; private set; }
 
     public DeviceInfoSectionData (string title) {
         this.title = title;
-        this.properties = new Gee.ArrayList<DeviceProperty> ();
+        this.properties = new ArrayList<DeviceProperty> ();
     }
 
     public void set (string name, string? val) {
@@ -128,11 +129,11 @@ public class Wattage.Window : Adw.ApplicationWindow {
     private SimpleAction device_history_action;
 
     private Gtk.Builder preferences_dialog_builder;
-    private GLib.Settings settings;
+    private Settings settings;
 
     private DeviceProber device_prober;
     private int selected_device_index = 0;
-    private Gee.ArrayList<DeviceInfoSection> device_info_sections = new Gee.ArrayList<DeviceInfoSection> ();
+    private ArrayList<DeviceInfoSection> device_info_sections = new ArrayList<DeviceInfoSection> ();
 
     // Preferences and user settings
     private bool auto_refresh;
@@ -226,7 +227,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
     }
 
     private void initialize_gsettings () {
-        this.settings = new GLib.Settings ("io.github.v81d.Wattage");
+        this.settings = new Settings ("io.github.v81d.Wattage");
 
         // Automation
         this.auto_refresh = this.settings.get_boolean ("auto-refresh");
@@ -342,7 +343,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
         new Thread<void> ("load-device-info", () => {
             if (!device.has_history)this.device_history_action.set_enabled (false);
 
-            Gee.ArrayList<DeviceInfoSectionData> sections = new Gee.ArrayList<DeviceInfoSectionData> ();
+            ArrayList<DeviceInfoSectionData> sections = new ArrayList<DeviceInfoSectionData> ();
 
             DeviceInfoSectionData general_info = new DeviceInfoSectionData (_("General Information"));
             general_info.set (_("Native Path"), device.native_path);
@@ -359,12 +360,12 @@ public class Wattage.Window : Adw.ApplicationWindow {
             sections.add (model_details);
 
             DeviceInfoSectionData health_stats = new DeviceInfoSectionData (_("Health Evaluations"));
+
             if (device.capacity != null)
                 health_stats.set (_("State of Health"), "%.03f%%".printf (device.capacity));
 
-            string? health_alert = device.create_health_alert ();
-            if (health_alert != null)
-                health_stats.set (_("Device Condition"), health_alert);
+            if (device.health_description != null)
+                health_stats.set (_("Device Condition"), device.health_description);
 
             sections.add (health_stats);
 
@@ -461,10 +462,10 @@ public class Wattage.Window : Adw.ApplicationWindow {
             sections.add (voltage_stats);
 
             Idle.add (() => {
-                Gee.ArrayList<string> existing_titles = new Gee.ArrayList<string> ();
+                ArrayList<string> existing_titles = new ArrayList<string> ();
                 foreach (DeviceInfoSection section in this.device_info_sections)existing_titles.add (section.title);
 
-                Gee.ArrayList<string> new_titles = new Gee.ArrayList<string> ();
+                ArrayList<string> new_titles = new ArrayList<string> ();
                 foreach (DeviceInfoSectionData section in sections)
                     if (section.properties.size > 0)new_titles.add (section.title);
 
@@ -527,11 +528,12 @@ public class Wattage.Window : Adw.ApplicationWindow {
         this.sidebar_spinner.set_visible (true);
 
         Gtk.ListBoxRow? row;
+
         while ((row = this.device_list.get_row_at_index (0)) != null)
             this.device_list.remove (row);
 
         new Thread<void> ("load-device-list", () => {
-            List<DeviceObject> devices;
+            ArrayList<DeviceObject> devices;
 
             try {
                 devices = this.device_prober.get_devices ();
@@ -539,7 +541,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 this.device_info_empty_status.set_visible (false);
             } catch (Error e) {
                 stderr.printf ("Failed to load power devices: %s\n", e.message);
-                devices = new List<DeviceObject> ();
+                devices = new ArrayList<DeviceObject> ();
             }
 
             Idle.add (() => {
@@ -585,7 +587,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
             UPower.HistoryItem[] history_items = device.upower_proxy.get_history (this.history_type,
                                                                                   this.history_timespan * 60,
                                                                                   this.history_resolution);
-            Gee.ArrayList<UPower.HistoryItem?> history_sorted = new Gee.ArrayList<UPower.HistoryItem?> ();
+            ArrayList<UPower.HistoryItem?> history_sorted = new ArrayList<UPower.HistoryItem?> ();
             foreach (UPower.HistoryItem item in history_items)history_sorted.add (item);
 
             // Sort in chronological order
