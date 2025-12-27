@@ -116,6 +116,7 @@ private class DeviceInfoSectionData {
 [GtkTemplate (ui = "/io/github/v81d/Wattage/window.ui")]
 public class Wattage.Window : Adw.ApplicationWindow {
     // Bind template children to variables
+    [GtkChild] unowned Adw.ToastOverlay main_toast_overlay;
     [GtkChild] unowned Adw.Spinner sidebar_spinner;
     [GtkChild] unowned Adw.Spinner content_spinner;
     [GtkChild] unowned Adw.OverlaySplitView split_view;
@@ -123,6 +124,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
     [GtkChild] unowned Gtk.Box device_info_box;
     [GtkChild] unowned Adw.StatusPage device_list_empty_status;
     [GtkChild] unowned Adw.StatusPage device_info_empty_status;
+
+    private SimpleAction device_history_action;
 
     private Gtk.Builder preferences_dialog_builder;
     private GLib.Settings settings;
@@ -157,6 +160,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 Idle.add (() => {
                     this.selected_device_index = device_row.get_index ();
                     this.device_info_empty_status.set_visible (false);
+                    this.device_history_action.set_enabled (true);
                     this.load_device_info (device_row.device);
                     return false;
                 });
@@ -184,9 +188,10 @@ public class Wattage.Window : Adw.ApplicationWindow {
         select_previous_device_action.activate.connect (this.on_select_previous_device_action);
         this.add_action (select_previous_device_action);
 
-        SimpleAction device_history_action = new SimpleAction ("device_history", null);
-        device_history_action.activate.connect (this.on_device_history_action);
-        this.add_action (device_history_action);
+        this.device_history_action = new SimpleAction ("device_history", null);
+        this.device_history_action.set_enabled (false);
+        this.device_history_action.activate.connect (this.on_device_history_action);
+        this.add_action (this.device_history_action);
     }
 
     private void start_auto_refresh () {
@@ -335,6 +340,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
         this.content_spinner.set_visible (true);
 
         new Thread<void> ("load-device-info", () => {
+            if (!device.has_history)this.device_history_action.set_enabled (false);
+
             Gee.ArrayList<DeviceInfoSectionData> sections = new Gee.ArrayList<DeviceInfoSectionData> ();
 
             DeviceInfoSectionData general_info = new DeviceInfoSectionData (_("General Information"));
@@ -520,9 +527,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
         this.sidebar_spinner.set_visible (true);
 
         Gtk.ListBoxRow? row;
-        while ((row = this.device_list.get_row_at_index (0)) != null) {
+        while ((row = this.device_list.get_row_at_index (0)) != null)
             this.device_list.remove (row);
-        }
 
         new Thread<void> ("load-device-list", () => {
             List<DeviceObject> devices;
@@ -537,19 +543,19 @@ public class Wattage.Window : Adw.ApplicationWindow {
             }
 
             Idle.add (() => {
-                foreach (DeviceObject device in devices) {
+                foreach (DeviceObject device in devices)
                     this.append_device (device);
-                }
 
-                if (this.device_list.get_row_at_index (this.selected_device_index) != null) {
+                if (this.device_list.get_row_at_index (this.selected_device_index) != null)
                     this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index));
-                } else if (this.device_list.get_row_at_index (0) != null) {
+                else if (this.device_list.get_row_at_index (0) != null) {
+                    stdout.printf ("The device at index %s can no longer be found. The first device will be selected as fallback.\n", this.selected_device_index.to_string ());
                     this.device_list.select_row (this.device_list.get_row_at_index (0));
-                    stdout.printf ("The device at index %s cannot be found. The first device will be selected as fallback.\n", this.selected_device_index.to_string ());
                 } else {
                     stderr.printf ("No power devices have been detected by UPower.\n");
                     this.device_list_empty_status.set_visible (true);
                     this.device_info_empty_status.set_visible (true);
+                    this.device_history_action.set_enabled (false);
                 }
 
                 this.sidebar_spinner.set_visible (false);
@@ -691,7 +697,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
     // Display device history dialog
     public void on_device_history_action () {
         if (this.device_list.get_row_at_index (this.selected_device_index) == null) {
-            stderr.printf ("No device is currently selected.\n");
+            this.main_toast_overlay.add_toast (new Adw.Toast (_("No device is currently selected.")));
             return;
         }
 

@@ -51,7 +51,7 @@ namespace DeviceManager {
         public uint32? charge_start_threshold { get; set; }
         public uint32? charge_end_threshold { get; set; }
 
-        public bool? has_history { get; set; }
+        public bool has_history { get; set; }
         public int64? time_to_empty { get; set; }
         public int64? time_to_full { get; set; }
         public double? temperature { get; set; }
