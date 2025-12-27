@@ -29,7 +29,7 @@
   <!-- URLs of this type should point to a webpage showing information on how to donate to the described software project -->
   <!-- <url type="donation"></url> -->
   <!-- This could for example be an HTTPS URL to an online form or a page describing how to contact the developer -->
-  <url type="contact">https://github.com/v81d/wattage/discussions/categories/q-a</url>
+  <!-- <url type="contact"></url> -->
   <!-- URLs of this type should point to a webpage showing information on how to contribute to the described software project -->
   <url type="contribute">https://github.com/v81d/wattage/pulls</url>
 
@@ -48,16 +48,20 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/v81d/wattage/refs/heads/main/demo/screenshot_0.png</image>
-      <caption>General battery information</caption>
+      <image>https://raw.githubusercontent.com/v81d/wattage/refs/heads/main/demo/general-info.png</image>
+      <caption>General power device information</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/v81d/wattage/refs/heads/main/demo/screenshot_1.png</image>
+      <image>https://raw.githubusercontent.com/v81d/wattage/refs/heads/main/demo/energy-info.png</image>
       <caption>Health and energy statistics</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/v81d/wattage/refs/heads/main/demo/screenshot_2.png</image>
-      <caption>Preferences dialog</caption>
+      <image>https://raw.githubusercontent.com/v81d/wattage/refs/heads/main/demo/history-dialog.png</image>
+      <caption>Device history information</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/v81d/wattage/refs/heads/main/demo/preferences-dialog.png</image>
+      <caption>Options and preferences</caption>
     </screenshot>
   </screenshots>
 

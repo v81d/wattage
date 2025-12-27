@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-27 18:01-0500\n"
+"POT-Creation-Date: 2025-12-26 22:29-0500\n"
 "PO-Revision-Date: 2025-11-19 17:54+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -30,26 +30,6 @@ msgid ""
 msgstr ""
 "GTK;surveiller la batterie;état de la batterie;statistiques "
 "d'alimentation;Consommation d'énergie;Appareils d'alimentation"
-
-#: data/io.github.v81d.Wattage.metainfo.xml.in:10
-msgid ""
-"Wattage is an application designed for monitoring the health and status of "
-"your power devices."
-msgstr ""
-"Wattage est une application conçue pour surveiller l'état et la santé de vos "
-"périphériques d'alimentation."
-
-#: data/io.github.v81d.Wattage.metainfo.xml.in:52
-msgid "General battery information"
-msgstr "Informations générales sur la batterie"
-
-#: data/io.github.v81d.Wattage.metainfo.xml.in:56
-msgid "Health and energy statistics"
-msgstr "Statistiques d'état et d'énergie"
-
-#: data/io.github.v81d.Wattage.metainfo.xml.in:60
-msgid "Preferences dialog"
-msgstr "Dialogue des préférences"
 
 #: data/io.github.v81d.Wattage.gschema.xml:6
 msgid "Enable auto-refresh"
@@ -94,6 +74,61 @@ msgstr "Unité de tension"
 msgid "The unit used to display voltage measurements."
 msgstr "L'unité employée pour afficher les mesures de tension."
 
+#: data/io.github.v81d.Wattage.gschema.xml:32
+msgid "History Type"
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:33 src/window.vala:749
+msgid "The type of history to display."
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:37
+msgid "History Timespan"
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:769
+msgid "The timespan, in minutes, to return history data from."
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:42
+msgid "History Resolution"
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:784
+msgid "The approximate number of history points to return."
+msgstr ""
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:10
+msgid ""
+"Wattage is an application designed for monitoring the health and status of "
+"your power devices."
+msgstr ""
+"Wattage est une application conçue pour surveiller l'état et la santé de vos "
+"périphériques d'alimentation."
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:52
+#, fuzzy
+msgid "General power device information"
+msgstr "Informations générales sur la batterie"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:56
+msgid "Health and energy statistics"
+msgstr "Statistiques d'état et d'énergie"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:60
+#, fuzzy
+msgid "Device history information"
+msgstr "Informations générales sur la batterie"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:64
+#, fuzzy
+msgid "Options and preferences"
+msgstr "Ouvrir les préférences"
+
+#: src/application.vala:56
+msgid "translator-credits"
+msgstr ""
+
 #: src/ui/preferences-dialog.ui:6 src/ui/shortcuts-dialog.ui:6
 msgid "General"
 msgstr "Général"
@@ -106,25 +141,52 @@ msgstr "Automatisation"
 msgid "Auto-Refresh"
 msgstr "Rafraîchissement automatique"
 
-#: src/ui/preferences-dialog.ui:17
-msgid "Auto-Refresh Cooldown (seconds)"
-msgstr "Délai de rafraîchissement automatique (secondes)"
+#: src/ui/preferences-dialog.ui:13
+msgid "Whether or not the data should refresh automatically."
+msgstr ""
 
-#: src/ui/preferences-dialog.ui:32
+#: src/ui/preferences-dialog.ui:18
+#, fuzzy
+msgid "Auto-Refresh Cooldown"
+msgstr "Délai de rafraîchissement automatique"
+
+#: src/ui/preferences-dialog.ui:19
+#, fuzzy
+msgid "The time, in seconds, between each data refresh."
+msgstr ""
+"Intervalle en secondes entre les opérations de rafraîchissements "
+"automatiques."
+
+#: src/ui/preferences-dialog.ui:34
 msgid "Measurements"
 msgstr "Mesures"
 
-#: src/ui/preferences-dialog.ui:35
+#: src/ui/preferences-dialog.ui:37
 msgid "Energy Unit"
 msgstr "Unité d'énergie"
 
-#: src/ui/preferences-dialog.ui:51
+#: src/ui/preferences-dialog.ui:38
+#, fuzzy
+msgid "The unit for energy measurements."
+msgstr "L'unité employée pour les mesures d'énergie."
+
+#: src/ui/preferences-dialog.ui:54
 msgid "Power Unit"
 msgstr "L'unité de puissance"
 
-#: src/ui/preferences-dialog.ui:67
+#: src/ui/preferences-dialog.ui:55
+#, fuzzy
+msgid "The unit for power measurements."
+msgstr "L'unité à employer pour afficher les mesures de puissance."
+
+#: src/ui/preferences-dialog.ui:71
 msgid "Voltage Unit"
 msgstr "Unité de tension"
+
+#: src/ui/preferences-dialog.ui:72
+#, fuzzy
+msgid "The unit for voltage measurements."
+msgstr "L'unité employée pour afficher les mesures de tension."
 
 #: src/ui/shortcuts-dialog.ui:9
 msgctxt "shortcut window"
@@ -165,31 +227,36 @@ msgctxt "shortcut window"
 msgid "Select Previous Device"
 msgstr "Sélectionner l'appareil précédent"
 
-#: src/ui/window.ui:19
+#: src/ui/window.ui:21
 msgid "Devices"
 msgstr "Appareils"
 
-#: src/ui/window.ui:69
+#: src/ui/window.ui:71
 msgid "Toggle Sidebar"
 msgstr "Basculer la barre latérale"
 
-#: src/ui/window.ui:78
+#: src/ui/window.ui:80
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: src/ui/window.ui:85
+#: src/ui/window.ui:87
 msgid "Refresh"
 msgstr "Rafraîchir"
 
-#: src/ui/window.ui:139
+#: src/ui/window.ui:143 src/window.vala:711
+#, fuzzy
+msgid "Device History"
+msgstr "État de l'appareil"
+
+#: src/ui/window.ui:149
 msgid "Preferences"
 msgstr "Préférences"
 
-#: src/ui/window.ui:143
+#: src/ui/window.ui:153
 msgid "Keyboard Shortcuts"
 msgstr "Raccourcis clavier"
 
-#: src/ui/window.ui:147
+#: src/ui/window.ui:157
 msgid "About Wattage"
 msgstr "À propos de Wattage"
 
@@ -239,302 +306,363 @@ msgstr ""
 "L'appareil a connu une détérioration substantielle. Prévoyez de le remplacer "
 "pour éviter des d'autres dommages."
 
-#: src/utils/device-manager.vala:94
+#: src/utils/device-manager.vala:91
 msgid "Line Power"
 msgstr ""
 
-#: src/utils/device-manager.vala:95
+#: src/utils/device-manager.vala:92
 msgid "Battery"
 msgstr "Batterie"
 
-#: src/utils/device-manager.vala:96
+#: src/utils/device-manager.vala:93
 msgid "UPS"
 msgstr "UPS"
 
-#: src/utils/device-manager.vala:97
+#: src/utils/device-manager.vala:94
 msgid "Monitor"
 msgstr ""
 
-#: src/utils/device-manager.vala:98
+#: src/utils/device-manager.vala:95
 msgid "Mouse"
 msgstr ""
 
-#: src/utils/device-manager.vala:99
+#: src/utils/device-manager.vala:96
 #, fuzzy
 msgid "Keyboard"
 msgstr "Raccourcis clavier"
 
-#: src/utils/device-manager.vala:100
+#: src/utils/device-manager.vala:97
 msgid "PDA"
 msgstr ""
 
-#: src/utils/device-manager.vala:101
+#: src/utils/device-manager.vala:98
 msgid "Phone"
 msgstr ""
 
-#: src/utils/device-manager.vala:102
+#: src/utils/device-manager.vala:99
 msgid "Media Player"
 msgstr ""
 
-#: src/utils/device-manager.vala:103
+#: src/utils/device-manager.vala:100
 msgid "Tablet"
 msgstr ""
 
-#: src/utils/device-manager.vala:104
+#: src/utils/device-manager.vala:101
 msgid "Computer"
 msgstr ""
 
-#: src/utils/device-manager.vala:105
+#: src/utils/device-manager.vala:102
 msgid "Gaming Input"
 msgstr ""
 
-#: src/utils/device-manager.vala:106
+#: src/utils/device-manager.vala:103
 msgid "Pen"
 msgstr ""
 
-#: src/utils/device-manager.vala:107
+#: src/utils/device-manager.vala:104
 msgid "Touchpad"
 msgstr ""
 
-#: src/utils/device-manager.vala:108
+#: src/utils/device-manager.vala:105
 #, fuzzy
 msgid "Modem"
 msgstr "Nom du modèle"
 
-#: src/utils/device-manager.vala:109
+#: src/utils/device-manager.vala:106
 msgid "Network"
 msgstr ""
 
-#: src/utils/device-manager.vala:110
+#: src/utils/device-manager.vala:107
 msgid "Headset"
 msgstr ""
 
-#: src/utils/device-manager.vala:111
+#: src/utils/device-manager.vala:108
 msgid "Speakers"
 msgstr ""
 
-#: src/utils/device-manager.vala:112
+#: src/utils/device-manager.vala:109
 msgid "Headphones"
 msgstr ""
 
-#: src/utils/device-manager.vala:113
+#: src/utils/device-manager.vala:110
 msgid "Video"
 msgstr ""
 
-#: src/utils/device-manager.vala:114
+#: src/utils/device-manager.vala:111
 msgid "Other Audio"
 msgstr ""
 
-#: src/utils/device-manager.vala:115
+#: src/utils/device-manager.vala:112
 msgid "Remote Control"
 msgstr ""
 
-#: src/utils/device-manager.vala:116
+#: src/utils/device-manager.vala:113
 msgid "Printer"
 msgstr ""
 
-#: src/utils/device-manager.vala:117
+#: src/utils/device-manager.vala:114
 msgid "Scanner"
 msgstr ""
 
-#: src/utils/device-manager.vala:118
+#: src/utils/device-manager.vala:115
 msgid "Camera"
 msgstr ""
 
-#: src/utils/device-manager.vala:119
+#: src/utils/device-manager.vala:116
 msgid "Wearable"
 msgstr ""
 
-#: src/utils/device-manager.vala:120
+#: src/utils/device-manager.vala:117
 msgid "Toy"
 msgstr ""
 
-#: src/utils/device-manager.vala:121
+#: src/utils/device-manager.vala:118
 msgid "Bluetooth Generic"
 msgstr ""
 
-#: src/utils/device-manager.vala:132
+#: src/utils/device-manager.vala:127
 msgid "Lithium ion"
 msgstr ""
 
-#: src/utils/device-manager.vala:133
+#: src/utils/device-manager.vala:128
 msgid "Lithium polymer"
 msgstr ""
 
-#: src/utils/device-manager.vala:134
+#: src/utils/device-manager.vala:129
 msgid "Lithium iron phosphate"
 msgstr ""
 
-#: src/utils/device-manager.vala:135
+#: src/utils/device-manager.vala:130
 msgid "Lead acid"
 msgstr ""
 
-#: src/utils/device-manager.vala:136
+#: src/utils/device-manager.vala:131
 msgid "Nickel cadmium"
 msgstr ""
 
-#: src/utils/device-manager.vala:137
+#: src/utils/device-manager.vala:132
 msgid "Nickel metal hydride"
 msgstr ""
 
-#: src/utils/device-manager.vala:148
+#: src/utils/device-manager.vala:141 src/window.vala:415
 msgid "Charging"
 msgstr "En charge"
 
-#: src/utils/device-manager.vala:149
+#: src/utils/device-manager.vala:142 src/window.vala:404
 msgid "Discharging"
 msgstr "En cours de décharge"
 
-#: src/utils/device-manager.vala:150
+#: src/utils/device-manager.vala:143
 msgid "Empty"
 msgstr ""
 
-#: src/utils/device-manager.vala:151
+#: src/utils/device-manager.vala:144
 msgid "Fully charged"
 msgstr ""
 
-#: src/utils/device-manager.vala:152
+#: src/utils/device-manager.vala:145
 msgid "Pending charge"
 msgstr ""
 
-#: src/utils/device-manager.vala:153
+#: src/utils/device-manager.vala:146
 msgid "Pending discharge"
 msgstr ""
 
-#: src/application.vala:56
-msgid "translator-credits"
-msgstr ""
-
-#: src/window.vala:326
+#: src/window.vala:347
 msgid "General Information"
 msgstr "Informations générales"
 
-#: src/window.vala:327
+#: src/window.vala:348
 msgid "Native Path"
 msgstr ""
 
-#: src/window.vala:328
+#: src/window.vala:349
 msgid "Object Path"
 msgstr ""
 
-#: src/window.vala:329
+#: src/window.vala:350
 msgid "Device Type"
 msgstr "Type d'appareil"
 
-#: src/window.vala:332
+#: src/window.vala:351
+msgid "Has History"
+msgstr ""
+
+#: src/window.vala:354
 #, fuzzy
 msgid "Model Details"
 msgstr "Nom du modèle"
 
-#: src/window.vala:333
+#: src/window.vala:355
 msgid "Vendor"
 msgstr ""
 
-#: src/window.vala:334
+#: src/window.vala:356
 msgid "Serial Number"
 msgstr "Numéro de série"
 
-#: src/window.vala:335
+#: src/window.vala:357
 msgid "Model Name"
 msgstr "Nom du modèle"
 
-#: src/window.vala:336
+#: src/window.vala:358
 msgid "Technology"
 msgstr "Technologie"
 
-#: src/window.vala:339
+#: src/window.vala:361
 msgid "Health Evaluations"
 msgstr "Évaluations d'état"
 
-#: src/window.vala:342
+#: src/window.vala:363
 msgid "State of Health"
 msgstr "État"
 
-#: src/window.vala:347
+#: src/window.vala:367
 msgid "Device Condition"
 msgstr "État de l'appareil"
 
-#: src/window.vala:352
+#: src/window.vala:371
 msgid "Charging Status"
 msgstr "État de charge"
 
-#: src/window.vala:355
+#: src/window.vala:374
 msgid "Charge Start Threshold"
 msgstr ""
 
-#: src/window.vala:359
+#: src/window.vala:377
 msgid "Charge End Threshold"
 msgstr ""
 
-#: src/window.vala:363
+#: src/window.vala:380
 msgid "Cycle Count"
 msgstr "Compteur de cycles"
 
-#: src/window.vala:368
+#: src/window.vala:384
 msgid "Current Charge Percentage"
 msgstr "Pourcentage de charge actuel"
 
-#: src/window.vala:371
+#: src/window.vala:386
 #, fuzzy
 msgid "State"
 msgstr "État"
 
-#: src/window.vala:374
+#: src/window.vala:390
 msgid "Time Calculations"
 msgstr "Calculs de délais"
 
-#: src/window.vala:378
+#: src/window.vala:394
 msgid "Time to Empty"
 msgstr "Autonomie restante"
 
-#: src/window.vala:383
+#: src/window.vala:398
 #, fuzzy
 msgid "Time to Full"
 msgstr "Autonomie restante"
 
-#: src/window.vala:394
+#: src/window.vala:408
 msgid "Projected Battery Life"
 msgstr ""
 
-#: src/window.vala:400
+#: src/window.vala:419
+msgid "Projected Charging Time"
+msgstr ""
+
+#: src/window.vala:424
 msgid "Sensor Readings"
 msgstr ""
 
-#: src/window.vala:403
+#: src/window.vala:427
 msgid "Temperature"
 msgstr ""
 
-#: src/window.vala:408
+#: src/window.vala:431
 msgid "Energy Metrics"
 msgstr "Indicateurs énergétiques"
 
-#: src/window.vala:413
+#: src/window.vala:434
 msgid "Maximum Rated Capacity"
 msgstr "Capacité nominale maximale"
 
-#: src/window.vala:420
+#: src/window.vala:437
 msgid "Maximum Capacity"
 msgstr "Capacité maximale"
 
-#: src/window.vala:427
+#: src/window.vala:440
 msgid "Remaining Energy"
 msgstr "Énergie restante"
 
-#: src/window.vala:434
+#: src/window.vala:443
 msgid "Energy Transfer Rate"
 msgstr "Taux de transfert d'énergie"
 
-#: src/window.vala:440
+#: src/window.vala:447
 msgid "Voltage Statistics"
 msgstr "Statistiques de tension"
 
-#: src/window.vala:445
+#: src/window.vala:452
 msgid "Minimum Rated Voltage"
 msgstr "Tension nominale maximale"
 
-#: src/window.vala:452
+#: src/window.vala:458
 msgid "Current Voltage"
 msgstr "Tension actuelle"
+
+#: src/window.vala:601
+msgid "Entries"
+msgstr ""
+
+#: src/window.vala:650
+msgid ""
+"No history entries available within the configured timespan and resolution."
+msgstr ""
+
+#: src/window.vala:659
+msgid "There are not enough history entries to display a graph."
+msgstr ""
+
+#: src/window.vala:670
+#, c-format
+msgid "%u history item(s) discovered."
+msgstr ""
+
+#: src/window.vala:690
+msgid "History Unavailable"
+msgstr ""
+
+#: src/window.vala:700
+msgid "No device is currently selected."
+msgstr ""
+
+#: src/window.vala:735
+msgid "Options"
+msgstr ""
+
+#: src/window.vala:748
+msgid "Type"
+msgstr ""
+
+#: src/window.vala:752
+msgid "Rate"
+msgstr ""
+
+#: src/window.vala:752
+#, fuzzy
+msgid "Charge"
+msgstr "En charge"
+
+#: src/window.vala:768
+msgid "Timespan"
+msgstr ""
+
+#: src/window.vala:783
+msgid "Resolution"
+msgstr ""
+
+#~ msgid "Preferences dialog"
+#~ msgstr "Dialogue des préférences"
+
+#~ msgid "Auto-Refresh Cooldown (seconds)"
+#~ msgstr "Délai de rafraîchissement automatique (secondes)"
 
 #~ msgid ""
 #~ "The device bears slight capacity loss but is still in good condition for "

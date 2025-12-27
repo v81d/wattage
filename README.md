@@ -9,17 +9,16 @@
 ![GitHub Release](https://img.shields.io/github/v/release/v81d/wattage)
 ![Flathub Downloads](https://img.shields.io/flathub/downloads/io.github.v81d.Wattage)
 
-Wattage is an application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 + libadwaita interface.
+Wattage is an application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 and libadwaita interface.
 
-![General battery information](demo/screenshot_0.png)
-![Health and energy statistics](demo/screenshot_1.png)
-![Preferences dialog](demo/screenshot_2.png)
+![General power device information](demo/general-info.png)
+![Health and energy statistics](demo/energy-info.png)
+![Device history information](demo/history-dialog.png)
+![Options and preferences](demo/preferences-dialog.png)
 
 ## Notices
 
-- Wattage does not support Windows, macOS, or any system that does not support retrieving power information from [UPower](https://upower.freedesktop.org).
-- Nearly all Linux distributions with a user interface or desktop environment (such as GNOME, KDE Plasma, etc.) have UPower installed.
-- Some BSD operating systems also support UPower, but full functionality is not guaranteed.
+Wattage does not support Windows, macOS, or any system that does not support retrieving power information from [UPower](https://upower.freedesktop.org). However, nearly all Linux distributions with a user interface or desktop environment (such as GNOME, KDE Plasma, etc.) have UPower installed, so Wattage should work on almost all desktops. Some BSD operating systems also support UPower, but full functionality is not guaranteed.
 
 ## Features
 
@@ -184,7 +183,7 @@ To push your features or fixes into this official repository:
 4. Push the branch (`git push origin feature/my-feature`).
 5. Open a pull request with `contrib` as the base branch. Make sure to create a detailed title and description of your change.
 
-Please follow the [GitHub flow](https://guides.github.com/introduction/flow) and Wattage's [Code of Conduct](CODE_OF_CONDUCT.md) when submitting a pull request.
+Please follow the [GitHub flow](https://guides.github.com/introduction/flow) and the [GNOME Code of Conduct](CODE_OF_CONDUCT.md) when submitting a pull request.
 
 ## License
 
