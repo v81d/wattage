@@ -66,6 +66,16 @@
   </screenshots>
 
   <releases>
+    <release version="1.3.0" date="2025-12-26">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/1.3.0</url>
+      <description translate="no">
+        <p>This release comes with major features and improvements, including:</p>
+        <ul>
+          <li>Dialog to view device rate and charge history. (Accessible for supported devices via the menu options.)</li>
+          <li>Fixes for various underlying bugs and optimization issues.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.2.1" date="2025-12-11">
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.2.1</url>
       <description translate="no">
@@ -128,9 +138,6 @@
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.0.0</url>
       <description translate="no">
         <p>This is the first official release of Wattage!</p>
-        <ul>
-          <li>Initial release.</li>
-        </ul>
       </description>
     </release>
     <release version="0.2.0" date="2025-10-08">
@@ -146,9 +153,6 @@
       <url type="details">https://github.com/v81d/wattage/releases/tag/0.1.0</url>
       <description translate="no">
         <p>This is the first official pre-release of Wattage!</p>
-        <ul>
-          <li>Initial pre-release.</li>
-        </ul>
       </description>
     </release>
   </releases>

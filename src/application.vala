@@ -54,7 +54,7 @@ public class Wattage.Application : Adw.Application {
             application_icon = "io.github.v81d.Wattage",
             developer_name = "v81d",
             translator_credits = _("translator-credits"),
-            version = "1.2.1",
+            version = "1.3.0",
             developers = developers,
             copyright = "© 2025 v81d",
             license_type = Gtk.License.GPL_3_0,
