@@ -26,6 +26,7 @@ msgid ""
 "devices;"
 msgstr ""
 "GTK;Battery monitor;Battery health;Power statistics;Power usage;Power devices;"
+"Giám sát pin;Sức khoẻ pin;Thông kê nguồn;Nguồn sử dụng;Thiết bị nguồn"
 
 #: data/io.github.v81d.Wattage.gschema.xml:6
 msgid "Enable auto-refresh"
@@ -241,7 +242,7 @@ msgstr "Phím tắt"
 
 #: src/ui/window.ui:157
 msgid "About Wattage"
-msgstr "Giới thiệu về công suất"
+msgstr "Giới thiệu Wattage"
 
 #: src/utils/device-manager.vala:67
 msgid ""
