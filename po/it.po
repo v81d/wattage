@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-26 22:29-0500\n"
-"PO-Revision-Date: 2025-11-28 15:58+0200\n"
+"PO-Revision-Date: 2025-12-29 15:28+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -72,27 +72,27 @@ msgstr ""
 
 #: data/io.github.v81d.Wattage.gschema.xml:32
 msgid "History Type"
-msgstr ""
+msgstr "Tipo di cronologia"
 
 #: data/io.github.v81d.Wattage.gschema.xml:33 src/window.vala:749
 msgid "The type of history to display."
-msgstr ""
+msgstr "Il tipo di cronologia da visualizzare."
 
 #: data/io.github.v81d.Wattage.gschema.xml:37
 msgid "History Timespan"
-msgstr ""
+msgstr "Intervallo temporale dello storico"
 
 #: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:769
 msgid "The timespan, in minutes, to return history data from."
-msgstr ""
+msgstr "Intervallo di tempo, in minuti, da cui restituire i dati dello storico."
 
 #: data/io.github.v81d.Wattage.gschema.xml:42
 msgid "History Resolution"
-msgstr ""
+msgstr "Risoluzione dello storico"
 
 #: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:784
 msgid "The approximate number of history points to return."
-msgstr ""
+msgstr "Il numero approssimativo di punti dello storico da restituire."
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:10
 msgid ""
@@ -103,23 +103,20 @@ msgstr ""
 "tuoi dispositivi di alimentazione."
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:52
-#, fuzzy
 msgid "General power device information"
-msgstr "Informazioni generali sulla batteria"
+msgstr "Informazioni generali sul dispositivo di alimentazione"
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:56
 msgid "Health and energy statistics"
 msgstr "Statistiche su salute ed energia"
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:60
-#, fuzzy
 msgid "Device history information"
-msgstr "Informazioni generali sulla batteria"
+msgstr "Informazioni sulla cronologia del dispositivo"
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:64
-#, fuzzy
 msgid "Options and preferences"
-msgstr "Apri le preferenze"
+msgstr "Opzioni e preferenze"
 
 #: src/application.vala:56
 msgid "translator-credits"
@@ -139,17 +136,15 @@ msgstr "Aggiornamento automatico"
 
 #: src/ui/preferences-dialog.ui:13
 msgid "Whether or not the data should refresh automatically."
-msgstr ""
+msgstr "Se i dati debbano aggiornarsi automaticamente o meno."
 
 #: src/ui/preferences-dialog.ui:18
-#, fuzzy
 msgid "Auto-Refresh Cooldown"
-msgstr "Intervallo di aggiornamento automatico"
+msgstr "Raffreddamento Aggiornamento Automatico"
 
 #: src/ui/preferences-dialog.ui:19
-#, fuzzy
 msgid "The time, in seconds, between each data refresh."
-msgstr "Intervallo, in secondi, tra le operazioni di aggiornamento automatico."
+msgstr "Tempo, in secondi, tra ogni aggiornamento dei dati."
 
 #: src/ui/preferences-dialog.ui:34
 msgid "Measurements"
@@ -160,28 +155,24 @@ msgid "Energy Unit"
 msgstr "Unità di misura dell'energia"
 
 #: src/ui/preferences-dialog.ui:38
-#, fuzzy
 msgid "The unit for energy measurements."
-msgstr "L'unità di misura usata per visualizzare le misurazioni dell'energia."
+msgstr "L'unità di misura dell'energia."
 
 #: src/ui/preferences-dialog.ui:54
 msgid "Power Unit"
 msgstr "Unità di misura della potenza"
 
 #: src/ui/preferences-dialog.ui:55
-#, fuzzy
 msgid "The unit for power measurements."
-msgstr "L'unità di misura usata per visualizzare le misurazioni della potenza."
+msgstr "L'unità di misura della potenza."
 
 #: src/ui/preferences-dialog.ui:71
 msgid "Voltage Unit"
 msgstr "Unità di misura della tensione"
 
 #: src/ui/preferences-dialog.ui:72
-#, fuzzy
 msgid "The unit for voltage measurements."
-msgstr ""
-"L'unità di misura usata per visualizzare le misurazioni della tensione."
+msgstr "L'unità di misura della tensione."
 
 #: src/ui/shortcuts-dialog.ui:9
 msgctxt "shortcut window"
@@ -239,9 +230,8 @@ msgid "Refresh"
 msgstr "Aggiorna"
 
 #: src/ui/window.ui:143 src/window.vala:711
-#, fuzzy
 msgid "Device History"
-msgstr "Condizione del dispositivo"
+msgstr "Cronologia del dispositivo"
 
 #: src/ui/window.ui:149
 msgid "Preferences"
@@ -492,7 +482,7 @@ msgstr "Tipo di dispositivo"
 
 #: src/window.vala:351
 msgid "Has History"
-msgstr ""
+msgstr "Ha una cronologia"
 
 #: src/window.vala:354
 msgid "Model Details"
@@ -567,9 +557,8 @@ msgid "Projected Battery Life"
 msgstr "Durata prevista della batteria"
 
 #: src/window.vala:419
-#, fuzzy
 msgid "Projected Charging Time"
-msgstr "Durata prevista della batteria"
+msgstr "Tempo di ricarica previsto"
 
 #: src/window.vala:424
 msgid "Sensor Readings"
@@ -613,54 +602,54 @@ msgstr "Tensione attuale"
 
 #: src/window.vala:601
 msgid "Entries"
-msgstr ""
+msgstr "Voci"
 
 #: src/window.vala:650
 msgid ""
 "No history entries available within the configured timespan and resolution."
 msgstr ""
+"Nessuna voce della cronologia disponibile entro l'intervallo di tempo e la risoluzione configurati."
 
 #: src/window.vala:659
 msgid "There are not enough history entries to display a graph."
-msgstr ""
+msgstr "Non ci sono abbastanza voci cronologiche per visualizzare un grafico."
 
 #: src/window.vala:670
 #, c-format
 msgid "%u history item(s) discovered."
-msgstr ""
+msgstr "%u elemento(i) della cronologia scoperti."
 
 #: src/window.vala:690
 msgid "History Unavailable"
-msgstr ""
+msgstr "Cronologia non disponibile"
 
 #: src/window.vala:700
 msgid "No device is currently selected."
-msgstr ""
+msgstr "Al momento non è selezionato alcun dispositivo."
 
 #: src/window.vala:735
 msgid "Options"
-msgstr ""
+msgstr "Opzioni"
 
 #: src/window.vala:748
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: src/window.vala:752
 msgid "Rate"
-msgstr ""
+msgstr "Valore"
 
 #: src/window.vala:752
-#, fuzzy
 msgid "Charge"
-msgstr "In carica"
+msgstr "Carica"
 
 #: src/window.vala:768
 msgid "Timespan"
-msgstr ""
+msgstr "Intervallo"
 
 #: src/window.vala:783
 msgid "Resolution"
-msgstr ""
+msgstr "Risoluzione"
 
 #~ msgid "Preferences dialog"
 #~ msgstr "Finestra di dialogo delle preferenze"
