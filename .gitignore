@@ -3,4 +3,4 @@ repo/
 *.flatpak
 *.AppImage
 *.AppImage.zsync
-.foundry
+.foundry/
