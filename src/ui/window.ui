@@ -8,8 +8,8 @@
     <child>
       <object class="AdwBreakpoint">
         <condition>max-width: 600sp</condition>
-        <setter object="split_view" property="collapsed">True</setter>
-        <setter object="toggle_sidebar_button" property="active">False</setter>
+        <setter object="split_view" property="collapsed">true</setter>
+        <setter object="toggle_sidebar_button" property="active">false</setter>
       </object>
     </child>
     <property name="content">
