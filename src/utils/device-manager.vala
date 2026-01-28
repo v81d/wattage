@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-using GLib;
+using Gee;
 
 using DBusInterface;
 using NumericToolkit;
@@ -58,33 +58,16 @@ namespace DeviceManager {
         public double? capacity { get; set; }
         public string? icon_name { get; set; }
 
+        public string? health_description { get; set; }
+
         public DeviceObject () {}
-
-        public string ? create_health_alert () {
-            if (this.capacity == null)return null;
-
-            if (this.capacity >= 95)
-                return _("The device is near or at its maximum rated capacity. It is in excellent condition and should not require much intervention.");
-            else if (this.capacity >= 90)
-                return _("The device performs close to its original capacity. There is little noticeable difference from its optimal state.");
-            else if (this.capacity >= 80)
-                return _("The device has lost some capacity, but it should not be of much concern. Continue to take precautions regarding your power device like limiting its charge and using power-saving settings.");
-            else if (this.capacity >= 70)
-                return _("The device has noticeably degraded in capacity, but is still usable. Runtime may be shorter than at its original capacity. Use power-optimizing settings to extend longevity and slow down degradation.");
-            else if (this.capacity >= 60)
-                return _("The device has experienced a significant drop in capacity. Mobility can be more difficult due to a decrease in runtime. Depending on usage habits, replacement may be necessary in the future.");
-            else if (this.capacity > 0)
-                return _("The device has undergone substantial deterioration. Power instability and potential overheating can damage other components. Replace the device to avoid further damage.");
-
-            return null;
-        }
     }
 
     // This is the publicly accessible class used to probe, enumerate, and inspect power devices
     public class DeviceProber {
         public DeviceProber () {}
 
-        public static string ? stringify_device_type (uint32? device_type) {
+        public static string ? stringify_device_type (uint? device_type) {
             if (device_type == null)return null;
 
             switch (device_type) {
@@ -94,7 +77,7 @@ namespace DeviceManager {
             case 4 : return _("Monitor");
             case 5 : return _("Mouse");
             case 6 : return _("Keyboard");
-            case 7 : return _("PDA");
+            case 7: return _("PDA");
             case 8:  return _("Phone");
             case 9:  return _("Media Player");
             case 10: return _("Tablet");
@@ -120,11 +103,11 @@ namespace DeviceManager {
             }
         }
 
-        public static string ? stringify_device_technology (uint32? device_technology) {
+        public static string ? stringify_device_technology (uint? device_technology) {
             if (device_technology == null)return null;
 
             switch (device_technology) {
-            case 1 : return _("Lithium ion");
+            case 1: return _("Lithium ion");
             case 2:  return _("Lithium polymer");
             case 3:  return _("Lithium iron phosphate");
             case 4:  return _("Lead acid");
@@ -134,11 +117,11 @@ namespace DeviceManager {
             }
         }
 
-        public static string ? stringify_device_state (uint32? device_state) {
+        public static string ? stringify_device_state (uint? device_state) {
             if (device_state == null)return null;
 
             switch (device_state) {
-            case 1 : return _("Charging");
+            case 1: return _("Charging");
             case 2:  return _("Discharging");
             case 3:  return _("Empty");
             case 4:  return _("Fully charged");
@@ -148,10 +131,28 @@ namespace DeviceManager {
             }
         }
 
-        public List<DeviceObject> get_devices () throws GLib.Error {
-            List<DeviceObject> result = new List<DeviceObject> ();
+        public static string ? create_health_description (double? capacity) {
+            if (capacity == null)return null;
 
-            // Create a UPower proxy
+            if (capacity >= 95)
+                return _("The device is near or at its maximum rated capacity. It is in excellent condition and should not require much intervention.");
+            else if (capacity >= 90)
+                return _("The device performs close to its original capacity. There is little noticeable difference from its optimal state.");
+            else if (capacity >= 80)
+                return _("The device has lost some capacity, but it should not be of much concern. Continue to take precautions regarding your power device like limiting its charge and using power-saving settings.");
+            else if (capacity >= 70)
+                return _("The device has noticeably degraded in capacity, but is still usable. Runtime may be shorter than at its original capacity. Use power-optimizing settings to extend longevity and slow down degradation.");
+            else if (capacity >= 60)
+                return _("The device has experienced a significant drop in capacity. Mobility can be more difficult due to a decrease in runtime. Depending on usage habits, replacement may be necessary in the future.");
+            else if (capacity > 0)
+                return _("The device has undergone substantial deterioration. Power instability and potential overheating can damage other components. Replace the device to avoid further damage.");
+
+            return null;
+        }
+
+        public ArrayList<DeviceObject> get_devices () throws GLib.Error {
+            ArrayList<DeviceObject> result = new ArrayList<DeviceObject> ();
+
             UPower upower = Bus.get_proxy_sync (
                                                 BusType.SYSTEM,
                                                 "org.freedesktop.UPower",
@@ -162,25 +163,8 @@ namespace DeviceManager {
 
             foreach (var path in paths) {
                 DeviceObject device = this.fetch_device (path);
-                result.append (device);
+                result.add (device);
             }
-
-            /* Usually, users will most likely be looking for information regarding their battery.
-             * Other devices should listed after batteries. The sorting comparison below moves
-             * batteries to the beginning and sorts miscellaneous devices after.
-             */
-            result.sort ((a, b) => {
-                string a_type = a.device_type != null ? a.device_type.down () : "";
-                string b_type = b.device_type != null ? b.device_type.down () : "";
-
-                if (a_type == "battery" && b_type != "battery")return -1; // `a` before `b`
-                else if (a_type != "battery" && b_type == "battery")return 1; // `b` before `a`
-                else {
-                    string a_path = a.native_path ?? "";
-                    string b_path = b.native_path ?? "";
-                    return strcmp (a_path, b_path);
-                } // alphabetical order
-            });
 
             return result;
         }
@@ -222,6 +206,8 @@ namespace DeviceManager {
             device.temperature = positive_double (upower_proxy.temperature);
             device.capacity = positive_double (upower_proxy.capacity);
             device.icon_name = upower_proxy.icon_name;
+
+            device.health_description = DeviceProber.create_health_description (device.capacity);
 
             return device;
         }

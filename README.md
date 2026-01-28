@@ -51,8 +51,7 @@ The following guide provides instructions on how to install Wattage on your devi
 #### Build Requirements
 
 - Vala
-- Meson
-- Ninja
+- Foundry
 - libadwaita (version >= 1.8) and GTK 4
 - pkgconf
 
@@ -69,95 +68,39 @@ git clone https://github.com/v81d/wattage.git
 cd wattage
 ```
 
-2. Configure the build directory as `_build/`:
+2. Configure the build directory with Foundry:
 
 ```bash
-meson setup _build -Dprefix=/usr
+foundry init
 ```
 
-3. Compile the project and the settings schema in `_build/data/`:
+3. Build the project:
 
 ```bash
-ninja -C _build
+foundry build
 ```
 
-4. Verify that the app runs:
+4. Run the app:
 
 ```bash
-GSETTINGS_SCHEMA_DIR=_build/data ./_build/src/wattage
-```
-
-#### Installation with Ninja
-
-To install the app using Ninja, run the following command in the project root:
-
-```bash
-sudo ninja -C _build install
-```
-
-Henceforth, you can simply run the app from your launcher or by running the command:
-
-```bash
-wattage
-```
-
-If you ever want to uninstall the app, `cd` to the project root and run:
-
-```bash
-sudo ninja -C _build uninstall
-```
-
-#### Export as AppImage
-
-If you want to export the app as an AppImage, begin by installing [appimage-builder](https://github.com/AppImageCrafters/appimage-builder). Then, build the file:
-
-```bash
-meson install -C _build --no-rebuild --destdir AppDir
-glib-compile-schemas _build/AppDir/usr/share/glib-2.0/schemas
-appimage-builder --appdir _build/AppDir --recipe AppImageBuilder-x86_64.yml --skip-tests
-```
-
-A `Wattage-latest-x86_64.AppImage` file should then appear in the project root. To launch the AppImage, run:
-
-```bash
-./Wattage-latest-x86_64.AppImage
+foundry run
 ```
 
 #### Export as Flatpak
 
-Make sure both [Flatpak](https://flatpak.org) and [Flatpak Builder](https://github.com/flatpak/flatpak-builder) are installed. Then, add the Flathub repository if it's not already present:
+If you do not want to install the app via the [official Flathub page](https://flathub.org/en/apps/io.github.v81d.Wattage), you can build it manually. Make sure [Flatpak](https://flatpak.org) is installed. Then, use Foundry to export the artifact:
 
 ```bash
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+foundry export
 ```
 
-Next, install the necessary runtimes and SDKs:
+This should output a `.flatpak` file to a dedicated directory (e.g., `.foundry/cache/flatpak/staging/x86_64-develop/io.github.v81d.Wattage-x86_64.flatpak`). You can install the bundle with the following commands:
 
 ```bash
-flatpak install -y \
-    org.gnome.Platform//49 \
-    org.gnome.Sdk//49 \
-    org.freedesktop.Sdk.Extension.vala//25.08
+flatpak install --user -y <PATH_TO_ARTIFACT>
 ```
 
-Finally, build the Flatpak and create the bundle:
-
-```bash
-flatpak-builder \
-    --repo=repo \
-    --ccache \
-    --force-clean \
-    build io.github.v81d.Wattage.json
-flatpak build-bundle repo io.github.v81d.Wattage.flatpak io.github.v81d.Wattage
-```
-
-Now, you can install the bundle with the following commands:
-
-```bash
-flatpak install --user -y io.github.v81d.Wattage.flatpak
-```
-
-To run the app, select it from your launcher or run:
+To start the app, select it from your launcher or run:
 
 ```bash
 flatpak run io.github.v81d.Wattage

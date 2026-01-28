@@ -26,7 +26,8 @@ namespace NumericToolkit {
 
         if (unit.has_prefix ("p"))factor = 1e12;
         else if (unit.has_prefix ("n"))factor = 1e9;
-        else if (unit.has_prefix ("μ") || unit.has_prefix ("µ"))// mu or micro
+        else if (unit.has_prefix ("μ") ||
+                 unit.has_prefix ("µ"))// mu or micro
             factor = 1e6;
         else if (unit.has_prefix ("m"))factor = 1e3;
         else if (unit.has_prefix ("c"))factor = 1e2;
