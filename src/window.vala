@@ -496,7 +496,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                                        _("Remaining Energy"), this.energy_unit);
 
             Window.add_section_metric (energy_metrics, device.energy_rate,
-                                       _("Energy Transfer Rate"), this.power_unit);
+                                       _("Net Energy Rate"), this.power_unit);
 
             sections.add (energy_metrics);
 
