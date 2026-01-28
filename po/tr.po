@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 22:29-0500\n"
+"POT-Creation-Date: 2026-01-28 17:44-0500\n"
 "PO-Revision-Date: 2025-12-08 21:25+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
@@ -19,6 +19,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.8\n"
+
+#: data/io.github.v81d.Wattage.desktop.in:2
+#, fuzzy
+msgid "Wattage"
+msgstr "Wattage Hakkında"
 
 #: data/io.github.v81d.Wattage.desktop.in:3
 #: data/io.github.v81d.Wattage.metainfo.xml.in:8
@@ -78,7 +83,7 @@ msgstr "Voltaj ölçümlerini görüntülemek için kullanılacak birim."
 msgid "History Type"
 msgstr ""
 
-#: data/io.github.v81d.Wattage.gschema.xml:33 src/window.vala:749
+#: data/io.github.v81d.Wattage.gschema.xml:33 src/window.vala:781
 msgid "The type of history to display."
 msgstr ""
 
@@ -86,7 +91,7 @@ msgstr ""
 msgid "History Timespan"
 msgstr ""
 
-#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:769
+#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:801
 msgid "The timespan, in minutes, to return history data from."
 msgstr ""
 
@@ -94,7 +99,7 @@ msgstr ""
 msgid "History Resolution"
 msgstr ""
 
-#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:784
+#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:816
 msgid "The approximate number of history points to return."
 msgstr ""
 
@@ -231,6 +236,15 @@ msgstr "Önceki Aygıtı Seç"
 msgid "Devices"
 msgstr "Aygıtlar"
 
+#: src/ui/window.ui:41
+#, fuzzy
+msgid "No Devices Found"
+msgstr "Aygıt Durumu"
+
+#: src/ui/window.ui:42
+msgid "Please check your UPower connection."
+msgstr ""
+
 #: src/ui/window.ui:71
 msgid "Toggle Sidebar"
 msgstr "Kenar Çubuğunu Aç/Kapat"
@@ -243,7 +257,16 @@ msgstr "Ana Menü"
 msgid "Refresh"
 msgstr "Tazele"
 
-#: src/ui/window.ui:143 src/window.vala:711
+#: src/ui/window.ui:114
+#, fuzzy
+msgid "No Device Information"
+msgstr "Genel pil bilgileri"
+
+#: src/ui/window.ui:115
+msgid "Load a valid device to view its information."
+msgstr ""
+
+#: src/ui/window.ui:143 src/window.vala:743
 #, fuzzy
 msgid "Device History"
 msgstr "Aygıt Durumu"
@@ -260,7 +283,167 @@ msgstr "Klavye Kısayolları"
 msgid "About Wattage"
 msgstr "Wattage Hakkında"
 
-#: src/utils/device-manager.vala:67
+#: src/utils/device-manager.vala:74
+msgid "Line Power"
+msgstr "Hat Gücü"
+
+#: src/utils/device-manager.vala:75
+msgid "Battery"
+msgstr "Pil"
+
+#: src/utils/device-manager.vala:76
+msgid "UPS"
+msgstr "UPS"
+
+#: src/utils/device-manager.vala:77
+msgid "Monitor"
+msgstr "Ekran"
+
+#: src/utils/device-manager.vala:78
+msgid "Mouse"
+msgstr "Fare"
+
+#: src/utils/device-manager.vala:79
+msgid "Keyboard"
+msgstr "Klavye Kısayolları"
+
+#: src/utils/device-manager.vala:80
+msgid "PDA"
+msgstr "PDA"
+
+#: src/utils/device-manager.vala:81
+msgid "Phone"
+msgstr "Telefon"
+
+#: src/utils/device-manager.vala:82
+msgid "Media Player"
+msgstr "Ortam Oynatıcı"
+
+#: src/utils/device-manager.vala:83
+msgid "Tablet"
+msgstr "Tablet"
+
+#: src/utils/device-manager.vala:84
+msgid "Computer"
+msgstr "Bilgisayar"
+
+#: src/utils/device-manager.vala:85
+msgid "Gaming Input"
+msgstr "Oyun Girdi Aygıtı"
+
+#: src/utils/device-manager.vala:86
+msgid "Pen"
+msgstr "Kalem"
+
+#: src/utils/device-manager.vala:87
+msgid "Touchpad"
+msgstr "Dokunmatik Yüzey"
+
+#: src/utils/device-manager.vala:88
+msgid "Modem"
+msgstr "Model"
+
+#: src/utils/device-manager.vala:89
+msgid "Network"
+msgstr "Ağ"
+
+#: src/utils/device-manager.vala:90
+msgid "Headset"
+msgstr "Kulaklıklı Mikrofon"
+
+#: src/utils/device-manager.vala:91
+msgid "Speakers"
+msgstr "Hoparlör"
+
+#: src/utils/device-manager.vala:92
+msgid "Headphones"
+msgstr "Kulaklık"
+
+#: src/utils/device-manager.vala:93
+msgid "Video"
+msgstr "Video"
+
+#: src/utils/device-manager.vala:94
+msgid "Other Audio"
+msgstr "Diğer Sesler"
+
+#: src/utils/device-manager.vala:95
+msgid "Remote Control"
+msgstr "Uzaktan Kumanda"
+
+#: src/utils/device-manager.vala:96
+msgid "Printer"
+msgstr "Yazıcı"
+
+#: src/utils/device-manager.vala:97
+msgid "Scanner"
+msgstr "Tarayıcı"
+
+#: src/utils/device-manager.vala:98
+msgid "Camera"
+msgstr "Kamera"
+
+#: src/utils/device-manager.vala:99
+msgid "Wearable"
+msgstr "Giyilebilir"
+
+#: src/utils/device-manager.vala:100
+msgid "Toy"
+msgstr "Oyuncak"
+
+#: src/utils/device-manager.vala:101
+msgid "Bluetooth Generic"
+msgstr "Bluetooth Genel"
+
+#: src/utils/device-manager.vala:110
+msgid "Lithium ion"
+msgstr "Lityum İyon"
+
+#: src/utils/device-manager.vala:111
+msgid "Lithium polymer"
+msgstr "Lityum Polimer"
+
+#: src/utils/device-manager.vala:112
+msgid "Lithium iron phosphate"
+msgstr "Lityum Demir Fosfat"
+
+#: src/utils/device-manager.vala:113
+msgid "Lead acid"
+msgstr "Kurşun Asit"
+
+#: src/utils/device-manager.vala:114
+msgid "Nickel cadmium"
+msgstr "Nikel Kadmiyum"
+
+#: src/utils/device-manager.vala:115
+msgid "Nickel metal hydride"
+msgstr "Nikel Metal Hidrür"
+
+#: src/utils/device-manager.vala:124 src/window.vala:471
+msgid "Charging"
+msgstr "Şarj oluyor"
+
+#: src/utils/device-manager.vala:125 src/window.vala:460
+msgid "Discharging"
+msgstr "Şarj boşalıyor"
+
+#: src/utils/device-manager.vala:126
+msgid "Empty"
+msgstr "Boş"
+
+#: src/utils/device-manager.vala:127
+msgid "Fully charged"
+msgstr "Tümüyle şarj oldu"
+
+#: src/utils/device-manager.vala:128
+msgid "Pending charge"
+msgstr "Şarj olması bekleniyor"
+
+#: src/utils/device-manager.vala:129
+msgid "Pending discharge"
+msgstr "Boşalması bekleniyor"
+
+#: src/utils/device-manager.vala:138
 msgid ""
 "The device is near or at its maximum rated capacity. It is in excellent "
 "condition and should not require much intervention."
@@ -268,14 +451,14 @@ msgstr ""
 "Aygıt, en yüksek nominal kapasitesine yakın ya da en yüksek kapasitede. "
 "Mükemmel durumda ve fazla müdahale gerektirmiyor."
 
-#: src/utils/device-manager.vala:69
+#: src/utils/device-manager.vala:140
 msgid ""
 "The device performs close to its original capacity. There is little "
 "noticeable difference from its optimal state."
 msgstr ""
 "Aygıt, özgün kapasitesine yakın çalışıyor. En iyi durumundan çok az fark var."
 
-#: src/utils/device-manager.vala:71
+#: src/utils/device-manager.vala:142
 msgid ""
 "The device has lost some capacity, but it should not be of much concern. "
 "Continue to take precautions regarding your power device like limiting its "
@@ -285,7 +468,7 @@ msgstr ""
 "Şarjını sınırlamak ve güç tutumu ayarlarını kullanmak gibi güç "
 "aygıtlarınızla ilgili önlemleri almaya devam edin."
 
-#: src/utils/device-manager.vala:73
+#: src/utils/device-manager.vala:144
 msgid ""
 "The device has noticeably degraded in capacity, but is still usable. Runtime "
 "may be shorter than at its original capacity. Use power-optimizing settings "
@@ -295,7 +478,7 @@ msgstr ""
 "durumda. Çalışma süresi, özgün kapasitesine göre daha kısa olabilir. Güç "
 "eniyileme ayarlarını kullanarak ömrünü uzatın ve kapasite kaybını yavaşlatın."
 
-#: src/utils/device-manager.vala:75
+#: src/utils/device-manager.vala:146
 msgid ""
 "The device has experienced a significant drop in capacity. Mobility can be "
 "more difficult due to a decrease in runtime. Depending on usage habits, "
@@ -305,7 +488,7 @@ msgstr ""
 "nedeniyle hareketlilik daha zor hale gelebilir. Kullanım alışkanlıklarına "
 "bağlı olarak, gelecekte aygıtın değiştirilmesi gerekebilir."
 
-#: src/utils/device-manager.vala:77
+#: src/utils/device-manager.vala:148
 msgid ""
 "The device has undergone substantial deterioration. Power instability and "
 "potential overheating can damage other components. Replace the device to "
@@ -315,356 +498,191 @@ msgstr ""
 "bileşenlere zarar verebilir. Daha fazla hasarı önlemek için aygıtı "
 "değiştirin."
 
-#: src/utils/device-manager.vala:91
-msgid "Line Power"
-msgstr "Hat Gücü"
-
-#: src/utils/device-manager.vala:92
-msgid "Battery"
-msgstr "Pil"
-
-#: src/utils/device-manager.vala:93
-msgid "UPS"
-msgstr "UPS"
-
-#: src/utils/device-manager.vala:94
-msgid "Monitor"
-msgstr "Ekran"
-
-#: src/utils/device-manager.vala:95
-msgid "Mouse"
-msgstr "Fare"
-
-#: src/utils/device-manager.vala:96
-msgid "Keyboard"
-msgstr "Klavye Kısayolları"
-
-#: src/utils/device-manager.vala:97
-msgid "PDA"
-msgstr "PDA"
-
-#: src/utils/device-manager.vala:98
-msgid "Phone"
-msgstr "Telefon"
-
-#: src/utils/device-manager.vala:99
-msgid "Media Player"
-msgstr "Ortam Oynatıcı"
-
-#: src/utils/device-manager.vala:100
-msgid "Tablet"
-msgstr "Tablet"
-
-#: src/utils/device-manager.vala:101
-msgid "Computer"
-msgstr "Bilgisayar"
-
-#: src/utils/device-manager.vala:102
-msgid "Gaming Input"
-msgstr "Oyun Girdi Aygıtı"
-
-#: src/utils/device-manager.vala:103
-msgid "Pen"
-msgstr "Kalem"
-
-#: src/utils/device-manager.vala:104
-msgid "Touchpad"
-msgstr "Dokunmatik Yüzey"
-
-#: src/utils/device-manager.vala:105
-msgid "Modem"
-msgstr "Model"
-
-#: src/utils/device-manager.vala:106
-msgid "Network"
-msgstr "Ağ"
-
-#: src/utils/device-manager.vala:107
-msgid "Headset"
-msgstr "Kulaklıklı Mikrofon"
-
-#: src/utils/device-manager.vala:108
-msgid "Speakers"
-msgstr "Hoparlör"
-
-#: src/utils/device-manager.vala:109
-msgid "Headphones"
-msgstr "Kulaklık"
-
-#: src/utils/device-manager.vala:110
-msgid "Video"
-msgstr "Video"
-
-#: src/utils/device-manager.vala:111
-msgid "Other Audio"
-msgstr "Diğer Sesler"
-
-#: src/utils/device-manager.vala:112
-msgid "Remote Control"
-msgstr "Uzaktan Kumanda"
-
-#: src/utils/device-manager.vala:113
-msgid "Printer"
-msgstr "Yazıcı"
-
-#: src/utils/device-manager.vala:114
-msgid "Scanner"
-msgstr "Tarayıcı"
-
-#: src/utils/device-manager.vala:115
-msgid "Camera"
-msgstr "Kamera"
-
-#: src/utils/device-manager.vala:116
-msgid "Wearable"
-msgstr "Giyilebilir"
-
-#: src/utils/device-manager.vala:117
-msgid "Toy"
-msgstr "Oyuncak"
-
-#: src/utils/device-manager.vala:118
-msgid "Bluetooth Generic"
-msgstr "Bluetooth Genel"
-
-#: src/utils/device-manager.vala:127
-msgid "Lithium ion"
-msgstr "Lityum İyon"
-
-#: src/utils/device-manager.vala:128
-msgid "Lithium polymer"
-msgstr "Lityum Polimer"
-
-#: src/utils/device-manager.vala:129
-msgid "Lithium iron phosphate"
-msgstr "Lityum Demir Fosfat"
-
-#: src/utils/device-manager.vala:130
-msgid "Lead acid"
-msgstr "Kurşun Asit"
-
-#: src/utils/device-manager.vala:131
-msgid "Nickel cadmium"
-msgstr "Nikel Kadmiyum"
-
-#: src/utils/device-manager.vala:132
-msgid "Nickel metal hydride"
-msgstr "Nikel Metal Hidrür"
-
-#: src/utils/device-manager.vala:141 src/window.vala:415
-msgid "Charging"
-msgstr "Şarj oluyor"
-
-#: src/utils/device-manager.vala:142 src/window.vala:404
-msgid "Discharging"
-msgstr "Şarj boşalıyor"
-
-#: src/utils/device-manager.vala:143
-msgid "Empty"
-msgstr "Boş"
-
-#: src/utils/device-manager.vala:144
-msgid "Fully charged"
-msgstr "Tümüyle şarj oldu"
-
-#: src/utils/device-manager.vala:145
-msgid "Pending charge"
-msgstr "Şarj olması bekleniyor"
-
-#: src/utils/device-manager.vala:146
-msgid "Pending discharge"
-msgstr "Boşalması bekleniyor"
-
-#: src/window.vala:347
+#: src/window.vala:403
 msgid "General Information"
 msgstr "Genel Bilgi"
 
-#: src/window.vala:348
+#: src/window.vala:404
 msgid "Native Path"
 msgstr "Doğal Yol"
 
-#: src/window.vala:349
+#: src/window.vala:405
 msgid "Object Path"
 msgstr "Nesne Yolu"
 
-#: src/window.vala:350
+#: src/window.vala:406
 msgid "Device Type"
 msgstr "Aygıt Türü"
 
-#: src/window.vala:351
+#: src/window.vala:407
 msgid "Has History"
 msgstr ""
 
-#: src/window.vala:354
+#: src/window.vala:410
 msgid "Model Details"
 msgstr "Model Ayrıntıları"
 
-#: src/window.vala:355
+#: src/window.vala:411
 msgid "Vendor"
 msgstr "Üretici"
 
-#: src/window.vala:356
+#: src/window.vala:412
 msgid "Serial Number"
 msgstr "Seri Numarası"
 
-#: src/window.vala:357
+#: src/window.vala:413
 msgid "Model Name"
 msgstr "Model Adı"
 
-#: src/window.vala:358
+#: src/window.vala:414
 msgid "Technology"
 msgstr "Teknoloji"
 
-#: src/window.vala:361
+#: src/window.vala:417
 msgid "Health Evaluations"
 msgstr "Durum Değerlendirmeleri"
 
-#: src/window.vala:363
+#: src/window.vala:420
 msgid "State of Health"
 msgstr "Sağlık Durumu"
 
-#: src/window.vala:367
+#: src/window.vala:423
 msgid "Device Condition"
 msgstr "Aygıt Durumu"
 
-#: src/window.vala:371
+#: src/window.vala:427
 msgid "Charging Status"
 msgstr "Şarj Durumu"
 
-#: src/window.vala:374
+#: src/window.vala:430
 msgid "Charge Start Threshold"
 msgstr "Şarj Başlama Eşiği"
 
-#: src/window.vala:377
+#: src/window.vala:433
 msgid "Charge End Threshold"
 msgstr "Şarj Bitiş Eşiği"
 
-#: src/window.vala:380
+#: src/window.vala:436
 msgid "Cycle Count"
 msgstr "Döngü Sayısı"
 
-#: src/window.vala:384
+#: src/window.vala:440
 msgid "Current Charge Percentage"
 msgstr "Güncel Şarj Yüzdesi"
 
-#: src/window.vala:386
+#: src/window.vala:442
 msgid "State"
 msgstr "Durum"
 
-#: src/window.vala:390
+#: src/window.vala:446
 msgid "Time Calculations"
 msgstr "Süre Hesaplamaları"
 
-#: src/window.vala:394
+#: src/window.vala:450
 msgid "Time to Empty"
 msgstr "Boşalmasına Kalan Süre"
 
-#: src/window.vala:398
+#: src/window.vala:454
 msgid "Time to Full"
 msgstr "Dolma Zamanı"
 
-#: src/window.vala:408
+#: src/window.vala:464
 msgid "Projected Battery Life"
 msgstr "Tahmini Pil Ömrü"
 
-#: src/window.vala:419
+#: src/window.vala:475
 #, fuzzy
 msgid "Projected Charging Time"
 msgstr "Tahmini Pil Ömrü"
 
-#: src/window.vala:424
+#: src/window.vala:480
 msgid "Sensor Readings"
 msgstr "Algılayıcı Okumaları"
 
-#: src/window.vala:427
+#: src/window.vala:483
 msgid "Temperature"
 msgstr "Sıcaklık"
 
-#: src/window.vala:431
+#: src/window.vala:487
 msgid "Energy Metrics"
 msgstr "Enerji Ölçümleri"
 
-#: src/window.vala:434
+#: src/window.vala:490
 msgid "Maximum Rated Capacity"
 msgstr "En Çok Nominal Kapasite"
 
-#: src/window.vala:437
+#: src/window.vala:493
 msgid "Maximum Capacity"
 msgstr "En Çok Kapasite"
 
-#: src/window.vala:440
+#: src/window.vala:496
 msgid "Remaining Energy"
 msgstr "Kalan Enerji"
 
-#: src/window.vala:443
-msgid "Energy Transfer Rate"
+#: src/window.vala:499
+#, fuzzy
+msgid "Net Energy Rate"
 msgstr "Enerji Aktarım Oranı"
 
-#: src/window.vala:447
+#: src/window.vala:503
 msgid "Voltage Statistics"
 msgstr "Voltaj İstatistikleri"
 
-#: src/window.vala:452
+#: src/window.vala:508
 msgid "Minimum Rated Voltage"
 msgstr "En Düşük Nominal Voltaj"
 
-#: src/window.vala:458
+#: src/window.vala:514
 msgid "Current Voltage"
 msgstr "Güncel Voltaj"
 
-#: src/window.vala:601
-msgid "Entries"
+#: src/window.vala:623
+msgid "History Unavailable"
 msgstr ""
 
 #: src/window.vala:650
+msgid "Entries"
+msgstr ""
+
+#: src/window.vala:699
 msgid ""
 "No history entries available within the configured timespan and resolution."
 msgstr ""
 
-#: src/window.vala:659
+#: src/window.vala:708
 msgid "There are not enough history entries to display a graph."
 msgstr ""
 
-#: src/window.vala:670
+#: src/window.vala:719
 #, c-format
 msgid "%u history item(s) discovered."
 msgstr ""
 
-#: src/window.vala:690
-msgid "History Unavailable"
-msgstr ""
-
-#: src/window.vala:700
+#: src/window.vala:732
 msgid "No device is currently selected."
 msgstr ""
 
-#: src/window.vala:735
+#: src/window.vala:767
 msgid "Options"
 msgstr ""
 
-#: src/window.vala:748
+#: src/window.vala:780
 msgid "Type"
 msgstr ""
 
-#: src/window.vala:752
+#: src/window.vala:784
 msgid "Rate"
 msgstr ""
 
-#: src/window.vala:752
+#: src/window.vala:784
 #, fuzzy
 msgid "Charge"
 msgstr "Şarj oluyor"
 
-#: src/window.vala:768
+#: src/window.vala:800
 msgid "Timespan"
 msgstr ""
 
-#: src/window.vala:783
+#: src/window.vala:815
 msgid "Resolution"
 msgstr ""
-
-#~ msgid "Preferences dialog"
-#~ msgstr "Tercihler diyaloğu"
-
-#~ msgid "Auto-Refresh Cooldown (seconds)"
-#~ msgstr "Kendiliğinden Tazeleme Bekleme Süresi (saniye)"
