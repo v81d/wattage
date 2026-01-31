@@ -6,9 +6,9 @@ data/io.github.v81d.Wattage.metainfo.xml.in
 src/application.vala
 src/interfaces/dbus-upower.vala
 src/main.vala
-src/ui/preferences-dialog.ui
-src/ui/shortcuts-dialog.ui
-src/ui/window.ui
+src/ui/preferences-dialog.blp
+src/ui/shortcuts-dialog.blp
+src/ui/window.blp
 src/utils/chart-drawer.vala
 src/utils/device-manager.vala
 src/utils/numeric-toolkit.vala
