@@ -8,8 +8,8 @@
     <child>
       <object class="AdwBreakpoint">
         <condition>max-width: 600sp</condition>
-        <setter object="split_view" property="collapsed">True</setter>
-        <setter object="toggle_sidebar_button" property="active">False</setter>
+        <setter object="split_view" property="collapsed">true</setter>
+        <setter object="toggle_sidebar_button" property="active">false</setter>
       </object>
     </child>
     <property name="content">
@@ -38,16 +38,16 @@
                         </child>
                         <child type="overlay">
                           <object class="AdwStatusPage" id="device_list_empty_status">
-                            <property name="title">No Devices Found</property>
-                            <property name="description">No power devices detected. Please check your UPower connection.</property>
+                            <property name="title" translatable="yes">No Devices Found</property>
+                            <property name="description" translatable="yes">Please check your UPower connection.</property>
                             <property name="icon-name">battery-missing-symbolic</property>
                             <property name="visible">false</property>
                           </object>
                         </child>
                         <child type="overlay">
                           <object class="AdwSpinner" id="sidebar_spinner">
-                            <property name="width-request">48</property>
-                            <property name="height-request">48</property>
+                            <property name="width-request">64</property>
+                            <property name="height-request">64</property>
                             <property name="visible">false</property>
                           </object>
                         </child>
@@ -111,8 +111,8 @@
                           <object class="AdwStatusPage" id="device_info_empty_status">
                             <property name="hexpand">true</property>
                             <property name="vexpand">true</property>
-                            <property name="title">No Device Information</property>
-                            <property name="description">Load a valid device to view its information.</property>
+                            <property name="title" translatable="yes">No Device Information</property>
+                            <property name="description" translatable="yes">Load a valid device to view its information.</property>
                             <property name="icon-name">info-outline-symbolic</property>
                             <property name="visible">false</property>
                           </object>
@@ -121,8 +121,8 @@
                           <object class="AdwSpinner" id="content_spinner">
                             <property name="hexpand">true</property>
                             <property name="vexpand">true</property>
-                            <property name="width-request">48</property>
-                            <property name="height-request">48</property>
+                            <property name="width-request">64</property>
+                            <property name="height-request">64</property>
                             <property name="visible">false</property>
                           </object>
                         </child>
