@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+using Gee;
 using GLib;
 
 using ChartDrawer;
@@ -54,7 +55,7 @@ private class DeviceInfoSection : Gtk.Box {
     public string title { get; private set; }
     private Gtk.ListBox list { private get; private set; }
 
-    public DeviceInfoSection (string title, Gee.ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
+    public DeviceInfoSection (string title, ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
         this.title = title;
         this.set_orientation (Gtk.Orientation.VERTICAL);
         this.set_spacing (12);
@@ -73,7 +74,7 @@ private class DeviceInfoSection : Gtk.Box {
         this.update (properties);
     }
 
-    public void update (Gee.ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
+    public void update (ArrayList<DeviceInfoSectionData.DeviceProperty> properties) {
         Gtk.ListBoxRow? row;
         while ((row = this.list.get_row_at_index (0)) != null)
             this.list.remove (row);
@@ -101,11 +102,11 @@ private class DeviceInfoSectionData {
     }
 
     public string title { get; private set; }
-    public Gee.ArrayList<DeviceProperty> properties { get; private set; }
+    public ArrayList<DeviceProperty> properties { get; private set; }
 
     public DeviceInfoSectionData (string title) {
         this.title = title;
-        this.properties = new Gee.ArrayList<DeviceProperty> ();
+        this.properties = new ArrayList<DeviceProperty> ();
     }
 
     public void set (string name, string? val) {
@@ -128,11 +129,11 @@ public class Wattage.Window : Adw.ApplicationWindow {
     private SimpleAction device_history_action;
 
     private Gtk.Builder preferences_dialog_builder;
-    private GLib.Settings settings;
+    private Settings settings;
 
     private DeviceProber device_prober;
     private int selected_device_index = 0;
-    private Gee.ArrayList<DeviceInfoSection> device_info_sections = new Gee.ArrayList<DeviceInfoSection> ();
+    private ArrayList<DeviceInfoSection> device_info_sections = new ArrayList<DeviceInfoSection> ();
 
     // Preferences and user settings
     private bool auto_refresh;
@@ -141,6 +142,10 @@ public class Wattage.Window : Adw.ApplicationWindow {
     private string energy_unit;
     private string power_unit;
     private string voltage_unit;
+
+    private uint load_device_list_generation = 0;
+    private uint load_device_info_generation = 0;
+    private uint load_history_widgets_generation = 0;
 
     // History preferences
     private string history_type;
@@ -157,13 +162,10 @@ public class Wattage.Window : Adw.ApplicationWindow {
         this.device_list.row_selected.connect ((list, row) => {
             if (row is DeviceRow) {
                 DeviceRow device_row = (DeviceRow) row;
-                Idle.add (() => {
-                    this.selected_device_index = device_row.get_index ();
-                    this.device_info_empty_status.set_visible (false);
-                    this.device_history_action.set_enabled (true);
-                    this.load_device_info (device_row.device);
-                    return false;
-                });
+                this.selected_device_index = device_row.get_index ();
+                this.device_info_empty_status.set_visible (false);
+                this.device_history_action.set_enabled (true);
+                this.load_device_info (device_row.device);
             }
         });
 
@@ -226,7 +228,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
     }
 
     private void initialize_gsettings () {
-        this.settings = new GLib.Settings ("io.github.v81d.Wattage");
+        this.settings = new Settings ("io.github.v81d.Wattage");
 
         // Automation
         this.auto_refresh = this.settings.get_boolean ("auto-refresh");
@@ -336,13 +338,67 @@ public class Wattage.Window : Adw.ApplicationWindow {
         }
     }
 
+    private void append_device (DeviceObject device) {
+        DeviceRow row = new DeviceRow (device);
+        this.device_list.append (row);
+    }
+
+    private void load_device_list () {
+        uint generation = ++this.load_device_list_generation;
+
+        this.sidebar_spinner.set_visible (true);
+
+        Gtk.ListBoxRow? row;
+
+        while ((row = this.device_list.get_row_at_index (0)) != null)
+            this.device_list.remove (row);
+
+        new Thread<void> ("load-device-list", () => {
+            ArrayList<DeviceObject> devices;
+
+            try {
+                devices = this.device_prober.get_devices ();
+                device_list_empty_status.set_visible (false);
+                this.device_info_empty_status.set_visible (false);
+            } catch (Error e) {
+                stderr.printf ("Failed to load power devices: %s\n", e.message);
+                devices = new ArrayList<DeviceObject> ();
+            }
+
+            Idle.add (() => {
+                if (generation != this.load_device_list_generation)return false;
+
+                foreach (DeviceObject device in devices)
+                    this.append_device (device);
+
+                if (this.device_list.get_row_at_index (this.selected_device_index) != null)
+                    this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index));
+                else if (this.device_list.get_row_at_index (0) != null) {
+                    stdout.printf ("The device at index %s can no longer be found. The first device will be selected as fallback.\n", this.selected_device_index.to_string ());
+                    this.device_list.select_row (this.device_list.get_row_at_index (0));
+                } else {
+                    stderr.printf ("No power devices have been detected by UPower.\n");
+                    this.device_list_empty_status.set_visible (true);
+                    this.device_info_empty_status.set_visible (true);
+                    this.device_history_action.set_enabled (false);
+                }
+
+                this.sidebar_spinner.set_visible (false);
+
+                return false;
+            });
+        });
+    }
+
     private void load_device_info (DeviceObject device) {
+        uint generation = ++this.load_device_info_generation;
+
         this.content_spinner.set_visible (true);
 
         new Thread<void> ("load-device-info", () => {
             if (!device.has_history)this.device_history_action.set_enabled (false);
 
-            Gee.ArrayList<DeviceInfoSectionData> sections = new Gee.ArrayList<DeviceInfoSectionData> ();
+            ArrayList<DeviceInfoSectionData> sections = new ArrayList<DeviceInfoSectionData> ();
 
             DeviceInfoSectionData general_info = new DeviceInfoSectionData (_("General Information"));
             general_info.set (_("Native Path"), device.native_path);
@@ -359,22 +415,22 @@ public class Wattage.Window : Adw.ApplicationWindow {
             sections.add (model_details);
 
             DeviceInfoSectionData health_stats = new DeviceInfoSectionData (_("Health Evaluations"));
+
             if (device.capacity != null)
                 health_stats.set (_("State of Health"), "%.03f%%".printf (device.capacity));
 
-            string? health_alert = device.create_health_alert ();
-            if (health_alert != null)
-                health_stats.set (_("Device Condition"), health_alert);
+            if (device.health_description != null)
+                health_stats.set (_("Device Condition"), device.health_description);
 
             sections.add (health_stats);
 
             DeviceInfoSectionData charging_status = new DeviceInfoSectionData (_("Charging Status"));
 
             if (device.charge_start_threshold != null)
-                charging_status.set (_("Charge Start Threshold"), "%.03f%%".printf (device.charge_start_threshold));
+                charging_status.set (_("Charge Start Threshold"), "%u%%".printf (device.charge_start_threshold));
 
             if (device.charge_end_threshold != null)
-                charging_status.set (_("Charge End Threshold"), "%.03f%%".printf (device.charge_end_threshold));
+                charging_status.set (_("Charge End Threshold"), "%u%%".printf (device.charge_end_threshold));
 
             if (device.charge_cycles != null)
                 charging_status.set (_("Cycle Count"), device.charge_cycles.to_string ());
@@ -440,7 +496,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                                        _("Remaining Energy"), this.energy_unit);
 
             Window.add_section_metric (energy_metrics, device.energy_rate,
-                                       _("Energy Transfer Rate"), this.power_unit);
+                                       _("Net Energy Rate"), this.power_unit);
 
             sections.add (energy_metrics);
 
@@ -461,10 +517,12 @@ public class Wattage.Window : Adw.ApplicationWindow {
             sections.add (voltage_stats);
 
             Idle.add (() => {
-                Gee.ArrayList<string> existing_titles = new Gee.ArrayList<string> ();
+                if (generation != this.load_device_info_generation)return false;
+
+                ArrayList<string> existing_titles = new ArrayList<string> ();
                 foreach (DeviceInfoSection section in this.device_info_sections)existing_titles.add (section.title);
 
-                Gee.ArrayList<string> new_titles = new Gee.ArrayList<string> ();
+                ArrayList<string> new_titles = new ArrayList<string> ();
                 foreach (DeviceInfoSectionData section in sections)
                     if (section.properties.size > 0)new_titles.add (section.title);
 
@@ -523,54 +581,9 @@ public class Wattage.Window : Adw.ApplicationWindow {
         });
     }
 
-    private void load_device_list () {
-        this.sidebar_spinner.set_visible (true);
-
-        Gtk.ListBoxRow? row;
-        while ((row = this.device_list.get_row_at_index (0)) != null)
-            this.device_list.remove (row);
-
-        new Thread<void> ("load-device-list", () => {
-            List<DeviceObject> devices;
-
-            try {
-                devices = this.device_prober.get_devices ();
-                device_list_empty_status.set_visible (false);
-                this.device_info_empty_status.set_visible (false);
-            } catch (Error e) {
-                stderr.printf ("Failed to load power devices: %s\n", e.message);
-                devices = new List<DeviceObject> ();
-            }
-
-            Idle.add (() => {
-                foreach (DeviceObject device in devices)
-                    this.append_device (device);
-
-                if (this.device_list.get_row_at_index (this.selected_device_index) != null)
-                    this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index));
-                else if (this.device_list.get_row_at_index (0) != null) {
-                    stdout.printf ("The device at index %s can no longer be found. The first device will be selected as fallback.\n", this.selected_device_index.to_string ());
-                    this.device_list.select_row (this.device_list.get_row_at_index (0));
-                } else {
-                    stderr.printf ("No power devices have been detected by UPower.\n");
-                    this.device_list_empty_status.set_visible (true);
-                    this.device_info_empty_status.set_visible (true);
-                    this.device_history_action.set_enabled (false);
-                }
-
-                this.sidebar_spinner.set_visible (false);
-
-                return false;
-            });
-        });
-    }
-
-    private void append_device (DeviceObject device) {
-        DeviceRow row = new DeviceRow (device);
-        this.device_list.append (row);
-    }
-
     private void load_history_widgets (DeviceObject device, Gtk.Box main_box, Gtk.Box history_box) {
+        uint generation = ++this.load_history_widgets_generation;
+
         // Clear all of the history box's children
         Gtk.Widget? history_box_child = history_box.get_first_child ();
 
@@ -581,11 +594,44 @@ public class Wattage.Window : Adw.ApplicationWindow {
             history_box_child = next;
         }
 
-        try {
-            UPower.HistoryItem[] history_items = device.upower_proxy.get_history (this.history_type,
-                                                                                  this.history_timespan * 60,
-                                                                                  this.history_resolution);
-            Gee.ArrayList<UPower.HistoryItem?> history_sorted = new Gee.ArrayList<UPower.HistoryItem?> ();
+        new Thread<void> ("load-history-widgets", () => {
+            UPower.HistoryItem[] history_items;
+            Error e; // must declare this for some reason because the compiler keeps complaining
+
+            try {
+                history_items = device.upower_proxy.get_history (this.history_type,
+                                                                 this.history_timespan * 60,
+                                                                 this.history_resolution);
+            } catch (Error e) {
+                Idle.add (() => {
+                    if (generation != this.load_history_widgets_generation)return false;
+
+                    Gtk.Widget ? main_box_child = main_box.get_first_child ();
+
+                    while (main_box_child != null) {
+                        Gtk.Widget? next = main_box_child.get_next_sibling ();
+                        main_box.remove (main_box_child);
+                        main_box_child.destroy ();
+                        main_box_child = next;
+                    }
+
+                    stderr.printf ("Error getting device history: %s\n", e.message);
+
+                    Adw.StatusPage status_page = new Adw.StatusPage ();
+                    status_page.set_hexpand (true);
+                    status_page.set_vexpand (true);
+                    status_page.set_title (_("History Unavailable"));
+                    status_page.set_description (e.message);
+                    status_page.set_icon_name ("dialog-error-symbolic");
+                    main_box.append (status_page);
+
+                    return false;
+                });
+
+                return;
+            }
+
+            ArrayList<UPower.HistoryItem?> history_sorted = new ArrayList<UPower.HistoryItem?> ();
             foreach (UPower.HistoryItem item in history_items)history_sorted.add (item);
 
             // Sort in chronological order
@@ -595,103 +641,89 @@ public class Wattage.Window : Adw.ApplicationWindow {
                 return 0;
             });
 
-            uint count = 0;
+            Idle.add (() => {
+                if (generation != this.load_history_widgets_generation)return false;
 
-            Adw.ExpanderRow expander_row = new Adw.ExpanderRow ();
-            expander_row.set_title (_("Entries"));
+                uint count = 0;
 
-            Gtk.DrawingArea drawing_area = new Gtk.DrawingArea ();
-            drawing_area.set_size_request (-1, 150);
+                Adw.ExpanderRow expander_row = new Adw.ExpanderRow ();
+                expander_row.set_title (_("Entries"));
 
-            LineGraph graph = new LineGraph (null,
-                                             null,
-                                             0,
-                                             this.history_type == "charge" ? (double?) 100 : null);
-            drawing_area.set_draw_func ((widget, cr, width, height) => graph.draw (cr, width, height));
+                Gtk.DrawingArea drawing_area = new Gtk.DrawingArea ();
+                drawing_area.set_size_request (-1, 150);
 
-            foreach (UPower.HistoryItem item in history_sorted) {
-                string state = DeviceProber.stringify_device_state (item.state);
-                if (state == null)continue;
+                LineGraph graph = new LineGraph (null,
+                                                 null,
+                                                 0,
+                                                 this.history_type == "charge" ? (double?) 100 : null);
+                drawing_area.set_draw_func ((widget, cr, width, height) => graph.draw (cr, width, height));
 
-                count++;
+                foreach (UPower.HistoryItem item in history_sorted) {
+                    string state = DeviceProber.stringify_device_state (item.state);
+                    if (state == null)continue;
 
-                DateTime dt = new DateTime.from_unix_local ((int64) item.time);
-                string timestamp = dt.format ("%c");
+                    count++;
 
-                double val = double.parse ("%.3f".printf (item.value));
+                    DateTime dt = new DateTime.from_unix_local (item.time);
+                    string timestamp = dt.format ("%c");
 
-                Adw.ActionRow row = new Adw.ActionRow ();
-                row.set_title (timestamp);
+                    double val = double.parse ("%.3f".printf (item.value));
 
-                switch (this.history_type) {
-                case "rate" :
-                    row.set_subtitle ("Rate: %.3f %s (%s)".printf (si_convert (val, this.power_unit),
-                                                                   this.power_unit,
-                                                                   state.down ()));
-                    break;
-                case "charge" :
-                    row.set_subtitle ("Charge: %.3f%% (%s)".printf (val, state.down ()));
-                    break;
+                    Adw.ActionRow row = new Adw.ActionRow ();
+                    row.set_title (timestamp);
+
+                    switch (this.history_type) {
+                        case "rate" :
+                            row.set_subtitle ("Rate: %.3f %s (%s)".printf (si_convert (val, this.power_unit),
+                                                                           this.power_unit,
+                                                                           state.down ()));
+                            break;
+                        case "charge" :
+                            row.set_subtitle ("Charge: %.3f%% (%s)".printf (val, state.down ()));
+                            break;
+                    }
+
+                    Gtk.Label placement_label = new Gtk.Label (count.to_string ());
+                    placement_label.add_css_class ("monospace");
+                    row.add_suffix (placement_label);
+
+                    expander_row.add_row (row);
+
+                    double x = (double) item.time - (double) history_sorted.get (0).time;
+                    double y = val;
+
+                    graph.plot (x, y);
                 }
 
-                Gtk.Label placement_label = new Gtk.Label (count.to_string ());
-                placement_label.add_css_class ("monospace");
-                row.add_suffix (placement_label);
-
-                expander_row.add_row (row);
-
-                double x = (double) item.time - (double) history_sorted.get (0).time;
-                double y = val;
-
-                graph.plot (x, y);
-            }
-
-            if (count == 0) {
-                Gtk.Label label = new Gtk.Label (_("No history entries available within the configured timespan and resolution."));
-                label.set_halign (Gtk.Align.START);
-                history_box.append (label);
-            } else {
-                Gtk.Box result_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 18);
-                result_box.set_hexpand (true);
-                result_box.set_vexpand (true);
-
-                if (count == 1) {
-                    Gtk.Label label = new Gtk.Label (_("There are not enough history entries to display a graph."));
+                if (count == 0) {
+                    Gtk.Label label = new Gtk.Label (_("No history entries available within the configured timespan and resolution."));
                     label.set_halign (Gtk.Align.START);
-                    result_box.append (label);
-                } else result_box.append (drawing_area);
+                    history_box.append (label);
+                } else {
+                    Gtk.Box result_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 18);
+                    result_box.set_hexpand (true);
+                    result_box.set_vexpand (true);
 
-                Gtk.ListBox list_box = new Gtk.ListBox ();
-                list_box.set_selection_mode (Gtk.SelectionMode.NONE);
-                list_box.add_css_class ("boxed-list");
-                list_box.append (expander_row);
-                result_box.append (list_box);
+                    if (count == 1) {
+                        Gtk.Label label = new Gtk.Label (_("There are not enough history entries to display a graph."));
+                        label.set_halign (Gtk.Align.START);
+                        result_box.append (label);
+                    } else result_box.append (drawing_area);
 
-                expander_row.set_subtitle (_("%u history item(s) discovered.").printf (count));
+                    Gtk.ListBox list_box = new Gtk.ListBox ();
+                    list_box.set_selection_mode (Gtk.SelectionMode.NONE);
+                    list_box.add_css_class ("boxed-list");
+                    list_box.append (expander_row);
+                    result_box.append (list_box);
 
-                history_box.append (result_box);
-            }
-        } catch (Error e) {
-            // Clear all of the main box's children
-            Gtk.Widget? main_box_child = main_box.get_first_child ();
+                    expander_row.set_subtitle (_("%u history item(s) discovered.").printf (count));
 
-            while (main_box_child != null) {
-                Gtk.Widget? next = main_box_child.get_next_sibling ();
-                main_box.remove (main_box_child);
-                main_box_child.destroy ();
-                main_box_child = next;
-            }
+                    history_box.append (result_box);
+                }
 
-            stderr.printf ("Error getting device history: %s\n", e.message);
-
-            Adw.StatusPage status_page = new Adw.StatusPage ();
-            status_page.set_hexpand (true);
-            status_page.set_vexpand (true);
-            status_page.set_title (_("History Unavailable"));
-            status_page.set_description (e.message);
-            status_page.set_icon_name ("dialog-error-symbolic");
-            main_box.append (status_page);
-        }
+                return false;
+            });
+        });
     }
 
     // Display device history dialog
@@ -827,3 +859,4 @@ public class Wattage.Window : Adw.ApplicationWindow {
         load_device_list ();
     }
 }
+
