@@ -1,3 +1,13 @@
+blueprints = custom_target('blueprints',
+  input: files(
+    'ui/shortcuts-dialog.blp',
+    'ui/preferences-dialog.blp',
+    'ui/window.blp',
+  ),
+  output: '.',
+  command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
+)
+
 wattage_sources = [
   'main.vala',
   'application.vala',
@@ -18,7 +28,8 @@ wattage_deps = [
 
 wattage_sources += gnome.compile_resources('wattage-resources',
   'wattage.gresource.xml',
-  c_name: 'wattage'
+  c_name: 'wattage',
+  dependencies: blueprints,
 )
 
 executable('wattage', wattage_sources,
