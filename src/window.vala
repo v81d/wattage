@@ -147,21 +147,21 @@ public class Wattage.Window : Adw.ApplicationWindow {
   private uint load_device_info_generation = 0;
   private uint load_history_widgets_generation = 0;
 
-  private ulong device_history_type_handler_id = 0;
-  private ulong device_history_timespan_handler_id = 0;
-  private ulong device_history_resolution_handler_id = 0;
+  private ulong device_history_type_handler_id;
+  private ulong device_history_timespan_handler_id;
+  private ulong device_history_resolution_handler_id;
 
   // History preferences
   private string history_type;
   private uint history_timespan;
   private uint history_resolution;
 
-  private Adw.Dialog? device_history_dialog = null;
-  private Gtk.Box? device_history_main_box = null;
-  private Gtk.Box? device_history_box = null;
-  private Adw.ComboRow? device_history_type_combo = null;
-  private Adw.SpinRow? device_history_timespan_spin = null;
-  private Adw.SpinRow? device_history_resolution_spin = null;
+  private Adw.Dialog device_history_dialog;
+  private Gtk.Box device_history_main_box;
+  private Gtk.Box device_history_box;
+  private Adw.ComboRow device_history_type_combo;
+  private Adw.SpinRow device_history_timespan_spin;
+  private Adw.SpinRow device_history_resolution_spin;
 
   public Window (Gtk.Application app) {
     Object (application : app);
@@ -656,7 +656,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
             if (section.properties.size == 0)continue;
 
             // Match existing sections by title
-            DeviceInfoSection? existing_section = null;
+            DeviceInfoSection ? existing_section = null;
             foreach (DeviceInfoSection s in this.device_info_sections) {
               if (s.title == section.title) {
                 existing_section = s;
@@ -691,13 +691,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
     uint generation = ++this.load_history_widgets_generation;
 
     // Clear all of the history box's children
-    Gtk.Widget? history_box_child = history_box.get_first_child ();
-
-    while (history_box_child != null) {
-      Gtk.Widget? next = history_box_child.get_next_sibling ();
-      history_box.remove (history_box_child);
-      history_box_child.unparent ();
-      history_box_child = next;
+    while (history_box.get_first_child () != null) {
+      history_box.remove (history_box.get_first_child ());
     }
 
     new Thread<void> ("load-history-widgets", () => {
@@ -712,13 +707,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
         Idle.add (() => {
           if (generation != this.load_history_widgets_generation)return false;
 
-          Gtk.Widget ? main_box_child = main_box.get_first_child ();
-
-          while (main_box_child != null) {
-            Gtk.Widget? next = main_box_child.get_next_sibling ();
-            main_box.remove (main_box_child);
-            main_box_child.unparent ();
-            main_box_child = next;
+          while (main_box.get_first_child () != null) {
+            main_box.remove (main_box.get_first_child ());
           }
 
           stderr.printf ("Error getting device history: %s\n", e.message);
@@ -853,6 +843,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
     this.device_history_resolution_spin.set_value (this.history_resolution);
 
     this.load_history_widgets (device, this.device_history_main_box, this.device_history_box);
+
     this.device_history_dialog.present (this);
   }
 
