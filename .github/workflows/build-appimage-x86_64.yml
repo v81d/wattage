@@ -25,7 +25,7 @@ jobs:
             binutils desktop-file-utils fakeroot gdk-pixbuf2 patchelf \
             python python-pip python-virtualenv python-setuptools \
             squashfs-tools strace wget zsync meson ninja vala \
-            libadwaita gtk4 libgee procps
+            libadwaita gtk4 libgee procps blueprint-compiler
       - name: Install appimage-builder
         run: |
           set -eux
