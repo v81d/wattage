@@ -19,71 +19,71 @@
  */
 
 namespace NumericToolkit {
-    public double ? si_convert (double? val, string? unit) {
-        if (val == null || unit == null || unit.length == 0)return val;
+  public double ? si_convert (double? val, string? unit) {
+    if (val == null || unit == null || unit.length == 0)return val;
 
-        double factor = 1.0;
+    double factor = 1.0;
 
-        if (unit.has_prefix ("p"))factor = 1e12;
-        else if (unit.has_prefix ("n"))factor = 1e9;
-        else if (unit.has_prefix ("μ") ||
-                 unit.has_prefix ("µ"))// mu or micro
-            factor = 1e6;
-        else if (unit.has_prefix ("m"))factor = 1e3;
-        else if (unit.has_prefix ("c"))factor = 1e2;
-        else if (unit.has_prefix ("d"))factor = 1e1;
-        else if (unit.has_prefix ("k"))factor = 1e-3;
-        else if (unit.has_prefix ("M"))factor = 1e-6;
-        else if (unit.has_prefix ("G"))factor = 1e-9;
-        else if (unit.has_prefix ("J"))factor = 3600;
+    if (unit.has_prefix ("p"))factor = 1e12;
+    else if (unit.has_prefix ("n"))factor = 1e9;
+    else if (unit.has_prefix ("μ") ||
+             unit.has_prefix ("µ"))    // mu or micro
+      factor = 1e6;
+    else if (unit.has_prefix ("m"))factor = 1e3;
+    else if (unit.has_prefix ("c"))factor = 1e2;
+    else if (unit.has_prefix ("d"))factor = 1e1;
+    else if (unit.has_prefix ("k"))factor = 1e-3;
+    else if (unit.has_prefix ("M"))factor = 1e-6;
+    else if (unit.has_prefix ("G"))factor = 1e-9;
+    else if (unit.has_prefix ("J"))factor = 3600;
 
-        return val * factor;
-    }
+    return val * factor;
+  }
 
-    public double ? calculate_percentage (double? part, double? total) {
-        /* In some special cases, the total may be 0.
-         * To avoid division by zero, we should instead return `null` early.
-         */
-        if (part == null ||
-            total == null ||
-            total == 0 ||
-            total.is_nan () ||
-            !total.is_finite ()
-        )
-            return null;
+  public double ? calculate_percentage (double? part, double? total) {
+    /* In some special cases, the total may be 0.
+     * To avoid division by zero, we should instead return `null` early.
+     */
+    if (part == null ||
+        total == null ||
+        total == 0 ||
+        total.is_nan () ||
+        !total.is_finite ()
+    )
+      return null;
 
-        return (part / total) * 100;
-    }
+    return (part / total) * 100;
+  }
 
-    public string ? seconds_to_hms (int64? seconds) {
-        if (seconds == null)return null;
+  public string ? seconds_to_hms (int64? seconds) {
+    if (seconds == null)return null;
 
-        int64 result_hours = seconds / 3600;
-        int64 result_seconds = seconds - result_hours * 3600;
-        int64 result_minutes = result_seconds / 60;
-        result_seconds -= result_minutes * 60;
+    int64 result_hours = seconds / 3600;
+    int64 result_seconds = seconds - result_hours * 3600;
+    int64 result_minutes = result_seconds / 60;
+    result_seconds -= result_minutes * 60;
 
-        string format = "%02" + int64.FORMAT + ":%02" + int64.FORMAT + ":%02" + int64.FORMAT;
-        return format.printf (result_hours, result_minutes, result_seconds);
-    }
+    string format = "%02" + int64.FORMAT + ":%02" + int64.FORMAT + ":%02" + int64.FORMAT;
+    return format.printf (result_hours, result_minutes, result_seconds);
+  }
 
-    public string ? non_empty_string (string s) {
-        return s.length > 0 ? (string?) s : null;
-    }
+  public string ? non_empty_string (string s) {
+    return s.length > 0 ? (string?) s : null;
+  }
 
-    public double ? positive_double (double d) {
-        return d > 0 ? (double?) d : null;
-    }
+  public double ? positive_double (double d) {
+    return d > 0 ? (double?) d : null;
+  }
 
-    public int32 ? positive_int32 (int32 i) {
-        return i > 0 ? (int32?) i : null;
-    }
+  public int32 ? positive_int32 (int32 i) {
+    return i > 0 ? (int32?) i : null;
+  }
 
-    public uint32 ? positive_uint32 (uint32 u) {
-        return u > 0 ? (uint32?) u : null;
-    }
+  public uint32 ? positive_uint32 (uint32 u) {
+    return u > 0 ? (uint32?) u : null;
+  }
 
-    public int64 ? positive_int64 (int64 i) {
-        return i > 0 ? (int64?) i : null;
-    }
+  public int64 ? positive_int64 (int64 i) {
+    return i > 0 ? (int64?) i : null;
+  }
 }

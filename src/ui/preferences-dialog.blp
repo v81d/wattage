@@ -1,0 +1,77 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.PreferencesDialog preferences_dialog {
+  Adw.PreferencesPage {
+    title: _("General");
+
+    Adw.PreferencesGroup {
+      title: _("Automation");
+
+      Adw.SwitchRow auto_refresh_switch {
+        title: _("Auto-Refresh");
+        subtitle: _("Whether or not the data should refresh automatically.");
+      }
+
+      Adw.SpinRow auto_refresh_cooldown_row {
+        title: _("Auto-Refresh Cooldown");
+        subtitle: _("The time, in seconds, between each data refresh.");
+
+        adjustment: Adjustment {
+          lower: 5;
+          upper: 3600;
+          step-increment: 1;
+          page-increment: 5;
+        };
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Measurements");
+
+      Adw.ComboRow energy_unit {
+        title: _("Energy Unit");
+        subtitle: _("The unit for energy measurements.");
+
+        model: StringList {
+          strings [
+            "μWh",
+            "mWh",
+            "Wh",
+            "kWh",
+            "J",
+          ]
+        };
+      }
+
+      Adw.ComboRow power_unit {
+        title: _("Power Unit");
+        subtitle: _("The unit for power measurements.");
+
+        model: StringList {
+          strings [
+            "μW",
+            "mW",
+            "W",
+            "kW",
+            "J",
+          ]
+        };
+      }
+
+      Adw.ComboRow voltage_unit {
+        title: _("Voltage Unit");
+        subtitle: _("The unit for voltage measurements.");
+
+        model: StringList {
+          strings [
+            "μV",
+            "mV",
+            "V",
+            "kV",
+          ]
+        };
+      }
+    }
+  }
+}

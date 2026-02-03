@@ -4,3 +4,4 @@ repo/
 *.AppImage
 *.AppImage.zsync
 .foundry/
+subprojects/blueprint-compiler
