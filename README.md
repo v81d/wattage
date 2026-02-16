@@ -1,13 +1,14 @@
-<img align="left" src="data/icons/hicolor/scalable/apps/io.github.v81d.Wattage.svg" alt="Logo" width="64"/> 
+<img align="left" src="data/icons/hicolor/scalable/apps/io.github.v81d.Wattage.svg" alt="Logo" width="64"/>
 
 # Wattage
 
-![GitHub Commit Activity](https://img.shields.io/github/commit-activity/w/v81d/wattage)
-![GitHub Top Language](https://img.shields.io/github/languages/top/v81d/wattage)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/v81d/wattage)
-![GitHub License](https://img.shields.io/github/license/v81d/wattage)
-![GitHub Release](https://img.shields.io/github/v/release/v81d/wattage)
-![Flathub Downloads](https://img.shields.io/flathub/downloads/io.github.v81d.Wattage)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/v81d/wattage?style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/v81d/wattage?style=for-the-badge)
+![GitHub contributors](https://img.shields.io/github/contributors/v81d/wattage?style=for-the-badge)
+![GitHub issues or pull requests](https://img.shields.io/github/issues/v81d/wattage?style=for-the-badge)
+![GitHub license](https://img.shields.io/github/license/v81d/wattage?style=for-the-badge)
+![GitHub release](https://img.shields.io/github/v/release/v81d/wattage?style=for-the-badge)
+![Flathub downloads](https://img.shields.io/flathub/downloads/io.github.v81d.Wattage?style=for-the-badge)
 
 Wattage is an application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 and libadwaita interface.
 
