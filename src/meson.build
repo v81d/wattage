@@ -20,7 +20,7 @@ wattage_sources = [
 
 wattage_deps = [
   config_dep,
-  dependency('gtk4'),
+  dependency('gtk4', version: '>= 4.18.0'),
   dependency('libadwaita-1', version: '>= 1.8.0'),
   dependency('gee-0.8'),
   dependency('cairo', version: '>= 1.18.4')
