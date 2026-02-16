@@ -51,10 +51,18 @@ The following guide provides instructions on how to install Wattage on your devi
 
 #### Build Requirements
 
-- Vala
-- Foundry
-- libadwaita (version >= 1.8) and GTK 4
-- pkgconf
+- The [Vala language](https://vala.dev)
+- [Blueprint Compiler](https://gnome.pages.gitlab.gnome.org/blueprint-compiler)
+- The [Meson build system](https://mesonbuild.com)
+- [Ninja](https://ninja-build.org)
+- [GNU gettext](https://www.gnu.org/software/gettext)
+- [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config)
+- [glib](https://docs.gtk.org/glib)
+- [libadwaita](https://gnome.pages.gitlab.gnome.org/libadwaita) (version >= 1.8)
+- [GTK 4](https://www.gtk.org) (version >= 4.18.0)
+- [libgee](https://gitlab.gnome.org/GNOME/libgee)
+- [GObject Introspection](https://gi.readthedocs.io/en/latest)
+- [AppStream](https://www.freedesktop.org/wiki/Distributions/AppStream)
 
 Other requirements should be installed automatically as dependencies of the packages above.
 
@@ -69,42 +77,29 @@ git clone https://github.com/v81d/wattage.git
 cd wattage
 ```
 
-2. Configure the build directory with Foundry:
+2. Configure the build directory using Meson:
 
 ```bash
-foundry init
+meson setup build
 ```
 
-3. Build the project:
+3. Compile and build the project:
 
 ```bash
-foundry build
+meson compile -C build
 ```
 
-4. Run the app:
+4. Install project libraries and schemas:
 
 ```bash
-foundry run
+meson install -C build --destdir staging
+glib-compile-schemas build/staging/usr/local/share/glib-2.0/schemas
 ```
 
-#### Export as Flatpak
-
-If you do not want to install the app via the [official Flathub page](https://flathub.org/en/apps/io.github.v81d.Wattage), you can build it manually. Make sure [Flatpak](https://flatpak.org) is installed. Then, use Foundry to export the artifact:
+5. Run the project
 
 ```bash
-foundry export
-```
-
-This should output a `.flatpak` file to a dedicated directory (e.g., `.foundry/cache/flatpak/staging/x86_64-develop/io.github.v81d.Wattage-x86_64.flatpak`). You can install the bundle with the following commands:
-
-```bash
-flatpak install --user -y <PATH_TO_ARTIFACT>
-```
-
-To start the app, select it from your launcher or run:
-
-```bash
-flatpak run io.github.v81d.Wattage
+GSETTINGS_SCHEMA_DIR=build/staging/usr/local/share/glib-2.0/schemas ./build/staging/usr/local/bin/wattage
 ```
 
 ## Contributing
