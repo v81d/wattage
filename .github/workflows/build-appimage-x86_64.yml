@@ -22,10 +22,10 @@ jobs:
           set -eux
           pacman -Syu --noconfirm
           pacman -S --noconfirm \
-            binutils desktop-file-utils fakeroot gdk-pixbuf2 patchelf \
-            python python-pip python-virtualenv python-setuptools \
-            squashfs-tools strace wget zsync meson ninja vala \
-            libadwaita gtk4 libgee procps blueprint-compiler
+            binutils desktop-file-utils fakeroot gdk-pixbuf2 patchelf zsync \
+            python python-pip \
+            squashfs-tools meson ninja vala \
+            libadwaita gtk4 libgee blueprint-compiler
       - name: Install appimage-builder
         run: |
           set -eux
@@ -36,19 +36,19 @@ jobs:
       - name: Build Wattage
         run: |
           set -eux
-          meson setup _build -Dprefix=/usr
-          ninja -C _build
+          meson setup build --prefix=/usr
+          meson compile -C build
       - name: Prepare AppDir
         run: |
           set -eux
-          rm -rf _build/AppDir
-          meson install -C _build --no-rebuild --destdir AppDir
-          glib-compile-schemas _build/AppDir/usr/share/glib-2.0/schemas
+          rm -rf build/AppDir
+          meson install -C build --no-rebuild --destdir AppDir
+          glib-compile-schemas build/AppDir/usr/share/glib-2.0/schemas
       - name: Build AppImage
         run: |
           set -eux
           source .venv/bin/activate
-          appimage-builder --appdir _build/AppDir --recipe AppImageBuilder-x86_64.yml --skip-tests
+          appimage-builder --appdir build/AppDir --recipe AppImageBuilder-x86_64.yml --skip-tests
       - name: Upload AppImage as artifact
         uses: actions/upload-artifact@v4
         with:
