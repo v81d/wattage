@@ -164,7 +164,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
   private Adw.SpinRow device_history_resolution_spin;
 
   public Window (Gtk.Application app) {
-    Object (application : app);
+    Object (application: app);
 
     this.device_prober = new DeviceProber ();
     this.load_device_list ();
@@ -231,9 +231,9 @@ public class Wattage.Window : Adw.ApplicationWindow {
   /* This is mostly used for dropdowns in the preferences menu.
    * The function will return the index of a value inside a given array.
    */
-  private static int get_string_array_index (string[] array, string val) {
-    for (int i = 0; i < array.length; i++)
-      if (array[i] == val)return i;
+  private static int get_string_list_index (Gtk.StringList list, string val) {
+    for (int i = 0; i < list.n_items; i++)
+      if (list.get_string (i) == val)return i;
 
     return 0;
   }
@@ -300,33 +300,33 @@ public class Wattage.Window : Adw.ApplicationWindow {
     });
 
     // Energy unit
-    string[] energy_units = { "μWh", "mWh", "Wh", "kWh", "J" };
     Adw.ComboRow energy_unit_row = this.preferences_dialog_builder.get_object ("energy_unit") as Adw.ComboRow;
-    energy_unit_row.set_selected (get_string_array_index (energy_units, this.energy_unit));
+    Gtk.StringList energy_units = (Gtk.StringList) energy_unit_row.get_model ();
+    energy_unit_row.set_selected (get_string_list_index (energy_units, this.energy_unit)); // tried to use `.find()` but the compiler keeps saying it doesn't exist for some reason :(
     energy_unit_row.notify["selected"].connect (() => {
-      string selected_unit = energy_units[energy_unit_row.get_selected ()];
+      string selected_unit = energy_units.get_string (energy_unit_row.get_selected ());
       this.settings.set_string ("energy-unit", selected_unit);
       this.energy_unit = selected_unit;
       load_device_list ();
     });
 
     // Power unit
-    string[] power_units = { "μW", "mW", "W", "kW", "J" };
     Adw.ComboRow power_unit_row = this.preferences_dialog_builder.get_object ("power_unit") as Adw.ComboRow;
-    power_unit_row.set_selected (get_string_array_index (power_units, this.power_unit));
+    Gtk.StringList power_units = (Gtk.StringList) power_unit_row.get_model ();
+    power_unit_row.set_selected (get_string_list_index (power_units, this.power_unit));
     power_unit_row.notify["selected"].connect (() => {
-      string selected_unit = power_units[power_unit_row.get_selected ()];
+      string selected_unit = power_units.get_string (power_unit_row.get_selected ());
       this.settings.set_string ("power-unit", selected_unit);
       this.power_unit = selected_unit;
       load_device_list ();
     });
 
     // Voltage unit
-    string[] voltage_units = { "μV", "mV", "V", "kV" };
     Adw.ComboRow voltage_unit_row = this.preferences_dialog_builder.get_object ("voltage_unit") as Adw.ComboRow;
-    voltage_unit_row.set_selected (get_string_array_index (voltage_units, this.voltage_unit));
+    Gtk.StringList voltage_units = (Gtk.StringList) voltage_unit_row.get_model ();
+    voltage_unit_row.set_selected (get_string_list_index (voltage_units, this.voltage_unit));
     voltage_unit_row.notify["selected"].connect (() => {
-      string selected_unit = voltage_units[voltage_unit_row.get_selected ()];
+      string selected_unit = voltage_units.get_string (voltage_unit_row.get_selected ());
       this.settings.set_string ("voltage-unit", selected_unit);
       this.voltage_unit = selected_unit;
       load_device_list ();
@@ -376,8 +376,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
     this.device_history_type_combo.set_subtitle (_("The type of history to display."));
     this.device_history_type_combo.add_css_class ("combo");
 
-    Gtk.StringList types_string_list = new Gtk.StringList ({ _("Rate"), _("Charge") });
-    this.device_history_type_combo.set_model (types_string_list);
+    Gtk.StringList types = new Gtk.StringList ({ _("Rate"), _("Charge") });
+    this.device_history_type_combo.set_model (types);
     options_group.add (this.device_history_type_combo);
 
     // History timespan
@@ -392,10 +392,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
     this.device_history_resolution_spin.set_subtitle (_("The approximate number of history points to return."));
     options_group.add (this.device_history_resolution_spin);
 
-    string[] types = { "rate", "charge" };
-
     this.device_history_type_handler_id = this.device_history_type_combo.notify["selected"].connect (() => {
-      string selected_type = types[this.device_history_type_combo.get_selected ()];
+      string selected_type = this.device_history_type_combo.get_selected () == 0 ? "rate" : "charge";
       this.settings.set_string ("history-type", selected_type);
       this.history_type = selected_type;
 
@@ -836,9 +834,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
       this.initialize_device_history_dialog ();
     }
 
-    // Just set values, signals are already connected in initialize
-    string[] types = { "rate", "charge" };
-    this.device_history_type_combo.set_selected (get_string_array_index (types, this.history_type));
+    this.device_history_type_combo.set_selected (this.history_type == "charge" ? 1 : 0);
     this.device_history_timespan_spin.set_value (this.history_timespan);
     this.device_history_resolution_spin.set_value (this.history_resolution);
 
