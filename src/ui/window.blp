@@ -38,7 +38,7 @@ template $WattageWindow: Adw.ApplicationWindow {
             [overlay]
             Adw.StatusPage device_list_empty_status {
               title: _("No Devices Found");
-              description: _("Please check your UPower connection.");
+              description: _("Check your UPower connection");
               icon-name: "battery-missing-symbolic";
               visible: false;
             }
@@ -102,8 +102,8 @@ template $WattageWindow: Adw.ApplicationWindow {
             Adw.StatusPage device_info_empty_status {
               hexpand: true;
               vexpand: true;
-              title: _("No Device Information");
-              description: _("Load a valid device to view its information.");
+              title: _("No Device Details");
+              description: _("Load a device to view its information");
               icon-name: "info-outline-symbolic";
               visible: false;
             }
