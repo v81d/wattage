@@ -61,6 +61,28 @@ namespace DeviceManager {
     public string? health_description { get; set; }
 
     public DeviceObject () {}
+
+    public bool is_trivial () {
+      return vendor == null &&
+             model == null &&
+             serial == null &&
+             technology == null &&
+             state == null &&
+             energy == null &&
+             energy_full == null &&
+             energy_full_design == null &&
+             energy_rate == null &&
+             voltage == null &&
+             voltage_min_design == null &&
+             charge_cycles == null &&
+             charge_start_threshold == null &&
+             charge_end_threshold == null &&
+             time_to_empty == null &&
+             time_to_full == null &&
+             temperature == null &&
+             capacity == null &&
+             health_description == null;
+    }
   }
 
   // This is the publicly accessible class used to probe, enumerate, and inspect power devices
