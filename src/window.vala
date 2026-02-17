@@ -136,6 +136,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
   private ArrayList<DeviceInfoSection> device_info_sections = new ArrayList<DeviceInfoSection> ();
 
   // Preferences and user settings
+  private bool trivial_devices;
   private bool auto_refresh;
   private uint auto_refresh_cooldown;
   private uint auto_refresh_source_id = 0;
@@ -241,6 +242,9 @@ public class Wattage.Window : Adw.ApplicationWindow {
   private void initialize_gsettings () {
     this.settings = new Settings ("io.github.v81d.Wattage");
 
+    // Devices
+    this.trivial_devices = this.settings.get_boolean ("trivial-devices");
+
     // Automation
     this.auto_refresh = this.settings.get_boolean ("auto-refresh");
     this.auto_refresh_cooldown = this.settings.get_uint ("auto-refresh-cooldown");
@@ -263,6 +267,16 @@ public class Wattage.Window : Adw.ApplicationWindow {
     } catch (Error e) {
       stderr.printf ("Could not open preferences dialog: %s\n", e.message);
     }
+
+    // Trivial devices switch
+    Adw.SwitchRow trivial_devices_switch = this.preferences_dialog_builder.get_object ("trivial_devices_switch") as Adw.SwitchRow;
+    trivial_devices_switch.set_active (this.trivial_devices);
+    trivial_devices_switch.notify["active"].connect (() => {
+      bool is_active = trivial_devices_switch.get_active ();
+      this.settings.set_boolean ("trivial-devices", is_active);
+      this.trivial_devices = is_active;
+      load_device_list ();
+    });
 
     // Auto-refresh switch
     Adw.SwitchRow auto_refresh_switch = this.preferences_dialog_builder.get_object ("auto_refresh_switch") as Adw.SwitchRow;
@@ -472,8 +486,10 @@ public class Wattage.Window : Adw.ApplicationWindow {
       Idle.add (() => {
         if (generation != this.load_device_list_generation)return false;
 
-        foreach (DeviceObject device in devices)
+        foreach (DeviceObject device in devices) {
+          if (!this.trivial_devices && device.is_trivial ())continue;
           this.append_device (device);
+        }
 
         if (this.device_list.get_row_at_index (this.selected_device_index) != null)
           this.device_list.select_row (this.device_list.get_row_at_index (this.selected_device_index));
