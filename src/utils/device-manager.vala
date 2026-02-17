@@ -129,12 +129,12 @@ namespace DeviceManager {
       if (device_technology == null)return null;
 
       switch (device_technology) {
-      case 1: return _("Lithium ion");
-      case 2:  return _("Lithium polymer");
+      case 1: return _("Lithium-ion");
+      case 2:  return _("Lithium-ion polymer");
       case 3:  return _("Lithium iron phosphate");
-      case 4:  return _("Lead acid");
-      case 5:  return _("Nickel cadmium");
-      case 6:  return _("Nickel metal hydride");
+      case 4:  return _("Lead-acid");
+      case 5:  return _("Nickel-cadmium");
+      case 6:  return _("Nickel-metal hydride");
       default: return null;
       }
     }
