@@ -61,6 +61,28 @@ namespace DeviceManager {
     public string? health_description { get; set; }
 
     public DeviceObject () {}
+
+    public bool is_trivial () {
+      return vendor == null &&
+             model == null &&
+             serial == null &&
+             technology == null &&
+             state == null &&
+             energy == null &&
+             energy_full == null &&
+             energy_full_design == null &&
+             energy_rate == null &&
+             voltage == null &&
+             voltage_min_design == null &&
+             charge_cycles == null &&
+             charge_start_threshold == null &&
+             charge_end_threshold == null &&
+             time_to_empty == null &&
+             time_to_full == null &&
+             temperature == null &&
+             capacity == null &&
+             health_description == null;
+    }
   }
 
   // This is the publicly accessible class used to probe, enumerate, and inspect power devices
@@ -107,12 +129,12 @@ namespace DeviceManager {
       if (device_technology == null)return null;
 
       switch (device_technology) {
-      case 1: return _("Lithium ion");
-      case 2:  return _("Lithium polymer");
+      case 1: return _("Lithium-ion");
+      case 2:  return _("Lithium-ion polymer");
       case 3:  return _("Lithium iron phosphate");
-      case 4:  return _("Lead acid");
-      case 5:  return _("Nickel cadmium");
-      case 6:  return _("Nickel metal hydride");
+      case 4:  return _("Lead-acid");
+      case 5:  return _("Nickel-cadmium");
+      case 6:  return _("Nickel-metal hydride");
       default: return null;
       }
     }

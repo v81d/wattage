@@ -6,6 +6,15 @@ Adw.PreferencesDialog preferences_dialog {
     title: _("General");
 
     Adw.PreferencesGroup {
+      title: _("Devices");
+
+      Adw.SwitchRow trivial_devices_switch {
+        title: _("Show Trivial Devices");
+        subtitle: _("Show or hide devices that do not report much information.");
+      }
+    }
+
+    Adw.PreferencesGroup {
       title: _("Automation");
 
       Adw.SwitchRow auto_refresh_switch {

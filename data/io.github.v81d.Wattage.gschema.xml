@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="wattage">
 	<schema id="io.github.v81d.Wattage" path="/io/github/v81d/Wattage/">
+    <key name="trivial-devices" type="b">
+      <default>false</default>
+      <summary>Show trivial devices</summary>
+      <description>Show or hide devices that do not report much information.</description>
+    </key>
 	  <key name="auto-refresh" type="b">
       <default>true</default>
       <summary>Enable auto-refresh</summary>
-      <description>Whether the app automatically refreshes data.</description>
+      <description>Whether or not the data should refresh automatically.</description>
     </key>
 	  <key name="auto-refresh-cooldown" type="u">
 	    <default>20</default>
 	    <range min="10" max="3600"/>
       <summary>Auto-refresh cooldown</summary>
-      <description>Interval, in seconds, between auto-refresh operations.</description>
+      <description>The time, in seconds, between each data refresh.</description>
 	  </key>
 	  <key name="energy-unit" type="s">
       <default>'Wh'</default>
       <summary>Energy unit</summary>
-      <description>The unit used to display energy measurements.</description>
+      <description>The unit for energy measurements.</description>
     </key>
     <key name="power-unit" type="s">
       <default>'W'</default>
       <summary>Power unit</summary>
-      <description>The unit used to display power measurements.</description>
+      <description>The unit for power measurements.</description>
     </key>
     <key name="voltage-unit" type="s">
       <default>'V'</default>
       <summary>Voltage unit</summary>
-      <description>The unit used to display voltage measurements.</description>
+      <description>The unit for voltage measurements.</description>
     </key>
     <key name="history-type" type="s">
       <default>'rate'</default>
