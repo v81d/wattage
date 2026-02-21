@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-16 23:50-0500\n"
-"PO-Revision-Date: 2025-12-29 15:28+0200\n"
+"PO-Revision-Date: 2026-02-21 19:28+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -17,9 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/io.github.v81d.Wattage.desktop.in:2
-#, fuzzy
 msgid "Wattage"
-msgstr "Informazioni su Wattage"
+msgstr "Wattage"
 
 #: data/io.github.v81d.Wattage.desktop.in:3
 #: data/io.github.v81d.Wattage.metainfo.xml.in:8
@@ -36,11 +35,11 @@ msgstr ""
 
 #: data/io.github.v81d.Wattage.gschema.xml:6
 msgid "Show trivial devices"
-msgstr ""
+msgstr "Mostra dispositivi banali"
 
 #: data/io.github.v81d.Wattage.gschema.xml:7 src/ui/preferences-dialog.blp:13
 msgid "Show or hide devices that do not report much information."
-msgstr ""
+msgstr "Mostra o nascondere i dispositivi che non segnalano molte informazioni."
 
 #: data/io.github.v81d.Wattage.gschema.xml:11
 msgid "Enable auto-refresh"
@@ -145,7 +144,7 @@ msgstr "Dispositivi"
 
 #: src/ui/preferences-dialog.blp:12
 msgid "Show Trivial Devices"
-msgstr ""
+msgstr "Mostra dispositivi banali"
 
 #: src/ui/preferences-dialog.blp:18
 msgid "Automation"
@@ -180,13 +179,12 @@ msgid "Content & Navigation"
 msgstr "Contenuti e navigazione"
 
 #: src/ui/window.blp:40
-#, fuzzy
 msgid "No Devices Found"
-msgstr "Condizione del dispositivo"
+msgstr "Nessun dispositivo trovato"
 
 #: src/ui/window.blp:41
 msgid "Check your UPower connection"
-msgstr ""
+msgstr "Controlla la tua connessione UPower"
 
 #: src/ui/window.blp:66
 msgid "Toggle Sidebar"
@@ -201,14 +199,12 @@ msgid "Refresh"
 msgstr "Aggiorna"
 
 #: src/ui/window.blp:105
-#, fuzzy
 msgid "No Device Details"
-msgstr "Dettaglio del modello"
+msgstr "Nessun dettaglio del dispositivo"
 
 #: src/ui/window.blp:106
-#, fuzzy
 msgid "Load a device to view its information"
-msgstr "Informazioni sulla cronologia del dispositivo"
+msgstr "Carica un dispositivo per visualizzarne le informazioni"
 
 #: src/ui/window.blp:129 src/window.vala:354
 msgid "Device History"
@@ -339,33 +335,28 @@ msgid "Bluetooth Generic"
 msgstr "Bluetooth generico"
 
 #: src/utils/device-manager.vala:132
-#, fuzzy
 msgid "Lithium-ion"
 msgstr "Ioni di litio"
 
 #: src/utils/device-manager.vala:133
-#, fuzzy
 msgid "Lithium-ion polymer"
-msgstr "Polimero di litio"
+msgstr "Polimero agli ioni di litio"
 
 #: src/utils/device-manager.vala:134
 msgid "Lithium iron phosphate"
 msgstr "Fosfato di ferro e litio"
 
 #: src/utils/device-manager.vala:135
-#, fuzzy
 msgid "Lead-acid"
 msgstr "Piombo-acido"
 
 #: src/utils/device-manager.vala:136
-#, fuzzy
 msgid "Nickel-cadmium"
-msgstr "Nichel cadmio"
+msgstr "Nichel-cadmio"
 
 #: src/utils/device-manager.vala:137
-#, fuzzy
 msgid "Nickel-metal hydride"
-msgstr "Idruro di nichel metallico"
+msgstr "Idruro di nichel-metallo"
 
 #: src/utils/device-manager.vala:146 src/window.vala:591
 msgid "Charging"
@@ -595,9 +586,8 @@ msgid "Remaining Energy"
 msgstr "Energia rimanente"
 
 #: src/window.vala:619
-#, fuzzy
 msgid "Net Energy Rate"
-msgstr "Velocità di trasferimento di energia"
+msgstr "Tasso di energia netta"
 
 #: src/window.vala:623
 msgid "Voltage Statistics"
