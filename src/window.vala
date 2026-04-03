@@ -793,6 +793,37 @@ public class Wattage.Window : Adw.ApplicationWindow {
               break;
           }
 
+          string icon_name = "battery-missing";
+
+          switch (item.state) {
+            case 1:
+              icon_name = "battery-full-charged-symbolic";
+              break;
+            case 2:
+              icon_name = "battery-low-symbolic";
+              break;
+            case 3:
+              icon_name = "battery-empty-symbolic";
+              break;
+            case 4:
+              icon_name = "battery-full-symbolic";
+              break;
+            case 5:
+              icon_name = "battery-level-0-plugged-in-symbolic";
+              break;
+            case 6:
+              icon_name = "battery-level-50-symbolic";
+              break;
+            default:
+              icon_name = "battery-missing-symbolic";
+              break;
+          }
+
+          Gtk.Image icon = new Gtk.Image.from_icon_name (icon_name);
+          icon.set_pixel_size (24);
+          row.add_prefix (icon);
+
+
           Gtk.Label placement_label = new Gtk.Label (count.to_string ());
           placement_label.add_css_class ("monospace");
           row.add_suffix (placement_label);
