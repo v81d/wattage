@@ -1,16 +1,16 @@
 # Turkish translation of the Wattage program.
-# Copyright (C) 2025 v81d
+# Copyright (C) 2025-2026 v81d
 # This file is distributed under the same license as the Wattage package.
 #
 # Cardpuncher, 2025.
-# Sabri Ünal <yakushabb@gmail.com>, 2025.
+# Sabri Ünal <yakushabb@gmail.com>, 2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-16 23:50-0500\n"
-"PO-Revision-Date: 2025-12-08 21:25+0300\n"
+"POT-Creation-Date: 2026-02-21 20:54+0300\n"
+"PO-Revision-Date: 2026-04-03 15:15+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -18,12 +18,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/io.github.v81d.Wattage.desktop.in:2
-#, fuzzy
 msgid "Wattage"
-msgstr "Wattage Hakkında"
+msgstr "Wattage"
 
 #: data/io.github.v81d.Wattage.desktop.in:3
 #: data/io.github.v81d.Wattage.metainfo.xml.in:8
@@ -41,11 +40,11 @@ msgstr ""
 
 #: data/io.github.v81d.Wattage.gschema.xml:6
 msgid "Show trivial devices"
-msgstr ""
+msgstr "Önemsiz aygıtları göster"
 
 #: data/io.github.v81d.Wattage.gschema.xml:7 src/ui/preferences-dialog.blp:13
 msgid "Show or hide devices that do not report much information."
-msgstr ""
+msgstr "Çok fazla bilgi göndermeyen aygıtları göster ya da gizle."
 
 #: data/io.github.v81d.Wattage.gschema.xml:11
 msgid "Enable auto-refresh"
@@ -53,67 +52,63 @@ msgstr "Otomatik tazelemeyi etkinleştir"
 
 #: data/io.github.v81d.Wattage.gschema.xml:12 src/ui/preferences-dialog.blp:22
 msgid "Whether or not the data should refresh automatically."
-msgstr ""
+msgstr "Verilerin kendiliğinden yenilenme durumu."
 
 #: data/io.github.v81d.Wattage.gschema.xml:17
 msgid "Auto-refresh cooldown"
 msgstr "Otomatik yenileme bekleme süresi"
 
 #: data/io.github.v81d.Wattage.gschema.xml:18 src/ui/preferences-dialog.blp:27
-#, fuzzy
 msgid "The time, in seconds, between each data refresh."
-msgstr "Saniye olarak kendiliğinden yenileme işlemleri arasındaki süre."
+msgstr "Veri yenilemeleri arasındaki süre (saniye olarak)."
 
 #: data/io.github.v81d.Wattage.gschema.xml:22
 msgid "Energy unit"
 msgstr "Enerji birimi"
 
 #: data/io.github.v81d.Wattage.gschema.xml:23 src/ui/preferences-dialog.blp:43
-#, fuzzy
 msgid "The unit for energy measurements."
-msgstr "Enerji ölçümlerini görüntülemek için kullanılacak birim."
+msgstr "Enerji ölçümleri için kullanılacak birim."
 
 #: data/io.github.v81d.Wattage.gschema.xml:27
 msgid "Power unit"
 msgstr "Güç birimi"
 
 #: data/io.github.v81d.Wattage.gschema.xml:28 src/ui/preferences-dialog.blp:58
-#, fuzzy
 msgid "The unit for power measurements."
-msgstr "Güç ölçümlerini görüntülemek için kullanılacak birim."
+msgstr "Güç ölçümleri için kullanılacak birim."
 
 #: data/io.github.v81d.Wattage.gschema.xml:32
 msgid "Voltage unit"
 msgstr "Voltaj birimi"
 
 #: data/io.github.v81d.Wattage.gschema.xml:33 src/ui/preferences-dialog.blp:72
-#, fuzzy
 msgid "The unit for voltage measurements."
-msgstr "Voltaj ölçümlerini görüntülemek için kullanılacak birim."
+msgstr "Voltaj ölçümleri için kullanılacak birim."
 
 #: data/io.github.v81d.Wattage.gschema.xml:37
 msgid "History Type"
-msgstr ""
+msgstr "Geçmiş Türü"
 
 #: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:390
 msgid "The type of history to display."
-msgstr ""
+msgstr "Görüntülenecek geçmiş türü."
 
 #: data/io.github.v81d.Wattage.gschema.xml:42
 msgid "History Timespan"
-msgstr ""
+msgstr "Geçmiş Dönemi"
 
 #: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:400
 msgid "The timespan, in minutes, to return history data from."
-msgstr ""
+msgstr "Geçmiş verilerinin alınacağı zaman aralığı (dakika olarak)."
 
 #: data/io.github.v81d.Wattage.gschema.xml:47
 msgid "History Resolution"
-msgstr ""
+msgstr "Geçmiş Ayrıntı Düzeyi"
 
 #: data/io.github.v81d.Wattage.gschema.xml:48 src/window.vala:406
 msgid "The approximate number of history points to return."
-msgstr ""
+msgstr "Dönülecek geçmiş noktalarının yaklaşık sayısı."
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:10
 msgid ""
@@ -124,23 +119,20 @@ msgstr ""
 "tasarlanmış bir uygulamadır."
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:52
-#, fuzzy
 msgid "General power device information"
-msgstr "Genel pil bilgileri"
+msgstr "Genel güç aygıtı bilgisi"
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:56
 msgid "Health and energy statistics"
 msgstr "Durum ve enerji istatistikleri"
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:60
-#, fuzzy
 msgid "Device history information"
-msgstr "Genel pil bilgileri"
+msgstr "Aygıt geçmişi bilgisi"
 
 #: data/io.github.v81d.Wattage.metainfo.xml.in:64
-#, fuzzy
 msgid "Options and preferences"
-msgstr "Tercihleri Aç"
+msgstr "Seçenekler ve tercihler"
 
 #: src/application.vala:56
 msgid "translator-credits"
@@ -158,7 +150,7 @@ msgstr "Aygıtlar"
 
 #: src/ui/preferences-dialog.blp:12
 msgid "Show Trivial Devices"
-msgstr ""
+msgstr "Önemsiz Aygıtları Göster"
 
 #: src/ui/preferences-dialog.blp:18
 msgid "Automation"
@@ -169,9 +161,8 @@ msgid "Auto-Refresh"
 msgstr "Kendiliğinden Tazele"
 
 #: src/ui/preferences-dialog.blp:26
-#, fuzzy
 msgid "Auto-Refresh Cooldown"
-msgstr "Otomatik yenileme bekleme süresi"
+msgstr "Kendiliğinden Yenileme Bekleme Süresi"
 
 #: src/ui/preferences-dialog.blp:39
 msgid "Measurements"
@@ -189,18 +180,52 @@ msgstr "Güç Birimi"
 msgid "Voltage Unit"
 msgstr "Voltaj Birimi"
 
+#: src/ui/shortcuts-dialog.blp:9
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Kısayolları Göster"
+
+#: src/ui/shortcuts-dialog.blp:14
+msgctxt "shortcut window"
+msgid "Open Preferences"
+msgstr "Tercihleri Aç"
+
+#: src/ui/shortcuts-dialog.blp:19
+msgctxt "shortcut window"
+msgid "Show About Page"
+msgstr "Hakkında Sayfasını Göster"
+
+#: src/ui/shortcuts-dialog.blp:24
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Çık"
+
 #: src/ui/shortcuts-dialog.blp:30
 msgid "Content & Navigation"
 msgstr "İçerik ve Gezinme"
 
+#: src/ui/shortcuts-dialog.blp:33
+msgctxt "shortcut window"
+msgid "Refresh Content"
+msgstr "İçeriği Tazele"
+
+#: src/ui/shortcuts-dialog.blp:38
+msgctxt "shortcut window"
+msgid "Select Next Device"
+msgstr "Sonraki Aygıtı Seç"
+
+#: src/ui/shortcuts-dialog.blp:43
+msgctxt "shortcut window"
+msgid "Select Previous Device"
+msgstr "Önceki Aygıtı Seç"
+
 #: src/ui/window.blp:40
-#, fuzzy
 msgid "No Devices Found"
-msgstr "Aygıt Durumu"
+msgstr "Aygıt Bulunamadı"
 
 #: src/ui/window.blp:41
 msgid "Check your UPower connection"
-msgstr ""
+msgstr "UPower bağlantınızı denetleyin"
 
 #: src/ui/window.blp:66
 msgid "Toggle Sidebar"
@@ -215,19 +240,16 @@ msgid "Refresh"
 msgstr "Tazele"
 
 #: src/ui/window.blp:105
-#, fuzzy
 msgid "No Device Details"
-msgstr "Model Ayrıntıları"
+msgstr "Aygıt Ayrıntıları Bulunamadı"
 
 #: src/ui/window.blp:106
-#, fuzzy
 msgid "Load a device to view its information"
-msgstr "Genel pil bilgileri"
+msgstr "Bilgilerini görmek için aygıt yükle"
 
 #: src/ui/window.blp:129 src/window.vala:354
-#, fuzzy
 msgid "Device History"
-msgstr "Aygıt Durumu"
+msgstr "Aygıt Geçmişi"
 
 #: src/ui/window.blp:136
 msgid "Preferences"
@@ -354,31 +376,26 @@ msgid "Bluetooth Generic"
 msgstr "Bluetooth Genel"
 
 #: src/utils/device-manager.vala:132
-#, fuzzy
 msgid "Lithium-ion"
 msgstr "Lityum İyon"
 
 #: src/utils/device-manager.vala:133
-#, fuzzy
 msgid "Lithium-ion polymer"
-msgstr "Lityum Polimer"
+msgstr "Lityum İyon Polimer"
 
 #: src/utils/device-manager.vala:134
 msgid "Lithium iron phosphate"
 msgstr "Lityum Demir Fosfat"
 
 #: src/utils/device-manager.vala:135
-#, fuzzy
 msgid "Lead-acid"
 msgstr "Kurşun Asit"
 
 #: src/utils/device-manager.vala:136
-#, fuzzy
 msgid "Nickel-cadmium"
 msgstr "Nikel Kadmiyum"
 
 #: src/utils/device-manager.vala:137
-#, fuzzy
 msgid "Nickel-metal hydride"
 msgstr "Nikel Metal Hidrür"
 
@@ -461,30 +478,33 @@ msgstr ""
 "bileşenlere zarar verebilir. Daha fazla hasarı önlemek için aygıtı "
 "değiştirin."
 
+#. History settings and options
 #: src/window.vala:378
 msgid "Options"
-msgstr ""
+msgstr "Seçenekler"
 
+#. History types
 #: src/window.vala:389
 msgid "Type"
-msgstr ""
+msgstr "Tür"
 
 #: src/window.vala:393
 msgid "Rate"
-msgstr ""
+msgstr "Oran"
 
 #: src/window.vala:393
-#, fuzzy
 msgid "Charge"
-msgstr "Şarj oluyor"
+msgstr "Şarj"
 
+#. History timespan
 #: src/window.vala:399
 msgid "Timespan"
-msgstr ""
+msgstr "Zaman Aralığı"
 
+#. History resolution
 #: src/window.vala:405
 msgid "Resolution"
-msgstr ""
+msgstr "Ayrıntı Düzeyi"
 
 #: src/window.vala:523
 msgid "General Information"
@@ -504,7 +524,7 @@ msgstr "Aygıt Türü"
 
 #: src/window.vala:527
 msgid "Has History"
-msgstr ""
+msgstr "Geçmiş Var"
 
 #: src/window.vala:530
 msgid "Model Details"
@@ -579,9 +599,8 @@ msgid "Projected Battery Life"
 msgstr "Tahmini Pil Ömrü"
 
 #: src/window.vala:595
-#, fuzzy
 msgid "Projected Charging Time"
-msgstr "Tahmini Pil Ömrü"
+msgstr "Tahmini Şarj Süresi"
 
 #: src/window.vala:600
 msgid "Sensor Readings"
@@ -608,9 +627,8 @@ msgid "Remaining Energy"
 msgstr "Kalan Enerji"
 
 #: src/window.vala:619
-#, fuzzy
 msgid "Net Energy Rate"
-msgstr "Enerji Aktarım Oranı"
+msgstr "Net Enerji Oranı"
 
 #: src/window.vala:623
 msgid "Voltage Statistics"
@@ -626,26 +644,28 @@ msgstr "Güncel Voltaj"
 
 #: src/window.vala:733
 msgid "History Unavailable"
-msgstr ""
+msgstr "Geçmiş Kullanılamıyor"
 
 #: src/window.vala:760
 msgid "Entries"
-msgstr ""
+msgstr "Girişler"
 
 #: src/window.vala:809
 msgid ""
 "No history entries available within the configured timespan and resolution."
 msgstr ""
+"Yapılandırılan zaman aralığı ve ayrıntı düzeyinde hiç bir geçmiş kaydı "
+"bulunamadı."
 
 #: src/window.vala:818
 msgid "There are not enough history entries to display a graph."
-msgstr ""
+msgstr "Grafiği görüntülemek için yeterli geçmiş girişi bulunamadı."
 
 #: src/window.vala:829
 #, c-format
 msgid "%u history item(s) discovered."
-msgstr ""
+msgstr "%u geçmiş ögesi keşfedildi."
 
 #: src/window.vala:842
 msgid "No device is currently selected."
-msgstr ""
+msgstr "Hiçbir aygıt seçilmedi."
