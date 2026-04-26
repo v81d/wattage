@@ -66,6 +66,17 @@
   </screenshots>
 
   <releases>
+    <release version="1.5.0" date="2026-4-26">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/1.5.0</url>
+      <description translate="no">
+        <p>This release comes with a few minor updates:</p>
+        <ul>
+          <li>Italian translation revisions by Albano Battistella.</li>
+          <li>Battery symbolic icon for each history entry.</li>
+          <li>Turkish translation updates by Sabri Ünal.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.4.0" date="2026-2-21">
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.4.0</url>
       <description translate="no">
