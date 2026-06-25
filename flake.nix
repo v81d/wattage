@@ -16,7 +16,7 @@
     in {
       packages.default = pkgs.stdenv.mkDerivation {
         pname = "wattage";
-        version = "1.5.0";
+        version = "1.5.1";
         src = ./.;
 
         meta = {
