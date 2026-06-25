@@ -66,6 +66,17 @@
   </screenshots>
 
   <releases>
+    <release version="1.5.1" date="2026-6-25">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/1.5.1</url>
+      <description translate="no">
+        <p>This patch adds a few simple fixes:</p>
+        <ul>
+          <li>Bundled symbolic icons used by the application to maximize compatibility across systems.</li>
+          <li>Construct icon names more deterministically instead of directly using the IconName property for each device in the sidebar.</li>
+        </ul>
+        <p>In addition to these in-app changes, Wattage is now available as a Nix flake for NixOS and Home Manager users! Instructions are in the repository's README.</p>
+      </description>
+    </release>
     <release version="1.5.0" date="2026-4-26">
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.5.0</url>
       <description translate="no">
