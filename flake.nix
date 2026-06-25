@@ -62,6 +62,7 @@
         nativeBuildInputs = with pkgs; [
           vala-language-server
           uncrustify
+          libfoundry
         ];
       };
     });
