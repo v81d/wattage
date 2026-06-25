@@ -39,8 +39,58 @@ private class DeviceRow : Gtk.ListBoxRow {
     row.set_title (device.native_path);
     row.set_subtitle (device.object_path);
 
+    string icon_name = "battery-level-";
+
+    if (device.capacity != null && device.capacity >= 0 && device.capacity <= 100) {
+      int level = (int) (device.capacity / 10);
+
+      switch (level) {
+      case 0:
+        icon_name += "0-";
+        break;
+      case 1:
+        icon_name += "10-";
+        break;
+      case 2:
+        icon_name += "20-";
+        break;
+      case 3:
+        icon_name += "30-";
+        break;
+      case 4:
+        icon_name += "40-";
+        break;
+      case 5:
+        icon_name += "50-";
+        break;
+      case 6:
+        icon_name += "60-";
+        break;
+      case 7:
+        icon_name += "70-";
+        break;
+      case 8:
+        icon_name += "80-";
+        break;
+      case 9:
+        icon_name += "90-";
+        break;
+      case 10:
+        icon_name += "100-";
+        break;
+      }
+
+      if (device.state == _("Fully charged"))// will be 100%
+        icon_name += "charged-";
+      else if (device.state == _("Charging"))
+        icon_name += (level == 10) ? "charged-" : "charging-";
+      else if (device.state == _("Pending charge"))icon_name += "plugged-in-";
+    } else icon_name = "battery-missing-";
+
+    icon_name += "symbolic";
+
     // Due to the deprecation of `row.icon_name` and `row.set_icon_name ()`, the icon should be prepended as a widget
-    Gtk.Image icon = new Gtk.Image.from_icon_name (device.icon_name);
+    Gtk.Image icon = new Gtk.Image.from_icon_name (icon_name);
     icon.set_pixel_size (24);
     row.add_prefix (icon);
 
@@ -793,7 +843,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
               break;
           }
 
-          string icon_name = "battery-missing";
+          string icon_name = "battery-missing-symbolic";
 
           switch (item.state) {
             case 1:
@@ -812,10 +862,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
               icon_name = "battery-level-0-plugged-in-symbolic";
               break;
             case 6:
-              icon_name = "battery-level-50-symbolic";
-              break;
-            default:
-              icon_name = "battery-missing-symbolic";
+              icon_name = "battery-low-symbolic";
               break;
           }
 
