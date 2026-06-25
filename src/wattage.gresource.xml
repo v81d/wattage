@@ -4,6 +4,62 @@
     <file preprocess="xml-stripblanks" alias="window.ui">ui/window.ui</file>
     <file preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts-dialog.ui</file>
     <file preprocess="xml-stripblanks" alias="preferences-dialog.ui">ui/preferences-dialog.ui</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/actions/sidebar-show-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/dialog-error-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/open-menu-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/view-refresh-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-empty-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-full-charged-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-full-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-0-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-low-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-missing-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/dialog-information-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-0-charging-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-0-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-10-charging-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-10-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-10-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-20-charging-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-20-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-20-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-30-charging-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-30-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-30-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-40-charging-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-40-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-40-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-50-charging-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-50-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-50-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-60-charging-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-60-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-60-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-70-charging-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-70-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-70-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-80-charging-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-80-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-80-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-90-charging-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-90-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-90-symbolic.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-100-charged-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-100-plugged-in-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/battery-level-100-symbolic.svg</file>
   </gresource>
 </gresources>
 
