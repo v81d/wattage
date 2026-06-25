@@ -65,7 +65,7 @@ inputs = {
 };
 ```
 
-2. Add nope to package list:
+2. Add Wattage to package list:
 
 ```nix
 # System-wide packages (configuration.nix)
