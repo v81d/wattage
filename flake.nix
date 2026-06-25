@@ -63,6 +63,7 @@
           vala-language-server
           uncrustify
           libfoundry
+          flatpak-builder
         ];
       };
     });
