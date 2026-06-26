@@ -71,14 +71,14 @@ inputs = {
 # System-wide packages (configuration.nix)
 environment.systemPackages = [
   # ...
-  inputs.wattage.packages.${pkgs.stdenv.hostPlatform.system}.wattage
+  inputs.wattage.packages.${pkgs.stdenv.hostPlatform.system}.default
   # ...
 ];
 
 # Home Manager
 home.packages = [
   # ...
-  inputs.wattage.packages.${pkgs.stdenv.hostPlatform.system}.wattage
+  inputs.wattage.packages.${pkgs.stdenv.hostPlatform.system}.default
   # ...
 ]
 ```
