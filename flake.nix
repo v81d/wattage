@@ -47,12 +47,12 @@
           libgee
           glib
           blueprint-compiler
-          adwaita-icon-theme
+          adwaita-fonts
         ];
 
         preFixup = ''
           gappsWrapperArgs+=(
-            --prefix XDG_DATA_DIRS : "${pkgs.adwaita-icon-theme}/share"
+            --prefix XDG_DATA_DIRS : "${pkgs.adwaita-fonts}/share"
           )
         '';
       };
