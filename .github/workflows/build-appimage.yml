@@ -1,0 +1,69 @@
+name: Build AppImage
+permissions:
+  contents: write
+'on':
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  release:
+    types:
+      - published
+  workflow_dispatch: null
+jobs:
+  build-x86_64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: 'nixpkgs=channel:nixos-unstable'
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+      - name: Build AppImage
+        run: |
+          nix bundle --bundler github:ralismark/nix-appimage .# \
+            --out-link Wattage-x86_64.AppImage
+      - name: Upload AppImage as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Wattage-x86_64
+          path: Wattage-x86_64.AppImage
+      - name: Upload AppImage to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Wattage-x86_64.AppImage
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+  build-aarch64:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: 'nixpkgs=channel:nixos-unstable'
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+      - name: Build AppImage
+        run: |
+          nix bundle --bundler github:ralismark/nix-appimage .# \
+            --out-link Wattage-aarch64.AppImage
+      - name: Upload AppImage as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Wattage-aarch64
+          path: Wattage-aarch64.AppImage
+      - name: Upload AppImage to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Wattage-aarch64.AppImage
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
