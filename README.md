@@ -47,6 +47,60 @@ The following guide provides instructions on how to install Wattage on your devi
     </a>
 </div>
 
+### Nix Flake
+
+You can install Wattage using the official Nix flake. You can either do this declaratively (recommended for NixOS / Home Manager users) or imperatively.
+
+#### Declarative/Flake Installation (Recommended for NixOS / Home Manager Users)
+
+To install Wattage declaratively using Nix flakes, follow the steps:
+
+1. Add the repository to your Nix configuration flake inputs:
+
+```nix
+inputs = {
+  # ...
+  wattage.url = "github:v81d/wattage";
+  # ...
+};
+```
+
+2. Add Wattage to package list:
+
+```nix
+# System-wide packages (configuration.nix)
+environment.systemPackages = [
+  # ...
+  inputs.wattage.packages.${pkgs.stdenv.hostPlatform.system}.wattage
+  # ...
+];
+
+# Home Manager
+home.packages = [
+  # ...
+  inputs.wattage.packages.${pkgs.stdenv.hostPlatform.system}.wattage
+  # ...
+]
+```
+
+#### Imperative Installation
+
+To install Wattage imperatively, simply run the command:
+
+```bash
+nix profile add "github:v81d/wattage"
+```
+
+This will install all dependencies for the package and Wattage itself. After installation, you should be good to go.
+
+#### Run Once
+
+To run Wattage only once without installing it, run:
+
+```bash
+nix run "github:v81d/wattage"
+```
+
 ### Manual Installation
 
 #### Build Requirements
