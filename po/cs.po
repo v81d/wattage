@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-16 23:50-0500\n"
+"POT-Creation-Date: 2026-06-25 17:58-0400\n"
 "PO-Revision-Date: 2025-12-08 11:28+0100\n"
 "Last-Translator: Jonáš Loskot <jonas@jonasloskot.cz>\n"
 "Language-Team: \n"
@@ -17,11 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.8\n"
-
-#: data/io.github.v81d.Wattage.desktop.in:2
-#, fuzzy
-msgid "Wattage"
-msgstr "O aplikaci Wattage"
 
 #: data/io.github.v81d.Wattage.desktop.in:3
 #: data/io.github.v81d.Wattage.metainfo.xml.in:8
@@ -92,7 +87,7 @@ msgstr "Jednotka použitá pro zobrazení měření napětí."
 msgid "History Type"
 msgstr ""
 
-#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:390
+#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:440
 msgid "The type of history to display."
 msgstr ""
 
@@ -100,7 +95,7 @@ msgstr ""
 msgid "History Timespan"
 msgstr ""
 
-#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:400
+#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:450
 msgid "The timespan, in minutes, to return history data from."
 msgstr ""
 
@@ -108,7 +103,7 @@ msgstr ""
 msgid "History Resolution"
 msgstr ""
 
-#: data/io.github.v81d.Wattage.gschema.xml:48 src/window.vala:406
+#: data/io.github.v81d.Wattage.gschema.xml:48 src/window.vala:456
 msgid "The approximate number of history points to return."
 msgstr ""
 
@@ -219,7 +214,7 @@ msgstr "Podrobnosti o modelu"
 msgid "Load a device to view its information"
 msgstr "Obecné informace o baterii"
 
-#: src/ui/window.blp:129 src/window.vala:354
+#: src/ui/window.blp:129 src/window.vala:404
 #, fuzzy
 msgid "Device History"
 msgstr "Stav zařízení"
@@ -377,11 +372,11 @@ msgstr "Nikl-kadmium"
 msgid "Nickel-metal hydride"
 msgstr "Nikl-metal hydrid"
 
-#: src/utils/device-manager.vala:146 src/window.vala:591
+#: src/utils/device-manager.vala:146 src/window.vala:85 src/window.vala:641
 msgid "Charging"
 msgstr "Nabíjení"
 
-#: src/utils/device-manager.vala:147 src/window.vala:580
+#: src/utils/device-manager.vala:147 src/window.vala:630
 msgid "Discharging"
 msgstr "Vybíjení"
 
@@ -389,11 +384,11 @@ msgstr "Vybíjení"
 msgid "Empty"
 msgstr "Prázdné"
 
-#: src/utils/device-manager.vala:149
+#: src/utils/device-manager.vala:149 src/window.vala:83
 msgid "Fully charged"
 msgstr "Plně nabito"
 
-#: src/utils/device-manager.vala:150
+#: src/utils/device-manager.vala:150 src/window.vala:87
 msgid "Pending charge"
 msgstr "Čeká na nabití"
 
@@ -457,191 +452,191 @@ msgstr ""
 "přehřátí mohou poškodit další součásti. Zařízení vyměňte, aby nedošlo k "
 "dalšímu poškození."
 
-#: src/window.vala:378
+#: src/window.vala:428
 msgid "Options"
 msgstr ""
 
-#: src/window.vala:389
+#: src/window.vala:439
 msgid "Type"
 msgstr ""
 
-#: src/window.vala:393
+#: src/window.vala:443
 msgid "Rate"
 msgstr ""
 
-#: src/window.vala:393
+#: src/window.vala:443
 #, fuzzy
 msgid "Charge"
 msgstr "Nabíjení"
 
-#: src/window.vala:399
+#: src/window.vala:449
 msgid "Timespan"
 msgstr ""
 
-#: src/window.vala:405
+#: src/window.vala:455
 msgid "Resolution"
 msgstr ""
 
-#: src/window.vala:523
+#: src/window.vala:573
 msgid "General Information"
 msgstr "Obecné informace"
 
-#: src/window.vala:524
+#: src/window.vala:574
 msgid "Native Path"
 msgstr "Nativní cesta"
 
-#: src/window.vala:525
+#: src/window.vala:575
 msgid "Object Path"
 msgstr "Objektová cesta"
 
-#: src/window.vala:526
+#: src/window.vala:576
 msgid "Device Type"
 msgstr "Typ zařízení"
 
-#: src/window.vala:527
+#: src/window.vala:577
 msgid "Has History"
 msgstr ""
 
-#: src/window.vala:530
+#: src/window.vala:580
 msgid "Model Details"
 msgstr "Podrobnosti o modelu"
 
-#: src/window.vala:531
+#: src/window.vala:581
 msgid "Vendor"
 msgstr "Výrobce"
 
-#: src/window.vala:532
+#: src/window.vala:582
 msgid "Serial Number"
 msgstr "Sériové číslo"
 
-#: src/window.vala:533
+#: src/window.vala:583
 msgid "Model Name"
 msgstr "Název modelu"
 
-#: src/window.vala:534
+#: src/window.vala:584
 msgid "Technology"
 msgstr "Technologie"
 
-#: src/window.vala:537
+#: src/window.vala:587
 msgid "Health Evaluations"
 msgstr "Hodnocení zdraví"
 
-#: src/window.vala:540
+#: src/window.vala:590
 msgid "State of Health"
 msgstr "Stav zdraví"
 
-#: src/window.vala:543
+#: src/window.vala:593
 msgid "Device Condition"
 msgstr "Stav zařízení"
 
-#: src/window.vala:547
+#: src/window.vala:597
 msgid "Charging Status"
 msgstr "Stav nabíjení"
 
-#: src/window.vala:550
+#: src/window.vala:600
 msgid "Charge Start Threshold"
 msgstr "Hranice spuštění nabíjení"
 
-#: src/window.vala:553
+#: src/window.vala:603
 msgid "Charge End Threshold"
 msgstr "Hranice ukončení nabíjení"
 
-#: src/window.vala:556
+#: src/window.vala:606
 msgid "Cycle Count"
 msgstr "Počet cyklů"
 
-#: src/window.vala:560
+#: src/window.vala:610
 msgid "Current Charge Percentage"
 msgstr "Aktuální procento nabití"
 
-#: src/window.vala:562
+#: src/window.vala:612
 msgid "State"
 msgstr "Stav"
 
-#: src/window.vala:566
+#: src/window.vala:616
 msgid "Time Calculations"
 msgstr "Výpočet času"
 
-#: src/window.vala:570
+#: src/window.vala:620
 msgid "Time to Empty"
 msgstr "Čas do vybití"
 
-#: src/window.vala:574
+#: src/window.vala:624
 msgid "Time to Full"
 msgstr "Čas do nabití"
 
-#: src/window.vala:584
+#: src/window.vala:634
 msgid "Projected Battery Life"
 msgstr "Předpokládaná životnost baterie"
 
-#: src/window.vala:595
+#: src/window.vala:645
 #, fuzzy
 msgid "Projected Charging Time"
 msgstr "Předpokládaná životnost baterie"
 
-#: src/window.vala:600
+#: src/window.vala:650
 msgid "Sensor Readings"
 msgstr "Čtení ze senzorů"
 
-#: src/window.vala:603
+#: src/window.vala:653
 msgid "Temperature"
 msgstr "Teplota"
 
-#: src/window.vala:607
+#: src/window.vala:657
 msgid "Energy Metrics"
 msgstr "Měření energie"
 
-#: src/window.vala:610
+#: src/window.vala:660
 msgid "Maximum Rated Capacity"
 msgstr "Maximální jmenovitá kapacita"
 
-#: src/window.vala:613
+#: src/window.vala:663
 msgid "Maximum Capacity"
 msgstr "Maximální kapacita"
 
-#: src/window.vala:616
+#: src/window.vala:666
 msgid "Remaining Energy"
 msgstr "Zbývající energie"
 
-#: src/window.vala:619
+#: src/window.vala:669
 #, fuzzy
 msgid "Net Energy Rate"
 msgstr "Rychlost přenosu energie"
 
-#: src/window.vala:623
+#: src/window.vala:673
 msgid "Voltage Statistics"
 msgstr "Statistiky napětí"
 
-#: src/window.vala:628
+#: src/window.vala:678
 msgid "Minimum Rated Voltage"
 msgstr "Minimální jmenovité napětí"
 
-#: src/window.vala:634
+#: src/window.vala:684
 msgid "Current Voltage"
 msgstr "Aktuální napětí"
 
-#: src/window.vala:733
+#: src/window.vala:783
 msgid "History Unavailable"
 msgstr ""
 
-#: src/window.vala:760
+#: src/window.vala:810
 msgid "Entries"
 msgstr ""
 
-#: src/window.vala:809
+#: src/window.vala:887
 msgid ""
 "No history entries available within the configured timespan and resolution."
 msgstr ""
 
-#: src/window.vala:818
+#: src/window.vala:896
 msgid "There are not enough history entries to display a graph."
 msgstr ""
 
-#: src/window.vala:829
+#: src/window.vala:907
 #, c-format
 msgid "%u history item(s) discovered."
 msgstr ""
 
-#: src/window.vala:842
+#: src/window.vala:920
 msgid "No device is currently selected."
 msgstr ""
