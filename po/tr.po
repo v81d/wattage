@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-21 20:54+0300\n"
+"POT-Creation-Date: 2026-06-25 17:58-0400\n"
 "PO-Revision-Date: 2026-04-03 15:15+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
@@ -19,10 +19,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.9\n"
-
-#: data/io.github.v81d.Wattage.desktop.in:2
-msgid "Wattage"
-msgstr "Wattage"
 
 #: data/io.github.v81d.Wattage.desktop.in:3
 #: data/io.github.v81d.Wattage.metainfo.xml.in:8
@@ -90,7 +86,7 @@ msgstr "Voltaj ölçümleri için kullanılacak birim."
 msgid "History Type"
 msgstr "Geçmiş Türü"
 
-#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:390
+#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:440
 msgid "The type of history to display."
 msgstr "Görüntülenecek geçmiş türü."
 
@@ -98,7 +94,7 @@ msgstr "Görüntülenecek geçmiş türü."
 msgid "History Timespan"
 msgstr "Geçmiş Dönemi"
 
-#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:400
+#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:450
 msgid "The timespan, in minutes, to return history data from."
 msgstr "Geçmiş verilerinin alınacağı zaman aralığı (dakika olarak)."
 
@@ -106,7 +102,7 @@ msgstr "Geçmiş verilerinin alınacağı zaman aralığı (dakika olarak)."
 msgid "History Resolution"
 msgstr "Geçmiş Ayrıntı Düzeyi"
 
-#: data/io.github.v81d.Wattage.gschema.xml:48 src/window.vala:406
+#: data/io.github.v81d.Wattage.gschema.xml:48 src/window.vala:456
 msgid "The approximate number of history points to return."
 msgstr "Dönülecek geçmiş noktalarının yaklaşık sayısı."
 
@@ -180,44 +176,9 @@ msgstr "Güç Birimi"
 msgid "Voltage Unit"
 msgstr "Voltaj Birimi"
 
-#: src/ui/shortcuts-dialog.blp:9
-msgctxt "shortcut window"
-msgid "Show Shortcuts"
-msgstr "Kısayolları Göster"
-
-#: src/ui/shortcuts-dialog.blp:14
-msgctxt "shortcut window"
-msgid "Open Preferences"
-msgstr "Tercihleri Aç"
-
-#: src/ui/shortcuts-dialog.blp:19
-msgctxt "shortcut window"
-msgid "Show About Page"
-msgstr "Hakkında Sayfasını Göster"
-
-#: src/ui/shortcuts-dialog.blp:24
-msgctxt "shortcut window"
-msgid "Quit"
-msgstr "Çık"
-
 #: src/ui/shortcuts-dialog.blp:30
 msgid "Content & Navigation"
 msgstr "İçerik ve Gezinme"
-
-#: src/ui/shortcuts-dialog.blp:33
-msgctxt "shortcut window"
-msgid "Refresh Content"
-msgstr "İçeriği Tazele"
-
-#: src/ui/shortcuts-dialog.blp:38
-msgctxt "shortcut window"
-msgid "Select Next Device"
-msgstr "Sonraki Aygıtı Seç"
-
-#: src/ui/shortcuts-dialog.blp:43
-msgctxt "shortcut window"
-msgid "Select Previous Device"
-msgstr "Önceki Aygıtı Seç"
 
 #: src/ui/window.blp:40
 msgid "No Devices Found"
@@ -247,7 +208,7 @@ msgstr "Aygıt Ayrıntıları Bulunamadı"
 msgid "Load a device to view its information"
 msgstr "Bilgilerini görmek için aygıt yükle"
 
-#: src/ui/window.blp:129 src/window.vala:354
+#: src/ui/window.blp:129 src/window.vala:404
 msgid "Device History"
 msgstr "Aygıt Geçmişi"
 
@@ -399,11 +360,11 @@ msgstr "Nikel Kadmiyum"
 msgid "Nickel-metal hydride"
 msgstr "Nikel Metal Hidrür"
 
-#: src/utils/device-manager.vala:146 src/window.vala:591
+#: src/utils/device-manager.vala:146 src/window.vala:85 src/window.vala:641
 msgid "Charging"
 msgstr "Şarj oluyor"
 
-#: src/utils/device-manager.vala:147 src/window.vala:580
+#: src/utils/device-manager.vala:147 src/window.vala:630
 msgid "Discharging"
 msgstr "Şarj boşalıyor"
 
@@ -411,11 +372,11 @@ msgstr "Şarj boşalıyor"
 msgid "Empty"
 msgstr "Boş"
 
-#: src/utils/device-manager.vala:149
+#: src/utils/device-manager.vala:149 src/window.vala:83
 msgid "Fully charged"
 msgstr "Tümüyle şarj oldu"
 
-#: src/utils/device-manager.vala:150
+#: src/utils/device-manager.vala:150 src/window.vala:87
 msgid "Pending charge"
 msgstr "Şarj olması bekleniyor"
 
@@ -478,194 +439,190 @@ msgstr ""
 "bileşenlere zarar verebilir. Daha fazla hasarı önlemek için aygıtı "
 "değiştirin."
 
-#. History settings and options
-#: src/window.vala:378
+#: src/window.vala:428
 msgid "Options"
 msgstr "Seçenekler"
 
-#. History types
-#: src/window.vala:389
+#: src/window.vala:439
 msgid "Type"
 msgstr "Tür"
 
-#: src/window.vala:393
+#: src/window.vala:443
 msgid "Rate"
 msgstr "Oran"
 
-#: src/window.vala:393
+#: src/window.vala:443
 msgid "Charge"
 msgstr "Şarj"
 
-#. History timespan
-#: src/window.vala:399
+#: src/window.vala:449
 msgid "Timespan"
 msgstr "Zaman Aralığı"
 
-#. History resolution
-#: src/window.vala:405
+#: src/window.vala:455
 msgid "Resolution"
 msgstr "Ayrıntı Düzeyi"
 
-#: src/window.vala:523
+#: src/window.vala:573
 msgid "General Information"
 msgstr "Genel Bilgi"
 
-#: src/window.vala:524
+#: src/window.vala:574
 msgid "Native Path"
 msgstr "Doğal Yol"
 
-#: src/window.vala:525
+#: src/window.vala:575
 msgid "Object Path"
 msgstr "Nesne Yolu"
 
-#: src/window.vala:526
+#: src/window.vala:576
 msgid "Device Type"
 msgstr "Aygıt Türü"
 
-#: src/window.vala:527
+#: src/window.vala:577
 msgid "Has History"
 msgstr "Geçmiş Var"
 
-#: src/window.vala:530
+#: src/window.vala:580
 msgid "Model Details"
 msgstr "Model Ayrıntıları"
 
-#: src/window.vala:531
+#: src/window.vala:581
 msgid "Vendor"
 msgstr "Üretici"
 
-#: src/window.vala:532
+#: src/window.vala:582
 msgid "Serial Number"
 msgstr "Seri Numarası"
 
-#: src/window.vala:533
+#: src/window.vala:583
 msgid "Model Name"
 msgstr "Model Adı"
 
-#: src/window.vala:534
+#: src/window.vala:584
 msgid "Technology"
 msgstr "Teknoloji"
 
-#: src/window.vala:537
+#: src/window.vala:587
 msgid "Health Evaluations"
 msgstr "Durum Değerlendirmeleri"
 
-#: src/window.vala:540
+#: src/window.vala:590
 msgid "State of Health"
 msgstr "Sağlık Durumu"
 
-#: src/window.vala:543
+#: src/window.vala:593
 msgid "Device Condition"
 msgstr "Aygıt Durumu"
 
-#: src/window.vala:547
+#: src/window.vala:597
 msgid "Charging Status"
 msgstr "Şarj Durumu"
 
-#: src/window.vala:550
+#: src/window.vala:600
 msgid "Charge Start Threshold"
 msgstr "Şarj Başlama Eşiği"
 
-#: src/window.vala:553
+#: src/window.vala:603
 msgid "Charge End Threshold"
 msgstr "Şarj Bitiş Eşiği"
 
-#: src/window.vala:556
+#: src/window.vala:606
 msgid "Cycle Count"
 msgstr "Döngü Sayısı"
 
-#: src/window.vala:560
+#: src/window.vala:610
 msgid "Current Charge Percentage"
 msgstr "Güncel Şarj Yüzdesi"
 
-#: src/window.vala:562
+#: src/window.vala:612
 msgid "State"
 msgstr "Durum"
 
-#: src/window.vala:566
+#: src/window.vala:616
 msgid "Time Calculations"
 msgstr "Süre Hesaplamaları"
 
-#: src/window.vala:570
+#: src/window.vala:620
 msgid "Time to Empty"
 msgstr "Boşalmasına Kalan Süre"
 
-#: src/window.vala:574
+#: src/window.vala:624
 msgid "Time to Full"
 msgstr "Dolma Zamanı"
 
-#: src/window.vala:584
+#: src/window.vala:634
 msgid "Projected Battery Life"
 msgstr "Tahmini Pil Ömrü"
 
-#: src/window.vala:595
+#: src/window.vala:645
 msgid "Projected Charging Time"
 msgstr "Tahmini Şarj Süresi"
 
-#: src/window.vala:600
+#: src/window.vala:650
 msgid "Sensor Readings"
 msgstr "Algılayıcı Okumaları"
 
-#: src/window.vala:603
+#: src/window.vala:653
 msgid "Temperature"
 msgstr "Sıcaklık"
 
-#: src/window.vala:607
+#: src/window.vala:657
 msgid "Energy Metrics"
 msgstr "Enerji Ölçümleri"
 
-#: src/window.vala:610
+#: src/window.vala:660
 msgid "Maximum Rated Capacity"
 msgstr "En Çok Nominal Kapasite"
 
-#: src/window.vala:613
+#: src/window.vala:663
 msgid "Maximum Capacity"
 msgstr "En Çok Kapasite"
 
-#: src/window.vala:616
+#: src/window.vala:666
 msgid "Remaining Energy"
 msgstr "Kalan Enerji"
 
-#: src/window.vala:619
+#: src/window.vala:669
 msgid "Net Energy Rate"
 msgstr "Net Enerji Oranı"
 
-#: src/window.vala:623
+#: src/window.vala:673
 msgid "Voltage Statistics"
 msgstr "Voltaj İstatistikleri"
 
-#: src/window.vala:628
+#: src/window.vala:678
 msgid "Minimum Rated Voltage"
 msgstr "En Düşük Nominal Voltaj"
 
-#: src/window.vala:634
+#: src/window.vala:684
 msgid "Current Voltage"
 msgstr "Güncel Voltaj"
 
-#: src/window.vala:733
+#: src/window.vala:783
 msgid "History Unavailable"
 msgstr "Geçmiş Kullanılamıyor"
 
-#: src/window.vala:760
+#: src/window.vala:810
 msgid "Entries"
 msgstr "Girişler"
 
-#: src/window.vala:809
+#: src/window.vala:887
 msgid ""
 "No history entries available within the configured timespan and resolution."
 msgstr ""
 "Yapılandırılan zaman aralığı ve ayrıntı düzeyinde hiç bir geçmiş kaydı "
 "bulunamadı."
 
-#: src/window.vala:818
+#: src/window.vala:896
 msgid "There are not enough history entries to display a graph."
 msgstr "Grafiği görüntülemek için yeterli geçmiş girişi bulunamadı."
 
-#: src/window.vala:829
+#: src/window.vala:907
 #, c-format
 msgid "%u history item(s) discovered."
 msgstr "%u geçmiş ögesi keşfedildi."
 
-#: src/window.vala:842
+#: src/window.vala:920
 msgid "No device is currently selected."
 msgstr "Hiçbir aygıt seçilmedi."

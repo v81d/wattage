@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wattage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-16 23:50-0500\n"
+"POT-Creation-Date: 2026-06-25 17:58-0400\n"
 "PO-Revision-Date: 2026-02-21 19:28+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -15,10 +15,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: data/io.github.v81d.Wattage.desktop.in:2
-msgid "Wattage"
-msgstr "Wattage"
 
 #: data/io.github.v81d.Wattage.desktop.in:3
 #: data/io.github.v81d.Wattage.metainfo.xml.in:8
@@ -39,7 +35,8 @@ msgstr "Mostra dispositivi banali"
 
 #: data/io.github.v81d.Wattage.gschema.xml:7 src/ui/preferences-dialog.blp:13
 msgid "Show or hide devices that do not report much information."
-msgstr "Mostra o nascondere i dispositivi che non segnalano molte informazioni."
+msgstr ""
+"Mostra o nascondere i dispositivi che non segnalano molte informazioni."
 
 #: data/io.github.v81d.Wattage.gschema.xml:11
 msgid "Enable auto-refresh"
@@ -85,7 +82,7 @@ msgstr "L'unità di misura della tensione."
 msgid "History Type"
 msgstr "Tipo di cronologia"
 
-#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:390
+#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:440
 msgid "The type of history to display."
 msgstr "Il tipo di cronologia da visualizzare."
 
@@ -93,7 +90,7 @@ msgstr "Il tipo di cronologia da visualizzare."
 msgid "History Timespan"
 msgstr "Intervallo temporale dello storico"
 
-#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:400
+#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:450
 msgid "The timespan, in minutes, to return history data from."
 msgstr ""
 "Intervallo di tempo, in minuti, da cui restituire i dati dello storico."
@@ -102,7 +99,7 @@ msgstr ""
 msgid "History Resolution"
 msgstr "Risoluzione dello storico"
 
-#: data/io.github.v81d.Wattage.gschema.xml:48 src/window.vala:406
+#: data/io.github.v81d.Wattage.gschema.xml:48 src/window.vala:456
 msgid "The approximate number of history points to return."
 msgstr "Il numero approssimativo di punti dello storico da restituire."
 
@@ -206,7 +203,7 @@ msgstr "Nessun dettaglio del dispositivo"
 msgid "Load a device to view its information"
 msgstr "Carica un dispositivo per visualizzarne le informazioni"
 
-#: src/ui/window.blp:129 src/window.vala:354
+#: src/ui/window.blp:129 src/window.vala:404
 msgid "Device History"
 msgstr "Cronologia del dispositivo"
 
@@ -358,11 +355,11 @@ msgstr "Nichel-cadmio"
 msgid "Nickel-metal hydride"
 msgstr "Idruro di nichel-metallo"
 
-#: src/utils/device-manager.vala:146 src/window.vala:591
+#: src/utils/device-manager.vala:146 src/window.vala:85 src/window.vala:641
 msgid "Charging"
 msgstr "In carica"
 
-#: src/utils/device-manager.vala:147 src/window.vala:580
+#: src/utils/device-manager.vala:147 src/window.vala:630
 msgid "Discharging"
 msgstr "In scaricamento"
 
@@ -370,11 +367,11 @@ msgstr "In scaricamento"
 msgid "Empty"
 msgstr "Scarica"
 
-#: src/utils/device-manager.vala:149
+#: src/utils/device-manager.vala:149 src/window.vala:83
 msgid "Fully charged"
 msgstr "Completamente carica"
 
-#: src/utils/device-manager.vala:150
+#: src/utils/device-manager.vala:150 src/window.vala:87
 msgid "Pending charge"
 msgstr "Ricarica in sospeso"
 
@@ -441,190 +438,190 @@ msgstr ""
 "alimentazione e il potenziale surriscaldamento possono danneggiare altri "
 "componenti. Sostituire il dispositivo per evitare ulteriori danni."
 
-#: src/window.vala:378
+#: src/window.vala:428
 msgid "Options"
 msgstr "Opzioni"
 
-#: src/window.vala:389
+#: src/window.vala:439
 msgid "Type"
 msgstr "Tipo"
 
-#: src/window.vala:393
+#: src/window.vala:443
 msgid "Rate"
 msgstr "Valore"
 
-#: src/window.vala:393
+#: src/window.vala:443
 msgid "Charge"
 msgstr "Carica"
 
-#: src/window.vala:399
+#: src/window.vala:449
 msgid "Timespan"
 msgstr "Intervallo"
 
-#: src/window.vala:405
+#: src/window.vala:455
 msgid "Resolution"
 msgstr "Risoluzione"
 
-#: src/window.vala:523
+#: src/window.vala:573
 msgid "General Information"
 msgstr "Informazioni generali"
 
-#: src/window.vala:524
+#: src/window.vala:574
 msgid "Native Path"
 msgstr "Percorso nativo"
 
-#: src/window.vala:525
+#: src/window.vala:575
 msgid "Object Path"
 msgstr "Percorso dell'oggetto"
 
-#: src/window.vala:526
+#: src/window.vala:576
 msgid "Device Type"
 msgstr "Tipo di dispositivo"
 
-#: src/window.vala:527
+#: src/window.vala:577
 msgid "Has History"
 msgstr "Ha una cronologia"
 
-#: src/window.vala:530
+#: src/window.vala:580
 msgid "Model Details"
 msgstr "Dettaglio del modello"
 
-#: src/window.vala:531
+#: src/window.vala:581
 msgid "Vendor"
 msgstr "Venditore"
 
-#: src/window.vala:532
+#: src/window.vala:582
 msgid "Serial Number"
 msgstr "Numero di serie"
 
-#: src/window.vala:533
+#: src/window.vala:583
 msgid "Model Name"
 msgstr "Nome modello"
 
-#: src/window.vala:534
+#: src/window.vala:584
 msgid "Technology"
 msgstr "Tecnologia"
 
-#: src/window.vala:537
+#: src/window.vala:587
 msgid "Health Evaluations"
 msgstr "Valutazioni dello stato di salute"
 
-#: src/window.vala:540
+#: src/window.vala:590
 msgid "State of Health"
 msgstr "Stato di salute"
 
-#: src/window.vala:543
+#: src/window.vala:593
 msgid "Device Condition"
 msgstr "Condizione del dispositivo"
 
-#: src/window.vala:547
+#: src/window.vala:597
 msgid "Charging Status"
 msgstr "Stato di carica"
 
-#: src/window.vala:550
+#: src/window.vala:600
 msgid "Charge Start Threshold"
 msgstr "Soglia di inizio carica"
 
-#: src/window.vala:553
+#: src/window.vala:603
 msgid "Charge End Threshold"
 msgstr "Soglia di fine carica"
 
-#: src/window.vala:556
+#: src/window.vala:606
 msgid "Cycle Count"
 msgstr "Conteggio cicli"
 
-#: src/window.vala:560
+#: src/window.vala:610
 msgid "Current Charge Percentage"
 msgstr "Percentuale di carica attuale"
 
-#: src/window.vala:562
+#: src/window.vala:612
 msgid "State"
 msgstr "Stato"
 
-#: src/window.vala:566
+#: src/window.vala:616
 msgid "Time Calculations"
 msgstr "Calcoli temporali"
 
-#: src/window.vala:570
+#: src/window.vala:620
 msgid "Time to Empty"
 msgstr "Tempo rimanente prima dello scaricamento completo"
 
-#: src/window.vala:574
+#: src/window.vala:624
 msgid "Time to Full"
 msgstr "Tempo caricamento completo"
 
-#: src/window.vala:584
+#: src/window.vala:634
 msgid "Projected Battery Life"
 msgstr "Durata prevista della batteria"
 
-#: src/window.vala:595
+#: src/window.vala:645
 msgid "Projected Charging Time"
 msgstr "Tempo di ricarica previsto"
 
-#: src/window.vala:600
+#: src/window.vala:650
 msgid "Sensor Readings"
 msgstr "Letture del sensore"
 
-#: src/window.vala:603
+#: src/window.vala:653
 msgid "Temperature"
 msgstr "Temperatura"
 
-#: src/window.vala:607
+#: src/window.vala:657
 msgid "Energy Metrics"
 msgstr "Metriche energetiche"
 
-#: src/window.vala:610
+#: src/window.vala:660
 msgid "Maximum Rated Capacity"
 msgstr "Capacità nominale massima"
 
-#: src/window.vala:613
+#: src/window.vala:663
 msgid "Maximum Capacity"
 msgstr "Capacità massima"
 
-#: src/window.vala:616
+#: src/window.vala:666
 msgid "Remaining Energy"
 msgstr "Energia rimanente"
 
-#: src/window.vala:619
+#: src/window.vala:669
 msgid "Net Energy Rate"
 msgstr "Tasso di energia netta"
 
-#: src/window.vala:623
+#: src/window.vala:673
 msgid "Voltage Statistics"
 msgstr "Statistiche sulla tensione"
 
-#: src/window.vala:628
+#: src/window.vala:678
 msgid "Minimum Rated Voltage"
 msgstr "Tensione nominale minima"
 
-#: src/window.vala:634
+#: src/window.vala:684
 msgid "Current Voltage"
 msgstr "Tensione attuale"
 
-#: src/window.vala:733
+#: src/window.vala:783
 msgid "History Unavailable"
 msgstr "Cronologia non disponibile"
 
-#: src/window.vala:760
+#: src/window.vala:810
 msgid "Entries"
 msgstr "Voci"
 
-#: src/window.vala:809
+#: src/window.vala:887
 msgid ""
 "No history entries available within the configured timespan and resolution."
 msgstr ""
 "Nessuna voce della cronologia disponibile entro l'intervallo di tempo e la "
 "risoluzione configurati."
 
-#: src/window.vala:818
+#: src/window.vala:896
 msgid "There are not enough history entries to display a graph."
 msgstr "Non ci sono abbastanza voci cronologiche per visualizzare un grafico."
 
-#: src/window.vala:829
+#: src/window.vala:907
 #, c-format
 msgid "%u history item(s) discovered."
 msgstr "%u elemento(i) della cronologia scoperti."
 
-#: src/window.vala:842
+#: src/window.vala:920
 msgid "No device is currently selected."
 msgstr "Al momento non è selezionato alcun dispositivo."
