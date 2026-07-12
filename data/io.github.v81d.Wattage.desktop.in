@@ -9,3 +9,5 @@ Categories=Utility;
 Keywords=GTK;Battery monitor;Battery health;Power statistics;Power usage;Power devices;
 StartupNotify=true
 DBusActivatable=true
+# Translators: Do NOT translate or transliterate this text (these are enum types)!
+X-Purism-FormFactor=Workstation;Mobile;
