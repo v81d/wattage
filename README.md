@@ -158,25 +158,7 @@ GSETTINGS_SCHEMA_DIR=build/staging/usr/local/share/glib-2.0/schemas ./build/stag
 
 ## Contributing
 
-### Reporting Issues
-
-To report an issue or bug, visit Wattage's [issue tracker](https://github.com/v81d/wattage/issues) on GitHub.
-
-### Translating the Project
-
-You can contribute by adding translations for strings in the application. See [TRANSLATING.md](TRANSLATING.md) for more information.
-
-### Pull Requests
-
-To push your features or fixes into this official repository:
-
-1. Fork the repository.
-2. Create a feature branch (`git checkout -b feature/my-feature`) or a fix branch (`git checkout -b fix/my-fix`).
-3. Commit your changes (`git commit -m "feat: add new feature"`). **Please follow the [Conventional Commits](https://www.conventionalcommits.org) guideline when doing so!**
-4. Push the branch (`git push origin feature/my-feature`).
-5. Open a pull request with `contrib` as the base branch. Make sure to create a detailed title and description of your change.
-
-Please follow the [GitHub flow](https://guides.github.com/introduction/flow) and the [GNOME Code of Conduct](CODE_OF_CONDUCT.md) when submitting a pull request.
+Please see the official [Contributing Guide](CONTRIBUTING.md) for information about contributing to Wattage.
 
 ## License
 
