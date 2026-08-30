@@ -74,9 +74,10 @@ Make sure to replace `LL` with the correct language code you are testing.
 Once you have completed and tested your translations, you can begin the submission process. To do so, follow the steps below.
 
 1. Navigate to the [project's repository](https://github.com/v81d/wattage).
+
 2. Create a new pull request:
 
-- Select `v81d:translate` as the base branch and `YOUR_USERNAME:translate` as the head branch.
+- Select `main` as the base branch and your translation branch as the head branch.
 - Title your pull request `i18n: add LL translations` (replace `LL` with your language code) or similar.
 
 3. Submit the pull request and wait for approval.
