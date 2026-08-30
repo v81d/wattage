@@ -523,18 +523,23 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
     new Thread<void> ("load-device-list", () => {
       ArrayList<DeviceObject> devices;
+      bool load_succeeded = true;
 
       try {
         devices = this.device_prober.get_devices ();
-        this.device_list_empty_status.set_visible (false);
-        this.device_info_empty_status.set_visible (false);
       } catch (Error e) {
         stderr.printf ("Failed to load power devices: %s\n", e.message);
         devices = new ArrayList<DeviceObject> ();
+        load_succeeded = false;
       }
 
       Idle.add (() => {
         if (generation != this.load_device_list_generation)return false;
+
+        if (load_succeeded) {
+          this.device_list_empty_status.set_visible (false);
+          this.device_info_empty_status.set_visible (false);
+        }
 
         foreach (DeviceObject device in devices) {
           if (!this.trivial_devices && device.is_trivial ())continue;
@@ -566,8 +571,6 @@ public class Wattage.Window : Adw.ApplicationWindow {
     this.content_spinner.set_visible (true);
 
     new Thread<void> ("load-device-info", () => {
-      if (!device.has_history)this.device_history_action.set_enabled (false);
-
       ArrayList<DeviceInfoSectionData> sections = new ArrayList<DeviceInfoSectionData> ();
 
       DeviceInfoSectionData general_info = new DeviceInfoSectionData (_("General Information"));
@@ -688,6 +691,8 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
       Idle.add (() => {
         if (generation != this.load_device_info_generation)return false;
+
+        if (!device.has_history)this.device_history_action.set_enabled (false);
 
         ArrayList<string> existing_titles = new ArrayList<string> ();
         foreach (DeviceInfoSection section in this.device_info_sections)existing_titles.add (section.title);
