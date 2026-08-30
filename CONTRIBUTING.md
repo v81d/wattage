@@ -26,7 +26,7 @@ If you would like to submit a patch or feature directly to Wattage, you can subm
 2. Create a feature branch (`git checkout -b feature/my-feature`) or a fix branch (`git checkout -b fix/my-fix`).
 3. Commit your changes (`git commit -m "feat: add new feature"`). **Please follow the [Conventional Commits](https://www.conventionalcommits.org) guideline when doing so!**
 4. Push the branch (`git push origin feature/my-feature`).
-5. Open a pull request with `contrib` as the base branch. Make sure to create a detailed title and description of your change.
+5. Open a pull request with `main` as the base branch. Make sure to create a detailed title and description of your change.
 
 Please follow the [GitHub flow](https://guides.github.com/introduction/flow) and the [GNOME Code of Conduct](https://github.com/v81d/wattage/blob/main/CODE_OF_CONDUCT.md) along with the guidelines below when submitting a pull request.
 
