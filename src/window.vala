@@ -526,7 +526,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
       try {
         devices = this.device_prober.get_devices ();
-        device_list_empty_status.set_visible (false);
+        this.device_list_empty_status.set_visible (false);
         this.device_info_empty_status.set_visible (false);
       } catch (Error e) {
         stderr.printf ("Failed to load power devices: %s\n", e.message);
