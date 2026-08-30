@@ -325,7 +325,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
       bool is_active = trivial_devices_switch.get_active ();
       this.settings.set_boolean ("trivial-devices", is_active);
       this.trivial_devices = is_active;
-      load_device_list ();
+      this.load_device_list ();
     });
 
     // Auto-refresh switch
@@ -342,7 +342,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
       if (is_active)this.start_auto_refresh ();
       else this.stop_auto_refresh ();
 
-      load_device_list ();
+      this.load_device_list ();
     });
 
     // Auto-refresh delay
@@ -360,7 +360,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
         this.start_auto_refresh ();
       }
 
-      load_device_list ();
+      this.load_device_list ();
     });
 
     // Energy unit
@@ -371,7 +371,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
       string selected_unit = energy_units.get_string (energy_unit_row.get_selected ());
       this.settings.set_string ("energy-unit", selected_unit);
       this.energy_unit = selected_unit;
-      load_device_list ();
+      this.load_device_list ();
     });
 
     // Power unit
@@ -382,7 +382,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
       string selected_unit = power_units.get_string (power_unit_row.get_selected ());
       this.settings.set_string ("power-unit", selected_unit);
       this.power_unit = selected_unit;
-      load_device_list ();
+      this.load_device_list ();
     });
 
     // Voltage unit
@@ -393,7 +393,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
       string selected_unit = voltage_units.get_string (voltage_unit_row.get_selected ());
       this.settings.set_string ("voltage-unit", selected_unit);
       this.voltage_unit = selected_unit;
-      load_device_list ();
+      this.load_device_list ();
     });
   }
 
@@ -957,12 +957,12 @@ public class Wattage.Window : Adw.ApplicationWindow {
 
   // Keyboard shortcut refresh action
   private void on_refresh_action () {
-    load_device_list ();
+    this.load_device_list ();
   }
 
   // Refresh button clicked action
   [GtkCallback]
   public void on_refresh_clicked (Gtk.Button _) {
-    load_device_list ();
+    this.load_device_list ();
   }
 }
