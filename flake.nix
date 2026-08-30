@@ -65,6 +65,7 @@
           libfoundry
           flatpak-builder
         ];
+        UNCRUSTIFY_CONFIG = "${self}/uncrustify.vala.cfg";
       };
     });
 }
