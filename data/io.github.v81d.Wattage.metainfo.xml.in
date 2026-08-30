@@ -3,17 +3,14 @@
   <id>io.github.v81d.Wattage</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-
   <name translate="no">Wattage</name>
   <summary>Monitor power devices</summary>
   <description>
     <p>Wattage is an application designed for monitoring the health and status of your power devices.</p>
   </description>
-
   <developer id="io.github.v81d">
     <name translate="no">v81d</name>
   </developer>
-
   <!-- Required: Should be a link to the upstream homepage for the component -->
   <url type="homepage">https://github.com/v81d/wattage</url>
   <!-- Recommended: It is highly recommended for open-source projects to display the source code repository -->
@@ -31,21 +28,18 @@
   <!-- This could for example be an HTTPS URL to an online form or a page describing how to contact the developer -->
   <!-- <url type="contact"></url> -->
   <!-- URLs of this type should point to a webpage showing information on how to contribute to the described software project -->
-  <url type="contribute">https://github.com/v81d/wattage/pulls</url>
-
+  <url type="contribute">https://github.com/v81d/wattage/blob/main/CONTRIBUTING.md</url>
   <translation type="gettext">Wattage</translation>
   <!-- All graphical applications having a desktop file must have this tag in the MetaInfo.
      If this is present, appstreamcli compose will pull icons, keywords and categories from the desktop file. -->
   <launchable type="desktop-id">io.github.v81d.Wattage.desktop</launchable>
   <!-- Use the OARS website (https://hughsie.github.io/oars/generate.html) to generate these and make sure to use oars-1.1 -->
   <content_rating type="oars-1.1"/>
-
   <!-- Applications should set a brand color in both light and dark variants like so -->
   <branding>
     <color type="primary" scheme_preference="light">#99c1f1</color>
     <color type="primary" scheme_preference="dark">#1a5fb4</color>
   </branding>
-
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/v81d/wattage/refs/heads/main/demo/general-info.png</image>
@@ -64,8 +58,19 @@
       <caption>Options and preferences</caption>
     </screenshot>
   </screenshots>
-
   <releases>
+    <release version="1.5.2" date="2026-8-30">
+      <url type="details">https://github.com/v81d/wattage/releases/tag/1.5.2</url>
+      <description translate="no">
+        <p>This patch comes with various bug fixes and presentation changes:</p>
+        <ul>
+          <li>Desktop files are now marked as mobile-friendly. Thanks to Gert-dev for making this change!</li>
+          <li>Deprecated UPower DBus interfaces (Luminosity and CapacityLevel) are no longer included in the code.</li>
+          <li>Fixed unsafe access of Gtk objects in worker threads by moving their calls to the main thread.</li>
+        </ul>
+        <p>New contributing guidelines have been published to the repository, so people should have an easier time understanding how to contribute to Wattage.</p>
+      </description>
+    </release>
     <release version="1.5.1" date="2026-6-25">
       <url type="details">https://github.com/v81d/wattage/releases/tag/1.5.1</url>
       <description translate="no">
@@ -203,6 +208,4 @@
       </description>
     </release>
   </releases>
-
 </component>
-
