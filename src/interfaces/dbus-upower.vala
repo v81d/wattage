@@ -60,7 +60,6 @@ namespace DBusInterface {
             [DBus (name = "HasHistory")]                        public abstract bool has_history { owned get; }
             [DBus (name = "HasStatistics")]                     public abstract bool has_statistics { owned get; }
             [DBus (name = "Online")]                            public abstract bool online { owned get; }
-            [DBus (name = "Luminosity")]                        public abstract double luminosity { owned get; }
             [DBus (name = "TimeToEmpty")]                       public abstract int64 time_to_empty { owned get; }
             [DBus (name = "TimeToFull")]                        public abstract int64 time_to_full { owned get; }
             [DBus (name = "Percentage")]                        public abstract double percentage { owned get; }
@@ -69,7 +68,6 @@ namespace DBusInterface {
             [DBus (name = "WarningLevel")]                      public abstract uint32 warning_level { owned get; }
             [DBus (name = "BatteryLevel")]                      public abstract uint32 battery_level { owned get; }
             [DBus (name = "IconName")]                          public abstract string icon_name { owned get; }
-            [DBus (name = "CapacityLevel")]                     public abstract string capacity_level { owned get; }
 
             [DBus (name = "GetHistory")]
             public abstract HistoryItem[] get_history (string type,
