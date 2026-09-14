@@ -2,33 +2,61 @@
 
 # Wattage
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/v81d/wattage?style=for-the-badge)
 ![GitHub top language](https://img.shields.io/github/languages/top/v81d/wattage?style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/v81d/wattage?style=for-the-badge)
-![GitHub issues or pull requests](https://img.shields.io/github/issues/v81d/wattage?style=for-the-badge)
 ![GitHub license](https://img.shields.io/github/license/v81d/wattage?style=for-the-badge)
 ![GitHub release](https://img.shields.io/github/v/release/v81d/wattage?style=for-the-badge)
 ![Flathub downloads](https://img.shields.io/flathub/downloads/io.github.v81d.Wattage?style=for-the-badge)
 
-Wattage is an application designed for monitoring the health and status of your power devices. It displays quick data regarding battery capacity, energy metrics, and device information through a clean, modern GTK 4 and libadwaita interface.
+Monitor the health and status of power devices without the hassle.
 
-![General power device information](demo/general-info.png)
-![Health and energy statistics](demo/energy-info.png)
-![Device history information](demo/history-dialog.png)
-![Options and preferences](demo/preferences-dialog.png)
-
-## Notices
-
-Wattage does not support Windows, macOS, or any system that does not support retrieving power information from [UPower](https://upower.freedesktop.org). However, nearly all Linux distributions with a user interface or desktop environment (such as GNOME, KDE Plasma, etc.) have UPower installed, so Wattage should work on almost all desktops. Some BSD operating systems also support UPower, but full functionality is not guaranteed.
+<table>
+    <tr>
+        <td align="center">
+            <img src="demo/general-info.png" alt="General power device information" width="400">
+        </td>
+        <td align="center">
+            <img src="demo/energy-info.png" alt="Health and energy statistics" width="400">
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <b>General power device information</b>
+        </td>
+        <td align="center">
+            <b>Health and energy statistics</b>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <img src="demo/history-dialog.png" alt="Device history information" width="400">
+        </td>
+        <td align="center">
+            <img src="demo/preferences-dialog.png" alt="Options and preferences" width="400">
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <b>Device history information</b>
+        </td>
+        <td align="center">
+            <b>Options and preferences</b>
+        </td>
+    </tr>
+</table>
 
 ## Features
 
-- Monitor a variety of statistics regarding your battery.
-- View battery health, voltage data, model information, manufacturing details, and device status.
-- Support for multiple batteries or power sources.
-- Interface built with GTK 4 and libadwaita.
-- Written in Vala, which is fast since it compiles to C.
-- Designed for systems with UPower power information.
+- See power information about your battery, AC power cable, headset, stylus, and more.
+- View battery health, voltage, model, manufacturing details, and status.
+- See battery history displayed in a list and graph. _(*To be revamped.)_
+- Support for multiple power sources.
+
+## Supported Systems
+
+Wattage works on systems with DBus and UPower installed, which includes nearly all Linux distributions. Since Windows and macOS do not work with DBus nor UPower, they are unsupported.
+
+BSD systems (FreeBSD, OpenBSD, NetBSD, etc.) that package DBus and UPower may be supported, though they have not been tested. _(Testers are welcome!)_
 
 ## Installation
 
