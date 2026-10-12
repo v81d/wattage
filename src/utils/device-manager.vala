@@ -23,42 +23,42 @@ using Gee;
 using DBusInterface;
 using NumericToolkit;
 
-namespace DeviceManager{
+namespace DeviceManager {
     // This class is used to represent basic information about a single device
     public class DeviceObject {
-        public UPower.Device upower_proxy {get; set;}
+        public UPower.Device upower_proxy { get; set; }
 
-        public ObjectPath? object_path {get; set;}
+        public ObjectPath ? object_path { get; set; }
 
-        public string? native_path {get; set;}
-        public string? vendor {get; set;}
-        public string? model {get; set;}
-        public string? serial {get; set;}
+        public string ? native_path { get; set; }
+        public string ? vendor { get; set; }
+        public string ? model { get; set; }
+        public string ? serial { get; set; }
 
-        public string? device_type {get; set;}
-        public string? technology {get; set;}
+        public string ? device_type { get; set; }
+        public string ? technology { get; set; }
 
-        public string? state {get; set;}
+        public string ? state { get; set; }
 
-        public double? energy {get; set;}
-        public double? energy_full {get; set;}
-        public double? energy_full_design {get; set;}
-        public double? energy_rate {get; set;}
-        public double? voltage {get; set;}
-        public double? voltage_min_design {get; set;}
+        public double ? energy { get; set; }
+        public double ? energy_full { get; set; }
+        public double ? energy_full_design { get; set; }
+        public double ? energy_rate { get; set; }
+        public double ? voltage { get; set; }
+        public double ? voltage_min_design { get; set; }
 
-        public int32? charge_cycles {get; set;}
-        public uint32? charge_start_threshold {get; set;}
-        public uint32? charge_end_threshold {get; set;}
+        public int32 ? charge_cycles { get; set; }
+        public uint32 ? charge_start_threshold { get; set; }
+        public uint32 ? charge_end_threshold { get; set; }
 
-        public bool has_history {get; set;}
-        public int64? time_to_empty {get; set;}
-        public int64? time_to_full {get; set;}
-        public double? temperature {get; set;}
-        public double? capacity {get; set;}
-        public string? icon_name {get; set;}
+        public bool has_history { get; set; }
+        public int64 ? time_to_empty { get; set; }
+        public int64 ? time_to_full { get; set; }
+        public double ? temperature { get; set; }
+        public double ? capacity { get; set; }
+        public string ? icon_name { get; set; }
 
-        public string? health_description {get; set;}
+        public string ? health_description { get; set; }
 
         public bool is_trivial () {
             return vendor == null &&
@@ -81,11 +81,12 @@ namespace DeviceManager{
                    capacity == null &&
                    health_description == null;
         }
+
     }
 
     // This is the publicly accessible class used to probe, enumerate, and inspect power devices
     public class DeviceProber {
-        public static string ? stringify_device_type (uint? device_type) {
+        public static string ? stringify_device_type (uint ? device_type) {
             if (device_type == null)
                 return null;
 
@@ -122,8 +123,7 @@ namespace DeviceManager{
             }
         }
 
-        public static string ? stringify_device_technology (
-            uint? device_technology) {
+        public static string ? stringify_device_technology (uint ? device_technology) {
             if (device_technology == null)
                 return null;
 
@@ -138,7 +138,7 @@ namespace DeviceManager{
             }
         }
 
-        public static string ? stringify_device_state (uint? device_state) {
+        public static string ? stringify_device_state (uint ? device_state) {
             if (device_state == null)
                 return null;
 
@@ -153,7 +153,7 @@ namespace DeviceManager{
             }
         }
 
-        public static string ? create_health_description (double? capacity) {
+        public static string ? create_health_description (double ? capacity) {
             if (capacity == null)
                 return null;
 
@@ -198,8 +198,7 @@ namespace DeviceManager{
             return result;
         }
 
-        public DeviceObject fetch_device (
-            ObjectPath object_path) throws IOError {
+        public DeviceObject fetch_device (ObjectPath object_path) throws IOError {
             UPower.Device upower_proxy = Bus.get_proxy_sync (
                 BusType.SYSTEM,
                 "org.freedesktop.UPower",
@@ -217,7 +216,7 @@ namespace DeviceManager{
                 DeviceProber.stringify_device_type (upower_proxy.device_type);
             device.technology =
                 DeviceProber.stringify_device_technology (
-                upower_proxy.technology);
+                    upower_proxy.technology);
             device.state =
                 DeviceProber.stringify_device_state (upower_proxy.state);
             device.energy = positive_double (upower_proxy.energy);
@@ -250,5 +249,6 @@ namespace DeviceManager{
 
             return device;
         }
+
     }
 }

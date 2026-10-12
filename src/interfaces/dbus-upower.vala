@@ -71,8 +71,9 @@ namespace DBusInterface {
 
             [DBus (name = "GetHistory")]
             public abstract HistoryItem[] get_history (string type,
-                uint32 timespan,
-                uint32 resolution) throws DBusError, IOError;
+                                                       uint32 timespan,
+                                                       uint32 resolution) throws DBusError, IOError;
+
         }
 
         public struct HistoryItem {

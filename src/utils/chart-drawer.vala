@@ -21,20 +21,20 @@
 using Cairo;
 using Gee;
 
-namespace ChartDrawer{
+namespace ChartDrawer {
     public class LineGraph {
-        public ArrayList<double?> xs {get; set;}
-        public ArrayList<double?> ys {get; set;}
+        public ArrayList<double ?> xs { get; set; }
+        public ArrayList<double ?> ys { get; set; }
 
-        public double? umin_x = null;
-        public double? umax_x = null;
-        public double? umin_y = null;
-        public double? umax_y = null;
+        public double ? umin_x = null;
+        public double ? umax_x = null;
+        public double ? umin_y = null;
+        public double ? umax_y = null;
 
-        public LineGraph (double? min_x = null, double? max_x = null,
-            double? min_y = null, double? max_y = null) {
-            this.xs = new ArrayList<double?> ();
-            this.ys = new ArrayList<double?> ();
+        public LineGraph (double ? min_x = null, double ? max_x = null,
+                          double ? min_y = null, double ? max_y = null) {
+            this.xs = new ArrayList<double ?> ();
+            this.ys = new ArrayList<double ?> ();
 
             this.umin_x = min_x;
             this.umax_x = max_x;
@@ -48,9 +48,9 @@ namespace ChartDrawer{
         }
 
         public static void rounded_rect (Context cr,
-            double x, double y,
-            double w, double h,
-            double r) {
+                                         double x, double y,
+                                         double w, double h,
+                                         double r) {
             double deg = Math.PI / 180.0;
             cr.new_sub_path ();
             cr.arc (x + w - r, y + r, r, -90 * deg, 0 * deg);
@@ -77,13 +77,13 @@ namespace ChartDrawer{
 
             // Determine min/max
             double min_x = this.umin_x !=
-                null ? (double) this.umin_x : xs.get (0);
+                           null ? (double) this.umin_x : xs.get (0);
             double max_x = this.umax_x !=
-                null ? (double) this.umax_x : xs.get (0);
+                           null ? (double) this.umax_x : xs.get (0);
             double min_y = this.umin_y !=
-                null ? (double) this.umin_y : ys.get (0);
+                           null ? (double) this.umin_y : ys.get (0);
             double max_y = this.umax_y !=
-                null ? (double) this.umax_y : ys.get (0);
+                           null ? (double) this.umax_y : ys.get (0);
 
             for (int i = 0; i < xs.size; i++) {
                 if (this.umin_x == null &&
@@ -130,7 +130,7 @@ namespace ChartDrawer{
 
             for (int i = 0; i < xs.size; i++) {
                 cr.line_to (sx (xs.get (i), min_x, max_x, w),
-                    sy (ys.get (i), min_y, max_y, h));
+                            sy (ys.get (i), min_y, max_y, h));
             }
 
             cr.line_to (sx (xs.get (xs.size - 1), min_x, max_x, w), h);
@@ -142,14 +142,15 @@ namespace ChartDrawer{
             cr.set_line_width (2.0);
             cr.new_path ();
             cr.move_to (sx (xs.get (0), min_x, max_x, w),
-                sy (ys.get (0), min_y, max_y, h));
+                        sy (ys.get (0), min_y, max_y, h));
 
             for (int i = 1; i < xs.size; i++) {
                 cr.line_to (sx (xs.get (i), min_x, max_x, w),
-                    sy (ys.get (i), min_y, max_y, h));
+                            sy (ys.get (i), min_y, max_y, h));
             }
 
             cr.stroke ();
         }
+
     }
 }

@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-public class Wattage.Application: Adw.Application {
+public class Wattage.Application : Adw.Application {
     public Application () {
         Object (
             application_id: "io.github.v81d.Wattage",
@@ -29,16 +29,16 @@ public class Wattage.Application: Adw.Application {
 
     construct {
         ActionEntry[] action_entries = {
-            {"about", this.on_about_action},
-            {"quit", this.quit}
+            { "about", this.on_about_action },
+            { "quit", this.quit }
         };
         this.add_action_entries (action_entries, this);
-        this.set_accels_for_action ("win.preferences", {"<primary>comma"});
-        this.set_accels_for_action ("app.about", {"<primary>i"});
-        this.set_accels_for_action ("app.quit", {"<primary>q"});
-        this.set_accels_for_action ("win.refresh", {"<primary>r"});
-        this.set_accels_for_action ("win.select_next_device", {"Page_Down"});
-        this.set_accels_for_action ("win.select_previous_device", {"Page_Up"});
+        this.set_accels_for_action ("win.preferences", { "<primary>comma" });
+        this.set_accels_for_action ("app.about", { "<primary>i" });
+        this.set_accels_for_action ("app.quit", { "<primary>q" });
+        this.set_accels_for_action ("win.refresh", { "<primary>r" });
+        this.set_accels_for_action ("win.select_next_device", { "Page_Down" });
+        this.set_accels_for_action ("win.select_previous_device", { "Page_Up" });
     }
 
     public override void activate () {
@@ -48,7 +48,7 @@ public class Wattage.Application: Adw.Application {
     }
 
     private void on_about_action () {
-        string[] developers = {"v81d"};
+        string[] developers = { "v81d" };
         var about = new Adw.AboutDialog () {
             application_name = "Wattage",
             application_icon = "io.github.v81d.Wattage",
@@ -63,4 +63,5 @@ public class Wattage.Application: Adw.Application {
 
         about.present (this.active_window);
     }
+
 }

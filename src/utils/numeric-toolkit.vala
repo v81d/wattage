@@ -18,8 +18,8 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-namespace NumericToolkit{
-    public double ? si_convert (double? val, string? unit) {
+namespace NumericToolkit {
+    public double ? si_convert (double ? val, string ? unit) {
         if (val == null || unit == null || unit.length == 0)
             return val;
 
@@ -30,7 +30,7 @@ namespace NumericToolkit{
         else if (unit.has_prefix ("n"))
             factor = 1e9;
         else if (unit.has_prefix ("μ") ||
-            unit.has_prefix ("µ")) // mu or micro
+                 unit.has_prefix ("µ"))// mu or micro
             factor = 1e6;
         else if (unit.has_prefix ("m"))
             factor = 1e3;
@@ -50,7 +50,7 @@ namespace NumericToolkit{
         return val * factor;
     }
 
-    public double ? calculate_percentage (double? part, double? total) {
+    public double ? calculate_percentage (double ? part, double ? total) {
         /* In some special cases, the total may be 0.
          * To avoid division by zero, we should instead return `null` early.
          */
@@ -65,7 +65,7 @@ namespace NumericToolkit{
         return (part / total) * 100;
     }
 
-    public string ? seconds_to_hms (int64? seconds) {
+    public string ? seconds_to_hms (int64 ? seconds) {
         if (seconds == null)
             return null;
 
@@ -75,23 +75,28 @@ namespace NumericToolkit{
         result_seconds -= result_minutes * 60;
 
         string format = "%02" + int64.FORMAT + ":%02" + int64.FORMAT + ":%02" +
-            int64.FORMAT;
+                        int64.FORMAT;
         return format.printf (result_hours, result_minutes, result_seconds);
     }
 
     public string ? non_empty_string (string s) {
-        return s.length > 0 ? (string?) s : null;
+        return s.length > 0 ? (string ?) s : null;
     }
 
     public double ? positive_double (double d) {
-        return d > 0 ? (double?) d : null;
+        return d > 0 ? (double ?) d : null;
     }
 
-    public int32 ? positive_int32 (int32 i) {return i > 0 ? (int32?) i : null;}
+    public int32 ? positive_int32 (int32 i) {
+        return i > 0 ? (int32 ?) i : null;
+    }
 
     public uint32 ? positive_uint32 (uint32 u) {
-        return u > 0 ? (uint32?) u : null;
+        return u > 0 ? (uint32 ?) u : null;
     }
 
-    public int64 ? positive_int64 (int64 i) {return i > 0 ? (int64?) i : null;}
+    public int64 ? positive_int64 (int64 i) {
+        return i > 0 ? (int64 ?) i : null;
+    }
+
 }
