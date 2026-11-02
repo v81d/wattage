@@ -24,7 +24,7 @@ public class Wattage.Application : Adw.Application {
             application_id: "io.github.v81d.Wattage",
             flags: ApplicationFlags.DEFAULT_FLAGS,
             resource_base_path: "/io/github/v81d/Wattage"
-            );
+        );
     }
 
     construct {
@@ -63,5 +63,4 @@ public class Wattage.Application : Adw.Application {
 
         about.present (this.active_window);
     }
-
 }
