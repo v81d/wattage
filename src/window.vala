@@ -208,7 +208,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
     private Settings settings;
 
     private DeviceProber device_prober;
-    private int selected_device_index = 0;
+    private int selected_device_index = -1;
     private ArrayList<DeviceInfoSection> device_info_sections = new ArrayList<DeviceInfoSection> ();
 
     // Preferences and user settings
@@ -252,6 +252,12 @@ public class Wattage.Window : Adw.ApplicationWindow {
         this.device_list.row_selected.connect ((list, row) => {
             if (row is DeviceRow) {
                 DeviceRow device_row = (DeviceRow) row;
+
+                // do not reload the device if its already selected
+                if (this.selected_device_index == device_row.get_index ()) {
+                    return;
+                }
+
                 this.selected_device_index = device_row.get_index ();
                 this.device_info_empty_status.set_visible (false);
                 this.device_history_action.set_enabled (true);
@@ -713,9 +719,7 @@ public class Wattage.Window : Adw.ApplicationWindow {
                     }
                 }
 
-                this.device_list_empty_status.set_visible (current_paths.size ==
-                    0
-                );
+                this.device_list_empty_status.set_visible (current_paths.size == 0);
                 if (current_paths.size == 0) {
                     this.device_info_empty_status.set_visible (true);
                     this.device_history_action.set_enabled (false);
