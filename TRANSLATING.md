@@ -28,10 +28,10 @@ All original English strings are stored in `wattage.pot`. Translations are store
 
 You can edit `.po` files with [Poedit](https://poedit.net) or simply a text editor. To get started, follow the instructions below.
 
-1. [Fork](https://github.com/v81d/wattage/fork) the repository and clone the `translate` branch locally.
+1. [Fork](https://github.com/v81d/wattage/fork) the repository and clone the `main` branch locally.
 
 ```bash
-git clone --branch=translate https://github.com/v81d/wattage.git
+git clone --branch=main https://github.com/v81d/wattage.git
 cd wattage
 ```
 
