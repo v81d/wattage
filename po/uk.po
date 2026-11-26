@@ -1,0 +1,617 @@
+# Language ua translations for Wattage package.
+# Copyright (C) 2026 THE Wattage'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Wattage package.
+# Herman <geron9988@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Wattage\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-25 17:58-0400\n"
+"PO-Revision-Date: 2026-11-25 23:38+0100\n"
+"Last-Translator: Herman <geron9988@gmail.com>\n"
+"Language-Team: Language ua\n"
+"Language: ua\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/io.github.v81d.Wattage.desktop.in:3
+#: data/io.github.v81d.Wattage.metainfo.xml.in:8
+msgid "Monitor power devices"
+msgstr "Стежте за споживанням пристроїв"
+
+#: data/io.github.v81d.Wattage.desktop.in:9
+msgid ""
+"GTK;Battery monitor;Battery health;Power statistics;Power usage;Power "
+"devices;"
+msgstr ""
+
+#: data/io.github.v81d.Wattage.gschema.xml:6
+msgid "Show trivial devices"
+msgstr "Показати тривіальні пристрої"
+
+#: data/io.github.v81d.Wattage.gschema.xml:7 src/ui/preferences-dialog.blp:13
+msgid "Show or hide devices that do not report much information."
+msgstr "Показати або сховати пристрої, що не репортують значної інформації."
+
+#: data/io.github.v81d.Wattage.gschema.xml:11
+msgid "Enable auto-refresh"
+msgstr "Увімкнути автооновлення"
+
+#: data/io.github.v81d.Wattage.gschema.xml:12 src/ui/preferences-dialog.blp:22
+msgid "Whether or not the data should refresh automatically."
+msgstr "Автоматично оновлювати інформацію"
+
+#: data/io.github.v81d.Wattage.gschema.xml:17
+msgid "Auto-refresh cooldown"
+msgstr "Час між оновленнями"
+
+#: data/io.github.v81d.Wattage.gschema.xml:18 src/ui/preferences-dialog.blp:27
+msgid "The time, in seconds, between each data refresh."
+msgstr "Час між оновленнями, поданий у секундах."
+
+#: data/io.github.v81d.Wattage.gschema.xml:22
+msgid "Energy unit"
+msgstr "Одиниця використаної ємності"
+
+#: data/io.github.v81d.Wattage.gschema.xml:23 src/ui/preferences-dialog.blp:43
+msgid "The unit for energy measurements."
+msgstr "Одиниця вимірювання використаної ємності."
+
+#: data/io.github.v81d.Wattage.gschema.xml:27
+msgid "Power unit"
+msgstr "Одиниця потужності"
+
+#: data/io.github.v81d.Wattage.gschema.xml:28 src/ui/preferences-dialog.blp:58
+msgid "The unit for power measurements."
+msgstr "Одиниця вимірювання потужності."
+
+#: data/io.github.v81d.Wattage.gschema.xml:32
+msgid "Voltage unit"
+msgstr "Одиниця напруги"
+
+#: data/io.github.v81d.Wattage.gschema.xml:33 src/ui/preferences-dialog.blp:72
+msgid "The unit for voltage measurements."
+msgstr "Одиниця вимірювання напруги."
+
+#: data/io.github.v81d.Wattage.gschema.xml:37
+msgid "History Type"
+msgstr "Тип історії"
+
+#: data/io.github.v81d.Wattage.gschema.xml:38 src/window.vala:440
+msgid "The type of history to display."
+msgstr "Тип історії до показу на графіку."
+
+#: data/io.github.v81d.Wattage.gschema.xml:42
+msgid "History Timespan"
+msgstr "Проміжок часу"
+
+#: data/io.github.v81d.Wattage.gschema.xml:43 src/window.vala:450
+msgid "The timespan, in minutes, to return history data from."
+msgstr "Проміжок часу вимірювань до показу, поданий у хвилинах."
+
+#: data/io.github.v81d.Wattage.gschema.xml:47
+msgid "History Resolution"
+msgstr "Детальність історії"
+
+#: data/io.github.v81d.Wattage.gschema.xml:48 src/window.vala:456
+msgid "The approximate number of history points to return."
+msgstr "Приблизна кількість точок на графіку."
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:10
+msgid ""
+"Wattage is an application designed for monitoring the health and status of "
+"your power devices."
+msgstr ""
+"Wattage є застосунком розробленим для моніторування здоров'я, статусу та енергії"
+"ваших пристроїв."
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:52
+msgid "General power device information"
+msgstr "Загальна інформація про енергію пристроїв"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:56
+msgid "Health and energy statistics"
+msgstr "Статистика здоров'я та енергії"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:60
+msgid "Device history information"
+msgstr "Історія пристрою"
+
+#: data/io.github.v81d.Wattage.metainfo.xml.in:64
+msgid "Options and preferences"
+msgstr "Налаштування"
+
+#: src/application.vala:56
+msgid "translator-credits"
+msgstr "Hermoonumu"
+
+#: src/ui/preferences-dialog.blp:6 src/ui/shortcuts-dialog.blp:6
+msgid "General"
+msgstr "Загальні"
+
+#: src/ui/preferences-dialog.blp:9 src/ui/window.blp:21
+msgid "Devices"
+msgstr "Пристрої"
+
+#: src/ui/preferences-dialog.blp:12
+msgid "Show Trivial Devices"
+msgstr "Показати тривіальні пристрої"
+
+#: src/ui/preferences-dialog.blp:18
+msgid "Automation"
+msgstr "Автоматизація"
+
+#: src/ui/preferences-dialog.blp:21
+msgid "Auto-Refresh"
+msgstr "Автооновлення"
+
+#: src/ui/preferences-dialog.blp:26
+msgid "Auto-Refresh Cooldown"
+msgstr "Час між оновленнями"
+
+#: src/ui/preferences-dialog.blp:39
+msgid "Measurements"
+msgstr "Виміри"
+
+#: src/ui/preferences-dialog.blp:42
+msgid "Energy Unit"
+msgstr "Одиниця енергії"
+
+#: src/ui/preferences-dialog.blp:57
+msgid "Power Unit"
+msgstr "Одиниця потужності"
+
+#: src/ui/preferences-dialog.blp:71
+msgid "Voltage Unit"
+msgstr "Одиниця напруги"
+
+#: src/ui/shortcuts-dialog.blp:30
+msgid "Content & Navigation"
+msgstr "Зміст та Навігація"
+
+#: src/ui/window.blp:40
+msgid "No Devices Found"
+msgstr "Пристроїв не знайдено"
+
+#: src/ui/window.blp:41
+msgid "Check your UPower connection"
+msgstr "Перевірте з'єднання із UPower"
+
+#: src/ui/window.blp:66
+msgid "Toggle Sidebar"
+msgstr "Перемкнути бокове меню"
+
+#: src/ui/window.blp:75
+msgid "Main Menu"
+msgstr "Головне Меню"
+
+#: src/ui/window.blp:82
+msgid "Refresh"
+msgstr "Оновити"
+
+#: src/ui/window.blp:105
+msgid "No Device Details"
+msgstr "Деталі про пристрій відсутні"
+
+#: src/ui/window.blp:106
+msgid "Load a device to view its information"
+msgstr "Завантажте пристрій для перегляду інформації про нього"
+
+#: src/ui/window.blp:129 src/window.vala:404
+msgid "Device History"
+msgstr "Історія пристрою"
+
+#: src/ui/window.blp:136
+msgid "Preferences"
+msgstr "Налаштування"
+
+#: src/ui/window.blp:141
+msgid "Keyboard Shortcuts"
+msgstr "Гарячі клавіші"
+
+#: src/ui/window.blp:146
+msgid "About Wattage"
+msgstr "Про Wattage"
+
+#: src/utils/device-manager.vala:96
+msgid "Line Power"
+msgstr "БЖ"
+
+#: src/utils/device-manager.vala:97
+msgid "Battery"
+msgstr "Акумулятор"
+
+#: src/utils/device-manager.vala:98
+msgid "UPS"
+msgstr "БДЖ"
+
+#: src/utils/device-manager.vala:99
+msgid "Monitor"
+msgstr "Монітор"
+
+#: src/utils/device-manager.vala:100
+msgid "Mouse"
+msgstr "Мишка"
+
+#: src/utils/device-manager.vala:101
+msgid "Keyboard"
+msgstr "Клавіатура"
+
+#: src/utils/device-manager.vala:102
+msgid "PDA"
+msgstr "PDA"
+
+#: src/utils/device-manager.vala:103
+msgid "Phone"
+msgstr "Телефон"
+
+#: src/utils/device-manager.vala:104
+msgid "Media Player"
+msgstr "Медіапрогравач"
+
+#: src/utils/device-manager.vala:105
+msgid "Tablet"
+msgstr "Планшет"
+
+#: src/utils/device-manager.vala:106
+msgid "Computer"
+msgstr "Комп'ютер"
+
+#: src/utils/device-manager.vala:107
+msgid "Gaming Input"
+msgstr "Ігорвий ввід"
+
+#: src/utils/device-manager.vala:108
+msgid "Pen"
+msgstr "Ручка"
+
+#: src/utils/device-manager.vala:109
+msgid "Touchpad"
+msgstr "Тачпад"
+
+#: src/utils/device-manager.vala:110
+msgid "Modem"
+msgstr "Модем"
+
+#: src/utils/device-manager.vala:111
+msgid "Network"
+msgstr "Мережа"
+
+#: src/utils/device-manager.vala:112
+msgid "Headset"
+msgstr "Гарнітура"
+
+#: src/utils/device-manager.vala:113
+msgid "Speakers"
+msgstr "Динаміки"
+
+#: src/utils/device-manager.vala:114
+msgid "Headphones"
+msgstr "Навушники"
+
+#: src/utils/device-manager.vala:115
+msgid "Video"
+msgstr "Відео"
+
+#: src/utils/device-manager.vala:116
+msgid "Other Audio"
+msgstr "Інше аудіо"
+
+#: src/utils/device-manager.vala:117
+msgid "Remote Control"
+msgstr "Пульт"
+
+#: src/utils/device-manager.vala:118
+msgid "Printer"
+msgstr "Принтер"
+
+#: src/utils/device-manager.vala:119
+msgid "Scanner"
+msgstr "Сканер"
+
+#: src/utils/device-manager.vala:120
+msgid "Camera"
+msgstr "Камера"
+
+#: src/utils/device-manager.vala:121
+msgid "Wearable"
+msgstr "Носимий пристрій"
+
+#: src/utils/device-manager.vala:122
+msgid "Toy"
+msgstr "Іграшка"
+
+#: src/utils/device-manager.vala:123
+msgid "Bluetooth Generic"
+msgstr "Загальний Bluetooth пристрій"
+
+#: src/utils/device-manager.vala:132
+msgid "Lithium-ion"
+msgstr "Літій-іонний"
+
+#: src/utils/device-manager.vala:133
+msgid "Lithium-ion polymer"
+msgstr "Літій-полімерний"
+
+#: src/utils/device-manager.vala:134
+msgid "Lithium iron phosphate"
+msgstr "Літій залізо-фосфатний"
+
+#: src/utils/device-manager.vala:135
+msgid "Lead-acid"
+msgstr "Свинцевий"
+
+#: src/utils/device-manager.vala:136
+msgid "Nickel-cadmium"
+msgstr "Нікель-кадмієвий"
+
+#: src/utils/device-manager.vala:137
+msgid "Nickel-metal hydride"
+msgstr "Нікель-метал-гібридний"
+
+#: src/utils/device-manager.vala:146 src/window.vala:85 src/window.vala:641
+msgid "Charging"
+msgstr "Заряджається"
+
+#: src/utils/device-manager.vala:147 src/window.vala:630
+msgid "Discharging"
+msgstr "Розряджається"
+
+#: src/utils/device-manager.vala:148
+msgid "Empty"
+msgstr "Пустий"
+
+#: src/utils/device-manager.vala:149 src/window.vala:83
+msgid "Fully charged"
+msgstr "Повністю заряджено"
+
+#: src/utils/device-manager.vala:150 src/window.vala:87
+msgid "Pending charge"
+msgstr "В очікуванні заряду"
+
+#: src/utils/device-manager.vala:151
+msgid "Pending discharge"
+msgstr "В очікування розряду"
+
+#: src/utils/device-manager.vala:160
+msgid ""
+"The device is near or at its maximum rated capacity. It is in excellent "
+"condition and should not require much intervention."
+msgstr ""
+"Ємність акумулятора пристрою знаходиться близько номінальної. Він є у "
+"пречудовому стані та не вимагає втручань."
+
+#: src/utils/device-manager.vala:162
+msgid ""
+"The device performs close to its original capacity. There is little "
+"noticeable difference from its optimal state."
+msgstr ""
+"Пристрій здатен зберігати близько своєї номінальної ємності. Є трохи "
+"помітна різниця між поточним та оптимальним станом."
+
+#: src/utils/device-manager.vala:164
+msgid ""
+"The device has lost some capacity, but it should not be of much concern. "
+"Continue to take precautions regarding your power device like limiting its "
+"charge and using power-saving settings."
+msgstr ""
+"Пристрій втратив трохи ємності, проте це не є приводом хвилювань. "
+"Продовжуйте вживати заходів до збереження стану, як-от встановлення межі заряду та "
+"використання енергоощадливого режиму."
+
+#: src/utils/device-manager.vala:166
+msgid ""
+"The device has noticeably degraded in capacity, but is still usable. Runtime "
+"may be shorter than at its original capacity. Use power-optimizing settings "
+"to extend longevity and slow down degradation."
+msgstr ""
+"Ємність пристрою значно деградувала, проте він все одно придатний до ужитку. "
+"Час праці може бути коротшим порівнянно з номінальною ємністю. Використовуйте "
+"енергоощадливий режим для подовження роботи та сповільнення зносу."
+
+#: src/utils/device-manager.vala:168
+msgid ""
+"The device has experienced a significant drop in capacity. Mobility can be "
+"more difficult due to a decrease in runtime. Depending on usage habits, "
+"replacement may be necessary in the future."
+msgstr ""
+"Пристрій зазнав деградації ємності. Автономність може бути значно менша. "
+"Заміна може бути потрібна у майбутньому в залежності від стилю використання."
+
+#: src/utils/device-manager.vala:170
+msgid ""
+"The device has undergone substantial deterioration. Power instability and "
+"potential overheating can damage other components. Replace the device to "
+"avoid further damage."
+msgstr ""
+"Пристрій зазнав значної деградації ємності. Нестабільність та можливий перегрів "
+"можуть зашкодити іншим компонентам. Замініть пристрій для запобігання подальшій шкоді."
+
+#: src/window.vala:428
+msgid "Options"
+msgstr "Налаштування"
+
+#: src/window.vala:439
+msgid "Type"
+msgstr "Тип"
+
+#: src/window.vala:443
+msgid "Rate"
+msgstr "Швидкість"
+
+#: src/window.vala:443
+msgid "Charge"
+msgstr "Заряд"
+
+#: src/window.vala:449
+msgid "Timespan"
+msgstr "Час"
+
+#: src/window.vala:455
+msgid "Resolution"
+msgstr "Точність"
+
+#: src/window.vala:573
+msgid "General Information"
+msgstr "Загальна інформація"
+
+#: src/window.vala:574
+msgid "Native Path"
+msgstr "Нативний шлях"
+
+#: src/window.vala:575
+msgid "Object Path"
+msgstr "Шлях до об'єкту"
+
+#: src/window.vala:576
+msgid "Device Type"
+msgstr "Тип пристрою"
+
+#: src/window.vala:577
+msgid "Has History"
+msgstr "Має історію"
+
+#: src/window.vala:580
+msgid "Model Details"
+msgstr "Деталі про модель"
+
+#: src/window.vala:581
+msgid "Vendor"
+msgstr "Виробник"
+
+#: src/window.vala:582
+msgid "Serial Number"
+msgstr "Серійний номер"
+
+#: src/window.vala:583
+msgid "Model Name"
+msgstr "Модель"
+
+#: src/window.vala:584
+msgid "Technology"
+msgstr "Технологія виготовлення"
+
+#: src/window.vala:587
+msgid "Health Evaluations"
+msgstr "Оціночне здоров'я"
+
+#: src/window.vala:590
+msgid "State of Health"
+msgstr "Стан здоров'я"
+
+#: src/window.vala:593
+msgid "Device Condition"
+msgstr "Стан пристрою"
+
+#: src/window.vala:597
+msgid "Charging Status"
+msgstr "Статус заряджання"
+
+#: src/window.vala:600
+msgid "Charge Start Threshold"
+msgstr "Поріг початку зарядки"
+
+#: src/window.vala:603
+msgid "Charge End Threshold"
+msgstr "Поріг кінця зарядки"
+
+#: src/window.vala:606
+msgid "Cycle Count"
+msgstr "Кількість циклів"
+
+#: src/window.vala:610
+msgid "Current Charge Percentage"
+msgstr "Поточний заряд"
+
+#: src/window.vala:612
+msgid "State"
+msgstr "Стан"
+
+#: src/window.vala:616
+msgid "Time Calculations"
+msgstr "Розрахунковий час"
+
+#: src/window.vala:620
+msgid "Time to Empty"
+msgstr "Час до нуля"
+
+#: src/window.vala:624
+msgid "Time to Full"
+msgstr "Час до повного"
+
+#: src/window.vala:634
+msgid "Projected Battery Life"
+msgstr "Розрахований час праці"
+
+#: src/window.vala:645
+msgid "Projected Charging Time"
+msgstr "Розрахований час заряджання"
+
+#: src/window.vala:650
+msgid "Sensor Readings"
+msgstr "Дані з сенсорів"
+
+#: src/window.vala:653
+msgid "Temperature"
+msgstr "Температура"
+
+#: src/window.vala:657
+msgid "Energy Metrics"
+msgstr "Метрики енергії"
+
+#: src/window.vala:660
+msgid "Maximum Rated Capacity"
+msgstr "Номінальна ємність"
+
+#: src/window.vala:663
+msgid "Maximum Capacity"
+msgstr "Поточна максимальна ємність"
+
+#: src/window.vala:666
+msgid "Remaining Energy"
+msgstr "Залишкова енергія"
+
+#: src/window.vala:669
+msgid "Net Energy Rate"
+msgstr "Швидкість заряду/розряду"
+
+#: src/window.vala:673
+msgid "Voltage Statistics"
+msgstr "Статистика напруги"
+
+#: src/window.vala:678
+msgid "Minimum Rated Voltage"
+msgstr "Мінімальна номінальна напруга"
+
+#: src/window.vala:684
+msgid "Current Voltage"
+msgstr "Поточна напруга"
+
+#: src/window.vala:783
+msgid "History Unavailable"
+msgstr "Історія недоступна"
+
+#: src/window.vala:810
+msgid "Entries"
+msgstr "Записи"
+
+#: src/window.vala:887
+msgid ""
+"No history entries available within the configured timespan and resolution."
+msgstr ""
+"Немає записів за обраний проміжок часу та точності."
+
+#: src/window.vala:896
+msgid "There are not enough history entries to display a graph."
+msgstr "Недостатньо записів для відображення графіку."
+
+#: src/window.vala:907
+#, c-format
+msgid "%u history item(s) discovered."
+msgstr "Знайдено %u записів."
+
+#: src/window.vala:920
+msgid "No device is currently selected."
+msgstr "Пристрій не обрано."
